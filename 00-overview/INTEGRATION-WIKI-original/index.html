@@ -1,0 +1,3549 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>MAPLESOTRY 整合 Wiki — Cosmic 為核心 + 5 大衍生項目 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#maplesotry-wiki-cosmic-5" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MAPLESOTRY 整合 Wiki — Cosmic 為核心 + 5 大衍生項目
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §0 整合全貌圖
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1 各項目整合矩陣
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-solomapling-bot-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §2 SoloMapling 整合 — Bot 框架整合到 Cosmic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§2 SoloMapling 整合 — Bot 框架整合到 Cosmic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 它做什麼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 對 Cosmic 的改動面(極小)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 依賴新增
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 不 clone 整包的原因
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 整合工作流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-beidou-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3 BeiDou-Server 整合 — 商用增強
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§3 BeiDou-Server 整合 — 商用增強">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 與 Cosmic 的差異
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 雙引擎架構(關鍵設計)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 整合成本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-4-05-documentationbeidou-server-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 已下載的 4 份文檔(05-Documentation/BeiDou-Server-Notes/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-wz-mod-tool-suite-v268-v83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4 WZ Mod Tool Suite 整合 — v268+ 內容移植到 v83
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§4 WZ Mod Tool Suite 整合 — v268+ 內容移植到 v83">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 它做什麼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 為什麼對 Cosmic 整合很重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 套件結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 整合工作流
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 已知限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.6 與你既有工具的搭配
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-kaentake-ipport" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5 kaentake 整合 — 客戶端 IP/port 注入
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§5 kaentake 整合 — 客戶端 IP/port 注入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 它做什麼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 使用方式(三選一)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 對應到 Cosmic 預設值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4 整合工作流
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-xiaoye-maplestory-dev-ai-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §6 xiaoye-MapleStory-dev 整合 — AI Agent 開發規範
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§6 xiaoye-MapleStory-dev 整合 — AI Agent 開發規範">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 它做什麼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-5-05-documentationxiaoye-maplestory-dev" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 5 份文檔(05-Documentation/xiaoye-MapleStory-dev/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-15-skillmd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 15 條強制門禁(從 SKILL.md 摘錄)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 怎麼安裝(給 Agent 平台用)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 與你整合任務的關聯
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §7 整合任務優先級建議
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§7 整合任務優先級建議">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟢 極易 + 高收益(建議立刻做)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟡 中等難度(選做)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 高難度(長期)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8 整合路徑依賴鏈
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §9 相依工具鏈(你的本機已有)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §10 給你的整合任務啟動腳本
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11 來源驗證清單
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12 下次該 clone/抓取的清單(若需要)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §13 完成動作摘要
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="maplesotry-wiki-cosmic-5">MAPLESOTRY 整合 Wiki — Cosmic 為核心 + 5 大衍生項目<a class="headerlink" href="#maplesotry-wiki-cosmic-5" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>更新時間</strong>: 2026-09-27
+<strong>本機根目錄</strong>: <code>C:\MUWORK\GAME\MAPLESOTRY\</code>
+<strong>核心</strong>: P0nk/Cosmic v1.1.3 (GMS v083 server emulator)
+<strong>本 wiki 目的</strong>: 把所有已下載/已 clone 的衍生項目,標出<strong>整合點 + 依賴鏈 + 工作流</strong>,給功能整合任務用</p>
+</blockquote>
+<hr />
+<h2 id="0">§0 整合全貌圖<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                          ┌─────────────────────────────────────────────┐
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                          │  Cosmic (P0nk/Cosmic v1.1.3)                │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                          │  本機: 04-Emulators/GMS-v083-Cosmic/        │
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                          │  GMS v083 server emulator                  │
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>                          │  - Login port 8484 / Channel 7575+         │
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>                          │  - 177 Recv + 307 Send opcodes              │
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>                          │  - 173 GM commands + 1915 JS scripts        │
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>                          │  - 16 WZ files                             │
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>                          └──────────┬──────────────────────────────────┘
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>                                     │ derived / extends
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        ┌───────────────────┬───────┼─────────┬─────────────────┐
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        │                   │       │         │                 │
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        ▼                   ▼       ▼         ▼                 ▼
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>┌──────────────┐   ┌──────────────┐ ┌─────────────┐ ┌──────────────┐
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│ BeiDou-      │   │ SoloMapling  │ │   HeavenMS  │ │ Client forks │
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│ Server v1.11 │   │ (Madara)     │ │ (ronancpl)  │ │              │
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│ ★663 fork386 │   │ ★183 fork54  │ │ 已封存      │ │ ─ kaentake ★ │
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│ Spring Boot  │   │ Bot 框架    │ │              │ │   (iw2d)     │
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│ + Vue Web UI │   │ + 31.5k 行  │ │              │ │ ─ Mortal     │
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│ + ijl15 插件 │   │             │ │              │ │ ─ Journey    │
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└──────┬───────┘   └──────┬───────┘ └─────────────┘ └──────────────┘
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>       │                  │
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>       │ 提供             │ 提供
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>       ▼                  ▼
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>┌──────────────┐   ┌──────────────────────────────┐
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>│ BeiDou-i15   │   │ WZ Mod Tool Suite            │
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>│ ijl15 插件  │   │ (SoloMapling × wisteria)     │
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>│ 解析/上傳    │   │ - Builder (瀏覽 v269 資源)  │
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>│              │   │ - Manager (套用 v83 端)     │
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>└──────────────┘   │ - wzmods CLI                 │
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>                   │ - 適用: Cosmic XML WZ 服務   │
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>                   └──────────────────────────────┘
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>外部規範/工具鏈:
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>- xiaoye-MapleStory-dev (開發 SKILL + toolchain + checklist + 模板)
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>- orange-wz MCP (WZ/IMG 編輯 + MCP 服務)
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>- ida-pro-mcp (IDA 逆向 MCP)
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>- NapMysqlTool (MySQL 圖形化管理)
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>- HaRepacker-resurrected / WzComparerR2-KENNYSOFT (本機 01-WZ-Tools/)
+</code></pre></div>
+<hr />
+<h2 id="1">§1 各項目整合矩陣<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>與 Cosmic 關係</th>
+<th>本機路徑</th>
+<th>大小</th>
+<th>整合難度</th>
+<th>適用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cosmic</strong> (基線)</td>
+<td>本體</td>
+<td><code>04-Emulators/GMS-v083-Cosmic/</code></td>
+<td>~25k 檔</td>
+<td>—</td>
+<td>所有研究/修改基礎</td>
+</tr>
+<tr>
+<td><strong>HeavenMS</strong></td>
+<td>上游 (Cosmic fork 之父)</td>
+<td><code>04-Emulators/GMS-v083-HeavenMS/</code></td>
+<td>22 entries</td>
+<td>比對歷史</td>
+<td>學習演進、找被移除功能</td>
+</tr>
+<tr>
+<td><strong>SoloMapling</strong></td>
+<td>上層框架(31.5k 行,只動 33 檔 Cosmic)</td>
+<td><code>04-Emulators/SoloMapling-Documents/</code></td>
+<td>9 文件 114KB</td>
+<td><strong>中</strong></td>
+<td>NPC 機器人、Free Market、自動玩家模擬</td>
+</tr>
+<tr>
+<td><strong>BeiDou-Server</strong></td>
+<td>漢化增強 + Spring Boot</td>
+<td><code>05-Documentation/BeiDou-Server-Notes/</code></td>
+<td>4 文件 18KB</td>
+<td><strong>高</strong></td>
+<td>商用運營、Web 後台、JWT API、雙語</td>
+</tr>
+<tr>
+<td><strong>WZ Mod Tool Suite</strong></td>
+<td>工具(讀 Cosmic XML WZ 輸出)</td>
+<td><code>07-Tools-General/SoloMapling-wisteria-Wz-Mod-Tool-Suite/</code></td>
+<td>13 檔 + docs/</td>
+<td><strong>低</strong></td>
+<td>v268+ 外觀/物品移植到 v83</td>
+</tr>
+<tr>
+<td><strong>kaentake</strong></td>
+<td>客戶端 hook (binary)</td>
+<td><code>12-OffShelf-Client-Fork/kaentake/</code></td>
+<td>3 檔 190KB</td>
+<td><strong>極低</strong></td>
+<td>客戶端 IP/port 重定向,解析度選擇</td>
+</tr>
+<tr>
+<td><strong>xiaoye-MapleStory-dev</strong></td>
+<td>AI 開發 SKILL 包</td>
+<td><code>05-Documentation/xiaoye-MapleStory-dev/</code></td>
+<td>5 檔 55KB</td>
+<td>—</td>
+<td>AI Agent 開發規範</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-solomapling-bot-cosmic">§2 SoloMapling 整合 — Bot 框架整合到 Cosmic<a class="headerlink" href="#2-solomapling-bot-cosmic" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 它做什麼<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p><strong>給 Cosmic 加上數百個自動玩家</strong>:逛城鎮、開店、聊天、開小遊戲、跑 OPQ、招待新玩家等。
+- <strong>31,500 行 framework code</strong> + <strong>1,104 行</strong> 對 Cosmic 的最小修改(33 檔案)
+- 15 種 Bot 類型 + 7 個 command packs
+- 440 條預錄路徑 + 26 地圖
+- 全 YAML 驅動(對話、物品池、價格、路徑)</p>
+<h3 id="22-cosmic">2.2 對 Cosmic 的改動面(極小)<a class="headerlink" href="#22-cosmic" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>「The bulk of the additions to Cosmic's own packages are 11 self-contained GM command classes (<code>!bot</code>, <code>!move</code>, <code>!env</code>, <code>!opq</code>, …, ~2,850 lines) under <code>client/command/commands/gm4/</code>」</p>
+</blockquote>
+<p><strong>Cosmic 改動統計</strong>(從 README):
+- 33 個檔案被改
+- +1,104 / -146 行(淨增不到 1k 行)
+- 11 個新 GM 指令 → <code>gm4/</code> 資料夾</p>
+<p><strong>因此整合策略</strong>:整個 <code>soloMapling/</code> 套件可直接移植(因為獨立 package),只需:
+1. 把 11 個 <code>gm4/</code> 指令複製到 Cosmic 的 <code>client/command/commands/gm4/</code>
+2. 把 <code>soloMapling/</code> 整個 package 複製到 <code>src/main/java/</code>
+3. 註冊到 <code>CommandsExecutor.registerLv4Commands()</code>(複製 SoloMapling 的那段 register 邏輯)</p>
+<h3 id="23">2.3 依賴新增<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<p>SoloMapling 引入:
+- <strong>JGraphT</strong>(圖論/路徑搜尋) — 加到 <code>pom.xml</code>
+- YAML 解析(估計 SnakeYAML)— 確認版本
+- 預錄路徑資料(26 地圖 × ~440 paths) — 不在 repo,需另外生成</p>
+<h3 id="24-clone">2.4 不 clone 整包的原因<a class="headerlink" href="#24-clone" title="Permanent link">&para;</a></h3>
+<ul>
+<li>31,500 行程式碼與本地 Cosmic clone 重複</li>
+<li>主要價值在<strong>文檔</strong>(<code>Documents/</code>)與<strong>設計模式</strong></li>
+<li>程式碼部分已從 <code>Artificial Player Framework Architecture.md</code> + <code>Claude Summary.txt</code> 摘要,可照架構重寫</li>
+</ul>
+<p><strong>已下載的 9 份文檔</strong>(<code>04-Emulators/SoloMapling-Documents/</code>):</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>大小</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Claude Summary.txt</code></td>
+<td>28KB</td>
+<td>完整架構總覽 — 每個子系統、設計模式、並發模型</td>
+</tr>
+<tr>
+<td><code>Artificial Player Framework Architecture.md</code></td>
+<td>18KB</td>
+<td>Bot 框架深度解析 — 身份、生命週期、狀態機</td>
+</tr>
+<tr>
+<td><code>Dev Commands Cheat Sheet.md</code></td>
+<td>28KB</td>
+<td>11 個 <code>!</code> 開頭 dev 指令完整參考</td>
+</tr>
+<tr>
+<td><code>FreeMarket and ItemPool Architecture.txt</code></td>
+<td>21KB</td>
+<td>商店生成管線、tier/version 系統、經濟引擎</td>
+</tr>
+<tr>
+<td><code>Environment and World Startup.md</code></td>
+<td>6KB</td>
+<td>7 波世界初始化</td>
+</tr>
+<tr>
+<td><code>Movement-Recording.md</code></td>
+<td>3KB</td>
+<td>預錄移動 + 路徑圖</td>
+</tr>
+<tr>
+<td><code>Logging and Observability.md</code></td>
+<td>4KB</td>
+<td>BotLog + MMC operator console</td>
+</tr>
+<tr>
+<td><code>SHOWCASE.md</code></td>
+<td>6KB</td>
+<td>圖片展示導引</td>
+</tr>
+<tr>
+<td><code>DEV-DIARY.md</code></td>
+<td>1KB</td>
+<td>開發日誌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="25">2.5 整合工作流<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>1. 讀 Claude Summary.txt → 理解整體架構
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2. 讀 Artificial Player Framework Architecture.md → BotSM 抽象狀態機設計
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>4. 複製 soloMapling/ package 到 Cosmic src/main/java/
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>5. 複製 gm4/ 11 個指令到 Cosmic gm4/
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>6. 在 CommandsExecutor.registerLv4Commands() 註冊
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>7. 加 JGraphT 依賴到 pom.xml
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>8. 編譯 + 啟動
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>9. 在遊戲中用 !bot 驗證
+</code></pre></div>
+<hr />
+<h2 id="3-beidou-server">§3 BeiDou-Server 整合 — 商用增強<a class="headerlink" href="#3-beidou-server" title="Permanent link">&para;</a></h2>
+<h3 id="31-cosmic">3.1 與 Cosmic 的差異<a class="headerlink" href="#31-cosmic" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>本項目基於 Cosmic 來做漢化和優化</p>
+</blockquote>
+<p><strong>主要新增</strong>:
+- <strong>Spring Boot 3</strong> 框架:商業 API 端點
+- <strong>Vue 3 + Arco Design Pro</strong> Web 後台(<code>gms-ui/</code>)
+- <strong>MyBatis-Flex</strong> ORM(替代 Cosmic 原生 JDBC)
+- <strong>JWT 認證</strong>(API 端口 8686)
+- <strong>Swagger</strong>(開發用)
+- <strong>雙語資源覆蓋機制</strong>(wz + wz-zh-CN / scripts + scripts-zh-CN)
+- <strong>MyBatis-Flex CodeGen</strong> 工具(自動生成實體)
+- 內建 <code>ijl15</code> 插件整合</p>
+<h3 id="32">3.2 雙引擎架構(關鍵設計)<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>一個 JVM 裡跑兩個引擎,靠 <code>ServerManager</code> 橋接</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>SpringApplication.run()
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   ↓
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>ServerManager (Spring ApplicationRunner) 啟動 Netty
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>   ↓
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Server.getInstance().init()  (Netty game server)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>   ├─ LoginServer :8484
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>   └─ ChannelServer :7575+
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>   ↓
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>REST 控制: /server/v1/startServer, /stopServer, /restartServer, /online
+</code></pre></div>
+<h3 id="33">3.3 整合成本<a class="headerlink" href="#33" title="Permanent link">&para;</a></h3>
+<p><strong>高</strong>。Spring Boot + MyBatis-Flex + JWT 全是 BeiDou 新增,整合到 vanilla Cosmic 需要:
+1. 引入 Spring Boot starter(改 pom.xml 結構)
+2. 把 Netty 啟動包進 <code>ApplicationRunner</code>
+3. 加入 MyBatis-Flex + 自動生成 DAO
+4. 加 JWT 過濾鏈
+5. 加 Controller 層 + ResultBody/SubmitBody 信封</p>
+<p><strong>不建議</strong>:把 BeiDou 直接套到你的 Cosmic(本地 v1.1.3)。原因:
+- Cosmic v1.1.3 是 2026-02 最新,但 BeiDou master 是基於舊版 Cosmic fork(他們用的是 BEI_DOU_VERSION = "1.11" 內部版號)
+- 合併衝突會很多</p>
+<p><strong>建議</strong>:採用 BeiDou 的<strong>設計思想</strong>而非代碼:
+- 借 <code>GameConfig</code> 熱重載模式
+- 借 i18n 雙語覆蓋機制
+- 借 <code>ServerController</code> REST 控制</p>
+<h3 id="34-4-05-documentationbeidou-server-notes">3.4 已下載的 4 份文檔(<code>05-Documentation/BeiDou-Server-Notes/</code>)<a class="headerlink" href="#34-4-05-documentationbeidou-server-notes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>大小</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLAUDE.md</code></td>
+<td>12KB</td>
+<td><strong>完整的開發者指南</strong>(架構、命令、規範、坑)</td>
+</tr>
+<tr>
+<td><code>README.md</code></td>
+<td>5KB</td>
+<td>用戶向導(客戶端下載、MySQL、docker)</td>
+</tr>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>1KB</td>
+<td>Agent 入口(指向 CLAUDE.md)</td>
+</tr>
+<tr>
+<td><code>gms-server-README.md</code></td>
+<td>&lt;1KB</td>
+<td>gms-server 子目錄說明</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>強烈推薦</strong>讀 <code>CLAUDE.md</code> — 揭示了 8 個非顯而易見的坑(如 <code>saveCharToDB</code> 兩個版本哪個真生效、刪號 NPE 風險等)</p>
+</blockquote>
+<hr />
+<h2 id="4-wz-mod-tool-suite-v268-v83">§4 WZ Mod Tool Suite 整合 — v268+ 內容移植到 v83<a class="headerlink" href="#4-wz-mod-tool-suite-v268-v83" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 它做什麼<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>把<strong>現代 MapleStory (v268+) 的外觀內容</strong>(椅子、翅膀、武器、戒指、寵物、髮型) <strong>移植到 v83</strong>:
+- <strong>WZ Mod Builder</strong>:視覺化瀏覽現代客戶端 → 選物品 → 匯出成 YAML pack
+- <strong>WZ Mod Manager</strong>:套用/取消 pack(每次 Apply 從 pristine baseline 重來)
+- <strong>wzmods CLI</strong>:無頭版管理指令
+- <strong>WzPackTool</strong> (C# 引擎):實際 WZ 轉換/注入</p>
+<h3 id="42-cosmic">4.2 為什麼對 Cosmic 整合很重要<a class="headerlink" href="#42-cosmic" title="Permanent link">&para;</a></h3>
+<p>Cosmic 是 <strong>XML WZ</strong> 服務器(<code>wz/*.xml</code> 結構),這套工具<strong>專門為此設計</strong>:</p>
+<blockquote>
+<p>"Only v83 Cosmic-style servers that store WZ data as XML are supported."</p>
+</blockquote>
+<h3 id="43">4.3 套件結構<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>07-Tools-General/SoloMapling-wisteria-Wz-Mod-Tool-Suite/
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>├── README.md                                       (主說明, 25KB)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>├── BUILDING.md                                     (從源碼建置)
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>├── NOTICE.md                                       (第三方元件聲明)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>├── LICENSE                                         (GPLv3)
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>├── WZ Mod Builder - Quickstart.md                  (製作 mod pack)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>├── WZ Mod Builder.bat                              (啟動 Builder GUI)
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>├── WZ Mod Manager - Quickstart.md                  (套用 mod pack)
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>├── WZ Mod Manager.bat                              (啟動 Manager GUI)
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>├── WZ Mod System - Public Guide.md                 (手寫 pack YAML 格式)
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>├── WZ Mods - Standalone vs SoloMapling.md          (Standalone vs SoloMapling 模式)
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>├── wzmods.bat                                      (CLI: status/compile/revert/doctor)
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>├── docs/images/                                    (10 張展示圖)
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>└── (預期有 builder/, manager/, packtool/ 子專案原始碼)
+</code></pre></div>
+<h3 id="44">4.4 整合工作流<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1. 安裝 Java 21 (可能已內建在 release zip)
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>2. 安裝 .NET 8 SDK (若要從源碼 build; 預編譯 release 不需要)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>3. 安裝一個現代 MapleStory (GMS v269 測試) 的客戶端
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>4. 啟動 WZ Mod Builder → 指向現代客戶端的 Data/ 資料夾
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>5. 瀏覽物品 → 加到 basket → Export .yaml
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>6. 關閉 server 和 game client
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>7. 啟動 WZ Mod Manager → 指向 Cosmic 的 wz/ + 客戶端 .wz/
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>9. Tick pack → Apply
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>10. 重啟 server + client
+</code></pre></div>
+<h3 id="45">4.5 已知限制<a class="headerlink" href="#45" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Modern-only 武器類型(katara/dual bowgun/shining rod)<strong>不存在於 v83</strong>,會被 reject</li>
+<li>某些椅子/標籤戒指<strong>渲染不完整</strong>(Nexon 端問題)</li>
+<li>Standalone 模式不會清理資料庫已有物品 → 玩家持有的失效物品會 crash 客戶端</li>
+<li><strong>必須在乾淨的 v83 wz 環境首次 Apply</strong>(快照建立 baseline)</li>
+</ul>
+<h3 id="46">4.6 與你既有工具的搭配<a class="headerlink" href="#46" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>WzComparerR2-KENNYSOFT  ←→  WZ Mod Tool Suite
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>(讀取 .wz / .img 對比)        (讀 v269 .wz / 寫 v83 .wz)
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>                                ↓
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>                         配合 Cosmic XML WZ
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>                                ↓
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>                         HaRepacker-resurrected (單獨編輯)
+</code></pre></div>
+<hr />
+<h2 id="5-kaentake-ipport">§5 kaentake 整合 — 客戶端 IP/port 注入<a class="headerlink" href="#5-kaentake-ipport" title="Permanent link">&para;</a></h2>
+<h3 id="51">5.1 它做什麼<a class="headerlink" href="#51" title="Permanent link">&para;</a></h3>
+<p><strong>已編譯的客戶端啟動器</strong>,把 GMS v083 客戶端導向<strong>自架伺服器</strong>:
+- <code>Kaentake.exe</code> (32KB):主程式,管理員權限執行
+- <code>Kaentake.dll</code> (113KB):DLL 注入到 MapleStory.exe
+- <code>Custom.wz</code> (45KB):客製 WZ(新增解析度選擇 combobox 到 system option)</p>
+<h3 id="52">5.2 使用方式(三選一)<a class="headerlink" href="#52" title="Permanent link">&para;</a></h3>
+<p><strong>A. 命令列</strong>(優先級最高):
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Kaentake.exe 127.0.0.1 8484
+</code></pre></div></p>
+<p><strong>B. config.ini</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">[config]</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="na">host</span><span class="o">=</span><span class="s">127.0.0.1</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="na">port</span><span class="o">=</span><span class="s">8484</span>
+</code></pre></div></p>
+<p><strong>C. 預設</strong>:127.0.0.1</p>
+<h3 id="53-cosmic">5.3 對應到 Cosmic 預設值<a class="headerlink" href="#53-cosmic" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>Cosmic</th>
+<th>kaentake</th>
+<th>相容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login port</td>
+<td>8484</td>
+<td>8484</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Channel port</td>
+<td>7575</td>
+<td>(由 Login 告知)</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>VERSION</td>
+<td>83</td>
+<td>(鎖 v83)</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<p><strong>已抓的 3 個 binary</strong>(190 KB 總計) 在 <code>12-OffShelf-Client-Fork/kaentake/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>大小</th>
+<th>類型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Kaentake.exe</code></td>
+<td>31,744 B</td>
+<td>PE MZ executable</td>
+</tr>
+<tr>
+<td><code>Kaentake.dll</code></td>
+<td>113,664 B</td>
+<td>PE MZ DLL(注入用)</td>
+</tr>
+<tr>
+<td><code>Custom.wz</code></td>
+<td>45,859 B</td>
+<td>WZ v1 加密(標頭 <code>PKG1</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54">5.4 整合工作流<a class="headerlink" href="#54" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>1. 客戶端先安裝原始 MapleStory 到 C:\Nexon\MapleStory
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>2. 刪除 HShield/、ASPLnchr.exe、MapleStory.exe、Patcher.exe
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>3. 把這 3 個檔案複製到客戶端目錄
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>4. 創建 config.ini (或用命令列參數)
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>5. 雙擊 Kaentake.exe (管理員)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>6. Kaentake.dll 注入 → 連到你的 Cosmic :8484
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>7. 遊戲中可選解析度(Custom.wz 提供)
+</code></pre></div>
+<hr />
+<h2 id="6-xiaoye-maplestory-dev-ai-agent">§6 xiaoye-MapleStory-dev 整合 — AI Agent 開發規範<a class="headerlink" href="#6-xiaoye-maplestory-dev-ai-agent" title="Permanent link">&para;</a></h2>
+<h3 id="61">6.1 它做什麼<a class="headerlink" href="#61" title="Permanent link">&para;</a></h3>
+<p><strong>Agent Skill 包</strong>,把 MapleStory 全棧開發規範固化成 AI 可讀的指引。</p>
+<h3 id="62-5-05-documentationxiaoye-maplestory-dev">6.2 5 份文檔(<code>05-Documentation/xiaoye-MapleStory-dev/</code>)<a class="headerlink" href="#62-5-05-documentationxiaoye-maplestory-dev" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>大小</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.md</code></td>
+<td>11KB</td>
+<td>倉庫介紹 + 四平台整合方法</td>
+</tr>
+<tr>
+<td><code>SKILL.md</code></td>
+<td>23KB</td>
+<td><strong>核心規範</strong>:15 條強制門禁、思考→抉擇→計劃流程</td>
+</tr>
+<tr>
+<td><code>toolchain.md</code></td>
+<td>17KB</td>
+<td>BeiDou 全套工具鏈集成指南(MySQL/MCP/IDA/插件)</td>
+</tr>
+<tr>
+<td><code>checklist.md</code></td>
+<td>2KB</td>
+<td>交付前逐項檢查清單</td>
+</tr>
+<tr>
+<td><code>feature-doc-template.md</code></td>
+<td>2KB</td>
+<td>功能最終實現文檔模板</td>
+</tr>
+</tbody>
+</table>
+<h3 id="63-15-skillmd">6.3 15 條強制門禁(從 SKILL.md 摘錄)<a class="headerlink" href="#63-15-skillmd" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>違反即停</p>
+</blockquote>
+<ol>
+<li><strong>先抉擇、再計劃、後實現</strong> — 禁止立刻寫代碼</li>
+<li><strong>規範優先</strong> — 符合既有約定</li>
+<li><strong>驗證門禁</strong> — 單測 + 構建必須</li>
+<li><strong>禁止想象修改</strong> — 插件/二進制/協議改動必須 IDA MCP 校準</li>
+<li><strong>資源同步意識</strong> — 跨端/多語言目錄同步</li>
+<li><strong>編碼防亂碼</strong> — 禁止 UTF-8 中文直塞 GBK 封包</li>
+<li><strong>WZ/IMG/XML 走 MCP</strong> — 用 orange-wz MCP,禁止手改二進制</li>
+<li><strong>交付文檔</strong> — 寫清「最終實現邏輯文檔」</li>
+<li><strong>同会话任務續作</strong> — 防遺忘</li>
+<li><strong>插件改完同步客戶端</strong> — 自動覆蓋</li>
+</ol>
+<h3 id="64-agent">6.4 怎麼安裝(給 Agent 平台用)<a class="headerlink" href="#64-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 完整複製整個目錄到目標 skills 目錄</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># 例如 ~/.agents/skills/ (Cursor/CodeBuddy/Claude Code)</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>cp<span class="w"> </span>-r<span class="w"> </span>xiaoye-MapleStory-dev/<span class="w"> </span>~/.agents/skills/
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="c1"># 自動觸發:在對話提到「冒險島/MapleStory/WZ/IMG/道具/小冊子」等</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># 手動觸發:/xiaoye-MapleStory-dev</span>
+</code></pre></div>
+<h3 id="65">6.5 與你整合任務的關聯<a class="headerlink" href="#65" title="Permanent link">&para;</a></h3>
+<p>這個 SKILL <strong>不是工具</strong>,而是<strong>方法論</strong>。在你做「功能整合」時:
+- 寫整合前先讀 <code>SKILL.md</code> 取得 15 條門禁
+- 寫整合後用 <code>checklist.md</code> 自檢
+- 寫整合文檔用 <code>feature-doc-template.md</code> 模板
+- 工具鏈整合照 <code>toolchain.md</code>(但你的工具鏈跟 BeiDou 的不完全相同)</p>
+<hr />
+<h2 id="7">§7 整合任務優先級建議<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<p>依「投入/收益」排序,給你做決策用:</p>
+<h3 id="_1">🟢 <strong>極易 + 高收益</strong>(建議立刻做)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>任務</th>
+<th>來源</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. <strong>用 kaentake 連本機 Cosmic</strong></td>
+<td>kaentake binary</td>
+<td>把客戶端導向 <code>127.0.0.1:8484</code></td>
+</tr>
+<tr>
+<td>2. <strong>讀 WZ Mod Tool Suite README</strong></td>
+<td>docs 已在</td>
+<td>確認能不能用本地 <code>04-Emulators/GMS-v083-Cosmic/wz/</code> XML 結構</td>
+</tr>
+<tr>
+<td>3. <strong>用 xiaoye SKILL 作為開發流程</strong></td>
+<td>5 文件已在</td>
+<td>把 <code>SKILL.md</code> 當後續所有任務的 checklist</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">🟡 <strong>中等難度</strong>(選做)<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>任務</th>
+<th>來源</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4. <strong>移植 SoloMapling 的 11 個 GM 指令</strong></td>
+<td>gm4/ SoloMapling 指令</td>
+<td>複製 <code>client/command/commands/gm4/</code> 11 個檔到 Cosmic</td>
+</tr>
+<tr>
+<td>5. <strong>整合 WZ Mod Manager</strong></td>
+<td>WZ Mod Tool Suite</td>
+<td>跑一次 status/doctor 驗證 Cosmic wz 結構相容</td>
+</tr>
+<tr>
+<td>6. <strong>用 BeiDou 的 GameConfig 設計思想</strong></td>
+<td>CLAUDE.md 概念</td>
+<td>設計 Cosmic 配置熱重載</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">🔴 <strong>高難度</strong>(長期)<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>任務</th>
+<th>來源</th>
+<th>動作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>7. <strong>完整移植 SoloMapling bot 框架</strong></td>
+<td>31.5k 程式碼</td>
+<td>整包 <code>soloMapling/</code> 進 Cosmic(需重新編譯,加 JGraphT 依賴)</td>
+</tr>
+<tr>
+<td>8. <strong>BeiDou 商業層引入</strong></td>
+<td>Spring Boot + JWT</td>
+<td>需要大改 Cosmic 啟動架構</td>
+</tr>
+<tr>
+<td>9. <strong>整合 orange-wz MCP</strong></td>
+<td>外部工具</td>
+<td>單獨專案,與服務器整合需要 MCP server 串接</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">§8 整合路徑依賴鏈<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Cosmic (本機 v1.1.3)
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>├── 可直接用(零修改)
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│   ├── kaentake (binary → 客戶端)
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>│   ├── WZ Mod Tool Suite (讀 wz/*.xml)
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>│   └── xiaoye SKILL (規範文檔)
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>│
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>├── 需小修改(&lt; 100 行)
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│   ├── SoloMapling GM 指令 (11 檔, ~2850 行,但僅 gm4 範圍)
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>│   ├── SoloMapling 框架 copy (1 個 package, 33 檔改 cosmic base)
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>│   └── BeiDou i18n 雙語機制(wz-zh-CN 覆蓋 wz)
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>│
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>└── 需大改(架構)
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>    ├── Spring Boot 整合(BeiDou 風格)
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>    ├── JWT API 層
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>    └── MyBatis-Flex ORM 替換
+</code></pre></div>
+<hr />
+<h2 id="9">§9 相依工具鏈(你的本機已有)<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>路徑</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WzComparerR2-KENNYSOFT</td>
+<td><code>01-WZ-Tools/</code></td>
+<td>WZ 比較/編輯</td>
+</tr>
+<tr>
+<td>HaRepacker-resurrected</td>
+<td><code>07-Tools-General/</code> (待 clone)</td>
+<td>WZ 編輯</td>
+</tr>
+<tr>
+<td>wz-node (toyobayashi)</td>
+<td><code>01-WZ-Tools/</code></td>
+<td>Node.js WZ 解析</td>
+</tr>
+<tr>
+<td>MapleStory-GM-Client</td>
+<td><code>07-Tools-General/</code></td>
+<td>離線客戶端模擬器</td>
+</tr>
+<tr>
+<td>WZFiles enum</td>
+<td>Cosmic 源碼</td>
+<td>列出所有依賴的 .wz</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10">§10 給你的整合任務啟動腳本<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<p>如果你要開始一個具體整合工作,先問自己:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>□ 任務名稱:______
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>□ 目標專案: P0nk/Cosmic (本機 v1.1.3) ← 不可改主版本
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>□ 修改範圍: [ ] client/  [ ] net/  [ ] server/  [ ] scripting/  [ ] scripts/  [ ] wz/
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>□ 新增依賴: 是 / 否 → 哪些?
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>□ 預估行數: &lt; 100 / 100-1000 / 1000+
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>□ 單元測試: 有 / 無 / N/A
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>□ 文檔: 是否寫「最終實現邏輯文檔」(用 feature-doc-template.md)
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>□ 驗證: 客戶端連得到 + 操作正確 = 通過
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>□ 風險: 是否會動到其他功能?若會,先列清單
+</code></pre></div>
+<hr />
+<h2 id="11">§11 來源驗證清單<a class="headerlink" href="#11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>事實</th>
+<th>驗證命令</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>kaentake Custom.wz 是加密 WZ</td>
+<td><code>head -c 32 Custom.wz \| xxd</code></td>
+<td><code>PKG1 v1.</code></td>
+</tr>
+<tr>
+<td>kaentake 二進制是真 PE</td>
+<td><code>head -c 2 Kaentake.exe</code></td>
+<td><code>MZ</code></td>
+</tr>
+<tr>
+<td>Cosmic port 8484</td>
+<td><code>grep 8484 Server.java</code></td>
+<td>行 936,938</td>
+</tr>
+<tr>
+<td>Cosmic Channel 7575</td>
+<td><code>grep BASE_PORT Channel.java</code></td>
+<td>行 78,131</td>
+</tr>
+<tr>
+<td>SoloMapling 是 Cosmic fork</td>
+<td>SoloMapling README</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>BeiDou 是 Cosmic 漢化</td>
+<td>BeiDou README</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>WZ Mod 工具只支援 XML WZ</td>
+<td>Tool Suite README</td>
+<td>✓ "Only v83 Cosmic-style servers"</td>
+</tr>
+<tr>
+<td>xiaoye skill 4 文件結構</td>
+<td>xiaoye README</td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-clone">§12 下次該 clone/抓取的清單(若需要)<a class="headerlink" href="#12-clone" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>URL</th>
+<th>為什麼需要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cosmic-client</td>
+<td>https://github.com/P0nk/Cosmic-client</td>
+<td>客戶端檔案(已驗證,可用)</td>
+</tr>
+<tr>
+<td>BeiDou-ijl15</td>
+<td>https://github.com/BeiDouMS/BeiDou-ijl15</td>
+<td>ijl15 插件源碼</td>
+</tr>
+<tr>
+<td>BeiDou-docker</td>
+<td>https://github.com/BeiDouMS/BeiDou-docker</td>
+<td>docker 部署</td>
+</tr>
+<tr>
+<td>orange-wz</td>
+<td>https://github.com/gujichu/orange-wz</td>
+<td>WZ/IMG MCP 工具</td>
+</tr>
+<tr>
+<td>ida-pro-mcp</td>
+<td>https://github.com/mrexodia/ida-pro-mcp</td>
+<td>IDA MCP</td>
+</tr>
+<tr>
+<td>NapMysqlTool</td>
+<td>https://github.com/SleepNap/NapMysqlTool</td>
+<td>MySQL 圖形化工具</td>
+</tr>
+<tr>
+<td>Maplestory-HaRepacker</td>
+<td>https://github.com/lastbattle/Harepacker-resurrected</td>
+<td>WZ 編輯器</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>這些都與你「個人學習/單機版」目標一致,且不違反法律風險。</p>
+</blockquote>
+<hr />
+<h2 id="13">§13 完成動作摘要<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p>本次執行的所有下載/抓取動作:</p>
+<table>
+<thead>
+<tr>
+<th>動作</th>
+<th>大小</th>
+<th>耗時</th>
+<th>目標位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>抓 xiaoye-MapleStory-dev 5 文件(raw)</td>
+<td>55 KB</td>
+<td>&lt; 5 秒</td>
+<td><code>05-Documentation/xiaoye-MapleStory-dev/</code></td>
+</tr>
+<tr>
+<td>抓 WZ Mod Tool Suite(gh-proxy 加速)</td>
+<td>5.9 MB</td>
+<td><strong>1.3 秒</strong></td>
+<td><code>07-Tools-General/SoloMapling-wisteria-Wz-Mod-Tool-Suite/</code></td>
+</tr>
+<tr>
+<td>抓 SoloMapling 9 份架構文檔(raw)</td>
+<td>114 KB</td>
+<td>&lt; 10 秒</td>
+<td><code>04-Emulators/SoloMapling-Documents/</code></td>
+</tr>
+<tr>
+<td>抓 kaentake v3.4.1 release(3 binaries)</td>
+<td>190 KB</td>
+<td>&lt; 2 秒</td>
+<td><code>12-OffShelf-Client-Fork/kaentake/</code></td>
+</tr>
+<tr>
+<td>抓 BeiDou 4 份核心文檔(raw)</td>
+<td>18 KB</td>
+<td>&lt; 5 秒</td>
+<td><code>05-Documentation/BeiDou-Server-Notes/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>未執行的(刻意)</strong>:
+- ❌ SoloMapling 整包 clone(太大,與 Cosmic 重複;用文檔已足)
+- ❌ BeiDou-Server 整包 clone(太大,商業性質強;用 CLAUDE.md 已足)
+- ❌ xiaoye-MapleStory-dev git clone(timeout 300 秒還沒好;改用 raw 5 秒搞定)
+- ❌ kaentake 整包 clone(只有 3 個 binary,直接從 Release 抓更快)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

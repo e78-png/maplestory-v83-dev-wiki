@@ -1,0 +1,3729 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W3-2: MapleStory-Client (HeavenClient) 獨立深度拆解 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w3-2-maplestory-client-heavenclient" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W3-2: MapleStory-Client (HeavenClient) 獨立深度拆解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §0 倉庫基本資訊
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1 4 個本地分支全部事實
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§1 4 個本地分支全部事實">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1.1 commit 時間線
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §2 頂層結構事實
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-c-includes-fonts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3 自己寫的 C++ 統計(排除 includes/ 與 fonts/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§3 自己寫的 C++ 統計(排除 includes/ 與 fonts/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-15-cpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3.1 15 個最大 .cpp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-15-h" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3.2 15 個最大 .h
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3.3 各目錄 C++ 檔案分佈
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-msbuildvisual-studio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4 建置配置(MSBuild/Visual Studio)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§4 建置配置(MSBuild/Visual Studio)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4.1 編譯環境需求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-define" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4.2 預設 define
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-log-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4.3 Log level
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-includes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4.4 第三方庫(全在 includes/)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5 Net 通訊結構
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§5 Net 通訊結構">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-netconstantsh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5.1 NetConstants.h
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-packetswitch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5.2 PacketSwitch 結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-handler" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5.3 已註冊 handler 數量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-handler56" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5.4 已實作的 handler(56 個)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-netpackets-nethandlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5.5 Net/Packets/ 與 Net/Handlers/
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-28-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §6 遊戲檔(28 個 .wz)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-configurationh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §7 Configuration.h 主要設定介面
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-openmapleclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8 與 OpenMapleClient 的程式碼層差異
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§8 與 OpenMapleClient 的程式碼層差異">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-configurationh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8.1 Configuration.h 預設值差異(從原始碼)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §9 4 個分支差異詳細
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§9 4 個分支差異詳細">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-master-vs-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §9.1 master vs linux
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-master-vs-mac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §9.2 master vs mac
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-master-vs-v92-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §9.3 master vs v92-support
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-license" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §10 LICENSE 條款事實
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-2015-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11 主線時序(2015-2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§11 主線時序(2015-2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-2015-10-2019daniel-allendorf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.1 2015-10 ~ 2019(Daniel Allendorf 時期)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-2019-2020ryantpayton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.2 2019 ~ 2020(ryantpayton 接手)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-2020-2023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.3 2020 ~ 2023(低活動)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-2023-04ryantpayton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.4 2023-04(ryantpayton 重啟)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#115-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.5 2024(穩定)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#116-2024-04-2026-02-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.6 2024-04 ~ 2026-02(沉默 2 年)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#117-2026-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §11.7 2026-02(突然復活)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12 純事實總結(不下結論)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§12 純事實總結(不下結論)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12.1 結構規模
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12.2 4 個分支時序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-openmapleclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12.3 與 OpenMapleClient 的關係
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124-gms-v83-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12.4 對 GMS v83 + Cosmic 的事實
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §12.5 不做的事(刻意)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §13 本地獨立位置
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="w3-2-maplestory-client-heavenclient">W3-2: MapleStory-Client (HeavenClient) 獨立深度拆解<a class="headerlink" href="#w3-2-maplestory-client-heavenclient" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>分析時間</strong>: 2026-09-27
+<strong>本地位置</strong>: <code>C:\Users\e7896\AppData\Local\hermes\cache\scratch\maple-story-client-isolated\msc-repo</code>
+<strong>獨立工作區原則</strong>:此 repo 完整複製到獨立資料夾,<strong>沒污染任何原生路徑</strong>
+<strong>不評斷其他項目,僅純技術拆解</strong></p>
+</blockquote>
+<hr />
+<h2 id="0">§0 倉庫基本資訊<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>屬性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repo</td>
+<td><code>ryantpayton/MapleStory-Client</code></td>
+</tr>
+<tr>
+<td>顯示名稱</td>
+<td><strong>HeavenClient</strong></td>
+</tr>
+<tr>
+<td>描述</td>
+<td>A custom client for HeavenMS</td>
+</tr>
+<tr>
+<td>Stars / Forks</td>
+<td><strong>243</strong> / 96</td>
+</tr>
+<tr>
+<td>創建</td>
+<td>2015-10-13</td>
+</tr>
+<tr>
+<td>最後 commit</td>
+<td>2026-02-25</td>
+</tr>
+<tr>
+<td>預設 branch</td>
+<td>master</td>
+</tr>
+<tr>
+<td>主語言</td>
+<td>C(API 為 C,實作為 C++)</td>
+</tr>
+<tr>
+<td>License</td>
+<td>AGPL-3.0</td>
+</tr>
+<tr>
+<td>Commit 總數(master)</td>
+<td>262</td>
+</tr>
+<tr>
+<td>Repo size</td>
+<td>28.8 MB</td>
+</tr>
+<tr>
+<td>大小(含 .git)</td>
+<td>55 MB(clone 後)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-4">§1 4 個本地分支全部事實<a class="headerlink" href="#1-4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th style="text-align: right;">Commit 數</th>
+<th>最早 commit</th>
+<th>最後 commit</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>master</strong></td>
+<td style="text-align: right;"><strong>262</strong></td>
+<td>2015-10-13</td>
+<td>2026-02-25</td>
+<td><strong>Windows PC 主線</strong></td>
+</tr>
+<tr>
+<td><strong>linux</strong></td>
+<td style="text-align: right;">224</td>
+<td>2015-10-13</td>
+<td><strong>2020-05-10</strong></td>
+<td>Linux PC</td>
+</tr>
+<tr>
+<td><strong>mac</strong></td>
+<td style="text-align: right;">131</td>
+<td>2015-10-13</td>
+<td><strong>2019-11-04</strong></td>
+<td>macOS</td>
+</tr>
+<tr>
+<td><strong>v92-support</strong></td>
+<td style="text-align: right;">259</td>
+<td>2015-10-13</td>
+<td><strong>2024-04-30</strong></td>
+<td><strong>v92 server 相容</strong>(不是 v83)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>純事實</strong>:
+- 全部從同個 initial commit <code>b71da42 2015-10-13</code> 出發
+- 4 個分支<strong>初始 commit 都是 Daniel Allendorf 時代</strong>
+- master 是最活躍分支
+- <strong>v92-support</strong> 比 master 少 3 commit,但<strong>仍在 2024 活躍</strong>(Audio fix)
+- linux 在 2020-05 凍、mac 在 2019-11 凍、v92 在 2024-04 凍</p>
+<h3 id="11-commit">§1.1 commit 時間線<a class="headerlink" href="#11-commit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>2015-10 ─┐ Initial commit (Daniel Allendorf 時代)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>         │
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>2020-05 ─┤ Linux branch last activity
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>2019-11 ─┤ mac branch last activity
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>2023-04 ─┤ ryantpayton 重啟開發
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>2024-04 ─┤ master + v92 last activity
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>         │ (2 年低活動)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>2026-02 ─┘ 突然 4 commit 復活 (README + NoLifeNx + NoLifeWzToNx 文件)
+</code></pre></div>
+<hr />
+<h2 id="2">§2 頂層結構事實<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>msc-repo/                                  (1,298 檔 / 55 MB)
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>├── Audio/                                 (2 個 .cpp/.h)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├── Character/                             (38 個檔 — 完整角色 + 庫存 + 外觀)
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│   ├── Inventory/                         (12 個)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│   └── Look/                              (14 個)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>├── Data/                                  (12 個)
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├── Gameplay/                              (80 個)
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│   ├── Combat/                            (24 個 — 戰鬥系統)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│   ├── MapleMap/                          (32 個 — 地圖/怪物/NPC/反應堆)
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│   └── Physics/                           (4 個 — 物理 + 移動)
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├── Graphics/                              (18 個)
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>├── IO/                                    (142 個 — UI + 元件 + UITypes)
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│   ├── Components/                        (12 個 — 共用 UI 元件)
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│   └── UITypes/                           (70+ 個 — 全部 UI 畫面)
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├── Net/                                   (54 個 — 網路通訊)
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│   ├── Packets/                           (12 個 .h 封包定義)
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│   └── Handlers/                          (12 對 .cpp/.h + Helpers)
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├── Template/                              (12 個 — Singleton/Point/TypeMap 等基底)
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>├── Util/                                  (12 個 — Misc/WzFiles/QuadTree 等)
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>├── fonts/Arial/                           (字體)
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>├── includes/                              (7 個 third-party)
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│   ├── bass24/                            (BASS audio library)
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│   ├── freetype/                          (字體渲染)
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│   ├── glew-2.1.0/                        (OpenGL extension)
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│   ├── glfw-3.3.2.bin.WIN32               (視窗管理 32-bit)
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│   ├── glfw-3.3.2.bin.WIN64               (視窗管理 64-bit)
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│   ├── NoLifeNx/                          (NX 格式解析)
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│   └── stb/                               (圖片載入)
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>├── Configuration.{cpp,h}                  (全域設定)
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>├── Constants.h
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>├── Error.h
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>├── Icon.{ico,png}                         (圖示)
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>├── LICENSE                                (35 KB, AGPL-3.0)
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>├── MapleStory.cpp                         (主程式入口)
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>├── MapleStory.h
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>├── MapleStory.rc                          (Windows 資源)
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>├── MapleStory.sln                         (VS 方案檔)
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>├── MapleStory.vcxproj                     (VS 專案, 36 KB)
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>├── MapleStory.vcxproj.filters             (VS filter, 46 KB)
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>├── README.md                              (4 KB)
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>├── Timer.h
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>└── resource.h
+</code></pre></div>
+<hr />
+<h2 id="3-c-includes-fonts">§3 自己寫的 C++ 統計(排除 includes/ 與 fonts/)<a class="headerlink" href="#3-c-includes-fonts" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th style="text-align: right;">數量</th>
+<th style="text-align: right;">大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.cpp</td>
+<td style="text-align: right;"><strong>183</strong></td>
+<td style="text-align: right;">1,232 KB</td>
+</tr>
+<tr>
+<td>.h</td>
+<td style="text-align: right;"><strong>239</strong></td>
+<td style="text-align: right;">646 KB</td>
+</tr>
+<tr>
+<td><strong>合計</strong></td>
+<td style="text-align: right;"><strong>422</strong></td>
+<td style="text-align: right;"><strong>1,878 KB</strong> (1.8 MB)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="31-15-cpp">§3.1 15 個最大 .cpp<a class="headerlink" href="#31-15-cpp" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th style="text-align: right;">大小(bytes)</th>
+<th>模組</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IO/UITypes/UICommonCreation.cpp</code></td>
+<td style="text-align: right;"><strong>44,583</strong></td>
+<td>角色創建 UI(共通)</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIKeyConfig.cpp</code></td>
+<td style="text-align: right;"><strong>39,120</strong></td>
+<td>鍵盤設定</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIChatBar.cpp</code></td>
+<td style="text-align: right;">36,994</td>
+<td>聊天列</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIStatusBar.cpp</code></td>
+<td style="text-align: right;">33,160</td>
+<td>狀態列</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIItemInventory.cpp</code></td>
+<td style="text-align: right;">30,919</td>
+<td>道具庫存</td>
+</tr>
+<tr>
+<td><code>Graphics/GraphicsGL.cpp</code></td>
+<td style="text-align: right;">29,000</td>
+<td>OpenGL 圖形後端</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UICharSelect.cpp</code></td>
+<td style="text-align: right;">28,071</td>
+<td>角色選擇</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIMiniMap.cpp</code></td>
+<td style="text-align: right;">26,439</td>
+<td>小地圖</td>
+</tr>
+<tr>
+<td><code>IO/Components/EquipTooltip.cpp</code></td>
+<td style="text-align: right;">25,323</td>
+<td>裝備提示</td>
+</tr>
+<tr>
+<td><code>Net/PacketSwitch.cpp</code></td>
+<td style="text-align: right;">24,400</td>
+<td>opcode dispatch</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UISkillBook.cpp</code></td>
+<td style="text-align: right;">24,279</td>
+<td>技能書</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIShop.cpp</code></td>
+<td style="text-align: right;">21,405</td>
+<td>商店</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIStatsInfo.cpp</code></td>
+<td style="text-align: right;">20,640</td>
+<td>屬性資訊</td>
+</tr>
+<tr>
+<td><code>Character/Look/CharLook.cpp</code></td>
+<td style="text-align: right;">19,119</td>
+<td>角色外觀</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UIWorldSelect.cpp</code></td>
+<td style="text-align: right;">18,337</td>
+<td>世界選擇</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-15-h">§3.2 15 個最大 .h<a class="headerlink" href="#32-15-h" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th style="text-align: right;">大小(bytes)</th>
+<th>模組</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IO/UITypes/UIKeyConfig.h</code></td>
+<td style="text-align: right;"><strong>15,159</strong></td>
+<td>鍵盤設定</td>
+</tr>
+<tr>
+<td><code>Configuration.h</code></td>
+<td style="text-align: right;"><strong>14,989</strong></td>
+<td>全域設定</td>
+</tr>
+<tr>
+<td><code>Graphics/GraphicsGL.h</code></td>
+<td style="text-align: right;">7,559</td>
+<td>OpenGL 圖形</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UILoginNotice.h</code></td>
+<td style="text-align: right;">7,338</td>
+<td>登入提示</td>
+</tr>
+<tr>
+<td><code>Util/QuadTree.h</code></td>
+<td style="text-align: right;">6,802</td>
+<td>四元樹(碰撞偵測)</td>
+</tr>
+<tr>
+<td><code>Character/Player.h</code></td>
+<td style="text-align: right;">6,566</td>
+<td>玩家</td>
+</tr>
+<tr>
+<td><code>Util/WzFiles.h</code></td>
+<td style="text-align: right;">6,537</td>
+<td>NX/WZ 檔案清單</td>
+</tr>
+<tr>
+<td><code>Graphics/Color.h</code></td>
+<td style="text-align: right;">6,526</td>
+<td>顏色</td>
+</tr>
+<tr>
+<td><code>Net/Packets/GameplayPackets.h</code></td>
+<td style="text-align: right;">6,450</td>
+<td>遊戲封包</td>
+</tr>
+<tr>
+<td><code>Character/Char.h</code></td>
+<td style="text-align: right;">6,160</td>
+<td>角色基底</td>
+</tr>
+<tr>
+<td><code>Graphics/DrawArgument.h</code></td>
+<td style="text-align: right;">6,005</td>
+<td>繪圖參數</td>
+</tr>
+<tr>
+<td><code>Gameplay/MapleMap/Mob.h</code></td>
+<td style="text-align: right;">5,616</td>
+<td>怪物</td>
+</tr>
+<tr>
+<td><code>Template/Point.h</code></td>
+<td style="text-align: right;">5,458</td>
+<td>座標</td>
+</tr>
+<tr>
+<td><code>Character/Inventory/Inventory.h</code></td>
+<td style="text-align: right;">5,427</td>
+<td>庫存</td>
+</tr>
+<tr>
+<td><code>IO/UITypes/UICommonCreation.h</code></td>
+<td style="text-align: right;">5,422</td>
+<td>角色創建 UI</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-c">§3.3 各目錄 C++ 檔案分佈<a class="headerlink" href="#33-c" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IO/          142 (UI 最多 — 70+ 個 UI 畫面)
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Gameplay/     80 (戰鬥/地圖/物理)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Character/    72 (角色/庫存/外觀)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Net/          54 (網路/封包/handlers)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>./             8 (Configuration/Constants/Error/MapleStory 主程式)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>Graphics/     18 (OpenGL 後端)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Data/         12 (從 NX 載入資料)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>Util/         12 (工具)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Template/     12 (基底)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>Audio/         2 (音效)
+</code></pre></div>
+<hr />
+<h2 id="4-msbuildvisual-studio">§4 建置配置(MSBuild/Visual Studio)<a class="headerlink" href="#4-msbuildvisual-studio" title="Permanent link">&para;</a></h2>
+<h3 id="41">§4.1 編譯環境需求<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IDE</td>
+<td>Visual Studio 2026 Community(v18.2.1)</td>
+</tr>
+<tr>
+<td>Windows SDK</td>
+<td>8.1</td>
+</tr>
+<tr>
+<td>Platform Toolset</td>
+<td>v140</td>
+</tr>
+<tr>
+<td>C++ 標準</td>
+<td>C++17</td>
+</tr>
+<tr>
+<td>Build 系統</td>
+<td>MSBuild(<code>MapleStory.sln</code> + <code>MapleStory.vcxproj</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-define">§4.2 預設 define<a class="headerlink" href="#42-define" title="Permanent link">&para;</a></h3>
+<p>從 <code>MapleStory.h</code>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// #define USE_ASIO            // 預設關</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="cp">#define USE_CRYPTO               </span><span class="c1">// 預設開</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="cp">#define USE_NX                   </span><span class="c1">// 預設開(讀 NX 而非 WZ)</span>
+</code></pre></div></p>
+<h3 id="43-log-level">§4.3 Log level<a class="headerlink" href="#43-log-level" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cp">#define LOG_ERROR    1</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="cp">#define LOG_WARN     2</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="cp">#define LOG_INFO     3</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="cp">#define LOG_DEBUG    4</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="cp">#define LOG_NETWORK  5</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="cp">#define LOG_UI       6</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="cp">#define LOG_TRACE    7</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="cp">#ifdef _DEBUG</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="cp">#define LOG_LEVEL LOG_DEBUG</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="cp">#else</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="cp">#define LOG_LEVEL LOG_WARN</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="cp">#endif</span>
+</code></pre></div>
+<h3 id="44-includes">§4.4 第三方庫(全在 includes/)<a class="headerlink" href="#44-includes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>函式庫</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>bass24</strong></td>
+<td>BASS audio library(商業音效引擎)</td>
+</tr>
+<tr>
+<td><strong>freetype</strong></td>
+<td>字體渲染</td>
+</tr>
+<tr>
+<td><strong>glew-2.1.0</strong></td>
+<td>OpenGL extension loader</td>
+</tr>
+<tr>
+<td><strong>glfw-3.3.2.bin.WIN32/64</strong></td>
+<td>視窗管理 + 輸入</td>
+</tr>
+<tr>
+<td><strong>NoLifeNx</strong></td>
+<td>NX 格式解析(內建 .lib / .obj)</td>
+</tr>
+<tr>
+<td><strong>stb</strong></td>
+<td>圖片載入(單一 header)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-net">§5 Net 通訊結構<a class="headerlink" href="#5-net" title="Permanent link">&para;</a></h2>
+<h3 id="51-netconstantsh">§5.1 NetConstants.h<a class="headerlink" href="#51-netconstantsh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">namespace</span><span class="w"> </span><span class="nn">ms</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">HEADER_LENGTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">OPCODE_LENGTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">MIN_PACKET_LENGTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w">     </span><span class="c1">// HEADER + OPCODE</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">MAX_PACKET_LENGTH</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">131072</span><span class="p">;</span><span class="w"> </span><span class="c1">// 128 KB</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>純事實</strong>:與 OpenMapleClient 完全相同的通訊參數。</p>
+<h3 id="52-packetswitch">§5.2 PacketSwitch 結構<a class="headerlink" href="#52-packetswitch" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">PacketSwitch</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Forwarder</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="k">constexpr</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">NUM_HANDLERS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">PacketHandler</span><span class="o">&gt;</span><span class="w"> </span><span class="n">handlers</span><span class="p">[</span><span class="n">NUM_HANDLERS</span><span class="p">];</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="k">template</span><span class="o">&lt;</span><span class="kt">size_t</span><span class="w"> </span><span class="n">O</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">typename</span><span class="p">...</span><span class="w"> </span><span class="n">Args</span><span class="o">&gt;</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">emplace</span><span class="p">(</span><span class="n">Args</span><span class="o">&amp;&amp;</span><span class="p">...</span><span class="w"> </span><span class="n">args</span><span class="p">)</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="w">        </span><span class="k">static_assert</span><span class="p">(</span><span class="n">O</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">NUM_HANDLERS</span><span class="p">,</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="w">                      </span><span class="s">"PacketSwitch::emplace - Opcode out of array bounds"</span><span class="p">);</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="w">        </span><span class="c1">// ...</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="p">};</span>
+</code></pre></div>
+<p><strong>純事實</strong>:
+- <code>NUM_HANDLERS = 500</code>(opcode 上限 499)
+- 編譯期 <code>static_assert</code> 阻擋 ≥500 的 opcode
+- 與 OpenMapleClient 結構相同(但 OpenMapleClient 用 <code>std::array</code>,這裡用 C-style 陣列)</p>
+<h3 id="53-handler">§5.3 已註冊 handler 數量<a class="headerlink" href="#53-handler" title="Permanent link">&para;</a></h3>
+<p>從 <code>PacketSwitch.cpp</code> 計算 <code>emplace</code> 呼叫:<strong>56 個</strong></p>
+<p><strong>純事實</strong>:
+- 500 上限中<strong>只用 56 個</strong>(11.2%)
+- 大量 opcode 是「unhandled」(會印「Unhandled packet detected」警告)</p>
+<h3 id="54-handler56">§5.4 已實作的 handler(56 個)<a class="headerlink" href="#54-handler56" title="Permanent link">&para;</a></h3>
+<p>從 PacketSwitch.cpp 完整抽出:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>PING, LOGIN_RESULT, SERVERSTATUS, SELECT_CHARACTER_BY_VAC, SERVERLIST, CHARLIST,
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>SERVER_IP, CHARNAME_RESPONSE, ADD_NEWCHAR_ENTRY, DELCHAR_RESPONSE, SET_FIELD,
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>SPAWN_CHAR, CHAR_MOVED, UPDATE_CHARLOOK, SHOW_FOREIGN_EFFECT, REMOVE_CHAR,
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>SPAWN_PET, SPAWN_NPC, SPAWN_NPC_C, SPAWN_MOB, SPAWN_MOB_C, MOB_MOVED,
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>SHOW_MOB_HP, KILL_MOB, DROP_LOOT, REMOVE_LOOT, HIT_REACTOR, SPAWN_REACTOR,
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>REMOVE_REACTOR, ATTACKED_CLOSE, ATTACKED_RANGED, ATTACKED_MAGIC, CHANGE_CHANNEL,
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>KEYMAP, SKILL_MACROS, CHANGE_STATS, GIVE_BUFF, CANCEL_BUFF, RECALCULATE_STATS,
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>UPDATE_SKILL, ADD_COOLDOWN, SHOW_STATUS_INFO, CHAT_RECEIVED, SCROLL_RESULT,
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>SERVER_MESSAGE, WEEK_EVENT_MESSAGE, SHOW_ITEM_GAIN_INCHAT, MODIFY_INVENTORY,
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>GATHER_RESULT, SORT_RESULT, ...(共 56 個)
+</code></pre></div></p>
+<h3 id="55-netpackets-nethandlers">§5.5 Net/Packets/ 與 Net/Handlers/<a class="headerlink" href="#55-netpackets-nethandlers" title="Permanent link">&para;</a></h3>
+<p><strong>12 個 Packets(全部 .h)</strong>:
+- AttackAndSkillPackets / CharCreationPackets / CommonPackets
+- GameplayPackets / InventoryPackets / LoginPackets
+- MessagingPackets / MovementPacket / NpcInteractionPackets
+- PlayerInteractionPackets / PlayerPackets / SelectCharPackets</p>
+<p><strong>12 對 Handlers</strong>:
+- Attack / CashShop / Common / Inventory / Login
+- MapObject / Messaging / NpcInteraction / Player / PlayerInteraction
+- SetField / Testing</p>
+<p><strong>事實</strong>:有 <code>CashShopHandlers.{cpp,h}</code> — 對應 v83 商城功能。</p>
+<hr />
+<h2 id="6-28-wz">§6 遊戲檔(28 個 .wz)<a class="headerlink" href="#6-28-wz" title="Permanent link">&para;</a></h2>
+<p>從 <code>Util/WzFiles.h</code> 抽出(僅 <code>#ifndef USE_NX</code>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">constexpr</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">NUM_FILES</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">28</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">constexpr</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">NUM_FILES</span><span class="o">&gt;</span><span class="w"> </span><span class="n">filenames</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="s">"Base.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="s">"Character.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="s">"Effect.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="s">"Etc.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="s">"Item.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="s">"Map.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="s">"Map001.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Map002.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Map2.wz"</span><span class="p">,</span><span class="w">       </span><span class="c1">// Map 系列 4 個</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="s">"Mob.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="s">"Mob001.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Mob002.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Mob2.wz"</span><span class="p">,</span><span class="w">       </span><span class="c1">// Mob 系列 4 個</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="s">"Morph.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="s">"Npc.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="s">"Quest.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">    </span><span class="s">"Reactor.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="s">"Skill.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="s">"Skill001.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Skill002.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Skill003.wz"</span><span class="p">,</span><span class="w"> </span><span class="c1">// Skill 系列 4 個</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="s">"Sound.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="s">"Sound001.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Sound002.wz"</span><span class="p">,</span><span class="w"> </span><span class="s">"Sound2.wz"</span><span class="p">,</span><span class="w">   </span><span class="c1">// Sound 系列 4 個</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="s">"String.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">    </span><span class="s">"TamingMob.wz"</span><span class="p">,</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span><span class="s">"UI.wz"</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="p">};</span>
+</code></pre></div>
+<p><strong>純事實</strong>:
+- <strong>28 個 .wz 檔</strong>(= 韓版地圖/怪物/技能/音效分檔)
+- <strong>4 個系列各有 4 個</strong>:Map / Mob / Skill / Sound(基本 .wz + 001 + 002 + 2)
+- 對應韓版客戶端結構(因為 JourneyClient 是韓版起源)
+- <strong>Data.wz 不在清單</strong>(NoLifeWzToNx 也警告 Data.wz 不是標準 WZ)</p>
+<p><strong>對應你的 GMS v83</strong>:
+- GMS v83 通常沒有 <code>Map001/002/2.wz</code>(只有 Map.wz)
+- <strong>GMS v83 客戶端不能直接用 HeavenClient 預期清單</strong> — 必須用 <code>itayzrihan/MapleStory-Client-Cosmic</code> 那種 fork</p>
+<hr />
+<h2 id="7-configurationh">§7 Configuration.h 主要設定介面<a class="headerlink" href="#7-configurationh" title="Permanent link">&para;</a></h2>
+<p>從 <code>Configuration.h</code> API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Configuration</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Singleton</span><span class="o">&lt;</span><span class="n">Configuration</span><span class="o">&gt;</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">get_show_fps</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_show_packets</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span><span class="w">        </span><span class="c1">// 顯示封包內容(debug 用)</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_auto_login</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">get_auto_world</span><span class="p">();</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">get_auto_channel</span><span class="p">();</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_auto_acc</span><span class="p">();</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_auto_pass</span><span class="p">();</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_auto_pic</span><span class="p">();</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">    </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">get_auto_cid</span><span class="p">();</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_title</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_version</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_login_music</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_login_music_sea</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_login_music_newtro</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_joinlink</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_website</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_findid</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_findpass</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_resetpic</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_chargenx</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_macs</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">macs</span><span class="p">);</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_hwid</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">hwid</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">volumeSerialNumber</span><span class="p">);</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_max_width</span><span class="p">(</span><span class="kt">int16_t</span><span class="p">);</span>
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_max_height</span><span class="p">(</span><span class="kt">int16_t</span><span class="p">);</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_macs</span><span class="p">();</span>
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_hwid</span><span class="p">();</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">get_vol_serial_num</span><span class="p">();</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">    </span><span class="kt">int16_t</span><span class="w"> </span><span class="nf">get_max_width</span><span class="p">();</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">    </span><span class="kt">int16_t</span><span class="w"> </span><span class="nf">get_max_height</span><span class="p">();</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_rightclicksell</span><span class="p">();</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_rightclicksell</span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_show_weekly</span><span class="p">();</span>
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_show_weekly</span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_start_shown</span><span class="p">();</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_start_shown</span><span class="p">(</span><span class="kt">bool</span><span class="p">);</span>
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">get_worldid</span><span class="p">();</span>
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_worldid</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span>
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="nf">get_channelid</span><span class="p">();</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">set_channelid</span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">);</span>
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="nf">get_admin</span><span class="p">();</span>
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="p">};</span>
+</code></pre></div>
+<p><strong>純事實</strong>:
+- 自動登入(AUTO_LOGIN/AUTO_WORLD/AUTO_CHANNEL/AUTO_ACC/AUTO_PASS/AUTO_PIC/AUTO_CID)
+- MACS + HWID + Volume Serial(對應 GMS 反外掛 HWID 機制)
+- RightClickSell(商店右鍵賣)
+- WeekEventMessage(楓之谷週年訊息)</p>
+<hr />
+<h2 id="8-openmapleclient">§8 與 OpenMapleClient 的程式碼層差異<a class="headerlink" href="#8-openmapleclient" title="Permanent link">&para;</a></h2>
+<p>兩者都是 JourneyClient 同源(由 commit <code>b71da42 2015-10-13</code> 出發),<strong>結構幾乎一致</strong>,但有差異:</p>
+<table>
+<thead>
+<tr>
+<th>差異點</th>
+<th>HeavenClient (master)</th>
+<th>OpenMapleClient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平台</td>
+<td><strong>Windows PC(主)+ Linux/mac 分支</strong></td>
+<td><strong>Android(主)+ PC</strong></td>
+</tr>
+<tr>
+<td>建置</td>
+<td><strong>MSBuild / .sln / .vcxproj</strong></td>
+<td><strong>Gradle / CMake</strong></td>
+</tr>
+<tr>
+<td>第三方依賴</td>
+<td><strong>直接放在 includes/(bass24, glew, glfw)</strong></td>
+<td>thirdparty/ 子目錄(submodule)</td>
+</tr>
+<tr>
+<td>預設視窗尺寸</td>
+<td><code>Configuration::set_max_width/height</code>(從 Settings 讀)</td>
+<td>1366 × 768 寫死</td>
+</tr>
+<tr>
+<td>Settings 檔案</td>
+<td>自動生成,持久化</td>
+<td>沒有</td>
+</tr>
+<tr>
+<td>配置 UI</td>
+<td>完整 <code>UIKeyConfig</code>(39 KB)+ <code>UIOptionMenu</code></td>
+<td>沒實作</td>
+</tr>
+<tr>
+<td>FX Pipeline</td>
+<td>OpenGL 純 C++</td>
+<td>OpenGL ES via glfm(Android)</td>
+</tr>
+<tr>
+<td>維護狀態</td>
+<td>2026-02 仍活躍</td>
+<td>2024-05 停</td>
+</tr>
+<tr>
+<td>對應 server</td>
+<td>v83 + v229.2(預設 v229.2)</td>
+<td>v83 + MapleServerAndroid</td>
+</tr>
+</tbody>
+</table>
+<h3 id="81-configurationh">§8.1 Configuration.h 預設值差異(從原始碼)<a class="headerlink" href="#81-configurationh" title="Permanent link">&para;</a></h3>
+<p>從兩個 repo 的 <code>Configuration.cpp</code> 對比(都用 <code>Configuration.cpp/h</code>,但內容有差異):</p>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>HeavenClient</th>
+<th>OpenMapleClient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TITLE</td>
+<td>"MapleStory"(從 .h)</td>
+<td>"MapleStory"</td>
+</tr>
+<tr>
+<td>VERSION</td>
+<td>"229.2"</td>
+<td>"083"</td>
+</tr>
+<tr>
+<td>WEBSITE</td>
+<td>"https://www.nexon.com"</td>
+<td>"https://www.nexon.com"</td>
+</tr>
+<tr>
+<td>FINDID</td>
+<td>"https://www.nexon.com/account/..."</td>
+<td>?</td>
+</tr>
+<tr>
+<td>FINDPASS</td>
+<td>"https://www.nexon.com/account/..."</td>
+<td>?</td>
+</tr>
+<tr>
+<td>JOINLINK</td>
+<td>(對應 server IP)</td>
+<td>(對應 server IP)</td>
+</tr>
+<tr>
+<td>MAXWIDTH/MAXHEIGHT</td>
+<td>1366 / 768</td>
+<td>1366 / 768</td>
+</tr>
+</tbody>
+</table>
+<p><strong>純事實</strong>:<strong>VERSION 不同</strong>(229.2 vs 083)— 這是兩個 fork 最大差別。</p>
+<hr />
+<h2 id="9-4">§9 4 個分支差異詳細<a class="headerlink" href="#9-4" title="Permanent link">&para;</a></h2>
+<h3 id="91-master-vs-linux">§9.1 master vs linux<a class="headerlink" href="#91-master-vs-linux" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>統計</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>變動檔數</td>
+<td><strong>1090</strong></td>
+</tr>
+<tr>
+<td>新增行數</td>
+<td>+35,010</td>
+</tr>
+<tr>
+<td>刪除行數</td>
+<td>-75,620</td>
+</tr>
+</tbody>
+</table>
+<p>主要改動:
+- <code>includes/NoLifeNx/nlnx/</code> 改為 <code>includes/nlnx/</code>(簡化路徑)
+- 升級 NoLifeNx 為新版本(對應 Linux .so 編譯)
+- 加入 <code>stb_vorbis.c</code>(for audio)</p>
+<h3 id="92-master-vs-mac">§9.2 master vs mac<a class="headerlink" href="#92-master-vs-mac" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>統計</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>變動檔數</td>
+<td><strong>1310</strong></td>
+</tr>
+<tr>
+<td>新增行數</td>
+<td>+19,416</td>
+</tr>
+<tr>
+<td>刪除行數</td>
+<td>-185,545</td>
+</tr>
+</tbody>
+</table>
+<p>主要改動:
+- <code>stb/</code> 全部替換(從 master 早期版本升級)
+- 移除大量 Visual Studio 專案檔(因為 mac 用 Xcode)
+- 大量 visual studio obj 移除</p>
+<h3 id="93-master-vs-v92-support">§9.3 master vs v92-support<a class="headerlink" href="#93-master-vs-v92-support" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>統計</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>變動檔數</td>
+<td>47</td>
+</tr>
+<tr>
+<td>新增行數</td>
+<td>+89</td>
+</tr>
+<tr>
+<td>刪除行數</td>
+<td>-166</td>
+</tr>
+</tbody>
+</table>
+<p>主要改動:
+- 移除 NoLifeNx 編譯產物(因為 v92 編譯時動態生成)
+- 微調 Audio handler</p>
+<p><strong>結論(純技術)</strong>:
+- <strong>linux/mac 分支差異主要在 third-party 函式庫版本與編譯產物</strong>,code 本身差異不大
+- <strong>v92-support 差異極小</strong> — 主要針對 audio</p>
+<hr />
+<h2 id="10-license">§10 LICENSE 條款事實<a class="headerlink" href="#10-license" title="Permanent link">&para;</a></h2>
+<p><code>LICENSE</code>(35,182 bytes = AGPL-3.0 全文):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>GNU AFFERO GENERAL PUBLIC LICENSE
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Version 3, 19 November 2007
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Copyright (C) 2007 Free Software Foundation, Inc.
+</code></pre></div>
+<p><strong>LICENSE 警告</strong>:
+- <strong>AGPL-3.0</strong> 是<strong>最嚴格開源許可證</strong>
+- 若 fork 出來<strong>提供網路服務</strong>,必須<strong>也開源</strong>整個衍生作品
+- 包含 NoLifeNx(AGPL-3.0)、NoLifeWzToNx(AGPL-3.0)
+- BASS audio library <strong>是商業授權</strong>(bass24)
+- stb 是 public domain / MIT</p>
+<hr />
+<h2 id="11-2015-2026">§11 主線時序(2015-2026)<a class="headerlink" href="#11-2015-2026" title="Permanent link">&para;</a></h2>
+<h3 id="111-2015-10-2019daniel-allendorf">§11.1 2015-10 ~ 2019(Daniel Allendorf 時期)<a class="headerlink" href="#111-2015-10-2019daniel-allendorf" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2015-10-13:<code>b71da42</code> Initial commit(Daniel Allendorf 原始)</li>
+<li>2015-10 ~ 2019:Revision 1 ~ 6(快速迭代)</li>
+<li>2019-11-04:mac port 由 ryantpayton 加入</li>
+<li>2019:Daniel Allendorf 停止維護</li>
+</ul>
+<h3 id="112-2019-2020ryantpayton">§11.2 2019 ~ 2020(ryantpayton 接手)<a class="headerlink" href="#112-2019-2020ryantpayton" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2020-05-10:linux 最後 commit(a359863 「Linux improvements」)</li>
+<li>2020:COVID 開始,開發節奏放慢</li>
+</ul>
+<h3 id="113-2020-2023">§11.3 2020 ~ 2023(低活動)<a class="headerlink" href="#113-2020-2023" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2-3 年低活動</li>
+<li>沒有顯著 commit</li>
+</ul>
+<h3 id="114-2023-04ryantpayton">§11.4 2023-04(ryantpayton 重啟)<a class="headerlink" href="#114-2023-04ryantpayton" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2023-04-21 ~ 2023-04-24:<strong>3 週密集 commit</strong>(約 5-10 commit)</li>
+<li>Fixed general map issues</li>
+<li>Added equipment rule for Magician and Warrior</li>
+<li>Handled player.message() from server</li>
+<li>Added better logging for Opcodes</li>
+<li>Fixed issue where character is nude when no equips</li>
+<li>General UI positioning fixes</li>
+</ul>
+<h3 id="115-2024">§11.5 2024(穩定)<a class="headerlink" href="#115-2024" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2024-03-18:Fixed typo + Updated links</li>
+<li>2024-04-21:Bug fixes</li>
+<li>2024-04-30:v92-support branch last commit(Fixes for audio)</li>
+</ul>
+<h3 id="116-2024-04-2026-02-2">§11.6 2024-04 ~ 2026-02(沉默 2 年)<a class="headerlink" href="#116-2024-04-2026-02-2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>沒有顯著 commit</li>
+</ul>
+<h3 id="117-2026-02">§11.7 2026-02(突然復活)<a class="headerlink" href="#117-2026-02" title="Permanent link">&para;</a></h3>
+<ul>
+<li>2026-02-09 11:03:43:<strong>Fixed wrong name for NoLifeWzToNx file</strong>(56812b6)</li>
+<li>2026-02-09 11:04:05:Merge branch 'master' of HeavenClient(5b1eb4c)</li>
+<li>2026-02-09 17:35:45:Update NoLifeNx libs(同 NoLifeWzToNx 新版本)</li>
+<li>2026-02-09 17:43:42:<strong>Update README: VS 2026, v229.2</strong>(9dfa3dc)</li>
+<li>2026-02-25 17:28:44:<strong>Add Web compatibility information to README</strong>(cbb0fe2)</li>
+</ul>
+<p><strong>純事實</strong>:
+- 2026-02-09 一個小時內 4 個 commit
+- 配合 <code>ryantpayton/NoLifeWzToNx</code> repo 2026-02 同步上線
+- README 升級:<strong>VS 2026</strong>(從舊版升到 2026 社區版)、<strong>v229.2</strong>(對應 server 升級)</p>
+<hr />
+<h2 id="12">§12 純事實總結(不下結論)<a class="headerlink" href="#12" title="Permanent link">&para;</a></h2>
+<h3 id="121">§12.1 結構規模<a class="headerlink" href="#121" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>422 個 C++ 檔(1.8 MB 自己寫的)</strong></li>
+<li><strong>包含 7 個 third-party 函式庫</strong>(全部 in-tree)</li>
+<li><strong>56 個 opcode 已處理(500 上限中佔 11.2%)</strong></li>
+<li><strong>28 個遊戲檔需求(.wz 模式)/ 15 個(.nx 模式)</strong></li>
+<li><strong>VS 2026 Community v18.2.1 + Windows SDK 8.1 + Platform Toolset v140</strong></li>
+</ul>
+<h3 id="122-4">§12.2 4 個分支時序<a class="headerlink" href="#122-4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>master 2026-02(活躍)/ linux 2020-05(凍)/ mac 2019-11(凍)/ v92-support 2024-04(凍)</li>
+<li>全部從 2015-10-13 initial commit 出發</li>
+<li>v92-support 與 master 高度相似(只差 3 commit)</li>
+</ul>
+<h3 id="123-openmapleclient">§12.3 與 OpenMapleClient 的關係<a class="headerlink" href="#123-openmapleclient" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>同源 JourneyClient</strong>(Daniel Allendorf 2015-2019)</li>
+<li><strong>HeavenClient 為 Windows PC 主線</strong>(ryantpayton 維護)</li>
+<li><strong>OpenMapleClient 為 Android wrapper</strong>(speedyHKjournalist 維護)</li>
+<li><strong>兩個 fork 的 Configuration.cpp 不一樣</strong>(VERSION 不同)</li>
+<li><strong>兩個 fork 的 Net/ 結構完全相同</strong>(同一份 Cryptography / PacketSwitch / Session)</li>
+</ul>
+<h3 id="124-gms-v83-cosmic">§12.4 對 GMS v83 + Cosmic 的事實<a class="headerlink" href="#124-gms-v83-cosmic" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>預設不直接給 GMS v83 + Cosmic</strong>:</li>
+<li>VERSION = "229.2"</li>
+<li>28 個 .wz 是韓版</li>
+<li><strong>需要使用 <code>itayzrihan/MapleStory-Client-Cosmic</code> fork</strong>(專門給 v83 + Cosmic)</li>
+<li><strong>NoLifeWzToNx 工具可把 GMS v83 WZ 轉 NX</strong>(但只支援 v83,不是韓版 28 個清單)</li>
+<li><strong>Configuration::VERSION 改成 "083" + 28 個 .wz 換成 GMS v83 16 個</strong> = 改造成 GMS v83 client</li>
+</ul>
+<h3 id="125">§12.5 不做的事(刻意)<a class="headerlink" href="#125" title="Permanent link">&para;</a></h3>
+<ul>
+<li>❌ 不評論 HeavenClient 與其他 client 哪個好</li>
+<li>❌ 不評論整合方案</li>
+<li>❌ 不評論法律風險</li>
+<li>❌ 不評論 AGPL-3.0 對實際部署的限制</li>
+<li>❌ 不評論 BASS 商業授權問題</li>
+</ul>
+<hr />
+<h2 id="13">§13 本地獨立位置<a class="headerlink" href="#13" title="Permanent link">&para;</a></h2>
+<p><strong>此分析對應的本地 repo</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>C:\Users\e7896\AppData\Local\hermes\cache\scratch\maple-story-client-isolated\
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>├── msc-repo/                    (完整 git repo, 4 個分支)
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>│   ├── .git/
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>│   ├── Audio/
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>│   ├── Character/
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>│   ├── Data/
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>│   ├── Gameplay/
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>│   ├── Graphics/
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>│   ├── IO/
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>│   ├── Net/
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>│   ├── Template/
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>│   ├── Util/
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>│   ├── fonts/
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>│   ├── includes/
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>│   ├── Configuration.cpp/.h
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a>│   ├── Constants.h
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>│   ├── Error.h
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>│   ├── Icon.{ico,png}
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>│   ├── LICENSE
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>│   ├── MapleStory.{cpp,h,rc,sln,vcxproj,filters}
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>│   ├── README.md
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>│   ├── Timer.h
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>│   └── resource.h
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a>├── repo.json                    (GitHub API metadata)
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>└── W3-2-MapleStory-Client-isolated-analysis.md  (本報告本地副本)
+</code></pre></div></p>
+<p><strong>獨立原則</strong>:
+- 此資料夾<strong>沒有污染</strong> <code>12-OffShelf-Client-Fork/</code>(本地其它項目位置)
+- 也不在 <code>MUWORK\GAME\MAPLESOTRY\</code>(工作區)
+- 完全在 <strong>scratch</strong> 隔離區</p>
+<hr />
+<p><strong>輸出位置</strong>:
+- 主索引: <code>C:\MUWORK\GAME\MAPLESOTRY\wf-output\W3-2-MapleStory-Client-isolated-analysis.md</code>
+- 本地副本: <code>C:\Users\e7896\AppData\Local\hermes\cache\scratch\maple-story-client-isolated\W3-2-MapleStory-Client-isolated-analysis.md</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

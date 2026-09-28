@@ -1,0 +1,3633 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>待分類資料夾 — 純技術掃描結果 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              待分類資料夾 — 純技術掃描結果
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §0 總體規模
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1 根目錄檔案分類(技術構成)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§1 根目錄檔案分類(技術構成)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-gms-v083" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 GMS v083 客戶端主程式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 客戶端資源 + 補丁(壓縮格式)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-gms08322-rar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 GMS083客戶端子目錄(22 個 RAR 補丁包)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 簽到表子目錄(獨立完整功能包)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §2 三個完整功能包技術構成(已逐個拆解原始碼)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§2 三個完整功能包技術構成(已逐個拆解原始碼)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-daily-check-in-28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Daily Check-In 簽到表(每日登入 28 天獎勵)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 Daily Check-In 簽到表(每日登入 28 天獎勵)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) 通訊協議
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-c-dlldailycheckincpp-583" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) 客戶端 C++ DLL(dailycheckin.cpp 583 行)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (c) 服務端 Java
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (d) SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (e) 業務邏輯
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-beauty-salon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Beauty Salon 美容院(髮型/臉型/膚色儲存套用)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 Beauty Salon 美容院(髮型/臉型/膚色儲存套用)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) 通訊協議
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-cbeautyshopcpp-46-kb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) 客戶端 C++(beautyshop.cpp 46 KB)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-java_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (c) 服務端 Java 結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (d) 既有檔修改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (e) 業務邏輯
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-cash-shop-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Cash Shop Window(場景切換式→視窗式現金商城)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 Cash Shop Window(場景切換式→視窗式現金商城)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (a) 設計動機(從原始碼註解)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (b) 通訊協議
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-ccashshopwndcpp-174-kb3500" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (c) 客戶端 C++(cashshopwnd.cpp 174 KB,~3500 行)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (d) 商品目錄
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (e) 服務端 Java 結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        (f) WZ 資源
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-crit_and_range" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3 crit_and_range(暴擊率/暴擊傷害/魔攻範圍)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§3 crit_and_range(暴擊率/暴擊傷害/魔攻範圍)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        技術構成
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        整合入口
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §4 主程式繁化 + 解析度補丁(主執行檔補丁)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§4 主程式繁化 + 解析度補丁(主執行檔補丁)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gms083ini" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gms.083.ini 內容
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CSV 前 19 列(觀察)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-v83rar-v83idbida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §5 v83.rar → v83.idb(IDA 逆向工程資料庫)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-gms083-wzimg" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §6 GMS083客戶端其他 .wz/.img 內容概覽
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§6 GMS083客戶端其他 .wz/.img 內容概覽">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-scripts-2297-js" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 scripts 腳本(2,297 個 .js)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-1138-txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 怪物圖鑑(1,138 個 .txt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-part1-part2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 主登入介面(part1 + part2)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-img3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 商店 .img(3 套不同解析度)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 多彩地圖特效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#66" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 啟動錯誤修正補丁
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#67" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.7 祝福/混沌/點卷掉落提示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#68-23-txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.8 源碼支援中文(23 個 .txt)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §7 全部資源的「整合點」技術摘要
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§7 全部資源的「整合點」技術摘要">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-kaentake-style-dll" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 共同依賴:kaentake-style DLL 框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-image-base-0x400000" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 共同硬碼(image base 0x400000)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-opcode-enum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 服務端共通點:opcode enum 修改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4 WZ 結構共通點
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8 純技術總結(不含評估)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">待分類資料夾 — 純技術掃描結果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>掃描時間</strong>: 2026-09-27
+<strong>範圍</strong>: <code>C:\MUWORK\GAME\MAPLESOTRY\待分類\</code> 全部 33 個檔案 + 22 個 RAR 解壓後內容
+<strong>性質</strong>: 純事實記錄,不下結論,不評論</p>
+</blockquote>
+<hr />
+<h2 id="0">§0 總體規模<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>根目錄檔案數</td>
+<td>33</td>
+</tr>
+<tr>
+<td>總大小</td>
+<td>193 MB</td>
+</tr>
+<tr>
+<td>解壓後 RAR/7Z 內檔案總數</td>
+<td>1,200+</td>
+</tr>
+<tr>
+<td>子目錄</td>
+<td><code>GMS083客戶端/</code>, <code>簽到表/</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1">§1 根目錄檔案分類(技術構成)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11-gms-v083">1.1 GMS v083 客戶端主程式<a class="headerlink" href="#11-gms-v083" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>大小</th>
+<th>識別</th>
+<th>技術屬性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MapleStory 0.83.exe</code></td>
+<td>4.28 MB</td>
+<td>PE32 i386 GUI, 7 sections</td>
+<td><strong>客戶端主執行檔</strong></td>
+</tr>
+<tr>
+<td>ImageBase</td>
+<td>0x400000</td>
+<td>(PE header)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>EntryPoint</td>
+<td>0xa8c000</td>
+<td>(PE header)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>TimeDateStamp</td>
+<td>7,270,400 (≈2018)</td>
+<td>(PE header)</td>
+<td><strong>與 kaentake 目標版本一致</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12">1.2 客戶端資源 + 補丁(壓縮格式)<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>檔案</th>
+<th>大小</th>
+<th>格式</th>
+<th>解壓後內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BeautySalonv83.zip</code></td>
+<td>403 KB</td>
+<td>ZIP(UNIX v2.0)</td>
+<td>42 個檔案:1 .cpp(46 KB)+ 7 reference headers + 4 .java + 2 SQL + 3 .wz(UI/String/Sound/Item)</td>
+</tr>
+<tr>
+<td><code>cashshop-window.7z</code></td>
+<td>983 KB</td>
+<td>7-zip LZMA2:22</td>
+<td>15 個檔案:1 .cpp(174 KB)+ 1 .h + 4 .java + 1 TSV(1843 商品)+ 2 .py + 1 .img + 1 .png + 2 README</td>
+</tr>
+<tr>
+<td><code>crit_and_range (1).7z</code></td>
+<td>117 KB</td>
+<td>7-zip LZMA2:384k</td>
+<td>13 個檔案:5 .cpp + 2 .h + 1 .img(UIWindow)+ 1 .img(ToolTipHelp)+ 1 README</td>
+</tr>
+<tr>
+<td><code>v83.rar</code></td>
+<td>20.2 MB</td>
+<td>RAR5</td>
+<td>**1 個檔: <code>v83.idb</code>(125 MB,IDA 逆向工程資料庫,2014)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-gms08322-rar">1.3 GMS083客戶端子目錄(22 個 RAR 補丁包)<a class="headerlink" href="#13-gms08322-rar" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>RAR 檔名</th>
+<th>大小</th>
+<th>解壓後內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>083怪物掉落与反应堆数据.rar</code></td>
+<td>506 KB</td>
+<td><strong>1,138 個 .txt</strong>(怪物圖鑑資料)</td>
+</tr>
+<tr>
+<td><code>Data 客户端可调分辨率.rar</code></td>
+<td>9.4 MB</td>
+<td>Data 目錄(客戶端 data)</td>
+</tr>
+<tr>
+<td><code>Etc.rar</code></td>
+<td>182 KB</td>
+<td><code>Etc.wz</code>(1.2 MB 解壓)</td>
+</tr>
+<tr>
+<td><code>GMS083登录新界面.part1.rar</code></td>
+<td>44 MB</td>
+<td>12 檔(含 5 個大 .img + 3 個 .png)</td>
+</tr>
+<tr>
+<td><code>GMS083登录新界面.part2.rar</code></td>
+<td>42 MB</td>
+<td>7 檔(含 6 個 .img + 1 個 MapLogin.img)</td>
+</tr>
+<tr>
+<td><code>Quest.rar</code></td>
+<td>182 KB</td>
+<td><code>Quest.wz</code>(5.5 MB 解壓)</td>
+</tr>
+<tr>
+<td><code>scripts脚本.rar</code></td>
+<td>1.6 MB</td>
+<td><strong>2,297 個 .js 腳本</strong>(38 個目錄)</td>
+</tr>
+<tr>
+<td><code>String.rar</code></td>
+<td>1.1 MB</td>
+<td><code>String.wz</code>(3.7 MB 解壓)</td>
+</tr>
+<tr>
+<td><code>UI.rar</code></td>
+<td>30 MB</td>
+<td>UI 資源</td>
+</tr>
+<tr>
+<td><code>wz 客户端可调分辨率.rar</code></td>
+<td>32 MB</td>
+<td>wz 目錄(可調解析度版)</td>
+</tr>
+<tr>
+<td><code>主程序繁化 可调分辨率补丁.rar</code></td>
+<td>3.6 MB</td>
+<td>8 檔:<code>MapleStory v83(已繁化).exe</code>(9.9 MB)+ <code>nmconew.dll</code> + <code>Gms.083.ini</code> + STREDIT .Net 工具 + CSV 繁化對照</td>
+</tr>
+<tr>
+<td><code>多彩地图特效.rar</code></td>
+<td>81 KB</td>
+<td><code>Data/Map/Tile/grassySoil.img</code></td>
+</tr>
+<tr>
+<td><code>多彩地图特效2.rar</code></td>
+<td>904 KB</td>
+<td><code>grassySoil.img.xml</code> + <code>颜色2.png</code></td>
+</tr>
+<tr>
+<td><code>更正启动错误补丁 支持WZ，IMG端.rar</code></td>
+<td>62 KB</td>
+<td>3 檔:<code>ijl15.dll</code> + <code>MapleFix.dll</code> + <code>MapleFix.ini</code></td>
+</tr>
+<tr>
+<td><code>祝福混沌点卷掉落提示补丁.rar</code></td>
+<td>919 KB</td>
+<td>3 個 .img(0204/0234/0403)</td>
+</tr>
+<tr>
+<td><code>原版商店 1024.rar</code></td>
+<td>855 KB</td>
+<td><code>CashShop.img</code> + <code>CashShopPreview.img</code></td>
+</tr>
+<tr>
+<td><code>原版商店 1280.rar</code></td>
+<td>2.9 MB</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>新版商店1280-720.rar</code></td>
+<td>1.4 MB</td>
+<td>同上</td>
+</tr>
+<tr>
+<td><code>源码支持中文.rar</code></td>
+<td>12 KB</td>
+<td><strong>23 個 .txt</strong>(Java 源碼修改片段):中文字符、組隊、公會、戰神動畫、新手出生地、拍賣按鍵、代碼顯示等</td>
+</tr>
+</tbody>
+</table>
+<h3 id="14">1.4 簽到表子目錄(獨立完整功能包)<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>子項</th>
+<th>路徑</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>README.md</td>
+<td><code>簽到表/README.md</code></td>
+<td>16.8 KB,完整 Daily Check-In 28 天安裝手冊</td>
+</tr>
+<tr>
+<td>客戶端源碼</td>
+<td><code>簽到表/client/src/dailycheckin.cpp</code></td>
+<td>583 行 C++</td>
+</tr>
+<tr>
+<td>服務端 handler</td>
+<td><code>簽到表/server/src/main/java/net/server/channel/handlers/DailyCheckinHandler.java</code></td>
+<td>完整 Java handler</td>
+</tr>
+<tr>
+<td>服務端獎勵表</td>
+<td><code>簽到表/server/src/main/java/server/DailyCheckinRewards.java</code></td>
+<td>Java 獎勵配置類</td>
+</tr>
+<tr>
+<td>GM 指令</td>
+<td><code>簽到表/server/src/main/java/client/command/commands/gm0/CheckinCommand.java</code></td>
+<td><code>@checkin</code> 指令</td>
+</tr>
+<tr>
+<td>SQL</td>
+<td><code>簽到表/server/sql/daily_checkin.sql</code></td>
+<td>1.7 KB,加 3 欄位到 characters 表</td>
+</tr>
+<tr>
+<td>WZ</td>
+<td><code>簽到表/wz/UI.wz</code></td>
+<td>25.4 KB,DailyCheckin 視窗資源</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2">§2 三個完整功能包技術構成(已逐個拆解原始碼)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21-daily-check-in-28">2.1 Daily Check-In 簽到表(每日登入 28 天獎勵)<a class="headerlink" href="#21-daily-check-in-28" title="Permanent link">&para;</a></h3>
+<p><strong>檔案位置</strong>: <code>簽到表/</code></p>
+<h4 id="a">(a) 通訊協議<a class="headerlink" href="#a" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客戶端→服務端 opcode</td>
+<td><code>0x11A</code>(RecvOpcode.DAILY_CHECKIN)</td>
+</tr>
+<tr>
+<td>服務端→客戶端 opcode</td>
+<td><code>0x17C</code>(SendOpcode.DAILY_CHECKIN)</td>
+</tr>
+<tr>
+<td>字串格式</td>
+<td><code>writeShort(len) + bytes</code>(與 Cosmic <code>OutPacket.writeString</code> 一致)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-c-dlldailycheckincpp-583">(b) 客戶端 C++ DLL(<code>dailycheckin.cpp</code> 583 行)<a class="headerlink" href="#b-c-dlldailycheckincpp-583" title="Permanent link">&para;</a></h4>
+<p><strong>硬碼記憶體位址</strong>(image base 0x400000):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">kAddr_play_ui_sound</span><span class="w">           </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00989588</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">kAddr_ProcessBasicUIKey</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00A07431</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">kAddr_CWvsContext_Instance</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00BE7918</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">kAddr_ClientSocket_Instance</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00BE7914</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">kAddr_ClientSocket_SendPacket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0049637B</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">kAddr_ClientSocket_ProcessPkt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x004965F1</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">kAddr_CUtilDlg_Notice</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="mh">0x009929DD</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">kAddr_get_basic_font</span><span class="w">          </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0098A707</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">kAddr_SetFont</span><span class="w">                 </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0046341A</span>
+</code></pre></div>
+<p><strong>技術機制</strong>:
+- 派生自 <code>CWnd</code>(從 kaentake framework 的 <code>wvs/wnd.h</code>)
+- 7×4 = 28 天格子 grid,繪圖基於 <code>UI/UIWindow.img/DailyCheckin/backgrnd</code>(513×346)
+- 3 種狀態:locked(灰)/claimable(閃爍金邊)/claimed(綠+勾選)
+- 從服務器推 snapshot,<strong>客戶端從不決定 unlock/claim</strong>
+- 跨執行緒:<code>HandleSync</code> 在 receive thread 填資料 + mutex + flag,<code>Tick</code> 在 main thread 建 CWnd</p>
+<h4 id="c-java">(c) 服務端 Java<a class="headerlink" href="#c-java" title="Permanent link">&para;</a></h4>
+<p><strong>3 個新檔</strong>:
+- <code>DailyCheckinHandler.java</code>(extends AbstractPacketHandler)
+- <code>DailyCheckinRewards.java</code>(獎勵表,預設 mock = 每 1 meso + placeholder icon 2000000)
+- <code>CheckinCommand.java</code>(gm0 等級指令)</p>
+<p><strong>既有檔修改</strong>(以 snippet 方式):
+- <code>net/opcodes/RecvOpcode.java</code>:加 <code>DAILY_CHECKIN(0x11A)</code>
+- <code>net/opcodes/SendOpcode.java</code>:加 <code>DAILY_CHECKIN(0x17C)</code>
+- <code>net/PacketProcessor.java</code>:<code>registerHandler(...)</code>
+- <code>tools/PacketCreator.java</code>:加 <code>dailyCheckinSnapshot(...)</code>
+- <code>client/Character.java</code>:加 <code>checkinDay / checkinClaimed / checkinLastClaim</code> 3 欄位 + 6 個方法
+- <code>net/server/channel/handlers/PlayerLoggedinHandler.java</code>:level gate ≥ MIN_LEVEL(預設 10)</p>
+<h4 id="d-sql">(d) SQL<a class="headerlink" href="#d-sql" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">checkinDay</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">checkinClaimed</span><span class="w"> </span><span class="nb">int</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">checkinLastClaim</span><span class="w"> </span><span class="nb">bigint</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+<p>(用 stored procedure 包 idempotent)</p>
+<h4 id="e">(e) 業務邏輯<a class="headerlink" href="#e" title="Permanent link">&para;</a></h4>
+<ul>
+<li>24h epoch-millis gate:<code>CHECKIN_PERIOD_MS = 86_400_000L</code></li>
+<li>超過 48h 自動重置 streak</li>
+<li>Day 28 完成 → 開新 cycle</li>
+<li>Level gate:預設 MIN_LEVEL = 10</li>
+</ul>
+<hr />
+<h3 id="22-beauty-salon">2.2 Beauty Salon 美容院(髮型/臉型/膚色儲存套用)<a class="headerlink" href="#22-beauty-salon" title="Permanent link">&para;</a></h3>
+<p><strong>檔案位置</strong>: <code>BeautySalonv83/</code></p>
+<h4 id="a_1">(a) 通訊協議<a class="headerlink" href="#a_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>雙向 opcode</td>
+<td><code>0x174</code>(RecvOpcode.BEAUTY_ACTION / SendOpcode.BEAUTY_RESULT)</td>
+</tr>
+<tr>
+<td>解鎖道具</td>
+<td><code>5920000</code>(每個解 1 個 slot,0→6)</td>
+</tr>
+<tr>
+<td>Tab</td>
+<td>Hair / Face / Skin</td>
+</tr>
+<tr>
+<td>Slot per tab</td>
+<td>6</td>
+</tr>
+<tr>
+<td>動作類型</td>
+<td>REQUEST/SAVE/APPLY/DELETE/UNLOCK</td>
+</tr>
+</tbody>
+</table>
+<h4 id="b-cbeautyshopcpp-46-kb">(b) 客戶端 C++(<code>beautyshop.cpp</code> 46 KB)<a class="headerlink" href="#b-cbeautyshopcpp-46-kb" title="Permanent link">&para;</a></h4>
+<p><strong>技術構成</strong>:
+- 單一檔案 self-contained
+- 自有 logger 寫 <code>beauty_debug.txt</code>(Windows handle,FILE_APPEND_DATA)
+- VEH(Vectored Exception Handler)crash recovery
+- 3 個 reference headers 來自 kaentake framework(<code>wvs/wnd.h</code> 等)</p>
+<h4 id="c-java_1">(c) 服務端 Java 結構<a class="headerlink" href="#c-java_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>java/src/main/java/net/server/channel/handlers/BeautyHandler.java   5.2 KB
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>java/src/main/java/server/beauty/BeautyData.java                    226 B
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>java/src/main/java/server/beauty/BeautyPackets.java                 3.0 KB
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>java/src/main/java/server/beauty/BeautyStorage.java                 4.8 KB
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>java/src/main/resources/db/tables/025-beauty.sql                    968 B
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>java/src/main/resources/db/tables/026-beauty-unlock.sql             229 B
+</code></pre></div>
+<h4 id="d">(d) 既有檔修改<a class="headerlink" href="#d" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>net/opcodes/RecvOpcode.java</code>:加 <code>BEAUTY_ACTION(0x174)</code></li>
+<li><code>net/opcodes/SendOpcode.java</code>:加 <code>BEAUTY_RESULT(0x174)</code></li>
+<li><code>net/PacketProcessor.java</code>:import + <code>registerHandler(...)</code></li>
+<li><code>net/server/channel/handlers/GeneralChatHandler.java</code>:加 <code>@beauty</code> block</li>
+<li><code>resources/db/changelog-tables.xml</code>:註冊 changeSets 25 + 26</li>
+</ul>
+<h4 id="e_1">(e) 業務邏輯<a class="headerlink" href="#e_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Save:儲存當前 hair/face/skin 到 slot</li>
+<li>Apply:套用 slot</li>
+<li>Delete:確認後刪除</li>
+<li>Unlock:消耗道具 5920000 解新 slot</li>
+<li>預覽:frozen avatar preview(隱藏帽子 + 臉部配件)</li>
+</ul>
+<hr />
+<h3 id="23-cash-shop-window">2.3 Cash Shop Window(場景切換式→視窗式現金商城)<a class="headerlink" href="#23-cash-shop-window" title="Permanent link">&para;</a></h3>
+<p><strong>檔案位置</strong>: <code>cashshop-window/</code></p>
+<h4 id="a_2">(a) 設計動機(從原始碼註解)<a class="headerlink" href="#a_2" title="Permanent link">&para;</a></h4>
+<p><strong>取代 vanilla cash shop 的兩個限制</strong>:
+1. <strong>不切換 stage</strong>(vanilla 是 stage,進入會拆 buffs、脫離地圖)
+2. <strong>無列數上限</strong>(vanilla 用 <code>Etc/Commodity.img</code> serial 編碼 tab,單類別有上限)</p>
+<p><strong>核心設計</strong>:
+- <code>CWnd</code> 派生,<strong>疊在 field 上方</strong>,buff/互動不中斷
+- 商品目錄<strong>完全 server-side</strong>(讀 TSV)
+- <strong>每次只傳一個 category</strong>,不一次傳全部(無上限)
+- <strong>即時 avatar preview</strong>:走、跳、攻擊、表情、cash 效果,<strong>可爬梯</strong>(看披風背面)</p>
+<h4 id="b">(b) 通訊協議<a class="headerlink" href="#b" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>客戶端→服務端 opcode</td>
+<td><code>0x3730</code>(CP_DailyCheckin)</td>
+</tr>
+<tr>
+<td>服務端→客戶端 opcode</td>
+<td><code>0x3731</code>(LP_DailyCheckin)</td>
+</tr>
+<tr>
+<td>商品目錄來源</td>
+<td><strong>TSV 檔</strong>(非 Commodity.img)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="c-ccashshopwndcpp-174-kb3500">(c) 客戶端 C++(<code>cashshopwnd.cpp</code> 174 KB,~3500 行)<a class="headerlink" href="#c-ccashshopwndcpp-174-kb3500" title="Permanent link">&para;</a></h4>
+<p><strong>重要設計</strong>:
+- <strong>無 Detours hook</strong>(這包不 hook 任何東西)
+- <code>0x004965F1</code> 在 dispatcher hook 中路由(不能在該位址加第二個 Detour)
+- <code>HandleSync</code> 在 receive thread 填目錄(mutex + flag)
+- <code>Tick</code> 在 main thread 建 CWnd(原因:server push 不能在 receive thread 建視窗)
+- 硬碼位址(image base 0x400000)每個都引用別的 .cpp 已驗證</p>
+<h4 id="d_1">(d) 商品目錄<a class="headerlink" href="#d_1" title="Permanent link">&para;</a></h4>
+<p><strong><code>data/catalog.tsv</code></strong> = 1843 列(從 stock v83 Etc/Commodity.img 生成):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># 格式:itemId price   count   tab category    period  gender  name
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>1000000 3000    1   2   0   0   0   Blue Beanie
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1000001 3500    1   2   0   0   2   Fine Black Hanbok Hat
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>...
+</code></pre></div>
+<p><strong><code>tools/gen_cashshop_catalog_v83.py</code></strong>:從任何 v83 client 重新生成
+<strong><code>tools/import_cashshop_bg.py</code></strong>:安裝 plate 進自家 CashShop.img
+<strong><code>tools/make_cashshop_buttons.py</code></strong>:re-bake 按鈕</p>
+<h4 id="e-java">(e) 服務端 Java 結構<a class="headerlink" href="#e-java" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>server/net/server/channel/handlers/CashShopWindowHandler.java  5.2 KB
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>server/server/cashshop/CashShopCatalog.java                     9.3 KB
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>server/server/cashshop/CashShopWindowPackets.java               7.0 KB
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>server/server/cashshop/CashShopWindowPurchase.java             13.1 KB
+</code></pre></div>
+<p><strong>重要設計</strong>:
+- 目錄載入位置:<code>cashshop-path</code> system property 或 <code>./cashshop/</code>
+- <strong>不在 classpath</strong>(避免每次改都要 <code>mvn package</code>)
+- 4 個 action:REQUEST_CATALOG / REQUEST_CATEGORY / BUY / BUY_CART
+- BUY_CART 累積驗證:bound check → 空間檢查 → 預算檢查 → <strong>一起交付</strong></p>
+<h4 id="f-wz">(f) WZ 資源<a class="headerlink" href="#f-wz" title="Permanent link">&para;</a></h4>
+<ul>
+<li><code>wz/UI/CashShop.img</code>:已 baked 進 plate + 按鈕</li>
+<li><code>art/backgrnd.png</code>:760×495 視窗底圖(原圖)</li>
+</ul>
+<hr />
+<h2 id="3-crit_and_range">§3 crit_and_range(暴擊率/暴擊傷害/魔攻範圍)<a class="headerlink" href="#3-crit_and_range" title="Permanent link">&para;</a></h2>
+<p><strong>檔案位置</strong>: 解壓於 <code>C:/Users/e7896/AppData/Local/Temp/peek_crit/crit_and_range/</code></p>
+<h3 id="_2">結構<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>client/
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  critmodel.h, critratedisplay.cpp, critrouting.cpp
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  magicdmg.cpp, magicdmg.h, patch_statuirender.cpp, statdetaillayout.cpp
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>optional/gear-crit-tooltips/gear_crit_tooltip.cpp
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>server/wz/Server/wz/String.wz/ToolTipHelp.img.xml
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>wz/String/ToolTipHelp.img
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>wz/UIWindow.img
+</code></pre></div>
+<h3 id="_3">技術構成<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>暴擊率/暴擊傷害</strong>:detail-stats 視窗擴展(5 個屬性:Crit Rate, Crit Damage, Weapon Attack, Magic Attack, 魔攻範圍)</li>
+<li><strong>魔攻範圍</strong>:從 <code>Map.wz/Physics.img</code> 讀魔導師真實範圍</li>
+<li><strong>WZ 改動</strong>:合併 <code>UIWindow.img</code>(detail-stats sprite)+ <code>String/ToolTipHelp.img</code>(tooltip 文字)</li>
+<li><strong>可選</strong>:gear tooltip 加 crit rate / crit damage 顯示</li>
+</ul>
+<h3 id="_4">整合入口<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">AttachMagicDamageMod</span><span class="p">();</span><span class="w">     </span><span class="c1">// 魔攻 + 範圍</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">AttachCritRoutingMod</span><span class="p">();</span><span class="w">     </span><span class="c1">// crit 路由</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">AttachStatDetailLayoutMod</span><span class="p">();</span><span class="w"> </span><span class="c1">// detail-stats 視窗</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">PatchStatUIRender</span><span class="p">();</span><span class="w">        </span><span class="c1">// 在 PatchUncapStats() 之後</span>
+</code></pre></div>
+<hr />
+<h2 id="4">§4 主程式繁化 + 解析度補丁(主執行檔補丁)<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><strong>檔案位置</strong>: <code>GMS083客戶端/主程序繁化 可调分辨率补丁/</code></p>
+<h3 id="_5">結構<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>MapleStory v83(已繁化).exe         9.9 MB  PE32 i386 (繁化版本)
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>STREDIT.exe                       .Net    Mono/.Net assembly
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>主程序导出来的繁化内容.exe.csv     (繁化字串對照)
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>可调分辨率补丁/
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  Gms.083.ini                     (ini 配置)
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>  nmconew.dll                     (解析度切換 DLL)
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>  nmconew2.dll                    (備用)
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  可調補丁必須配合UI.txt
+</code></pre></div>
+<h3 id="gms083ini"><code>Gms.083.ini</code> 內容<a class="headerlink" href="#gms083ini" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">[client]</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="na">resolutiontype</span><span class="o">=</span><span class="w"> </span><span class="s">1</span><span class="w"> </span><span class="c1">; (0)800:600, (1)1024:768, (2)1280:720, (3) 1440:900,</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">                </span><span class="c1">; (4) 1680:1050, (5) 1920x1080</span>
+</code></pre></div>
+<p><strong>技術構成</strong>:
+- <code>MapleStory v83(已繁化).exe</code> = <strong>修改過的 MapleStory.exe</strong>(繁體中文字串替換)
+- <code>nmconew.dll</code> = <strong>類似 kaentake 的記憶體 hook DLL</strong>(改視窗解析度)
+- <code>Gms.083.ini</code> = nmconew.dll 讀取的配置
+- <code>STREDIT.exe</code> = .Net 工具,用於匯出/匯入字串(可見 CSV 內容是 nexon.net URL + 字串 ID)</p>
+<h3 id="csv-19">CSV 前 19 列(觀察)<a class="headerlink" href="#csv-19" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>0;"http://passport.nexon.net/?PART=/Registration/AgeCheck"
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>1;"http://passport.nexon.net/WZ.ASPX?PART=/Accounts/ForgotId"
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>...
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>8;"Tahoma"
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>9;"Arial Narrow"
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>10;"裝備"
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>11;"Setup"
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>12;"初心者"
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>13;"劍士"
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>14;"弓箭手"
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>...
+</code></pre></div>
+<hr />
+<h2 id="5-v83rar-v83idbida">§5 v83.rar → <code>v83.idb</code>(IDA 逆向工程資料庫)<a class="headerlink" href="#5-v83rar-v83idbida" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>屬性</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>檔名</td>
+<td><code>v83.idb</code></td>
+</tr>
+<tr>
+<td>大小</td>
+<td>125 MB</td>
+</tr>
+<tr>
+<td>識別</td>
+<td><code>IDA (Interactive Disassembler) database</code></td>
+</tr>
+<tr>
+<td>日期</td>
+<td>2014-03-25</td>
+</tr>
+<tr>
+<td>內容</td>
+<td>IDA Pro 對 v83 客戶端的完整逆向工程資料庫</td>
+</tr>
+</tbody>
+</table>
+<p><strong>意義</strong>:
+- 完整的 function 名稱、xref、結構、字串標記
+- 可直接用 IDA Pro / IDA Free 開啟
+- 對 hook 開發有<strong>極大價值</strong>(直接查 function 而非手動 pattern scan)</p>
+<hr />
+<h2 id="6-gms083-wzimg">§6 GMS083客戶端其他 .wz/.img 內容概覽<a class="headerlink" href="#6-gms083-wzimg" title="Permanent link">&para;</a></h2>
+<h3 id="61-scripts-2297-js">6.1 scripts 腳本(2,297 個 .js)<a class="headerlink" href="#61-scripts-2297-js" title="Permanent link">&para;</a></h3>
+<p>子目錄:event / item / map / npc / portal / quest / reactor + scripts/ 根</p>
+<table>
+<thead>
+<tr>
+<th>目錄</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>scripts/event/</code></td>
+<td>0_EXAMPLE.js, 2xEvent.js, 3rdJob_<em>.js, 4j</em>.js, AirPlane.js, AmoriaPQ.js, AreaBoss*.js</td>
+</tr>
+<tr>
+<td><code>scripts/npc/</code></td>
+<td>NPC 對話</td>
+</tr>
+<tr>
+<td><code>scripts/portal/</code></td>
+<td>傳送點</td>
+</tr>
+<tr>
+<td><code>scripts/quest/</code></td>
+<td>任務</td>
+</tr>
+<tr>
+<td><code>scripts/reactor/</code></td>
+<td>反應器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="62-1138-txt">6.2 怪物圖鑑(1,138 個 .txt)<a class="headerlink" href="#62-1138-txt" title="Permanent link">&para;</a></h3>
+<p><code>083MonsterBook/&lt;id&gt; &lt;name&gt; &lt;level&gt;.txt</code> 命名格式</p>
+<h3 id="63-part1-part2">6.3 主登入介面(part1 + part2)<a class="headerlink" href="#63-part1-part2" title="Permanent link">&para;</a></h3>
+<p><code>GMS083登录新界面/</code>:
+- 3 張 PNG 截圖(1图/2图/3图)
+- 9 個 .img(地圖物件:14thEvent, gran_helisium, Lacheln, login, worldTour2015, xenonLab, zero)
+- <code>Bgm27.img</code>(背景音樂)
+- <code>MapLogin.img</code>(主登入畫面)</p>
+<h3 id="64-img3">6.4 商店 .img(3 套不同解析度)<a class="headerlink" href="#64-img3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>套</th>
+<th>解析度</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>原版商店 1024</code></td>
+<td>1024×768</td>
+<td>997 KB</td>
+</tr>
+<tr>
+<td><code>原版商店 1280</code></td>
+<td>1280×?</td>
+<td>3.1 MB</td>
+</tr>
+<tr>
+<td><code>新版商店1280-720</code></td>
+<td>1280×720</td>
+<td>3.0 MB</td>
+</tr>
+</tbody>
+</table>
+<p>每套含:<code>Data/UI/CashShop.img</code> + <code>Data/UI/CashShopPreview.img</code></p>
+<h3 id="65">6.5 多彩地圖特效<a class="headerlink" href="#65" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>套</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>多彩地图特效</code></td>
+<td><code>Data/Map/Tile/grassySoil.img</code>(單檔)</td>
+</tr>
+<tr>
+<td><code>多彩地图特效2</code></td>
+<td><code>grassySoil.img.xml</code> + <code>颜色2.png</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="66">6.6 啟動錯誤修正補丁<a class="headerlink" href="#66" title="Permanent link">&para;</a></h3>
+<p><code>更正启动错误补丁 支持WZ，IMG端/</code>:
+- <code>ijl15.dll</code>(JPG/JPEG 解碼函式庫,常見於遊戲)
+- <code>MapleFix.dll</code>(修正補丁)
+- <code>MapleFix.ini</code>(配置)</p>
+<h3 id="67">6.7 祝福/混沌/點卷掉落提示<a class="headerlink" href="#67" title="Permanent link">&para;</a></h3>
+<p><code>祝福混沌点卷掉落提示补丁/</code>:
+- <code>Data/Item/Consume/0204.img</code>(消耗品)
+- <code>Data/Item/Consume/0234.img</code>
+- <code>Data/Item/Etc/0403.img</code></p>
+<h3 id="68-23-txt">6.8 源碼支援中文(23 個 .txt)<a class="headerlink" href="#68-23-txt" title="Permanent link">&para;</a></h3>
+<p>Java 修改片段:
+- <code>中文名字/</code>(6 檔):CharsetConstants, GenericLittleEndianAccessor, GenericLittleEndianWriter, MapleCharacter, StringUtil
+- <code>中文名字/公会支持中文.txt</code>
+- <code>中文名字/组队支持中文.txt</code>
+- <code>修复战神2转动画.txt</code>
+- <code>修改冒险家新手出生地.txt</code>
+- <code>修正坐船动画.txt</code>
+- <code>拍卖按键.txt</code>
+- <code>添加掉率查询物品显示.txt</code>
+- <code>20=经验，金币，掉落.txt</code>(exp/meso/drop 設定)
+- <code>2EXP任务倍率.txt</code>
+- <code>个人爆率与世界爆率提示.txt</code>
+- <code>游戏代码显示/</code>(8 檔):任務/傳送/怪物/反應器/攻擊/背包/過地圖/錯誤地圖代碼顯示</p>
+<hr />
+<h2 id="7">§7 全部資源的「整合點」技術摘要<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<h3 id="71-kaentake-style-dll">7.1 共同依賴:kaentake-style DLL 框架<a class="headerlink" href="#71-kaentake-style-dll" title="Permanent link">&para;</a></h3>
+<p>三個功能包(BeautySalon / CashShop / CheckIn)都使用<strong>同一個 client framework</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>pch.h / hook.h / debug.h
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>wvs/packet.h       COutPacket / CInPacket
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>wvs/wnd.h          CWnd 基底
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>wvs/util.h         get_rm() / WZ 資源
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>wvs/wvsapp.h       app/update timing
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>wvs/iteminfo.h     item icons
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>wvs/wndman.h       window manager
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>ztl/ztl.h          ZXString, COM
+</code></pre></div>
+<h3 id="72-image-base-0x400000">7.2 共同硬碼(image base 0x400000)<a class="headerlink" href="#72-image-base-0x400000" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>位址</th>
+<th>用途</th>
+<th>用在</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x00989588</code></td>
+<td>play_ui_sound</td>
+<td>CheckIn</td>
+</tr>
+<tr>
+<td><code>0x00BE7918</code></td>
+<td>CWvsContext</td>
+<td>CheckIn</td>
+</tr>
+<tr>
+<td><code>0x00BE7914</code></td>
+<td>ClientSocket</td>
+<td>CheckIn</td>
+</tr>
+<tr>
+<td><code>0x0049637B</code></td>
+<td>ClientSocket::SendPacket</td>
+<td>CheckIn</td>
+</tr>
+<tr>
+<td><code>0x004965F1</code></td>
+<td>ClientSocket::ProcessPacket</td>
+<td>CheckIn, CashShop</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>0x004965F1</code> 是常見的 packet dispatch hook 點</strong>(兩處都提到,警告不要重複 hook)</p>
+<h3 id="73-opcode-enum">7.3 服務端共通點:opcode enum 修改<a class="headerlink" href="#73-opcode-enum" title="Permanent link">&para;</a></h3>
+<p>所有功能包都需要:
+1. <code>RecvOpcode.java</code> 加 enum
+2. <code>SendOpcode.java</code> 加 enum
+3. <code>PacketProcessor.java</code> 註冊 handler</p>
+<h3 id="74-wz">7.4 WZ 結構共通點<a class="headerlink" href="#74-wz" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>WZ 路徑</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CheckIn</td>
+<td><code>UI/UIWindow.img/DailyCheckin/backgrnd</code></td>
+</tr>
+<tr>
+<td>BeautySalon</td>
+<td><code>UI.wz/v83.img/beautyRoom/</code></td>
+</tr>
+<tr>
+<td>CashShop</td>
+<td><code>UI/CashShop.img/Base/WndBg</code> + <code>BtBuy/</code> + <code>BtCart/</code></td>
+</tr>
+<tr>
+<td>crit_and_range</td>
+<td><code>UIWindow.img</code>(完整替換)+ <code>String/ToolTipHelp.img</code>(完整替換)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">§8 純技術總結(不含評估)<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<p><strong>這個資料夾包含</strong>:</p>
+<ol>
+<li><strong>完整的 v83 GMS 客戶端主程式</strong>(4.28 MB PE,2018 build)</li>
+<li><strong>完整的 v83 客戶端 WZ/IMG 資源</strong>(2,300 個 .js 腳本 + 1,138 個怪物圖鑑 + 商店 .img + 登入介面)</li>
+<li><strong>3 個獨立的完整功能包</strong>(CheckIn / BeautySalon / CashShop),每個都是 client C++ + server Java + SQL + WZ 完整配套</li>
+<li><strong>1 個暴擊/魔攻 mod 補丁</strong>(client C++ + WZ 修改)</li>
+<li><strong>1 個主程式繁化 + 解析度切換 DLL</strong>(<code>nmconew.dll</code> 類似 kaentake)</li>
+<li><strong>1 個 v83 IDA 逆向工程資料庫</strong>(125 MB,2014,完整 function/xref)</li>
+<li><strong>1 套 Java 源碼中文支援片段</strong>(23 個 .txt 修改片段)</li>
+</ol>
+<p><strong>所有客戶端 C++ 都設計給同一個 build</strong>:image base <code>0x400000</code> 的標準 v83 MapleStory.exe。</p>
+<hr />
+<p><strong>檔案狀態</strong>:
+- 本檔:剛寫入
+- <code>C:/Users/e7896/AppData/Local/Temp/gmspeek/</code>:10 個 RAR 解壓
+- <code>C:/Users/e7896/AppData/Local/Temp/peek_cash/</code>:cashshop-window 解壓
+- <code>C:/Users/e7896/AppData/Local/Temp/peek_crit/</code>:crit_and_range 解壓
+- <code>C:/Users/e7896/AppData/Local/Temp/peek1/BeautySalonv83/</code>:BeautySalonv83 解壓
+- <code>C:/Users/e7896/AppData/Local/Temp/v83peek/v83.idb</code>:v83.idb 取出
+- <code>C:/Users/e7896/AppData/Local/Temp/gmslogin1b/</code> + <code>gmslogin2/</code>:登入介面解壓</p>
+<p><code>待分類/</code> 本體<strong>完全沒動</strong>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5284 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W1-2 — Opcode Collision Analysis - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w1-2-opcode-collision-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W1-2 — Opcode Collision Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-opcodes-claimed-by-each-feature-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Opcodes claimed by each feature package
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Opcodes claimed by each feature package">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#checkin-daily-check-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CheckIn (Daily Check-In)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#beautysalon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BeautySalon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cashshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CashShop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cross-feature-collision-matrix-between-the-three-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Cross-feature collision matrix (between the three packages)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cosmic-existing-opcodes-full-enum-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cosmic existing opcodes (full enum tables)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Cosmic existing opcodes (full enum tables)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-recvopcode-values-already-declared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 RecvOpcode — values already declared
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-sendopcode-values-already-declared" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 SendOpcode — values already declared
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-free-range-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Free-range observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-package-vs-cosmic-collision-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Package-vs-Cosmic collision table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-files-each-package-needs-to-modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Files each package needs to modify
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Files each package needs to modify">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-checkin-daily-check-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 CheckIn (Daily Check-In)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-beautysalon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 BeautySalon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-cashshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 CashShop
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cross-package-intersection-cosmic-files-needing-edits-in-multiple-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Cross-package intersection — Cosmic files needing edits in MULTIPLE packages
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Cross-package intersection — Cosmic files needing edits in MULTIPLE packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#true-cross-package-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        True cross-package intersection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-new-files-each-package-adds-path-conflict-awareness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. New files each package adds (path-conflict awareness)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-summary-fact-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Summary fact table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-raw-grep-evidence-fileline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Raw grep evidence (file:line)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="w1-2-opcode-collision-analysis">W1-2 — Opcode Collision Analysis<a class="headerlink" href="#w1-2-opcode-collision-analysis" title="Permanent link">&para;</a></h1>
+<p><strong>Date:</strong> 2026-09-27<br />
+<strong>Scope:</strong> Pure technical extraction. No conclusions, no recommendations.<br />
+<strong>Sources scanned:</strong>
+- CheckIn: <code>C:\MUWORK\GAME\MAPLESOTRY\待分類\簽到表\</code>
+- BeautySalon: <code>C:\Users\e7896\AppData\Local\Temp\peek1\BeautySalonv83\</code>
+- CashShop: <code>C:\Users\e7896\AppData\Local\Temp\peek_cash\cashshop-window\</code>
+- Cosmic opcodes: <code>C:\MUWORK\GAME\MAPLESOTRY\04-Emulators\GMS-v083-Cosmic\src\main\java\net\opcodes\</code></p>
+<hr />
+<h2 id="1-opcodes-claimed-by-each-feature-package">1. Opcodes claimed by each feature package<a class="headerlink" href="#1-opcodes-claimed-by-each-feature-package" title="Permanent link">&para;</a></h2>
+<p>Extracted from each package's README/INTEGRATION docs and <code>.java</code> / <code>.cpp</code> / <code>.h</code> source.</p>
+<h3 id="checkin-daily-check-in">CheckIn (Daily Check-In)<a class="headerlink" href="#checkin-daily-check-in" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Enum constant</th>
+<th>Hex</th>
+<th>Dec</th>
+<th>Source citation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recv (client → server)</td>
+<td><code>RecvOpcode.DAILY_CHECKIN</code></td>
+<td><code>0x11A</code></td>
+<td>282</td>
+<td><code>README.md:53,94</code></td>
+</tr>
+<tr>
+<td>Send (server → client)</td>
+<td><code>SendOpcode.DAILY_CHECKIN</code></td>
+<td><code>0x17C</code></td>
+<td>380</td>
+<td><code>README.md:60,99</code></td>
+</tr>
+</tbody>
+</table>
+<p>README warns (<code>README.md:77</code>): "0x11A and 0x17C must be <strong>free</strong> in your <code>RecvOpcode</code>/<code>SendOpcode</code>."</p>
+<h3 id="beautysalon">BeautySalon<a class="headerlink" href="#beautysalon" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Enum constant</th>
+<th>Hex</th>
+<th>Dec</th>
+<th>Source citation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recv</td>
+<td><code>RecvOpcode.BEAUTY_ACTION</code></td>
+<td><code>0x174</code></td>
+<td>372</td>
+<td><code>FILE_LIST.md:47</code>; <code>README.md:76</code>; <code>java/README.md:24</code></td>
+</tr>
+<tr>
+<td>Send</td>
+<td><code>SendOpcode.BEAUTY_RESULT</code></td>
+<td><code>0x174</code></td>
+<td>372</td>
+<td><code>FILE_LIST.md:48</code>; <code>README.md:77</code>; <code>java/README.md:29</code></td>
+</tr>
+</tbody>
+</table>
+<p>Same opcode <code>0x174</code> used in <strong>both</strong> directions (one enum constant per direction, same numeric value).</p>
+<p>README warns (<code>README.md:83</code>, <code>java/README.md:32</code>): "0x174 must be <strong>unused</strong> in both enums."</p>
+<h3 id="cashshop">CashShop<a class="headerlink" href="#cashshop" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Direction</th>
+<th>Enum constant</th>
+<th>Hex</th>
+<th>Dec</th>
+<th>Source citation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recv (client → server)</td>
+<td><code>RecvOpcode.CASHSHOP_WINDOW_ACTION</code></td>
+<td><code>0x3730</code></td>
+<td>14128</td>
+<td><code>INTEGRATION.md:61</code>; <code>client/cashshopwnd.h:20</code> (<code>kCashShopActionOpcode</code>)</td>
+</tr>
+<tr>
+<td>Send (server → client)</td>
+<td><code>SendOpcode.CASHSHOP_WINDOW_SYNC</code></td>
+<td><code>0x3731</code></td>
+<td>14129</td>
+<td><code>INTEGRATION.md:67</code>; <code>client/cashshopwnd.h:21</code> (<code>kCashShopSyncOpcode</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>INTEGRATION.md:78 warns: "Pick a different pair if <code>0x3730</code>/<code>0x3731</code> collide with something of yours — but change <code>cashshopwnd.h</code> to match, since nothing enforces that the two sides agree."</p>
+<p><strong>Reference only (NOT a claim):</strong> <code>CashShopWindowHandler.java:18</code> mentions <code>CashOperationHandler (0xE5)</code> in a Javadoc to explain why that handler is <em>deliberately not used</em>. <code>0xE5</code> is <strong>not</strong> claimed by CashShop.</p>
+<hr />
+<h2 id="2-cross-feature-collision-matrix-between-the-three-packages">2. Cross-feature collision matrix (between the three packages)<a class="headerlink" href="#2-cross-feature-collision-matrix-between-the-three-packages" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Hex</th>
+<th>CheckIn</th>
+<th>BeautySalon</th>
+<th>CashShop</th>
+<th>Conflict?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x11A</code></td>
+<td>Recv.DAILY_CHECKIN</td>
+<td>—</td>
+<td>—</td>
+<td>n/a (single claim)</td>
+</tr>
+<tr>
+<td><code>0x17C</code></td>
+<td>Send.DAILY_CHECKIN</td>
+<td>—</td>
+<td>—</td>
+<td>n/a (single claim)</td>
+</tr>
+<tr>
+<td><code>0x174</code></td>
+<td>—</td>
+<td>Recv.BEAUTY_ACTION <strong>and</strong> Send.BEAUTY_RESULT</td>
+<td>—</td>
+<td>n/a (same package, both directions)</td>
+</tr>
+<tr>
+<td><code>0x3730</code></td>
+<td>—</td>
+<td>—</td>
+<td>Recv.CASHSHOP_WINDOW_ACTION</td>
+<td>n/a (single claim)</td>
+</tr>
+<tr>
+<td><code>0x3731</code></td>
+<td>—</td>
+<td>—</td>
+<td>Send.CASHSHOP_WINDOW_SYNC</td>
+<td>n/a (single claim)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result: No collisions among the three packages.</strong> All claimed hex values are pairwise distinct.</p>
+<hr />
+<h2 id="3-cosmic-existing-opcodes-full-enum-tables">3. Cosmic existing opcodes (full enum tables)<a class="headerlink" href="#3-cosmic-existing-opcodes-full-enum-tables" title="Permanent link">&para;</a></h2>
+<p>Pulled from <code>RecvOpcode.java</code> (216 lines) and <code>SendOpcode.java</code> (366 lines) in <code>C:\MUWORK\GAME\MAPLESOTRY\04-Emulators\GMS-v083-Cosmic\src\main\java\net\opcodes\</code>.</p>
+<h3 id="31-recvopcode-values-already-declared">3.1 RecvOpcode — values already declared<a class="headerlink" href="#31-recvopcode-values-already-declared" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Hex</th>
+<th>Dec</th>
+<th>Constant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>16</td>
+<td>NAME_TRANSFER</td>
+</tr>
+<tr>
+<td>0x12</td>
+<td>18</td>
+<td>WORLD_TRANSFER</td>
+</tr>
+<tr>
+<td>0x13</td>
+<td>19</td>
+<td>CHAR_SELECT</td>
+</tr>
+<tr>
+<td>0x14</td>
+<td>20</td>
+<td>PLAYER_LOGGEDIN</td>
+</tr>
+<tr>
+<td>0x15</td>
+<td>21</td>
+<td>CHECK_CHAR_NAME</td>
+</tr>
+<tr>
+<td>0x16</td>
+<td>22</td>
+<td>CREATE_CHAR</td>
+</tr>
+<tr>
+<td>0x17</td>
+<td>23</td>
+<td>DELETE_CHAR</td>
+</tr>
+<tr>
+<td>0x18</td>
+<td>24</td>
+<td>PONG</td>
+</tr>
+<tr>
+<td>0x19</td>
+<td>25</td>
+<td>CLIENT_START_ERROR</td>
+</tr>
+<tr>
+<td>0x1A</td>
+<td>26</td>
+<td>CLIENT_ERROR</td>
+</tr>
+<tr>
+<td>0x1B</td>
+<td>27</td>
+<td>STRANGE_DATA</td>
+</tr>
+<tr>
+<td>0x1C</td>
+<td>28</td>
+<td>RELOG</td>
+</tr>
+<tr>
+<td>0x1D</td>
+<td>29</td>
+<td>REGISTER_PIC</td>
+</tr>
+<tr>
+<td>0x1E</td>
+<td>30</td>
+<td>CHAR_SELECT_WITH_PIC</td>
+</tr>
+<tr>
+<td>0x1F</td>
+<td>31</td>
+<td>VIEW_ALL_PIC_REGISTER</td>
+</tr>
+<tr>
+<td>0x20</td>
+<td>32</td>
+<td>VIEW_ALL_WITH_PIC</td>
+</tr>
+<tr>
+<td>0x26</td>
+<td>38</td>
+<td>CHANGE_MAP</td>
+</tr>
+<tr>
+<td>0x27</td>
+<td>39</td>
+<td>CHANGE_CHANNEL</td>
+</tr>
+<tr>
+<td>0x28</td>
+<td>40</td>
+<td>ENTER_CASHSHOP</td>
+</tr>
+<tr>
+<td>0x29</td>
+<td>41</td>
+<td>MOVE_PLAYER</td>
+</tr>
+<tr>
+<td>0x2A</td>
+<td>42</td>
+<td>CANCEL_CHAIR</td>
+</tr>
+<tr>
+<td>0x2B</td>
+<td>43</td>
+<td>USE_CHAIR</td>
+</tr>
+<tr>
+<td>0x2C</td>
+<td>44</td>
+<td>CLOSE_RANGE_ATTACK</td>
+</tr>
+<tr>
+<td>0x2D</td>
+<td>45</td>
+<td>RANGED_ATTACK</td>
+</tr>
+<tr>
+<td>0x2E</td>
+<td>46</td>
+<td>MAGIC_ATTACK</td>
+</tr>
+<tr>
+<td>0x2F</td>
+<td>47</td>
+<td>TOUCH_MONSTER_ATTACK</td>
+</tr>
+<tr>
+<td>0x30</td>
+<td>48</td>
+<td>TAKE_DAMAGE</td>
+</tr>
+<tr>
+<td>0x31</td>
+<td>49</td>
+<td>GENERAL_CHAT</td>
+</tr>
+<tr>
+<td>0x32</td>
+<td>50</td>
+<td>CLOSE_CHALKBOARD</td>
+</tr>
+<tr>
+<td>0x33</td>
+<td>51</td>
+<td>FACE_EXPRESSION</td>
+</tr>
+<tr>
+<td>0x34</td>
+<td>52</td>
+<td>USE_ITEMEFFECT</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>53</td>
+<td>USE_DEATHITEM</td>
+</tr>
+<tr>
+<td>0x38</td>
+<td>56</td>
+<td>MOB_BANISH_PLAYER</td>
+</tr>
+<tr>
+<td>0x39</td>
+<td>57</td>
+<td>MONSTER_BOOK_COVER</td>
+</tr>
+<tr>
+<td>0x3A</td>
+<td>58</td>
+<td>NPC_TALK</td>
+</tr>
+<tr>
+<td>0x3B</td>
+<td>59</td>
+<td>REMOTE_STORE</td>
+</tr>
+<tr>
+<td>0x3C</td>
+<td>60</td>
+<td>NPC_TALK_MORE</td>
+</tr>
+<tr>
+<td>0x3D</td>
+<td>61</td>
+<td>NPC_SHOP</td>
+</tr>
+<tr>
+<td>0x3E</td>
+<td>62</td>
+<td>STORAGE</td>
+</tr>
+<tr>
+<td>0x3F</td>
+<td>63</td>
+<td>HIRED_MERCHANT_REQUEST</td>
+</tr>
+<tr>
+<td>0x40</td>
+<td>64</td>
+<td>FREDRICK_ACTION</td>
+</tr>
+<tr>
+<td>0x41</td>
+<td>65</td>
+<td>DUEY_ACTION</td>
+</tr>
+<tr>
+<td>0x42</td>
+<td>66</td>
+<td>OWL_ACTION</td>
+</tr>
+<tr>
+<td>0x43</td>
+<td>67</td>
+<td>OWL_WARP</td>
+</tr>
+<tr>
+<td>0x44</td>
+<td>68</td>
+<td>ADMIN_SHOP</td>
+</tr>
+<tr>
+<td>0x45</td>
+<td>69</td>
+<td>ITEM_SORT</td>
+</tr>
+<tr>
+<td>0x46</td>
+<td>70</td>
+<td>ITEM_SORT2</td>
+</tr>
+<tr>
+<td>0x47</td>
+<td>71</td>
+<td>ITEM_MOVE</td>
+</tr>
+<tr>
+<td>0x48</td>
+<td>72</td>
+<td>USE_ITEM</td>
+</tr>
+<tr>
+<td>0x49</td>
+<td>73</td>
+<td>CANCEL_ITEM_EFFECT</td>
+</tr>
+<tr>
+<td>0x4B</td>
+<td>75</td>
+<td>USE_SUMMON_BAG</td>
+</tr>
+<tr>
+<td>0x4C</td>
+<td>76</td>
+<td>PET_FOOD</td>
+</tr>
+<tr>
+<td>0x4D</td>
+<td>77</td>
+<td>USE_MOUNT_FOOD</td>
+</tr>
+<tr>
+<td>0x4E</td>
+<td>78</td>
+<td>SCRIPTED_ITEM</td>
+</tr>
+<tr>
+<td>0x4F</td>
+<td>79</td>
+<td>USE_CASH_ITEM</td>
+</tr>
+<tr>
+<td>0x50</td>
+<td>80</td>
+<td><em>(commented — <code>//USE_OWL_ITEM(0x50), ... no idea</code>)</em></td>
+</tr>
+<tr>
+<td>0x51</td>
+<td>81</td>
+<td>USE_CATCH_ITEM</td>
+</tr>
+<tr>
+<td>0x52</td>
+<td>82</td>
+<td>USE_SKILL_BOOK</td>
+</tr>
+<tr>
+<td>0x54</td>
+<td>84</td>
+<td>USE_TELEPORT_ROCK</td>
+</tr>
+<tr>
+<td>0x55</td>
+<td>85</td>
+<td>USE_RETURN_SCROLL</td>
+</tr>
+<tr>
+<td>0x56</td>
+<td>86</td>
+<td>USE_UPGRADE_SCROLL</td>
+</tr>
+<tr>
+<td>0x57</td>
+<td>87</td>
+<td>DISTRIBUTE_AP</td>
+</tr>
+<tr>
+<td>0x58</td>
+<td>88</td>
+<td>AUTO_DISTRIBUTE_AP</td>
+</tr>
+<tr>
+<td>0x59</td>
+<td>89</td>
+<td>HEAL_OVER_TIME</td>
+</tr>
+<tr>
+<td>0x5A</td>
+<td>90</td>
+<td>DISTRIBUTE_SP</td>
+</tr>
+<tr>
+<td>0x5B</td>
+<td>91</td>
+<td>SPECIAL_MOVE</td>
+</tr>
+<tr>
+<td>0x5C</td>
+<td>92</td>
+<td>CANCEL_BUFF</td>
+</tr>
+<tr>
+<td>0x5D</td>
+<td>93</td>
+<td>SKILL_EFFECT</td>
+</tr>
+<tr>
+<td>0x5E</td>
+<td>94</td>
+<td>MESO_DROP</td>
+</tr>
+<tr>
+<td>0x5F</td>
+<td>95</td>
+<td>GIVE_FAME</td>
+</tr>
+<tr>
+<td>0x61</td>
+<td>97</td>
+<td>CHAR_INFO_REQUEST</td>
+</tr>
+<tr>
+<td>0x62</td>
+<td>98</td>
+<td>SPAWN_PET</td>
+</tr>
+<tr>
+<td>0x63</td>
+<td>99</td>
+<td>CANCEL_DEBUFF</td>
+</tr>
+<tr>
+<td>0x64</td>
+<td>100</td>
+<td>CHANGE_MAP_SPECIAL</td>
+</tr>
+<tr>
+<td>0x65</td>
+<td>101</td>
+<td>USE_INNER_PORTAL</td>
+</tr>
+<tr>
+<td>0x66</td>
+<td>102</td>
+<td>TROCK_ADD_MAP</td>
+</tr>
+<tr>
+<td>0x6A</td>
+<td>106</td>
+<td>REPORT</td>
+</tr>
+<tr>
+<td>0x6B</td>
+<td>107</td>
+<td>QUEST_ACTION</td>
+</tr>
+<tr>
+<td>0x6D</td>
+<td>109</td>
+<td>GRENADE_EFFECT</td>
+</tr>
+<tr>
+<td>0x6E</td>
+<td>110</td>
+<td>SKILL_MACRO</td>
+</tr>
+<tr>
+<td>0x70</td>
+<td>112</td>
+<td>USE_ITEM_REWARD</td>
+</tr>
+<tr>
+<td>0x71</td>
+<td>113</td>
+<td>MAKER_SKILL</td>
+</tr>
+<tr>
+<td>0x74</td>
+<td>116</td>
+<td>USE_REMOTE</td>
+</tr>
+<tr>
+<td>0x75</td>
+<td>117</td>
+<td>WATER_OF_LIFE</td>
+</tr>
+<tr>
+<td>0x76</td>
+<td>118</td>
+<td>ADMIN_CHAT</td>
+</tr>
+<tr>
+<td>0x77</td>
+<td>119</td>
+<td>MULTI_CHAT</td>
+</tr>
+<tr>
+<td>0x78</td>
+<td>120</td>
+<td>WHISPER</td>
+</tr>
+<tr>
+<td>0x79</td>
+<td>121</td>
+<td>SPOUSE_CHAT</td>
+</tr>
+<tr>
+<td>0x7A</td>
+<td>122</td>
+<td>MESSENGER</td>
+</tr>
+<tr>
+<td>0x7B</td>
+<td>123</td>
+<td>PLAYER_INTERACTION</td>
+</tr>
+<tr>
+<td>0x7C</td>
+<td>124</td>
+<td>PARTY_OPERATION</td>
+</tr>
+<tr>
+<td>0x7D</td>
+<td>125</td>
+<td>DENY_PARTY_REQUEST</td>
+</tr>
+<tr>
+<td>0x7E</td>
+<td>126</td>
+<td>GUILD_OPERATION</td>
+</tr>
+<tr>
+<td>0x7F</td>
+<td>127</td>
+<td>DENY_GUILD_REQUEST</td>
+</tr>
+<tr>
+<td>0x80</td>
+<td>128</td>
+<td>ADMIN_COMMAND</td>
+</tr>
+<tr>
+<td>0x81</td>
+<td>129</td>
+<td>ADMIN_LOG</td>
+</tr>
+<tr>
+<td>0x82</td>
+<td>130</td>
+<td>BUDDYLIST_MODIFY</td>
+</tr>
+<tr>
+<td>0x83</td>
+<td>131</td>
+<td>NOTE_ACTION</td>
+</tr>
+<tr>
+<td>0x85</td>
+<td>133</td>
+<td>USE_DOOR</td>
+</tr>
+<tr>
+<td>0x87</td>
+<td>135</td>
+<td>CHANGE_KEYMAP</td>
+</tr>
+<tr>
+<td>0x88</td>
+<td>136</td>
+<td>RPS_ACTION</td>
+</tr>
+<tr>
+<td>0x89</td>
+<td>137</td>
+<td>RING_ACTION</td>
+</tr>
+<tr>
+<td>0x8A</td>
+<td>138</td>
+<td>WEDDING_ACTION</td>
+</tr>
+<tr>
+<td>0x8B</td>
+<td>139</td>
+<td>WEDDING_TALK <em>(+ WEDDING_TALK_MORE — same value, two names)</em></td>
+</tr>
+<tr>
+<td>0x8F</td>
+<td>143</td>
+<td>ALLIANCE_OPERATION</td>
+</tr>
+<tr>
+<td>0x90</td>
+<td>144</td>
+<td>DENY_ALLIANCE_REQUEST</td>
+</tr>
+<tr>
+<td>0x91</td>
+<td>145</td>
+<td>OPEN_FAMILY_PEDIGREE</td>
+</tr>
+<tr>
+<td>0x92</td>
+<td>146</td>
+<td>OPEN_FAMILY</td>
+</tr>
+<tr>
+<td>0x93</td>
+<td>147</td>
+<td>ADD_FAMILY</td>
+</tr>
+<tr>
+<td>0x94</td>
+<td>148</td>
+<td>SEPARATE_FAMILY_BY_SENIOR</td>
+</tr>
+<tr>
+<td>0x95</td>
+<td>149</td>
+<td>SEPARATE_FAMILY_BY_JUNIOR</td>
+</tr>
+<tr>
+<td>0x96</td>
+<td>150</td>
+<td>ACCEPT_FAMILY</td>
+</tr>
+<tr>
+<td>0x97</td>
+<td>151</td>
+<td>USE_FAMILY</td>
+</tr>
+<tr>
+<td>0x98</td>
+<td>152</td>
+<td>CHANGE_FAMILY_MESSAGE</td>
+</tr>
+<tr>
+<td>0x99</td>
+<td>153</td>
+<td>FAMILY_SUMMON_RESPONSE</td>
+</tr>
+<tr>
+<td>0x9B</td>
+<td>155</td>
+<td>BBS_OPERATION</td>
+</tr>
+<tr>
+<td>0x9C</td>
+<td>156</td>
+<td>ENTER_MTS</td>
+</tr>
+<tr>
+<td>0x9D</td>
+<td>157</td>
+<td>USE_SOLOMON_ITEM</td>
+</tr>
+<tr>
+<td>0x9E</td>
+<td>158</td>
+<td>USE_GACHA_EXP</td>
+</tr>
+<tr>
+<td>0x9F</td>
+<td>159</td>
+<td>NEW_YEAR_CARD_REQUEST</td>
+</tr>
+<tr>
+<td>0xA1</td>
+<td>161</td>
+<td>CASHSHOP_SURPRISE</td>
+</tr>
+<tr>
+<td>0xA2</td>
+<td>162</td>
+<td>CLICK_GUIDE</td>
+</tr>
+<tr>
+<td>0xA3</td>
+<td>163</td>
+<td>ARAN_COMBO_COUNTER</td>
+</tr>
+<tr>
+<td>0xA7</td>
+<td>167</td>
+<td>MOVE_PET</td>
+</tr>
+<tr>
+<td>0xA8</td>
+<td>168</td>
+<td>PET_CHAT</td>
+</tr>
+<tr>
+<td>0xA9</td>
+<td>169</td>
+<td>PET_COMMAND</td>
+</tr>
+<tr>
+<td>0xAA</td>
+<td>170</td>
+<td>PET_LOOT</td>
+</tr>
+<tr>
+<td>0xAB</td>
+<td>171</td>
+<td>PET_AUTO_POT</td>
+</tr>
+<tr>
+<td>0xAC</td>
+<td>172</td>
+<td>PET_EXCLUDE_ITEMS</td>
+</tr>
+<tr>
+<td>0xAF</td>
+<td>175</td>
+<td>MOVE_SUMMON</td>
+</tr>
+<tr>
+<td>0xB0</td>
+<td>176</td>
+<td>SUMMON_ATTACK</td>
+</tr>
+<tr>
+<td>0xB1</td>
+<td>177</td>
+<td>DAMAGE_SUMMON</td>
+</tr>
+<tr>
+<td>0xB2</td>
+<td>178</td>
+<td>BEHOLDER</td>
+</tr>
+<tr>
+<td>0xB5</td>
+<td>181</td>
+<td>MOVE_DRAGON</td>
+</tr>
+<tr>
+<td>0xB7</td>
+<td>183</td>
+<td>CHANGE_QUICKSLOT</td>
+</tr>
+<tr>
+<td>0xBC</td>
+<td>188</td>
+<td>MOVE_LIFE</td>
+</tr>
+<tr>
+<td>0xBD</td>
+<td>189</td>
+<td>AUTO_AGGRO</td>
+</tr>
+<tr>
+<td>0xBF</td>
+<td>191</td>
+<td>FIELD_DAMAGE_MOB</td>
+</tr>
+<tr>
+<td>0xC0</td>
+<td>192</td>
+<td>MOB_DAMAGE_MOB_FRIENDLY</td>
+</tr>
+<tr>
+<td>0xC1</td>
+<td>193</td>
+<td>MONSTER_BOMB</td>
+</tr>
+<tr>
+<td>0xC2</td>
+<td>194</td>
+<td>MOB_DAMAGE_MOB</td>
+</tr>
+<tr>
+<td>0xC5</td>
+<td>197</td>
+<td>NPC_ACTION</td>
+</tr>
+<tr>
+<td>0xCA</td>
+<td>202</td>
+<td>ITEM_PICKUP</td>
+</tr>
+<tr>
+<td>0xCD</td>
+<td>205</td>
+<td>DAMAGE_REACTOR</td>
+</tr>
+<tr>
+<td>0xCE</td>
+<td>206</td>
+<td>TOUCHING_REACTOR</td>
+</tr>
+<tr>
+<td>0xCF</td>
+<td>207</td>
+<td>PLAYER_MAP_TRANSFER</td>
+</tr>
+<tr>
+<td>0xD3</td>
+<td>211</td>
+<td>SNOWBALL</td>
+</tr>
+<tr>
+<td>0xD4</td>
+<td>212</td>
+<td>LEFT_KNOCKBACK</td>
+</tr>
+<tr>
+<td>0xD5</td>
+<td>213</td>
+<td>COCONUT</td>
+</tr>
+<tr>
+<td>0xD6</td>
+<td>214</td>
+<td>MATCH_TABLE</td>
+</tr>
+<tr>
+<td>0xDA</td>
+<td>218</td>
+<td>MONSTER_CARNIVAL</td>
+</tr>
+<tr>
+<td>0xDC</td>
+<td>220</td>
+<td>PARTY_SEARCH_REGISTER</td>
+</tr>
+<tr>
+<td>0xDE</td>
+<td>222</td>
+<td>PARTY_SEARCH_START</td>
+</tr>
+<tr>
+<td>0xDF</td>
+<td>223</td>
+<td>PARTY_SEARCH_UPDATE</td>
+</tr>
+<tr>
+<td>0xE4</td>
+<td>228</td>
+<td>CHECK_CASH</td>
+</tr>
+<tr>
+<td>0xE5</td>
+<td>229</td>
+<td>CASHSHOP_OPERATION</td>
+</tr>
+<tr>
+<td>0xE6</td>
+<td>230</td>
+<td>COUPON_CODE</td>
+</tr>
+<tr>
+<td>0xEC</td>
+<td>236</td>
+<td>OPEN_ITEMUI</td>
+</tr>
+<tr>
+<td>0xED</td>
+<td>237</td>
+<td>CLOSE_ITEMUI</td>
+</tr>
+<tr>
+<td>0xEE</td>
+<td>238</td>
+<td>USE_ITEMUI</td>
+</tr>
+<tr>
+<td>0xFD</td>
+<td>253</td>
+<td>MTS_OPERATION</td>
+</tr>
+<tr>
+<td>0x100</td>
+<td>256</td>
+<td>USE_MAPLELIFE</td>
+</tr>
+<tr>
+<td>0x104</td>
+<td>260</td>
+<td>USE_HAMMER <em>(enum terminator)</em></td>
+</tr>
+<tr>
+<td>0x3713</td>
+<td>14099</td>
+<td>CUSTOM_PACKET</td>
+</tr>
+<tr>
+<td>0xFFFE</td>
+<td>65534</td>
+<td>MAPLETV</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-sendopcode-values-already-declared">3.2 SendOpcode — values already declared<a class="headerlink" href="#32-sendopcode-values-already-declared" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Hex</th>
+<th>Dec</th>
+<th>Constant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>16</td>
+<td>CHANGE_CHANNEL</td>
+</tr>
+<tr>
+<td>0x11</td>
+<td>17</td>
+<td>PING</td>
+</tr>
+<tr>
+<td>0x12</td>
+<td>18</td>
+<td>KOREAN_INTERNET_CAFE_SHIT</td>
+</tr>
+<tr>
+<td>0x14</td>
+<td>20</td>
+<td>CHANNEL_SELECTED</td>
+</tr>
+<tr>
+<td>0x15</td>
+<td>21</td>
+<td>HACKSHIELD_REQUEST</td>
+</tr>
+<tr>
+<td>0x16</td>
+<td>22</td>
+<td>RELOG_RESPONSE</td>
+</tr>
+<tr>
+<td>0x19</td>
+<td>25</td>
+<td>CHECK_CRC_RESULT</td>
+</tr>
+<tr>
+<td>0x1A</td>
+<td>26</td>
+<td>LAST_CONNECTED_WORLD</td>
+</tr>
+<tr>
+<td>0x1B</td>
+<td>27</td>
+<td>RECOMMENDED_WORLD_MESSAGE</td>
+</tr>
+<tr>
+<td>0x1C</td>
+<td>28</td>
+<td>CHECK_SPW_RESULT</td>
+</tr>
+<tr>
+<td>0x1D</td>
+<td>29</td>
+<td>INVENTORY_OPERATION</td>
+</tr>
+<tr>
+<td>0x1E</td>
+<td>30</td>
+<td>INVENTORY_GROW</td>
+</tr>
+<tr>
+<td>0x1F</td>
+<td>31</td>
+<td>STAT_CHANGED</td>
+</tr>
+<tr>
+<td>0x20</td>
+<td>32</td>
+<td>GIVE_BUFF</td>
+</tr>
+<tr>
+<td>0x21</td>
+<td>33</td>
+<td>CANCEL_BUFF</td>
+</tr>
+<tr>
+<td>0x22</td>
+<td>34</td>
+<td>FORCED_STAT_SET</td>
+</tr>
+<tr>
+<td>0x23</td>
+<td>35</td>
+<td>FORCED_STAT_RESET</td>
+</tr>
+<tr>
+<td>0x24</td>
+<td>36</td>
+<td>UPDATE_SKILLS</td>
+</tr>
+<tr>
+<td>0x25</td>
+<td>37</td>
+<td>SKILL_USE_RESULT</td>
+</tr>
+<tr>
+<td>0x26</td>
+<td>38</td>
+<td>FAME_RESPONSE</td>
+</tr>
+<tr>
+<td>0x27</td>
+<td>39</td>
+<td>SHOW_STATUS_INFO</td>
+</tr>
+<tr>
+<td>0x28</td>
+<td>40</td>
+<td>OPEN_FULL_CLIENT_DOWNLOAD_LINK</td>
+</tr>
+<tr>
+<td>0x29</td>
+<td>41</td>
+<td>MEMO_RESULT</td>
+</tr>
+<tr>
+<td>0x2A</td>
+<td>42</td>
+<td>MAP_TRANSFER_RESULT</td>
+</tr>
+<tr>
+<td>0x2B</td>
+<td>43</td>
+<td>WEDDING_PHOTO <em>(commented <code>//ANTI_MACRO_RESULT(0x2B)</code>)</em></td>
+</tr>
+<tr>
+<td>0x2D</td>
+<td>45</td>
+<td>CLAIM_RESULT</td>
+</tr>
+<tr>
+<td>0x2E</td>
+<td>46</td>
+<td>CLAIM_AVAILABLE_TIME</td>
+</tr>
+<tr>
+<td>0x2F</td>
+<td>47</td>
+<td>CLAIM_STATUS_CHANGED</td>
+</tr>
+<tr>
+<td>0x30</td>
+<td>48</td>
+<td>SET_TAMING_MOB_INFO</td>
+</tr>
+<tr>
+<td>0x31</td>
+<td>49</td>
+<td>QUEST_CLEAR</td>
+</tr>
+<tr>
+<td>0x32</td>
+<td>50</td>
+<td>ENTRUSTED_SHOP_CHECK_RESULT</td>
+</tr>
+<tr>
+<td>0x33</td>
+<td>51</td>
+<td>SKILL_LEARN_ITEM_RESULT</td>
+</tr>
+<tr>
+<td>0x34</td>
+<td>52</td>
+<td>GATHER_ITEM_RESULT</td>
+</tr>
+<tr>
+<td>0x35</td>
+<td>53</td>
+<td>SORT_ITEM_RESULT</td>
+</tr>
+<tr>
+<td>0x37</td>
+<td>55</td>
+<td>SUE_CHARACTER_RESULT</td>
+</tr>
+<tr>
+<td>0x39</td>
+<td>57</td>
+<td>TRADE_MONEY_LIMIT</td>
+</tr>
+<tr>
+<td>0x3A</td>
+<td>58</td>
+<td>SET_GENDER</td>
+</tr>
+<tr>
+<td>0x3B</td>
+<td>59</td>
+<td>GUILD_BBS_PACKET</td>
+</tr>
+<tr>
+<td>0x3D</td>
+<td>61</td>
+<td>CHAR_INFO</td>
+</tr>
+<tr>
+<td>0x3E</td>
+<td>62</td>
+<td>PARTY_OPERATION</td>
+</tr>
+<tr>
+<td>0x3F</td>
+<td>63</td>
+<td>BUDDYLIST</td>
+</tr>
+<tr>
+<td>0x41</td>
+<td>65</td>
+<td>GUILD_OPERATION</td>
+</tr>
+<tr>
+<td>0x42</td>
+<td>66</td>
+<td>ALLIANCE_OPERATION</td>
+</tr>
+<tr>
+<td>0x43</td>
+<td>67</td>
+<td>SPAWN_PORTAL</td>
+</tr>
+<tr>
+<td>0x44</td>
+<td>68</td>
+<td>SERVERMESSAGE</td>
+</tr>
+<tr>
+<td>0x45</td>
+<td>69</td>
+<td>INCUBATOR_RESULT</td>
+</tr>
+<tr>
+<td>0x46</td>
+<td>70</td>
+<td>SHOP_SCANNER_RESULT</td>
+</tr>
+<tr>
+<td>0x47</td>
+<td>71</td>
+<td>SHOP_LINK_RESULT</td>
+</tr>
+<tr>
+<td>0x48</td>
+<td>72</td>
+<td>MARRIAGE_REQUEST</td>
+</tr>
+<tr>
+<td>0x49</td>
+<td>73</td>
+<td>MARRIAGE_RESULT</td>
+</tr>
+<tr>
+<td>0x4A</td>
+<td>74</td>
+<td>WEDDING_GIFT_RESULT</td>
+</tr>
+<tr>
+<td>0x4B</td>
+<td>75</td>
+<td>NOTIFY_MARRIED_PARTNER_MAP_TRANSFER</td>
+</tr>
+<tr>
+<td>0x4C</td>
+<td>76</td>
+<td>CASH_PET_FOOD_RESULT</td>
+</tr>
+<tr>
+<td>0x4D</td>
+<td>77</td>
+<td>SET_WEEK_EVENT_MESSAGE</td>
+</tr>
+<tr>
+<td>0x4E</td>
+<td>78</td>
+<td>SET_POTION_DISCOUNT_RATE</td>
+</tr>
+<tr>
+<td>0x4F</td>
+<td>79</td>
+<td>BRIDLE_MOB_CATCH_FAIL</td>
+</tr>
+<tr>
+<td>0x50</td>
+<td>80</td>
+<td>IMITATED_NPC_RESULT</td>
+</tr>
+<tr>
+<td>0x51</td>
+<td>81</td>
+<td>IMITATED_NPC_DATA</td>
+</tr>
+<tr>
+<td>0x52</td>
+<td>82</td>
+<td>LIMITED_NPC_DISABLE_INFO</td>
+</tr>
+<tr>
+<td>0x53</td>
+<td>83</td>
+<td>MONSTER_BOOK_SET_CARD</td>
+</tr>
+<tr>
+<td>0x54</td>
+<td>84</td>
+<td>MONSTER_BOOK_SET_COVER</td>
+</tr>
+<tr>
+<td>0x55</td>
+<td>85</td>
+<td>HOUR_CHANGED</td>
+</tr>
+<tr>
+<td>0x56</td>
+<td>86</td>
+<td>MINIMAP_ON_OFF</td>
+</tr>
+<tr>
+<td>0x57</td>
+<td>87</td>
+<td>CONSULT_AUTHKEY_UPDATE</td>
+</tr>
+<tr>
+<td>0x58</td>
+<td>88</td>
+<td>CLASS_COMPETITION_AUTHKEY_UPDATE</td>
+</tr>
+<tr>
+<td>0x59</td>
+<td>89</td>
+<td>WEB_BOARD_AUTHKEY_UPDATE</td>
+</tr>
+<tr>
+<td>0x5A</td>
+<td>90</td>
+<td>SESSION_VALUE</td>
+</tr>
+<tr>
+<td>0x5B</td>
+<td>91</td>
+<td>PARTY_VALUE</td>
+</tr>
+<tr>
+<td>0x5C</td>
+<td>92</td>
+<td>FIELD_SET_VARIABLE</td>
+</tr>
+<tr>
+<td>0x5D</td>
+<td>93</td>
+<td>BONUS_EXP_CHANGED</td>
+</tr>
+<tr>
+<td>0x5E</td>
+<td>94</td>
+<td>FAMILY_CHART_RESULT</td>
+</tr>
+<tr>
+<td>0x5F</td>
+<td>95</td>
+<td>FAMILY_INFO_RESULT</td>
+</tr>
+<tr>
+<td>0x60</td>
+<td>96</td>
+<td>FAMILY_RESULT</td>
+</tr>
+<tr>
+<td>0x61</td>
+<td>97</td>
+<td>FAMILY_JOIN_REQUEST</td>
+</tr>
+<tr>
+<td>0x62</td>
+<td>98</td>
+<td>FAMILY_JOIN_REQUEST_RESULT</td>
+</tr>
+<tr>
+<td>0x63</td>
+<td>99</td>
+<td>FAMILY_JOIN_ACCEPTED</td>
+</tr>
+<tr>
+<td>0x64</td>
+<td>100</td>
+<td>FAMILY_PRIVILEGE_LIST</td>
+</tr>
+<tr>
+<td>0x65</td>
+<td>101</td>
+<td>FAMILY_REP_GAIN</td>
+</tr>
+<tr>
+<td>0x66</td>
+<td>102</td>
+<td>FAMILY_NOTIFY_LOGIN_OR_LOGOUT</td>
+</tr>
+<tr>
+<td>0x67</td>
+<td>103</td>
+<td>FAMILY_SET_PRIVILEGE</td>
+</tr>
+<tr>
+<td>0x68</td>
+<td>104</td>
+<td>FAMILY_SUMMON_REQUEST</td>
+</tr>
+<tr>
+<td>0x69</td>
+<td>105</td>
+<td>NOTIFY_LEVELUP</td>
+</tr>
+<tr>
+<td>0x6A</td>
+<td>106</td>
+<td>NOTIFY_MARRIAGE</td>
+</tr>
+<tr>
+<td>0x6B</td>
+<td>107</td>
+<td>NOTIFY_JOB_CHANGE</td>
+</tr>
+<tr>
+<td>0x6D</td>
+<td>109</td>
+<td>MAPLE_TV_USE_RES</td>
+</tr>
+<tr>
+<td>0x6E</td>
+<td>110</td>
+<td>AVATAR_MEGAPHONE_RESULT</td>
+</tr>
+<tr>
+<td>0x6F</td>
+<td>111</td>
+<td>SET_AVATAR_MEGAPHONE</td>
+</tr>
+<tr>
+<td>0x70</td>
+<td>112</td>
+<td>CLEAR_AVATAR_MEGAPHONE</td>
+</tr>
+<tr>
+<td>0x71</td>
+<td>113</td>
+<td>CANCEL_NAME_CHANGE_RESULT</td>
+</tr>
+<tr>
+<td>0x72</td>
+<td>114</td>
+<td>CANCEL_TRANSFER_WORLD_RESULT</td>
+</tr>
+<tr>
+<td>0x73</td>
+<td>115</td>
+<td>DESTROY_SHOP_RESULT</td>
+</tr>
+<tr>
+<td>0x74</td>
+<td>116</td>
+<td>FAKE_GM_NOTICE</td>
+</tr>
+<tr>
+<td>0x75</td>
+<td>117</td>
+<td>SUCCESS_IN_USE_GACHAPON_BOX</td>
+</tr>
+<tr>
+<td>0x76</td>
+<td>118</td>
+<td>NEW_YEAR_CARD_RES</td>
+</tr>
+<tr>
+<td>0x77</td>
+<td>119</td>
+<td>RANDOM_MORPH_RES</td>
+</tr>
+<tr>
+<td>0x78</td>
+<td>120</td>
+<td>CANCEL_NAME_CHANGE_BY_OTHER</td>
+</tr>
+<tr>
+<td>0x79</td>
+<td>121</td>
+<td>SET_EXTRA_PENDANT_SLOT</td>
+</tr>
+<tr>
+<td>0x7A</td>
+<td>122</td>
+<td>SCRIPT_PROGRESS_MESSAGE</td>
+</tr>
+<tr>
+<td>0x7B</td>
+<td>123</td>
+<td>DATA_CRC_CHECK_FAILED</td>
+</tr>
+<tr>
+<td>0x7C</td>
+<td>124</td>
+<td>MACRO_SYS_DATA_INIT</td>
+</tr>
+<tr>
+<td>0x7D</td>
+<td>125</td>
+<td>SET_FIELD</td>
+</tr>
+<tr>
+<td>0x7E</td>
+<td>126</td>
+<td>SET_ITC</td>
+</tr>
+<tr>
+<td>0x7F</td>
+<td>127</td>
+<td>SET_CASH_SHOP</td>
+</tr>
+<tr>
+<td>0x80</td>
+<td>128</td>
+<td>SET_BACK_EFFECT</td>
+</tr>
+<tr>
+<td>0x81</td>
+<td>129</td>
+<td>SET_MAP_OBJECT_VISIBLE</td>
+</tr>
+<tr>
+<td>0x82</td>
+<td>130</td>
+<td>CLEAR_BACK_EFFECT</td>
+</tr>
+<tr>
+<td>0x83</td>
+<td>131</td>
+<td>BLOCKED_MAP</td>
+</tr>
+<tr>
+<td>0x84</td>
+<td>132</td>
+<td>BLOCKED_SERVER</td>
+</tr>
+<tr>
+<td>0x85</td>
+<td>133</td>
+<td>FORCED_MAP_EQUIP</td>
+</tr>
+<tr>
+<td>0x86</td>
+<td>134</td>
+<td>MULTICHAT</td>
+</tr>
+<tr>
+<td>0x87</td>
+<td>135</td>
+<td>WHISPER</td>
+</tr>
+<tr>
+<td>0x88</td>
+<td>136</td>
+<td>SPOUSE_CHAT</td>
+</tr>
+<tr>
+<td>0x89</td>
+<td>137</td>
+<td>SUMMON_ITEM_INAVAILABLE</td>
+</tr>
+<tr>
+<td>0x8A</td>
+<td>138</td>
+<td>FIELD_EFFECT</td>
+</tr>
+<tr>
+<td>0x8B</td>
+<td>139</td>
+<td>FIELD_OBSTACLE_ONOFF</td>
+</tr>
+<tr>
+<td>0x8C</td>
+<td>140</td>
+<td>FIELD_OBSTACLE_ONOFF_LIST</td>
+</tr>
+<tr>
+<td>0x8D</td>
+<td>141</td>
+<td>FIELD_OBSTACLE_ALL_RESET</td>
+</tr>
+<tr>
+<td>0x8E</td>
+<td>142</td>
+<td>BLOW_WEATHER</td>
+</tr>
+<tr>
+<td>0x8F</td>
+<td>143</td>
+<td>PLAY_JUKEBOX</td>
+</tr>
+<tr>
+<td>0x90</td>
+<td>144</td>
+<td>ADMIN_RESULT</td>
+</tr>
+<tr>
+<td>0x91</td>
+<td>145</td>
+<td>OX_QUIZ</td>
+</tr>
+<tr>
+<td>0x92</td>
+<td>146</td>
+<td>GMEVENT_INSTRUCTIONS</td>
+</tr>
+<tr>
+<td>0x93</td>
+<td>147</td>
+<td>CLOCK</td>
+</tr>
+<tr>
+<td>0x94</td>
+<td>148</td>
+<td>CONTI_MOVE</td>
+</tr>
+<tr>
+<td>0x95</td>
+<td>149</td>
+<td>CONTI_STATE</td>
+</tr>
+<tr>
+<td>0x96</td>
+<td>150</td>
+<td>SET_QUEST_CLEAR</td>
+</tr>
+<tr>
+<td>0x97</td>
+<td>151</td>
+<td>SET_QUEST_TIME</td>
+</tr>
+<tr>
+<td>0x98</td>
+<td>152</td>
+<td>ARIANT_RESULT</td>
+</tr>
+<tr>
+<td>0x99</td>
+<td>153</td>
+<td>SET_OBJECT_STATE</td>
+</tr>
+<tr>
+<td>0x9A</td>
+<td>154</td>
+<td>STOP_CLOCK</td>
+</tr>
+<tr>
+<td>0x9B</td>
+<td>155</td>
+<td>ARIANT_ARENA_SHOW_RESULT</td>
+</tr>
+<tr>
+<td>0x9D</td>
+<td>157</td>
+<td>PYRAMID_GAUGE</td>
+</tr>
+<tr>
+<td>0x9E</td>
+<td>158</td>
+<td>PYRAMID_SCORE</td>
+</tr>
+<tr>
+<td>0x9F</td>
+<td>159</td>
+<td>QUICKSLOT_INIT</td>
+</tr>
+<tr>
+<td>0xA0</td>
+<td>160</td>
+<td>SPAWN_PLAYER</td>
+</tr>
+<tr>
+<td>0xA1</td>
+<td>161</td>
+<td>REMOVE_PLAYER_FROM_MAP</td>
+</tr>
+<tr>
+<td>0xA2</td>
+<td>162</td>
+<td>CHATTEXT</td>
+</tr>
+<tr>
+<td>0xA3</td>
+<td>163</td>
+<td>CHATTEXT1</td>
+</tr>
+<tr>
+<td>0xA4</td>
+<td>164</td>
+<td>CHALKBOARD</td>
+</tr>
+<tr>
+<td>0xA5</td>
+<td>165</td>
+<td>UPDATE_CHAR_BOX</td>
+</tr>
+<tr>
+<td>0xA6</td>
+<td>166</td>
+<td>SHOW_CONSUME_EFFECT</td>
+</tr>
+<tr>
+<td>0xA7</td>
+<td>167</td>
+<td>SHOW_SCROLL_EFFECT</td>
+</tr>
+<tr>
+<td>0xA8</td>
+<td>168</td>
+<td>SPAWN_PET</td>
+</tr>
+<tr>
+<td>0xAA</td>
+<td>170</td>
+<td>MOVE_PET</td>
+</tr>
+<tr>
+<td>0xAB</td>
+<td>171</td>
+<td>PET_CHAT</td>
+</tr>
+<tr>
+<td>0xAC</td>
+<td>172</td>
+<td>PET_NAMECHANGE</td>
+</tr>
+<tr>
+<td>0xAD</td>
+<td>173</td>
+<td>PET_EXCEPTION_LIST</td>
+</tr>
+<tr>
+<td>0xAE</td>
+<td>174</td>
+<td>PET_COMMAND</td>
+</tr>
+<tr>
+<td>0xAF</td>
+<td>175</td>
+<td>SPAWN_SPECIAL_MAPOBJECT</td>
+</tr>
+<tr>
+<td>0xB0</td>
+<td>176</td>
+<td>REMOVE_SPECIAL_MAPOBJECT</td>
+</tr>
+<tr>
+<td>0xB1</td>
+<td>177</td>
+<td>MOVE_SUMMON</td>
+</tr>
+<tr>
+<td>0xB2</td>
+<td>178</td>
+<td>SUMMON_ATTACK</td>
+</tr>
+<tr>
+<td>0xB3</td>
+<td>179</td>
+<td>DAMAGE_SUMMON</td>
+</tr>
+<tr>
+<td>0xB4</td>
+<td>180</td>
+<td>SUMMON_SKILL</td>
+</tr>
+<tr>
+<td>0xB5</td>
+<td>181</td>
+<td>SPAWN_DRAGON</td>
+</tr>
+<tr>
+<td>0xB6</td>
+<td>182</td>
+<td>MOVE_DRAGON</td>
+</tr>
+<tr>
+<td>0xB7</td>
+<td>183</td>
+<td>REMOVE_DRAGON</td>
+</tr>
+<tr>
+<td>0xB9</td>
+<td>185</td>
+<td>MOVE_PLAYER</td>
+</tr>
+<tr>
+<td>0xBA</td>
+<td>186</td>
+<td>CLOSE_RANGE_ATTACK</td>
+</tr>
+<tr>
+<td>0xBB</td>
+<td>187</td>
+<td>RANGED_ATTACK</td>
+</tr>
+<tr>
+<td>0xBC</td>
+<td>188</td>
+<td>MAGIC_ATTACK</td>
+</tr>
+<tr>
+<td>0xBD</td>
+<td>189</td>
+<td>ENERGY_ATTACK</td>
+</tr>
+<tr>
+<td>0xBE</td>
+<td>190</td>
+<td>SKILL_EFFECT</td>
+</tr>
+<tr>
+<td>0xBF</td>
+<td>191</td>
+<td>CANCEL_SKILL_EFFECT</td>
+</tr>
+<tr>
+<td>0xC0</td>
+<td>192</td>
+<td>DAMAGE_PLAYER</td>
+</tr>
+<tr>
+<td>0xC1</td>
+<td>193</td>
+<td>FACIAL_EXPRESSION</td>
+</tr>
+<tr>
+<td>0xC2</td>
+<td>194</td>
+<td>SHOW_ITEM_EFFECT</td>
+</tr>
+<tr>
+<td>0xC4</td>
+<td>196</td>
+<td>SHOW_CHAIR</td>
+</tr>
+<tr>
+<td>0xC5</td>
+<td>197</td>
+<td>UPDATE_CHAR_LOOK</td>
+</tr>
+<tr>
+<td>0xC6</td>
+<td>198</td>
+<td>SHOW_FOREIGN_EFFECT</td>
+</tr>
+<tr>
+<td>0xC7</td>
+<td>199</td>
+<td>GIVE_FOREIGN_BUFF</td>
+</tr>
+<tr>
+<td>0xC8</td>
+<td>200</td>
+<td>CANCEL_FOREIGN_BUFF</td>
+</tr>
+<tr>
+<td>0xC9</td>
+<td>201</td>
+<td>UPDATE_PARTYMEMBER_HP</td>
+</tr>
+<tr>
+<td>0xCA</td>
+<td>202</td>
+<td>GUILD_NAME_CHANGED</td>
+</tr>
+<tr>
+<td>0xCB</td>
+<td>203</td>
+<td>GUILD_MARK_CHANGED</td>
+</tr>
+<tr>
+<td>0xCC</td>
+<td>204</td>
+<td>THROW_GRENADE</td>
+</tr>
+<tr>
+<td>0xCD</td>
+<td>205</td>
+<td>CANCEL_CHAIR</td>
+</tr>
+<tr>
+<td>0xCE</td>
+<td>206</td>
+<td>SHOW_ITEM_GAIN_INCHAT</td>
+</tr>
+<tr>
+<td>0xCF</td>
+<td>207</td>
+<td>DOJO_WARP_UP</td>
+</tr>
+<tr>
+<td>0xD0</td>
+<td>208</td>
+<td>LUCKSACK_PASS</td>
+</tr>
+<tr>
+<td>0xD1</td>
+<td>209</td>
+<td>LUCKSACK_FAIL</td>
+</tr>
+<tr>
+<td>0xD2</td>
+<td>210</td>
+<td>MESO_BAG_MESSAGE</td>
+</tr>
+<tr>
+<td>0xD3</td>
+<td>211</td>
+<td>UPDATE_QUEST_INFO</td>
+</tr>
+<tr>
+<td>0xD6</td>
+<td>214</td>
+<td>PLAYER_HINT</td>
+</tr>
+<tr>
+<td>0xD9</td>
+<td>217</td>
+<td>MAKER_RESULT</td>
+</tr>
+<tr>
+<td>0xDB</td>
+<td>219</td>
+<td>KOREAN_EVENT</td>
+</tr>
+<tr>
+<td>0xDC</td>
+<td>220</td>
+<td>OPEN_UI</td>
+</tr>
+<tr>
+<td>0xDD</td>
+<td>221</td>
+<td>LOCK_UI</td>
+</tr>
+<tr>
+<td>0xDE</td>
+<td>222</td>
+<td>DISABLE_UI</td>
+</tr>
+<tr>
+<td>0xDF</td>
+<td>223</td>
+<td>SPAWN_GUIDE</td>
+</tr>
+<tr>
+<td>0xE0</td>
+<td>224</td>
+<td>TALK_GUIDE</td>
+</tr>
+<tr>
+<td>0xE1</td>
+<td>225</td>
+<td>SHOW_COMBO</td>
+</tr>
+<tr>
+<td>0xEA</td>
+<td>234</td>
+<td>COOLDOWN</td>
+</tr>
+<tr>
+<td>0xEC</td>
+<td>236</td>
+<td>SPAWN_MONSTER</td>
+</tr>
+<tr>
+<td>0xED</td>
+<td>237</td>
+<td>KILL_MONSTER</td>
+</tr>
+<tr>
+<td>0xEE</td>
+<td>238</td>
+<td>SPAWN_MONSTER_CONTROL</td>
+</tr>
+<tr>
+<td>0xEF</td>
+<td>239</td>
+<td>MOVE_MONSTER</td>
+</tr>
+<tr>
+<td>0xF0</td>
+<td>240</td>
+<td>MOVE_MONSTER_RESPONSE</td>
+</tr>
+<tr>
+<td>0xF2</td>
+<td>242</td>
+<td>APPLY_MONSTER_STATUS</td>
+</tr>
+<tr>
+<td>0xF3</td>
+<td>243</td>
+<td>CANCEL_MONSTER_STATUS</td>
+</tr>
+<tr>
+<td>0xF4</td>
+<td>244</td>
+<td>RESET_MONSTER_ANIMATION</td>
+</tr>
+<tr>
+<td>0xF6</td>
+<td>246</td>
+<td>DAMAGE_MONSTER</td>
+</tr>
+<tr>
+<td>0xF9</td>
+<td>249</td>
+<td>ARIANT_THING</td>
+</tr>
+<tr>
+<td>0xFA</td>
+<td>250</td>
+<td>SHOW_MONSTER_HP</td>
+</tr>
+<tr>
+<td>0xFB</td>
+<td>251</td>
+<td>CATCH_MONSTER</td>
+</tr>
+<tr>
+<td>0xFC</td>
+<td>252</td>
+<td>CATCH_MONSTER_WITH_ITEM</td>
+</tr>
+<tr>
+<td>0xFD</td>
+<td>253</td>
+<td>SHOW_MAGNET</td>
+</tr>
+<tr>
+<td>0x101</td>
+<td>257</td>
+<td>SPAWN_NPC</td>
+</tr>
+<tr>
+<td>0x102</td>
+<td>258</td>
+<td>REMOVE_NPC</td>
+</tr>
+<tr>
+<td>0x103</td>
+<td>259</td>
+<td>SPAWN_NPC_REQUEST_CONTROLLER</td>
+</tr>
+<tr>
+<td>0x104</td>
+<td>260</td>
+<td>NPC_ACTION</td>
+</tr>
+<tr>
+<td>0x107</td>
+<td>263</td>
+<td>SET_NPC_SCRIPTABLE</td>
+</tr>
+<tr>
+<td>0x109</td>
+<td>265</td>
+<td>SPAWN_HIRED_MERCHANT</td>
+</tr>
+<tr>
+<td>0x10A</td>
+<td>266</td>
+<td>DESTROY_HIRED_MERCHANT</td>
+</tr>
+<tr>
+<td>0x10B</td>
+<td>267</td>
+<td>UPDATE_HIRED_MERCHANT</td>
+</tr>
+<tr>
+<td>0x10C</td>
+<td>268</td>
+<td>DROP_ITEM_FROM_MAPOBJECT</td>
+</tr>
+<tr>
+<td>0x10D</td>
+<td>269</td>
+<td>REMOVE_ITEM_FROM_MAP</td>
+</tr>
+<tr>
+<td>0x10E</td>
+<td>270</td>
+<td>CANNOT_SPAWN_KITE</td>
+</tr>
+<tr>
+<td>0x10F</td>
+<td>271</td>
+<td>SPAWN_KITE</td>
+</tr>
+<tr>
+<td>0x110</td>
+<td>272</td>
+<td>REMOVE_KITE</td>
+</tr>
+<tr>
+<td>0x111</td>
+<td>273</td>
+<td>SPAWN_MIST</td>
+</tr>
+<tr>
+<td>0x112</td>
+<td>274</td>
+<td>REMOVE_MIST</td>
+</tr>
+<tr>
+<td>0x113</td>
+<td>275</td>
+<td>SPAWN_DOOR</td>
+</tr>
+<tr>
+<td>0x114</td>
+<td>276</td>
+<td>REMOVE_DOOR</td>
+</tr>
+<tr>
+<td>0x115</td>
+<td>277</td>
+<td>REACTOR_HIT</td>
+</tr>
+<tr>
+<td>0x117</td>
+<td>279</td>
+<td>REACTOR_SPAWN</td>
+</tr>
+<tr>
+<td>0x118</td>
+<td>280</td>
+<td>REACTOR_DESTROY</td>
+</tr>
+<tr>
+<td>0x119</td>
+<td>281</td>
+<td>SNOWBALL_STATE</td>
+</tr>
+<tr>
+<td><strong>0x11A</strong></td>
+<td><strong>282</strong></td>
+<td><strong>HIT_SNOWBALL</strong></td>
+</tr>
+<tr>
+<td>0x11B</td>
+<td>283</td>
+<td>SNOWBALL_MESSAGE</td>
+</tr>
+<tr>
+<td>0x11C</td>
+<td>284</td>
+<td>LEFT_KNOCK_BACK</td>
+</tr>
+<tr>
+<td>0x11D</td>
+<td>285</td>
+<td>COCONUT_HIT</td>
+</tr>
+<tr>
+<td>0x11E</td>
+<td>286</td>
+<td>COCONUT_SCORE</td>
+</tr>
+<tr>
+<td>0x11F</td>
+<td>287</td>
+<td>GUILD_BOSS_HEALER_MOVE</td>
+</tr>
+<tr>
+<td>0x120</td>
+<td>288</td>
+<td>GUILD_BOSS_PULLEY_STATE_CHANGE</td>
+</tr>
+<tr>
+<td>0x121</td>
+<td>289</td>
+<td>MONSTER_CARNIVAL_START</td>
+</tr>
+<tr>
+<td>0x122</td>
+<td>290</td>
+<td>MONSTER_CARNIVAL_OBTAINED_CP</td>
+</tr>
+<tr>
+<td>0x123</td>
+<td>291</td>
+<td>MONSTER_CARNIVAL_PARTY_CP</td>
+</tr>
+<tr>
+<td>0x124</td>
+<td>292</td>
+<td>MONSTER_CARNIVAL_SUMMON</td>
+</tr>
+<tr>
+<td>0x125</td>
+<td>293</td>
+<td>MONSTER_CARNIVAL_MESSAGE</td>
+</tr>
+<tr>
+<td>0x126</td>
+<td>294</td>
+<td>MONSTER_CARNIVAL_DIED</td>
+</tr>
+<tr>
+<td>0x127</td>
+<td>295</td>
+<td>MONSTER_CARNIVAL_LEAVE</td>
+</tr>
+<tr>
+<td>0x129</td>
+<td>297</td>
+<td>ARIANT_ARENA_USER_SCORE</td>
+</tr>
+<tr>
+<td>0x12B</td>
+<td>299</td>
+<td>SHEEP_RANCH_INFO</td>
+</tr>
+<tr>
+<td>0x12C</td>
+<td>300</td>
+<td>SHEEP_RANCH_CLOTHES</td>
+</tr>
+<tr>
+<td>0x12D</td>
+<td>301</td>
+<td>WITCH_TOWER_SCORE_UPDATE</td>
+</tr>
+<tr>
+<td>0x12E</td>
+<td>302</td>
+<td>HORNTAIL_CAVE</td>
+</tr>
+<tr>
+<td>0x12F</td>
+<td>303</td>
+<td>ZAKUM_SHRINE</td>
+</tr>
+<tr>
+<td>0x130</td>
+<td>304</td>
+<td>NPC_TALK</td>
+</tr>
+<tr>
+<td>0x131</td>
+<td>305</td>
+<td>OPEN_NPC_SHOP</td>
+</tr>
+<tr>
+<td>0x132</td>
+<td>306</td>
+<td>CONFIRM_SHOP_TRANSACTION</td>
+</tr>
+<tr>
+<td>0x133</td>
+<td>307</td>
+<td>ADMIN_SHOP_MESSAGE</td>
+</tr>
+<tr>
+<td>0x134</td>
+<td>308</td>
+<td>ADMIN_SHOP</td>
+</tr>
+<tr>
+<td>0x135</td>
+<td>309</td>
+<td>STORAGE</td>
+</tr>
+<tr>
+<td>0x136</td>
+<td>310</td>
+<td>FREDRICK_MESSAGE</td>
+</tr>
+<tr>
+<td>0x137</td>
+<td>311</td>
+<td>FREDRICK</td>
+</tr>
+<tr>
+<td>0x138</td>
+<td>312</td>
+<td>RPS_GAME</td>
+</tr>
+<tr>
+<td>0x139</td>
+<td>313</td>
+<td>MESSENGER</td>
+</tr>
+<tr>
+<td>0x13A</td>
+<td>314</td>
+<td>PLAYER_INTERACTION</td>
+</tr>
+<tr>
+<td>0x13B</td>
+<td>315</td>
+<td>TOURNAMENT</td>
+</tr>
+<tr>
+<td>0x13C</td>
+<td>316</td>
+<td>TOURNAMENT_MATCH_TABLE</td>
+</tr>
+<tr>
+<td>0x13D</td>
+<td>317</td>
+<td>TOURNAMENT_SET_PRIZE</td>
+</tr>
+<tr>
+<td>0x13E</td>
+<td>318</td>
+<td>TOURNAMENT_UEW</td>
+</tr>
+<tr>
+<td>0x13F</td>
+<td>319</td>
+<td>TOURNAMENT_CHARACTERS</td>
+</tr>
+<tr>
+<td>0x140</td>
+<td>320</td>
+<td>WEDDING_PROGRESS</td>
+</tr>
+<tr>
+<td>0x141</td>
+<td>321</td>
+<td>WEDDING_CEREMONY_END</td>
+</tr>
+<tr>
+<td>0x142</td>
+<td>322</td>
+<td>PARCEL</td>
+</tr>
+<tr>
+<td>0x143</td>
+<td>323</td>
+<td>CHARGE_PARAM_RESULT</td>
+</tr>
+<tr>
+<td>0x144</td>
+<td>324</td>
+<td>QUERY_CASH_RESULT</td>
+</tr>
+<tr>
+<td>0x145</td>
+<td>325</td>
+<td>CASHSHOP_OPERATION</td>
+</tr>
+<tr>
+<td>0x146</td>
+<td>326</td>
+<td>CASHSHOP_PURCHASE_EXP_CHANGED</td>
+</tr>
+<tr>
+<td>0x147</td>
+<td>327</td>
+<td>CASHSHOP_GIFT_INFO_RESULT</td>
+</tr>
+<tr>
+<td>0x148</td>
+<td>328</td>
+<td>CASHSHOP_CHECK_NAME_CHANGE</td>
+</tr>
+<tr>
+<td>0x149</td>
+<td>329</td>
+<td>CASHSHOP_CHECK_NAME_CHANGE_POSSIBLE_RESULT</td>
+</tr>
+<tr>
+<td>0x14A</td>
+<td>330</td>
+<td>CASHSHOP_REGISTER_NEW_CHARACTER_RESULT</td>
+</tr>
+<tr>
+<td>0x14B</td>
+<td>331</td>
+<td>CASHSHOP_CHECK_TRANSFER_WORLD_POSSIBLE_RESULT</td>
+</tr>
+<tr>
+<td>0x14C</td>
+<td>332</td>
+<td>CASHSHOP_GACHAPON_STAMP_RESULT</td>
+</tr>
+<tr>
+<td>0x14D</td>
+<td>333</td>
+<td>CASHSHOP_CASH_ITEM_GACHAPON_RESULT</td>
+</tr>
+<tr>
+<td>0x14E</td>
+<td>334</td>
+<td>CASHSHOP_CASH_GACHAPON_OPEN_RESULT</td>
+</tr>
+<tr>
+<td>0x14F</td>
+<td>335</td>
+<td>KEYMAP</td>
+</tr>
+<tr>
+<td>0x150</td>
+<td>336</td>
+<td>AUTO_HP_POT</td>
+</tr>
+<tr>
+<td>0x151</td>
+<td>337</td>
+<td>AUTO_MP_POT</td>
+</tr>
+<tr>
+<td>0x155</td>
+<td>341</td>
+<td>SEND_TV</td>
+</tr>
+<tr>
+<td>0x156</td>
+<td>342</td>
+<td>REMOVE_TV</td>
+</tr>
+<tr>
+<td>0x157</td>
+<td>343</td>
+<td>ENABLE_TV</td>
+</tr>
+<tr>
+<td>0x15B</td>
+<td>347</td>
+<td>MTS_OPERATION2</td>
+</tr>
+<tr>
+<td>0x15C</td>
+<td>348</td>
+<td>MTS_OPERATION</td>
+</tr>
+<tr>
+<td>0x15D</td>
+<td>349</td>
+<td>MAPLELIFE_RESULT</td>
+</tr>
+<tr>
+<td>0x15E</td>
+<td>350</td>
+<td>MAPLELIFE_ERROR</td>
+</tr>
+<tr>
+<td>0x162</td>
+<td>354</td>
+<td>VICIOUS_HAMMER</td>
+</tr>
+<tr>
+<td>0x166</td>
+<td>358</td>
+<td>VEGA_SCROLL <em>(enum terminator)</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-free-range-observations">3.3 Free-range observations<a class="headerlink" href="#33-free-range-observations" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>RecvOpcode 0x100–0x3712:</strong> only <code>0x100</code> (USE_MAPLELIFE) and <code>0x104</code> (USE_HAMMER) are used. The whole range <code>0x105–0x3712</code> is <strong>free</strong>.</li>
+<li><strong>RecvOpcode 0x105–0x36FF</strong> specifically is fully unallocated.</li>
+<li><strong>SendOpcode 0x167–0x372F</strong> is fully unallocated (last defined is <code>0x166</code> VEGA_SCROLL).</li>
+<li>Reserved/special: <code>0x3713</code> (RecvOpcode.CUSTOM_PACKET), <code>0xFFFE</code> (RecvOpcode.MAPLETV).</li>
+</ul>
+<hr />
+<h2 id="4-package-vs-cosmic-collision-table">4. Package-vs-Cosmic collision table<a class="headerlink" href="#4-package-vs-cosmic-collision-table" title="Permanent link">&para;</a></h2>
+<p>For each opcode a package wants to add, check both enums:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Opcode</th>
+<th>Direction (enum to edit)</th>
+<th>In Cosmic RecvOpcode?</th>
+<th>In Cosmic SendOpcode?</th>
+<th>Hard conflict?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CheckIn</td>
+<td><code>0x11A</code></td>
+<td>Recv (RecvOpcode.DAILY_CHECKIN)</td>
+<td>❌ NOT used</td>
+<td>✅ USED — <code>HIT_SNOWBALL</code> (line 288)</td>
+<td><strong>No hard conflict</strong> (different enums, different wire directions). RecvOpcode has no entry at <code>0x11A</code>.</td>
+</tr>
+<tr>
+<td>CheckIn</td>
+<td><code>0x17C</code></td>
+<td>Send (SendOpcode.DAILY_CHECKIN)</td>
+<td>❌ NOT used</td>
+<td>❌ NOT used</td>
+<td><strong>No conflict.</strong></td>
+</tr>
+<tr>
+<td>BeautySalon</td>
+<td><code>0x174</code> (Recv)</td>
+<td>Recv (RecvOpcode.BEAUTY_ACTION)</td>
+<td>❌ NOT used</td>
+<td>❌ NOT used</td>
+<td><strong>No conflict.</strong></td>
+</tr>
+<tr>
+<td>BeautySalon</td>
+<td><code>0x174</code> (Send)</td>
+<td>Send (SendOpcode.BEAUTY_RESULT)</td>
+<td>❌ NOT used</td>
+<td>❌ NOT used</td>
+<td><strong>No conflict.</strong></td>
+</tr>
+<tr>
+<td>CashShop</td>
+<td><code>0x3730</code></td>
+<td>Recv (RecvOpcode.CASHSHOP_WINDOW_ACTION)</td>
+<td>❌ NOT used</td>
+<td>❌ NOT used</td>
+<td><strong>No conflict.</strong></td>
+</tr>
+<tr>
+<td>CashShop</td>
+<td><code>0x3731</code></td>
+<td>Send (SendOpcode.CASHSHOP_WINDOW_SYNC)</td>
+<td>❌ NOT used</td>
+<td>❌ NOT used</td>
+<td><strong>No conflict.</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Result: No hard conflicts.</strong> <code>0x11A</code> is the only target value that exists in any Cosmic enum — and it exists in the <strong>opposite</strong> enum (SendOpcode.HIT_SNOWBALL), so adding <code>RecvOpcode.DAILY_CHECKIN = 0x11A</code> does not collide at runtime (different wire directions).</p>
+<hr />
+<h2 id="5-files-each-package-needs-to-modify">5. Files each package needs to modify<a class="headerlink" href="#5-files-each-package-needs-to-modify" title="Permanent link">&para;</a></h2>
+<h3 id="51-checkin-daily-check-in">5.1 CheckIn (Daily Check-In)<a class="headerlink" href="#51-checkin-daily-check-in" title="Permanent link">&para;</a></h3>
+<p><strong>New files to COPY:</strong>
+- <code>net/server/channel/handlers/DailyCheckinHandler.java</code>
+- <code>server/DailyCheckinRewards.java</code>
+- <code>client/command/commands/gm0/CheckinCommand.java</code>
+- <code>server/sql/daily_checkin.sql</code>
+- <code>client/src/dailycheckin.cpp</code> (+ accompanying client-side headers)
+- <code>wz/UI.wz → UIWindow.img/DailyCheckin/backgrnd</code> (data, not source)</p>
+<p><strong>Existing Cosmic files to EDIT:</strong>
+- <code>net/opcodes/RecvOpcode.java</code> — add <code>DAILY_CHECKIN(0x11A),</code>
+- <code>net/opcodes/SendOpcode.java</code> — add <code>DAILY_CHECKIN(0x17C),</code>
+- <code>net/PacketProcessor.java</code> — register <code>RecvOpcode.DAILY_CHECKIN → DailyCheckinHandler</code>
+- <code>tools/PacketCreator.java</code> — add <code>dailyCheckinSnapshot(...)</code> builder
+- <code>client/Character.java</code> — add 3 fields (<code>checkinDay</code>, <code>checkinClaimed</code>, <code>checkinLastClaim</code>) + accessors + streak logic
+- <code>net/server/channel/handlers/PlayerLoggedinHandler.java</code> — invoke <code>refreshCheckin()</code> on login
+- <code>client/command/CommandsExecutor.java</code> — register <code>@daily</code> / <code>@checkin</code> command</p>
+<p><strong>Existing client (C++) files to EDIT:</strong>
+- <code>client/src/hook.h</code> (or equivalent)
+- <code>client/src/pch.h</code>
+- Various <code>wvs/*.h</code> and <code>ztl/ztl.h</code> headers (per <code>README.md</code> snippets)</p>
+<h3 id="52-beautysalon">5.2 BeautySalon<a class="headerlink" href="#52-beautysalon" title="Permanent link">&para;</a></h3>
+<p><strong>New files to COPY:</strong>
+- <code>net/server/channel/handlers/BeautyHandler.java</code>
+- <code>server/beauty/BeautyData.java</code>
+- <code>server/beauty/BeautyPackets.java</code>
+- <code>server/beauty/BeautyStorage.java</code>
+- <code>resources/db/tables/025-beauty.sql</code>
+- <code>resources/db/tables/026-beauty-unlock.sql</code>
+- <code>client/src/beautyshop.cpp</code></p>
+<p><strong>Existing Cosmic files to EDIT:</strong>
+- <code>net/opcodes/RecvOpcode.java</code> — add <code>BEAUTY_ACTION(0x174),</code>
+- <code>net/opcodes/SendOpcode.java</code> — add <code>BEAUTY_RESULT(0x174),</code>
+- <code>net/PacketProcessor.java</code> — <code>import net.server.channel.handlers.BeautyHandler;</code> + register <code>RecvOpcode.BEAUTY_ACTION → BeautyHandler</code>
+- <code>net/server/channel/handlers/GeneralChatHandler.java</code> — add <code>@beauty</code> block
+- <code>resources/db/changelog-tables.xml</code> — register changeSets <code>25</code> and <code>26</code></p>
+<p><strong>Existing client (C++) files to EDIT:</strong>
+- <code>client/src/hook.h</code> — declare + call <code>AttachBeautyShopMod()</code>
+- <code>client/src/CMakeLists.txt</code> — add <code>beautyshop.cpp</code> to injector sources</p>
+<h3 id="53-cashshop">5.3 CashShop<a class="headerlink" href="#53-cashshop" title="Permanent link">&para;</a></h3>
+<p><strong>New files to COPY:</strong>
+- <code>net/server/channel/handlers/CashShopWindowHandler.java</code>
+- <code>server/cashshop/CashShopCatalog.java</code>
+- <code>server/cashshop/CashShopWindowPackets.java</code>
+- <code>server/cashshop/CashShopWindowPurchase.java</code>
+- <code>client/cashshopwnd.cpp</code>
+- <code>client/cashshopwnd.h</code>
+- <code>data/catalog.tsv</code> → placed at <code>&lt;server working dir&gt;/cashshop/catalog.tsv</code>
+- <code>wz/UI/CashShop.img</code> (data, not source)</p>
+<p><strong>Existing Cosmic files to EDIT:</strong>
+- <code>net/opcodes/RecvOpcode.java</code> — add <code>CASHSHOP_WINDOW_ACTION(0x3730),</code>
+- <code>net/opcodes/SendOpcode.java</code> — add <code>CASHSHOP_WINDOW_SYNC(0x3731),</code>
+- <code>net/PacketProcessor.java</code> — <code>import net.server.channel.handlers.CashShopWindowHandler;</code> + register handler</p>
+<p><strong>Existing handler file to MODIFY (logic, not just register):</strong>
+- <code>EnterCashShopHandler</code> (whatever handles the cash shop button press — likely <code>net/server/channel/handlers/EnterCashShopHandler.java</code>) — replace stage transition with <code>CashShopWindowPackets.open(mc)</code> + <code>enableActions()</code>, gated by a <code>USE_STANDALONE_WINDOW</code> boolean</p>
+<p><strong>Existing client (C++) files to EDIT:</strong>
+- The DLL's existing <code>CClientSocket::ProcessPacket</code> hook — route <code>nType == kCashShopSyncOpcode</code> to <code>CashShopWnd_HandleSync()</code>
+- A per-frame update site (e.g. <code>CWvsApp::CallUpdate</code>) — call <code>CashShopWnd_Tick()</code>
+- Add <code>cashshopwnd.cpp</code> to the build (C++17 required)</p>
+<hr />
+<h2 id="6-cross-package-intersection-cosmic-files-needing-edits-in-multiple-packages">6. Cross-package intersection — Cosmic files needing edits in MULTIPLE packages<a class="headerlink" href="#6-cross-package-intersection-cosmic-files-needing-edits-in-multiple-packages" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Cosmic file</th>
+<th>CheckIn</th>
+<th>BeautySalon</th>
+<th>CashShop</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>net/opcodes/RecvOpcode.java</code></td>
+<td>✅ add <code>DAILY_CHECKIN</code></td>
+<td>✅ add <code>BEAUTY_ACTION</code></td>
+<td>✅ add <code>CASHSHOP_WINDOW_ACTION</code></td>
+<td><strong>All 3</strong> — single edit point, 3 enum entries to append. No collision (different hex).</td>
+</tr>
+<tr>
+<td><code>net/opcodes/SendOpcode.java</code></td>
+<td>✅ add <code>DAILY_CHECKIN</code></td>
+<td>✅ add <code>BEAUTY_RESULT</code></td>
+<td>✅ add <code>CASHSHOP_WINDOW_SYNC</code></td>
+<td><strong>All 3</strong> — same as above.</td>
+</tr>
+<tr>
+<td><code>net/PacketProcessor.java</code></td>
+<td>✅ register handler</td>
+<td>✅ register handler</td>
+<td>✅ register handler</td>
+<td><strong>All 3</strong> — single import block + 3 <code>registerHandler(...)</code> lines. No collision.</td>
+</tr>
+<tr>
+<td><code>net/server/channel/handlers/GeneralChatHandler.java</code></td>
+<td>❌</td>
+<td>✅ add <code>@beauty</code> block</td>
+<td>❌</td>
+<td>Beauty only</td>
+</tr>
+<tr>
+<td><code>client/Character.java</code></td>
+<td>✅ add streak fields</td>
+<td>❌</td>
+<td>❌</td>
+<td>CheckIn only</td>
+</tr>
+<tr>
+<td><code>tools/PacketCreator.java</code></td>
+<td>✅ add <code>dailyCheckinSnapshot</code></td>
+<td>❌</td>
+<td>❌</td>
+<td>CheckIn only</td>
+</tr>
+<tr>
+<td><code>PlayerLoggedinHandler.java</code></td>
+<td>✅ add refresh call</td>
+<td>❌</td>
+<td>❌</td>
+<td>CheckIn only</td>
+</tr>
+<tr>
+<td><code>CommandsExecutor.java</code></td>
+<td>✅ register command</td>
+<td>❌</td>
+<td>❌</td>
+<td>CheckIn only</td>
+</tr>
+<tr>
+<td><code>resources/db/changelog-tables.xml</code></td>
+<td>❌</td>
+<td>✅ register <code>25</code>, <code>26</code></td>
+<td>❌</td>
+<td>Beauty only</td>
+</tr>
+<tr>
+<td><code>EnterCashShopHandler.java</code> (or equivalent)</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅ rewrite cash-shop entry</td>
+<td>CashShop only</td>
+</tr>
+<tr>
+<td><code>client/src/hook.h</code></td>
+<td>✅ declare/call hook</td>
+<td>✅ declare/call hook</td>
+<td>❌ (uses existing dispatcher)</td>
+<td>CheckIn + Beauty</td>
+</tr>
+</tbody>
+</table>
+<h3 id="true-cross-package-intersection">True cross-package intersection<a class="headerlink" href="#true-cross-package-intersection" title="Permanent link">&para;</a></h3>
+<p><strong>Server-side files touched by ALL 3 packages (the only true intersection):</strong>
+1. <code>net/opcodes/RecvOpcode.java</code>
+2. <code>net/opcodes/SendOpcode.java</code>
+3. <code>net/PacketProcessor.java</code></p>
+<p><strong>Server-side files touched by exactly 2 packages:</strong> None.</p>
+<p><strong>Client-side files touched by 2 packages:</strong> <code>client/src/hook.h</code> (CheckIn + Beauty). CashShop intentionally does <strong>not</strong> install its own hook — it routes through the existing <code>ProcessPacket</code> dispatcher per <code>INTEGRATION.md:23</code>.</p>
+<hr />
+<h2 id="7-new-files-each-package-adds-path-conflict-awareness">7. New files each package adds (path-conflict awareness)<a class="headerlink" href="#7-new-files-each-package-adds-path-conflict-awareness" title="Permanent link">&para;</a></h2>
+<p>If all three integrate into the same Cosmic tree, distinct new-file paths — <strong>no path collisions</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>New server files (relative to <code>src/main/java/</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CheckIn</td>
+<td><code>net/server/channel/handlers/DailyCheckinHandler.java</code><br><code>server/DailyCheckinRewards.java</code><br><code>client/command/commands/gm0/CheckinCommand.java</code></td>
+</tr>
+<tr>
+<td>BeautySalon</td>
+<td><code>net/server/channel/handlers/BeautyHandler.java</code><br><code>server/beauty/BeautyData.java</code><br><code>server/beauty/BeautyPackets.java</code><br><code>server/beauty/BeautyStorage.java</code></td>
+</tr>
+<tr>
+<td>CashShop</td>
+<td><code>net/server/channel/handlers/CashShopWindowHandler.java</code><br><code>server/cashshop/CashShopCatalog.java</code><br><code>server/cashshop/CashShopWindowPackets.java</code><br><code>server/cashshop/CashShopWindowPurchase.java</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>New client files (C++):</strong>
+| Package | New client file |
+|---|---|
+| CheckIn | <code>&lt;client&gt;/src/dailycheckin.cpp</code> |
+| BeautySalon | <code>&lt;client&gt;/src/beautyshop.cpp</code> |
+| CashShop | <code>&lt;client&gt;/cashshopwnd.cpp</code>, <code>&lt;client&gt;/cashshopwnd.h</code> |</p>
+<p>All distinct. No collision.</p>
+<hr />
+<h2 id="8-summary-fact-table">8. Summary fact table<a class="headerlink" href="#8-summary-fact-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Any two packages claiming the <strong>same opcode value</strong>?</td>
+<td><strong>No.</strong></td>
+</tr>
+<tr>
+<td>Any package claiming an opcode <strong>already used in Cosmic's same-direction enum</strong>?</td>
+<td><strong>No.</strong></td>
+</tr>
+<tr>
+<td>Does CheckIn's <code>0x11A</code> clash with anything?</td>
+<td><code>0x11A</code> exists in Cosmic <strong>SendOpcode</strong> (<code>HIT_SNOWBALL</code>). CheckIn uses it in <strong>RecvOpcode</strong>. Different enums, different wire directions. Runtime safe.</td>
+</tr>
+<tr>
+<td>Does CashShop's <code>0xE5</code> reference create a conflict?</td>
+<td>No — <code>0xE5</code> is <em>explicitly avoided</em> by CashShop; mentioned only in a Javadoc comment.</td>
+</tr>
+<tr>
+<td>Single Cosmic file touched by <strong>all 3 packages</strong>?</td>
+<td>Yes, exactly 3: <code>RecvOpcode.java</code>, <code>SendOpcode.java</code>, <code>PacketProcessor.java</code>. All edits are additive enum/registration lines; constants don't overlap.</td>
+</tr>
+<tr>
+<td>Single Cosmic file touched by <strong>exactly 2 packages</strong>?</td>
+<td>Server-side: none. Client-side: <code>client/src/hook.h</code> (CheckIn + Beauty).</td>
+</tr>
+<tr>
+<td>New-file path conflicts?</td>
+<td>None. All new <code>.java</code>/<code>.cpp</code>/<code>.h</code> paths are distinct.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="9-raw-grep-evidence-fileline">9. Raw grep evidence (file:line)<a class="headerlink" href="#9-raw-grep-evidence-fileline" title="Permanent link">&para;</a></h2>
+<p><strong>CheckIn's <code>0x11A</code> / <code>0x17C</code> declarations:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>README.md:53  **Client → Server** (`RecvOpcode.DAILY_CHECKIN = 0x11A`):
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>README.md:60  **Server → Client** (`SendOpcode.DAILY_CHECKIN = 0x17C`):
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>README.md:94  DAILY_CHECKIN(0x11A),
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>README.md:99  DAILY_CHECKIN(0x17C),
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>README.md:77  &gt; ⚠️ **Opcode collision:** `0x11A` and `0x17C` must be **free** …
+</code></pre></div></p>
+<p><strong>BeautySalon's <code>0x174</code> declarations:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>FILE_LIST.md:47  - `net/opcodes/RecvOpcode.java` — `BEAUTY_ACTION(0x174),`
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>FILE_LIST.md:48  - `net/opcodes/SendOpcode.java` — `BEAUTY_RESULT(0x174),`
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>README.md:76         - `net/opcodes/RecvOpcode.java` → add `BEAUTY_ACTION(0x174),`
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>README.md:77         - `net/opcodes/SendOpcode.java` → add `BEAUTY_RESULT(0x174),`
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>README.md:83  &gt; ⚠️ **Opcode check:** `0x174` must be **free** …
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>client/README.md:83  - `kOpcode_SaveBeauty = 0x174` — must match the server.
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>java/README.md:24  BEAUTY_ACTION(0x174),
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>java/README.md:29  BEAUTY_RESULT(0x174),
+</code></pre></div></p>
+<p><strong>CashShop's <code>0x3730</code> / <code>0x3731</code> declarations:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>INTEGRATION.md:61  CASHSHOP_WINDOW_ACTION(0x3730),
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>INTEGRATION.md:67  CASHSHOP_WINDOW_SYNC(0x3731),
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>INTEGRATION.md:78  Pick a different pair if `0x3730`/`0x3731` collide …
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cashshopwnd.h:20   static constexpr unsigned short kCashShopActionOpcode = 0x3730;   // client -&gt; server
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>cashshopwnd.h:21   static constexpr unsigned short kCashShopSyncOpcode   = 0x3731;   // server -&gt; client
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>CashShopWindowHandler.java:18  * &lt;p&gt;Deliberately NOT {@code CashOperationHandler} (0xE5). …
+</code></pre></div></p>
+<p><strong>Cosmic existing assignments at the target values (only <code>0x11A</code> matches):</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SendOpcode.java:288  HIT_SNOWBALL(0x11A),
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>RecvOpcode.java:198  CASHSHOP_OPERATION(0xE5),
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>RecvOpcode.java:25   CUSTOM_PACKET(0x3713),//13 37 lol
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>RecvOpcode.java:188  MAPLETV(0xFFFE),//Don't know
+</code></pre></div></p>
+<p><strong>Broader Cosmic-repo grep (<code>rg -i</code> in <code>src/main/java</code>):</strong>
+- <code>0x11A</code> → only <code>SendOpcode.java:288</code> (and unrelated BCrypt/AES bytes).
+- <code>0x17C</code> → <strong>no matches anywhere in Cosmic</strong>.
+- <code>0x174</code> → <strong>no matches anywhere in Cosmic</strong>.
+- <code>0xE5</code> → <code>RecvOpcode.java:198</code> (CASHSHOP_OPERATION); also unrelated AES/BCrypt byte literals and <code>PacketCreator.java:6508</code> <code>p.writeByte(0xE5)</code> (cash-shop sub-opcode, not a top-level opcode).
+- <code>0x3730</code> / <code>0x3731</code> → <strong>no matches anywhere in Cosmic</strong>.</p>
+<hr />
+<p><em>End of W1-2 opcode collision report.</em></p>
+<p><em>No native Cosmic files were modified.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

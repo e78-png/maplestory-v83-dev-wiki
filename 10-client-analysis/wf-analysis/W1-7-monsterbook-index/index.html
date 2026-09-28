@@ -1,0 +1,3846 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W1-7 — 怪物圖鑑 (083MonsterBook) 索引分析報告 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w1-7-083monsterbook" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W1-7 — 怪物圖鑑 (083MonsterBook) 索引分析報告
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0. 全域統計
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-083monsterbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 檔案命名規律 (083MonsterBook/)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 檔案命名規律 (083MonsterBook/)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 正規格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 解析結果
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 怪物 ID 範圍與等級分佈
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. 怪物 ID 範圍與等級分佈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 ID 範圍
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 ID 第一碼 (區域代碼) 分佈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 等級分佈
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 怪物書欄位結構
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 怪物書欄位結構">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-7-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 每行格式 (7 個 TAB 分隔欄位)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 統計
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-id-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 道具 ID 前 2 碼 (大類) 分佈
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-id-4-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 道具 ID 前 4 碼常見中類 (Top 10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 反應堆 (Reactor) 欄位結構
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. 反應堆 (Reactor) 欄位結構">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 檔案命名
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-5-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 每行格式 (5 個 TAB 分隔欄位)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 統計
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 反應堆範例
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-083txt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 怪物卡 (083怪物卡.txt) 結構
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 怪物卡 (083怪物卡.txt) 結構">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#7-tab" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        格式 (7 個 TAB 欄位,與怪物書相同)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        統計
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-cosmic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 與 Cosmic 源碼比對
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 與 Cosmic 源碼比對">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-db-drop_data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 怪物書 / 怪物卡 → DB drop_data 表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-db-reactordrops" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 反應堆 → DB reactordrops 表
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-id-monsterstats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 怪物 ID → MonsterStats
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 子目錄分類用途
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 異常 / 特殊情況
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. 異常 / 特殊情況">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 命名格式異常 (11 隻)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 怪物書 vs 怪物卡
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3 重複怪物卡配對
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 代表性檔案 (12 個樣本)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. 代表性檔案 (12 個樣本)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        怪物書樣本 (10 個)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反應堆樣本 (2 個)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 整合資料流
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 統計匯總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="w1-7-083monsterbook">W1-7 — 怪物圖鑑 (083MonsterBook) 索引分析報告<a class="headerlink" href="#w1-7-083monsterbook" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p><strong>純技術拆解</strong>,不下結論、不評論。
+分析對象: <code>C:\Users\e7896\AppData\Local\Temp\gmspeek\083怪物掉落与反应堆数据\083怪物掉落与反应堆数据\</code> 目錄下的怪物 / 反應堆 / 任務掉落資料。
+比對對象: <code>C:\MUWORK\GAME\MAPLESOTRY\04-Emulators\GMS-v083-Cosmic\src\main\java\server\life\*</code> + <code>server\maps\ReactorDropEntry.java</code> + <code>db\tables\009-drop.sql</code> + <code>db\data\131-reactordrops-data.sql</code>。</p>
+</blockquote>
+<hr />
+<h2 id="0">0. 全域統計<a class="headerlink" href="#0" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>統計項</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>總 <code>.txt</code> 檔案 (整個目錄樹)</td>
+<td><strong>1,137</strong></td>
+</tr>
+<tr>
+<td><code>083MonsterBook/</code> 內 <code>.txt</code></td>
+<td><strong>365</strong></td>
+</tr>
+<tr>
+<td><code>083任务/</code> 內 <code>.txt</code></td>
+<td>65 (任務腳本, 非掉落)</td>
+</tr>
+<tr>
+<td><code>083反应堆数据/</code> 內 <code>.txt</code></td>
+<td><strong>146</strong></td>
+</tr>
+<tr>
+<td><code>任务类怪物/</code> 內 <code>.txt</code></td>
+<td>66</td>
+</tr>
+<tr>
+<td><code>MonsterBook没有的/</code> 內 <code>.txt</code></td>
+<td>115</td>
+</tr>
+<tr>
+<td><code>活动类/</code> 內 <code>.txt</code></td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>待验证的怪/</code> 內 <code>.txt</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>补全技能书掉落/</code> 內 <code>.txt</code></td>
+<td>11</td>
+</tr>
+<tr>
+<td>怪物卡 (<code>083怪物卡.txt</code>)</td>
+<td>352 行 (單檔)</td>
+</tr>
+<tr>
+<td>怪物書整合 (<code>7.27MonsterBook.txt</code>)</td>
+<td>11,070 行 (單檔)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>「1,138 個 .txt」實際總數為 <strong>1,137</strong>,差距 1 應來自外層 <code>083怪物掉落与反应堆数据/</code> 也含 <code>.txt</code>。</p>
+</blockquote>
+<hr />
+<h2 id="1-083monsterbook">1. 檔案命名規律 (083MonsterBook/)<a class="headerlink" href="#1-083monsterbook" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 正規格式<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>&lt;ID&gt; &lt;名稱&gt; &lt;等級&gt;[   @][自加/验证/++++].txt
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>區段</th>
+<th>說明</th>
+<th>例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;ID&gt;</code></td>
+<td>怪物 WZ ID (6 或 7 位數字)</td>
+<td><code>100100</code>, <code>9400112</code></td>
+</tr>
+<tr>
+<td>名稱</td>
+<td>怪物中文名 (1~10 字)</td>
+<td><code>嫩寶</code>, <code>黑道保鑣</code></td>
+</tr>
+<tr>
+<td>等級</td>
+<td>整數 1~180</td>
+<td><code>1</code>, <code>152</code></td>
+</tr>
+<tr>
+<td><code>@</code></td>
+<td>BOSS 標記 (可選)</td>
+<td><code>@</code></td>
+</tr>
+<tr>
+<td>尾巴</td>
+<td>人工標註 (<code>自加++++</code>, <code>验证</code>)</td>
+<td><code>自加++++++</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="12">1.2 解析結果<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>解析成功</td>
+<td><strong>363</strong> / 365 (99.5%)</td>
+</tr>
+<tr>
+<td>完全無法解析</td>
+<td>2 (<code>7130001 地獄獵犬72.txt</code> 缺空白, <code>8820001 皮卡啾.txt</code> 無等級)</td>
+</tr>
+<tr>
+<td>含 <code>@</code> (BOSS) 標記</td>
+<td><strong>65</strong></td>
+</tr>
+<tr>
+<td>含人工尾巴 (<code>自加/验证/++++</code>)</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13">1.3 範例<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>100100 嫩寶 1.txt                          ← 等級 1,新手怪
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>100101 藍寶 2.txt
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1110100  綠菇菇 15.txt                     ← 名稱前多空白
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>9400112 黑道保鑣 152    @.txt              ← BOSS 152 等級
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>9400205 藍色蘑菇王 90    @.txt
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>5090000 冥界幽靈 56    @ 自加++++++.txt    ← 玩家自加掉落
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>8830007 巨魔蝙蝠怪 84    @没有这个怪.txt   ← 待驗證
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>9400569 大蛋糕    @@++++++.txt             ← 雙 @ 標記 (格式異常)
+</code></pre></div>
+<hr />
+<h2 id="2-id">2. 怪物 ID 範圍與等級分佈<a class="headerlink" href="#2-id" title="Permanent link">&para;</a></h2>
+<h3 id="21-id">2.1 ID 範圍<a class="headerlink" href="#21-id" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最小 ID</td>
+<td><code>100100</code> (嫩寶)</td>
+</tr>
+<tr>
+<td>最大 ID</td>
+<td><code>9500317</code> (小雪人)</td>
+</tr>
+<tr>
+<td>6 位 ID (舊)</td>
+<td>11 個 (100100~210100)</td>
+</tr>
+<tr>
+<td>7 位 ID (現代)</td>
+<td>352 個</td>
+</tr>
+<tr>
+<td>重複 ID</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-id">2.2 ID 第一碼 (區域代碼) 分佈<a class="headerlink" href="#22-id" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>前綴</th>
+<th>數量</th>
+<th>推測區域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1xxxxxx</code></td>
+<td>11</td>
+<td>弓箭手村 / 維多利亞港近郊</td>
+</tr>
+<tr>
+<td><code>2xxxxxx</code></td>
+<td>31</td>
+<td>魔法森林 / 弓箭手村 2 段</td>
+</tr>
+<tr>
+<td><code>3xxxxxx</code></td>
+<td>56</td>
+<td>武陵 / 冰原雪域</td>
+</tr>
+<tr>
+<td><code>4xxxxxx</code></td>
+<td>51</td>
+<td>地球防禦本部 / 神木村</td>
+</tr>
+<tr>
+<td><code>5xxxxxx</code></td>
+<td>47</td>
+<td>玩具城 / 地球防禦本部深層</td>
+</tr>
+<tr>
+<td><code>6xxxxxx</code></td>
+<td>33</td>
+<td>地球防禦本部 2 段</td>
+</tr>
+<tr>
+<td><code>7xxxxxx</code></td>
+<td>28</td>
+<td>新葉城 / 桃花源</td>
+</tr>
+<tr>
+<td><code>8xxxxxx</code></td>
+<td>72</td>
+<td>黃金寺院 / 時間神殿</td>
+</tr>
+<tr>
+<td><code>9xxxxxx</code></td>
+<td>23</td>
+<td>PQ 活動怪 / 隱藏地圖</td>
+</tr>
+</tbody>
+</table>
+<h3 id="23">2.3 等級分佈<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>等級區段</th>
+<th>怪物數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新手區 (&lt;30)</td>
+<td>56</td>
+</tr>
+<tr>
+<td>中期 (30~59)</td>
+<td>157</td>
+</tr>
+<tr>
+<td>中後期 (60~99)</td>
+<td>98</td>
+</tr>
+<tr>
+<td>後期 (100~149)</td>
+<td>36</td>
+</tr>
+<tr>
+<td>頂級 (150~199)</td>
+<td>4</td>
+</tr>
+<tr>
+<td>終極 (≥200)</td>
+<td>0</td>
+</tr>
+<tr>
+<td><strong>總計</strong></td>
+<td><strong>351</strong></td>
+</tr>
+<tr>
+<td>平均等級</td>
+<td><strong>56.7</strong></td>
+</tr>
+</tbody>
+</table>
+<p>BOSS (<code>@</code>) 等級範圍: <strong>20 ~ 180</strong>,共 65 隻。</p>
+<hr />
+<h2 id="3">3. 怪物書欄位結構<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31-7-tab">3.1 每行格式 (7 個 TAB 分隔欄位)<a class="headerlink" href="#31-7-tab" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&lt;lineIdx&gt; &lt;monsterId&gt; &lt;itemId&gt; &lt;minQty&gt; &lt;maxQty&gt; &lt;questId&gt; &lt;chance&gt;
+</code></pre></div>
+<blockquote>
+<p>經全 11,070 行驗證: <strong>100% 都是 7 個 tab 分隔欄位</strong>,無例外。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>名稱</th>
+<th>範例</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>lineIdx</code></td>
+<td><code>1</code></td>
+<td>行編號 (怪物書內固定為 1)</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>monsterId</code></td>
+<td><code>100100</code></td>
+<td>對應 WZ <code>Monster.wz</code> ID,亦即 <code>dropperid</code></td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>itemId</code></td>
+<td><code>4000019</code> / <code>0</code></td>
+<td>道具 WZ ID;<code>0</code> = 楓幣 (meso)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>minQty</code></td>
+<td><code>1</code></td>
+<td>最小掉落數量</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>maxQty</code></td>
+<td><code>1</code></td>
+<td>最大掉落數量</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>questId</code></td>
+<td><code>0</code> / <code>1</code></td>
+<td>任務過濾 ID;<code>0</code> = 非任務道具</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>chance</code></td>
+<td><code>400000</code></td>
+<td>掉落機率分母</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32">3.2 統計<a class="headerlink" href="#32" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>總掉落行數</td>
+<td><strong>11,070</strong></td>
+</tr>
+<tr>
+<td><code>itemId=0</code> (楓幣)</td>
+<td>918 行 (8.3%)</td>
+</tr>
+<tr>
+<td><code>itemId!=0</code> (道具)</td>
+<td>10,152 行 (91.7%)</td>
+</tr>
+<tr>
+<td><code>questId=0</code></td>
+<td>11,068 行</td>
+</tr>
+<tr>
+<td><code>questId=1</code></td>
+<td>2 行</td>
+</tr>
+<tr>
+<td><code>chance</code> 範圍</td>
+<td>129 ~ 700,002</td>
+</tr>
+<tr>
+<td><code>chance</code> 平均</td>
+<td>46,255</td>
+</tr>
+<tr>
+<td>常見 chance</td>
+<td><code>250000</code>(918)、<code>9000</code>(840)、<code>9300</code>(536)、<code>5500</code>(451)</td>
+</tr>
+<tr>
+<td><code>minQty</code> 常見值</td>
+<td><code>1</code> (9,883 次,佔 89%)</td>
+</tr>
+<tr>
+<td><code>maxQty</code> 範圍</td>
+<td>1 ~ 32,400</td>
+</tr>
+<tr>
+<td>楓幣 (itemId=0) 數量分佈</td>
+<td><code>1~2</code>(低等)、<code>22800~24320</code>(黑道)、<code>7200~8100</code>(藍色蘑菇王)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33-id-2">3.3 道具 ID 前 2 碼 (大類) 分佈<a class="headerlink" href="#33-id-2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>前綴</th>
+<th>行數</th>
+<th>推測類別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>10xxxxxx</code></td>
+<td>3,327</td>
+<td>武器</td>
+</tr>
+<tr>
+<td><code>20xxxxxx</code></td>
+<td>2,958</td>
+<td>消耗品 (藥水/捲軸)</td>
+</tr>
+<tr>
+<td><code>40xxxxxx</code></td>
+<td>1,566</td>
+<td>雜項 (材料)</td>
+</tr>
+<tr>
+<td><code>14xxxxxx</code></td>
+<td>800</td>
+<td>套裝 / 披風</td>
+</tr>
+<tr>
+<td><code>41xxxxxx</code></td>
+<td>579</td>
+<td>礦石 / 材料</td>
+</tr>
+<tr>
+<td><code>13xxxxxx</code></td>
+<td>538</td>
+<td>道具 (其他)</td>
+</tr>
+<tr>
+<td><code>22xxxxxx</code></td>
+<td>242</td>
+<td>特殊道具</td>
+</tr>
+<tr>
+<td><code>11xxxxxx</code></td>
+<td>79</td>
+<td>武器細項</td>
+</tr>
+<tr>
+<td><code>23xxxxxx</code></td>
+<td>56</td>
+<td>怪物卡 (<code>238xxxx</code>)</td>
+</tr>
+<tr>
+<td><code>30xxxxxx</code></td>
+<td>3</td>
+<td>礦石類</td>
+</tr>
+</tbody>
+</table>
+<h3 id="34-id-4-top-10">3.4 道具 ID 前 4 碼常見中類 (Top 10)<a class="headerlink" href="#34-id-4-top-10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>前 4 碼</th>
+<th>行數</th>
+<th>推測類別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2040xx</code></td>
+<td>702</td>
+<td>弓矢</td>
+</tr>
+<tr>
+<td><code>2000xx</code></td>
+<td>680</td>
+<td>藥水</td>
+</tr>
+<tr>
+<td><code>1002xx</code></td>
+<td>602</td>
+<td>短劍</td>
+</tr>
+<tr>
+<td><code>4130xx</code></td>
+<td>545</td>
+<td>礦石類</td>
+</tr>
+<tr>
+<td><code>1072xx</code></td>
+<td>513</td>
+<td>棍棒</td>
+</tr>
+<tr>
+<td><code>1082xx</code></td>
+<td>453</td>
+<td>長槍</td>
+</tr>
+<tr>
+<td><code>2044xx</code></td>
+<td>446</td>
+<td>弩矢</td>
+</tr>
+<tr>
+<td><code>4020xx</code></td>
+<td>343</td>
+<td>礦石</td>
+</tr>
+<tr>
+<td><code>4010xx</code></td>
+<td>325</td>
+<td>礦石</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-reactor">4. 反應堆 (Reactor) 欄位結構<a class="headerlink" href="#4-reactor" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 檔案命名<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>&lt;reactorId&gt;.txt
+</code></pre></div>
+<p>例:<code>1012000.txt</code>、<code>1022000.txt</code> ... (146 個檔案)</p>
+<h3 id="42-5-tab">4.2 每行格式 (5 個 TAB 分隔欄位)<a class="headerlink" href="#42-5-tab" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&lt;lineIdx&gt; &lt;reactorId&gt; &lt;itemId&gt; &lt;chance&gt; &lt;questId&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>名稱</th>
+<th>範例</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>lineIdx</code></td>
+<td><code>1</code></td>
+<td>行編號</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>reactorId</code></td>
+<td><code>1012000</code></td>
+<td>反應堆 WZ ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>itemId</code></td>
+<td><code>2000000</code></td>
+<td>道具 ID</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>chance</code></td>
+<td><code>6</code></td>
+<td>掉落機率</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>questId</code></td>
+<td><code>-1</code></td>
+<td>任務過濾;<code>-1</code> = 非任務</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43">4.3 統計<a class="headerlink" href="#43" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>總反應堆檔案</td>
+<td>146</td>
+</tr>
+<tr>
+<td>總掉落行</td>
+<td><strong>1,099</strong></td>
+</tr>
+<tr>
+<td>reactorId 範圍</td>
+<td><code>2001</code> ~ <code>9202012</code></td>
+</tr>
+<tr>
+<td>唯一 reactor 數</td>
+<td>146</td>
+</tr>
+<tr>
+<td>平均每反應堆掉落</td>
+<td>7.5</td>
+</tr>
+<tr>
+<td>最大掉落數</td>
+<td>64</td>
+</tr>
+<tr>
+<td><code>chance</code> 範圍</td>
+<td>1 ~ 250</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44">4.4 反應堆範例<a class="headerlink" href="#44" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1   1012000 2000000 6   -1
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>1   1012000 4000003 6   -1
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>1   1012000 4031150 3   2067      ← 任務道具, questId=2067
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>1   1012000 4032143 6   20717
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>1   1022000 4031452 1   6201       ← 任務道具
+</code></pre></div>
+<hr />
+<h2 id="5-083txt">5. 怪物卡 (083怪物卡.txt) 結構<a class="headerlink" href="#5-083txt" title="Permanent link">&para;</a></h2>
+<p>單一檔,共 <strong>352 行</strong>。</p>
+<h3 id="7-tab">格式 (7 個 TAB 欄位,與怪物書相同)<a class="headerlink" href="#7-tab" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>&lt;lineIdx&gt; &lt;monsterId&gt; &lt;cardItemId&gt; &lt;minQty&gt; &lt;maxQty&gt; &lt;questId&gt; &lt;chance&gt;
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>值</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><code>1</code></td>
+<td>行編號</td>
+</tr>
+<tr>
+<td>1</td>
+<td><code>100101</code></td>
+<td>monster ID</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>2380001</code></td>
+<td>怪物卡道具 ID (<code>238xxxx</code>)</td>
+</tr>
+<tr>
+<td>3-6</td>
+<td>同怪物書</td>
+<td>數量/任務/機率</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">統計<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>唯一 cardItemId</td>
+<td><strong>339</strong></td>
+</tr>
+<tr>
+<td>cardItemId 範圍</td>
+<td><code>2380001</code> ~ <code>2388070</code></td>
+</tr>
+<tr>
+<td><code>chance</code> 範圍</td>
+<td>固定 <code>10001</code> (大多數) / <code>24000</code> (極少)</td>
+</tr>
+<tr>
+<td>重複 (同卡配多怪)</td>
+<td>例:<code>2381033</code> 同時配 3000002/3/4;<code>2381044</code> 配多隻</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>怪物書掉落行中含 <code>238xxxx</code> (怪物卡) 的僅 <strong>1 行</strong> — 即怪物書與怪物卡是<strong>兩套獨立表</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="6-cosmic">6. 與 Cosmic 源碼比對<a class="headerlink" href="#6-cosmic" title="Permanent link">&para;</a></h2>
+<h3 id="61-db-drop_data">6.1 怪物書 / 怪物卡 → DB <code>drop_data</code> 表<a class="headerlink" href="#61-db-drop_data" title="Permanent link">&para;</a></h3>
+<p><strong>Cosmic <code>MonsterInformationProvider.java</code> L158~163:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="s">"SELECT itemid, chance, minimum_quantity, maximum_quantity, questid FROM drop_data WHERE dropperid = ?"</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">ps</span><span class="p">.</span><span class="na">setInt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">monsterId</span><span class="p">);</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">...</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">ret</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">MonsterDropEntry</span><span class="p">(</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">"itemid"</span><span class="p">),</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">"chance"</span><span class="p">),</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">"minimum_quantity"</span><span class="p">),</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getInt</span><span class="p">(</span><span class="s">"maximum_quantity"</span><span class="p">),</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">rs</span><span class="p">.</span><span class="na">getShort</span><span class="p">(</span><span class="s">"questid"</span><span class="p">)</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="p">));</span>
+</code></pre></div>
+<p><strong>Cosmic <code>MonsterDropEntry.java</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">public</span><span class="w"> </span><span class="nf">MonsterDropEntry</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">itemId</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">chance</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Minimum</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">Maximum</span><span class="p">,</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">questid</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">questid</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">itemId</span><span class="p">,</span><span class="w"> </span><span class="n">chance</span><span class="p">,</span><span class="w"> </span><span class="n">Minimum</span><span class="p">,</span><span class="w"> </span><span class="n">Maximum</span><span class="p">;</span>
+</code></pre></div>
+<p><strong>對照 <code>.txt</code> 行格式:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>.txt</code> 欄位</th>
+<th>DB 欄位</th>
+<th>Java 欄位</th>
+<th>對應</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>monsterId</code> (col 1)</td>
+<td><code>dropperid</code> (WHERE)</td>
+<td><code>monsterId</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>itemId</code> (col 2)</td>
+<td><code>itemid</code></td>
+<td><code>itemId</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>minQty</code> (col 3)</td>
+<td><code>minimum_quantity</code></td>
+<td><code>Minimum</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>maxQty</code> (col 4)</td>
+<td><code>maximum_quantity</code></td>
+<td><code>Maximum</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>questId</code> (col 5)</td>
+<td><code>questid</code></td>
+<td><code>questid</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>chance</code> (col 6)</td>
+<td><code>chance</code></td>
+<td><code>chance</code></td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>結論:怪物書 <code>.txt</code> 與 Cosmic <code>drop_data</code> 表結構 100% 一致</strong>,只差一個 <code>lineIdx</code> 前綴欄位 (本資料加的,DB 沒有)。</p>
+</blockquote>
+<h3 id="62-db-reactordrops">6.2 反應堆 → DB <code>reactordrops</code> 表<a class="headerlink" href="#62-db-reactordrops" title="Permanent link">&para;</a></h3>
+<p><strong>Cosmic <code>009-drop.sql</code> L29~38:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">reactordrops</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">reactordropid</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="n">UNSIGNED</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">reactorid</span><span class="w">     </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">itemid</span><span class="w">        </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">chance</span><span class="w">        </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="n">questid</span><span class="w">       </span><span class="nb">INT</span><span class="w">          </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="s1">'-1'</span><span class="p">,</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">reactordropid</span><span class="p">),</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">    </span><span class="k">KEY</span><span class="w"> </span><span class="n">reactorid</span><span class="w"> </span><span class="p">(</span><span class="n">reactorid</span><span class="p">)</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="p">);</span>
+</code></pre></div>
+<p><strong>Cosmic <code>131-reactordrops-data.sql</code>:</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">reactordrops</span><span class="w"> </span><span class="p">(</span><span class="n">reactorid</span><span class="p">,</span><span class="w"> </span><span class="n">itemid</span><span class="p">,</span><span class="w"> </span><span class="n">chance</span><span class="p">,</span><span class="w"> </span><span class="n">questid</span><span class="p">)</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">2001</span><span class="p">,</span><span class="w"> </span><span class="mi">4031161</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1008</span><span class="p">),</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">       </span><span class="p">(</span><span class="mi">1012000</span><span class="p">,</span><span class="w"> </span><span class="mi">2000000</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">       </span><span class="p">(</span><span class="mi">1012000</span><span class="p">,</span><span class="w"> </span><span class="mi">4031150</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2067</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>對照反應堆 <code>.txt</code>:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>.txt</code> 欄位</th>
+<th>DB 欄位</th>
+<th>Java 欄位</th>
+<th>對應</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>reactorId</code> (col 1)</td>
+<td><code>reactorid</code></td>
+<td><code>ReactorDropEntry.itemId</code> 無</td>
+<td>✓ (檔名 = reactorid)</td>
+</tr>
+<tr>
+<td><code>itemId</code> (col 2)</td>
+<td><code>itemid</code></td>
+<td><code>ReactorDropEntry.itemId</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>chance</code> (col 3)</td>
+<td><code>chance</code></td>
+<td><code>ReactorDropEntry.chance</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>questId</code> (col 4)</td>
+<td><code>questid</code></td>
+<td><code>ReactorDropEntry.questid</code></td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>結論:反應堆 <code>.txt</code> 與 <code>reactordrops</code> 表結構 100% 一致</strong>。</p>
+</blockquote>
+<h3 id="63-id-monsterstats">6.3 怪物 ID → MonsterStats<a class="headerlink" href="#63-id-monsterstats" title="Permanent link">&para;</a></h3>
+<p><strong>Cosmic <code>MonsterStats.java</code> L40~54</strong> 公開欄位:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MonsterStats</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">changeable</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">exp</span><span class="p">,</span><span class="w"> </span><span class="n">hp</span><span class="p">,</span><span class="w"> </span><span class="n">mp</span><span class="p">,</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="n">PADamage</span><span class="p">,</span><span class="w"> </span><span class="n">PDDamage</span><span class="p">,</span><span class="w"> </span><span class="n">MADamage</span><span class="p">,</span><span class="w"> </span><span class="n">MDDamage</span><span class="p">,</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">               </span><span class="n">dropPeriod</span><span class="p">,</span><span class="w"> </span><span class="n">cp</span><span class="p">,</span><span class="w"> </span><span class="n">buffToGive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">removeAfter</span><span class="p">;</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">boss</span><span class="p">,</span><span class="w"> </span><span class="n">undead</span><span class="p">,</span><span class="w"> </span><span class="n">ffaLoot</span><span class="p">,</span><span class="w"> </span><span class="n">isExplosiveReward</span><span class="p">,</span><span class="w"> </span><span class="n">firstAttack</span><span class="p">,</span><span class="w"> </span><span class="n">removeOnMiss</span><span class="p">;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="p">...</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong><code>.txt</code> 檔名語意對應:</strong></p>
+<table>
+<thead>
+<tr>
+<th><code>.txt</code> 檔名區段</th>
+<th>MonsterStats 欄位</th>
+<th>對應</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;ID&gt;</code> (<code>100100</code>)</td>
+<td><code>monsterId</code> (WZ 索引鍵)</td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>&lt;名稱&gt;</code> (<code>嫩寶</code>)</td>
+<td><code>name</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>&lt;等級&gt;</code> (<code>1</code>)</td>
+<td><code>level</code></td>
+<td>✓</td>
+</tr>
+<tr>
+<td><code>@</code> 標記</td>
+<td><code>boss = true</code></td>
+<td>✓</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>結論:檔名編碼的 4 個欄位精準對應 MonsterStats 4 個欄位</strong>。</p>
+</blockquote>
+<hr />
+<h2 id="7">7. 子目錄分類用途<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>目錄</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>083MonsterBook/</code></td>
+<td><strong>主怪物圖鑑</strong> (本次分析主體,365 檔)</td>
+</tr>
+<tr>
+<td><code>7.27MonsterBook.txt</code></td>
+<td>怪物書<strong>整合單檔</strong> (11,070 行,與 083MonsterBook/ 一致)</td>
+</tr>
+<tr>
+<td><code>7.27MonsterBook没有的.txt</code></td>
+<td>未收錄的怪物清單</td>
+</tr>
+<tr>
+<td><code>083怪物卡.txt</code></td>
+<td>怪物卡掉落單獨表 (352 行)</td>
+</tr>
+<tr>
+<td><code>083任务/</code></td>
+<td>任務 NPC 對話/物品腳本 (非怪物)</td>
+</tr>
+<tr>
+<td><code>083反应堆数据/</code></td>
+<td><strong>反應堆</strong> (可破壞物件) 掉落 (146 檔)</td>
+</tr>
+<tr>
+<td><code>任务类怪物/</code></td>
+<td>任務限定怪物 (66 隻,多為 <code>9xxxxxx</code> 開頭)</td>
+</tr>
+<tr>
+<td><code>MonsterBook没有的/</code></td>
+<td>怪物書未收錄怪物 (115 隻)</td>
+</tr>
+<tr>
+<td><code>活动类/</code></td>
+<td>活動期間限定怪物 (12 隻,多含 <code>PQ</code> 標記)</td>
+</tr>
+<tr>
+<td><code>待验证的怪/</code></td>
+<td>待人工驗證怪物 (6 隻,檔名含 <code>没有这个怪</code>)</td>
+</tr>
+<tr>
+<td><code>补全技能书掉落/</code></td>
+<td>技能書掉落補完 (11 隻)</td>
+</tr>
+<tr>
+<td><code>7.27补全技能书掉落.txt</code></td>
+<td>整合版技能書掉落</td>
+</tr>
+<tr>
+<td><code>7.31.psc</code></td>
+<td>未知 (PSC 編譯檔?)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8">8. 異常 / 特殊情況<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<h3 id="81-11">8.1 命名格式異常 (11 隻)<a class="headerlink" href="#81-11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>類型</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>玩家自加 (<code>自加++++</code>)</td>
+<td><code>5090000 冥界幽靈 56    @ 自加++++++.txt</code></td>
+</tr>
+<tr>
+<td>玩家驗證 (<code>验证</code>)</td>
+<td><code>5120100 機器人堤安 54   @ 验证.txt</code></td>
+</tr>
+<tr>
+<td>待驗證 (<code>没有这个怪</code>)</td>
+<td><code>8830007 巨魔蝙蝠怪 84    @没有这个怪.txt</code></td>
+</tr>
+<tr>
+<td>雙 <code>@</code></td>
+<td><code>9400569 大蛋糕    @@++++++.txt</code></td>
+</tr>
+<tr>
+<td>無等級</td>
+<td><code>8820001 皮卡啾.txt</code></td>
+</tr>
+<tr>
+<td>名稱/等級無空白分隔</td>
+<td><code>7130001 地獄獵犬72.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-vs">8.2 怪物書 vs 怪物卡<a class="headerlink" href="#82-vs" title="Permanent link">&para;</a></h3>
+<ul>
+<li>怪物書 365 個檔案,<strong>怪物卡只配對其中 339 個怪物 ID</strong></li>
+<li>怪物卡的 <code>chance</code> 多為固定 <code>10001</code>(部分 <code>24000</code>、<code>40001</code>、<code>40000</code>)</li>
+<li>怪物書掉落中<strong>不含 <code>238xxxx</code></strong> 怪物卡道具 → 兩表獨立</li>
+</ul>
+<h3 id="83">8.3 重複怪物卡配對<a class="headerlink" href="#83" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>2381033</code> → 同時配 3000002 / 3000003 / 3000004</li>
+<li><code>2388020</code> → 同時配 8510000 / 8520000</li>
+<li><code>2381044</code> → 多隻 4xxxxxx 怪物</li>
+</ul>
+<hr />
+<h2 id="9-12">9. 代表性檔案 (12 個樣本)<a class="headerlink" href="#9-12" title="Permanent link">&para;</a></h2>
+<h3 id="10">怪物書樣本 (10 個)<a class="headerlink" href="#10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>檔名</th>
+<th>行數</th>
+<th>重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>100100 嫩寶 1.txt</code></td>
+<td>11</td>
+<td>等級 1 最低,典型新手怪</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>100101 藍寶 2.txt</code></td>
+<td>14</td>
+<td>含披風/帽子裝備掉落</td>
+</tr>
+<tr>
+<td>3</td>
+<td><code>1210100 肥肥 7.txt</code></td>
+<td>19</td>
+<td>經典楓葉地形怪</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>9400112 黑道保鑣 152    @.txt</code></td>
+<td>13</td>
+<td>BOSS,楓幣 22800~24320</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>9400205 藍色蘑菇王 90    @.txt</code></td>
+<td>30</td>
+<td>BOSS,楓幣 7200~8100</td>
+</tr>
+<tr>
+<td>6</td>
+<td><code>9500317 小雪人 10.txt</code></td>
+<td>3</td>
+<td>最少掉落行</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>5090000 冥界幽靈 56    @ 自加++++++.txt</code></td>
+<td>?</td>
+<td>玩家自加</td>
+</tr>
+<tr>
+<td>8</td>
+<td><code>8830007 巨魔蝙蝠怪 84    @没有这个怪.txt</code></td>
+<td>?</td>
+<td>待驗證</td>
+</tr>
+<tr>
+<td>9</td>
+<td><code>9400114 乐乐机  50    @没有这个怪.txt</code></td>
+<td>?</td>
+<td>待驗證 (ID 缺空白)</td>
+</tr>
+<tr>
+<td>10</td>
+<td><code>8820001 皮卡啾.txt</code></td>
+<td>?</td>
+<td>無等級</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2">反應堆樣本 (2 個)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>檔名</th>
+<th>行數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><code>1012000.txt</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>1022000.txt</code></td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10_1">10. 整合資料流<a class="headerlink" href="#10_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>083MonsterBook/&lt;ID&gt; 名稱 等級.txt    ←── drop_data (DB)
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>        │ (line by line: dropperid, itemid, min, max, quest, chance)
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        ▼
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>MonsterInformationProvider.retrieveDrop(monsterId)
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        ▼
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>MonsterDropEntry(itemId, chance, Minimum, Maximum, questid)
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        ▼
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>MapleMap.dropItemsFromMonster(...)
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        ▼
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>玩家點擊掉落物
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>083反应堆数据/&lt;reactorId&gt;.txt         ←── reactordrops (DB)
+<a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        │ (line by line: reactorid, itemid, chance, questid)
+<a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>        ▼
+<a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>ReactorDropEntry(itemId, chance, questid)
+<a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>        ▼
+<a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>MapleReactor.hitReactor(...)
+</code></pre></div>
+<hr />
+<h2 id="11_1">11. 統計匯總表<a class="headerlink" href="#11_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主目錄總 <code>.txt</code></td>
+<td>365</td>
+</tr>
+<tr>
+<td>解析成功率</td>
+<td>99.5%</td>
+</tr>
+<tr>
+<td>怪物 ID 範圍</td>
+<td>100,100 ~ 9,500,317</td>
+</tr>
+<tr>
+<td>等級範圍</td>
+<td>1 ~ 180</td>
+</tr>
+<tr>
+<td>平均等級</td>
+<td>56.7</td>
+</tr>
+<tr>
+<td>BOSS 數</td>
+<td>65</td>
+</tr>
+<tr>
+<td>總掉落行</td>
+<td>11,070</td>
+</tr>
+<tr>
+<td>楓幣行 (itemId=0)</td>
+<td>918</td>
+</tr>
+<tr>
+<td>道具行 (itemId!=0)</td>
+<td>10,152</td>
+</tr>
+<tr>
+<td>平均掉落/怪</td>
+<td>30.3</td>
+</tr>
+<tr>
+<td>反應堆檔案</td>
+<td>146</td>
+</tr>
+<tr>
+<td>反應堆掉落總行</td>
+<td>1,099</td>
+</tr>
+<tr>
+<td>怪物卡行</td>
+<td>352</td>
+</tr>
+<tr>
+<td>異常命名</td>
+<td>11</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p><strong>純技術分析完畢</strong>。後續若需導入,只需將 <code>083MonsterBook/*.txt</code> 去掉首欄 <code>lineIdx</code> 後,以 <code>\t</code> 分隔的 6 欄直接 <code>INSERT INTO drop_data (dropperid, itemid, chance, minimum_quantity, maximum_quantity, questid)</code>。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
