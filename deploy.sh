@@ -38,11 +38,15 @@ push() {
 # 先確保網站是最新的
 python gen_facts_index.py
 python gen_github_bookmarks.py
+python gen_standalone_bookmarks.py
 python tools/bookmarks/gen_bookmarks.py
 # anonymize_paths 對二進位字串表裡的 Windows 路徑會回傳 1 —— 那是客戶端
 # 自己的字串常數,不是本機路徑,verify_wiki_claims.py 也有意豁免。
 python tools/anonymize_paths.py || true
 python -m mkdocs build --strict
+# 獨立書籤頁不經 mkdocs(它是自帶版面的單一 HTML),手動放進輸出目錄
+mkdir -p site/standalone
+cp standalone/index.html site/standalone/index.html
 
 if [ "${1:-}" != "--pages" ]; then
   git add -A

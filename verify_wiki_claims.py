@@ -1090,6 +1090,66 @@ def check_console_chapter():
          "%d of %d" % (with_pitfall, len(entries)))
 
 
+def check_standalone_bookmarks():
+    """The standalone page is a second rendering of the same dataset. Guard
+    that it stays in step and that it is actually published."""
+    import json
+    import re
+
+    data_path = os.path.join(REPO, "tools", "bookmarks", "_repos.json")
+    if not os.path.exists(data_path):
+        skip("bookmark dataset present", data_path)
+        return
+    n_expected = len(json.load(open(data_path, encoding="utf-8")))
+
+    src = os.path.join(REPO, "standalone", "index.html")
+    if not os.path.exists(src):
+        skip("standalone bookmark page present", src)
+        return
+
+    body = open(src, encoding="utf-8").read()
+
+    # it must be a complete document, not a mkdocs fragment
+    check("standalone page is a whole HTML document", True,
+          body.lstrip().lower().startswith("<!doctype html"))
+    # no Material chrome: that is the entire point of the page
+    for token in ("md-sidebar", "md-header", "md-nav", "md-content"):
+        check("standalone page has no Material %s" % token, 0,
+              body.count(token))
+
+    m = re.search(r"const DATA=(\[.*?\]), CATS=", body, re.S)
+    if m is None:
+        check("standalone page embeds its dataset", True, False)
+        return
+    data = json.loads(m.group(1))
+    n = sum(len(c["items"]) for c in data)
+    check("standalone page carries every project", n_expected, n)
+
+    bad = [it["url"] for c in data for it in c["items"]
+           if not it["url"].startswith("https://github.com/")]
+    check("standalone page links only to github", 0, len(bad))
+
+    # both renderings must agree, or the two pages drift
+    page = os.path.join(DOCS, "70-resources", "github-bookmarks", "index.md")
+    if os.path.exists(page):
+        w = re.findall(r"^\| \[([^\]]+)\]\(https://github\.com/",
+                       open(page, encoding="utf-8").read(), re.M)
+        check("standalone and embedded pages list the same projects", n,
+              len(w))
+        s = {it["full_name"] for c in data for it in c["items"]}
+        check("both pages reference identical repos", 0, len(s - set(w)))
+
+    # it must ship with the site
+    shipped = os.path.join(REPO, "site", "standalone", "index.html")
+    soft("standalone page is copied into the site output",
+         os.path.exists(shipped), shipped)
+
+    home = os.path.join(DOCS, "index.md")
+    if os.path.exists(home):
+        check("home page links the standalone bookmark page", True,
+              "standalone" in open(home, encoding="utf-8").read())
+
+
 def main():
     import datetime
 
@@ -1124,6 +1184,7 @@ def main():
     check_no_local_paths()
     print("\nBookmark pipeline")
     check_bookmarks_pipeline()
+    check_standalone_bookmarks()
     print("\nConsole chapter")
     check_console_chapter()
     print("\nWiki self-consistency")

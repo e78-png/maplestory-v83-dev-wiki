@@ -100,6 +100,11 @@ js = ("(function(){\n"
 
 out = """# GitHub 專案書籤
 
+!!! tip "想要乾淨的全屏書籤頁?"
+    本頁嵌在 WIKI 版面裡(左側有導覽、右側有目錄)。若只要書籤本身,
+    改用 **[全屏獨立版 →](../../standalone/)** —— 沒有任何框架元素,
+    純粹是圖卡 + 一句話 + 連結,適合貼到別處或當速查表。
+
 > **完整可互動版本**(單檔、離線、雙擊即開)位於
 > `wiki/tools/bookmarks/楓之谷專案書籤.html`。
 > 重新產生:`python tools/bookmarks/gen_bookmarks.py`。
