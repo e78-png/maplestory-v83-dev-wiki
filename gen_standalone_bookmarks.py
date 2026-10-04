@@ -192,8 +192,8 @@ def main():
     } for k, t, h in CATS]
 
     total = sum(len(c["items"]) for c in data)
-    # 相對於 standalone/ 的 WIKI 內嵌版路徑
-    back = "../70-resources/github-bookmarks/"
+    # 這頁掛在網站根目錄的 /standalone/,回連用絕對路徑較不會受部署深度影響
+    back = "/70-resources/github-bookmarks/"
 
     # 這是一支獨立 HTML,不經 mkdocs:沒有側欄、目錄、頁首,就是一張書籤頁。
     html = f"""<!DOCTYPE html>
@@ -238,8 +238,12 @@ def main():
 </html>
 """
 
-    # 直接寫進 docs/ 之外的 standalone/,部署時複製到 site/standalone/
-    out_dir = os.path.join(REPO, "standalone")
+    # 寫成 docs/standalone/index.html。副檔名是 .html 而非 .md,
+    # mkdocs 會原樣複製、不經 markdown 或 Material 渲染 —— 這正是要的:
+    # 沒有側欄、沒有目錄、沒有頁首。
+    # (不能用 mkdocs 的 `extra:` 做這件事,它只接受設定項,不會複製目錄;
+    #  `template: null` 也會讓 Material 拋錯。)
+    out_dir = os.path.join(REPO, "docs", "standalone")
     os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "index.html")
     io.open(out, "w", encoding="utf-8").write(html)

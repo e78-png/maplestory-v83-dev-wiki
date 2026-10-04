@@ -1102,7 +1102,7 @@ def check_standalone_bookmarks():
         return
     n_expected = len(json.load(open(data_path, encoding="utf-8")))
 
-    src = os.path.join(REPO, "standalone", "index.html")
+    src = os.path.join(DOCS, "standalone", "index.html")
     if not os.path.exists(src):
         skip("standalone bookmark page present", src)
         return
@@ -1143,6 +1143,10 @@ def check_standalone_bookmarks():
     shipped = os.path.join(REPO, "site", "standalone", "index.html")
     soft("standalone page is copied into the site output",
          os.path.exists(shipped), shipped)
+    # and it must have been copied verbatim, not run through the template
+    if os.path.exists(src) and os.path.exists(shipped):
+        check("standalone page ships verbatim", open(src, "rb").read()[:400],
+              open(shipped, "rb").read()[:400])
 
     home = os.path.join(DOCS, "index.md")
     if os.path.exists(home):

@@ -43,10 +43,9 @@ python tools/bookmarks/gen_bookmarks.py
 # anonymize_paths 對二進位字串表裡的 Windows 路徑會回傳 1 —— 那是客戶端
 # 自己的字串常數,不是本機路徑,verify_wiki_claims.py 也有意豁免。
 python tools/anonymize_paths.py || true
+# 獨立書籤頁由 mkdocs.yml 的 extra: 複製進輸出,不需手動 cp
+# (mkdocs 會 clean site/,手動放的檔案會被清掉)
 python -m mkdocs build --strict
-# 獨立書籤頁不經 mkdocs(它是自帶版面的單一 HTML),手動放進輸出目錄
-mkdir -p site/standalone
-cp standalone/index.html site/standalone/index.html
 
 if [ "${1:-}" != "--pages" ]; then
   git add -A
