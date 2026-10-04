@@ -2836,6 +2836,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2852,6 +2870,47 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速篩選
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整清單
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2994,6 +3053,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        快速篩選
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整清單
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3021,6 +3110,7 @@
 深度分析(IDA 位址、UI 類別、封包協議)請見本 WIKI 其他章節;
 機器可讀的事實索引見 <code>wiki/docs/facts.json</code>。</p>
 </blockquote>
+<h2 id="_1">快速篩選<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <div class="bm-toolbar">
   <input type="search" id="bmQ" placeholder="搜尋專案名稱、用途說明、版本…（例如 v83 / wz / 解析度）">
   <select id="lang"><option value="">所有語言</option><option value="Batch">Batch</option><option value="C">C</option><option value="C#">C#</option><option value="C++">C++</option><option value="CSS">CSS</option><option value="CoffeeScript">CoffeeScript</option><option value="Dart">Dart</option><option value="Elixir">Elixir</option><option value="Go">Go</option><option value="HTML">HTML</option><option value="Java">Java</option><option value="JavaScript">JavaScript</option><option value="Kotlin">Kotlin</option><option value="Lua">Lua</option><option value="None">None</option><option value="PHP">PHP</option><option value="Pascal">Pascal</option><option value="Python">Python</option><option value="Rust">Rust</option><option value="Shell">Shell</option><option value="TypeScript">TypeScript</option><option value="Visual Basic">Visual Basic</option><option value="Vue">Vue</option><option value="—">—</option></select>
@@ -3031,6 +3121,1963 @@
 <div class="bm-nav" id="bmNav"></div>
 <div id="bmMain"></div>
 
+<h2 id="_2">完整清單<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">以下為靜態索引</p>
+<p>上方的卡片可互動篩選;本表是同一份資料的純文字版,
+供站內搜尋與文字檢索使用(JS 動態渲染的內容不會被索引)。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>專案</th>
+<th>★</th>
+<th>版本</th>
+<th>語言</th>
+<th>狀態</th>
+<th>類別</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/vdsk/gr2dpatcher">vdsk/gr2dpatcher</a></td>
+<td>2</td>
+<td>v83(需繞過雜湊)</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 渲染層與解析度 (Gr2D / DX / HD)</td>
+<td>★ 把 gr2d.dll 補丁成「原生 1080p」而非拉伸。用法:把 gr2d.dll 拖進 patcher,輸出 gr2d_patched。對『讓 v83 看起來像高版本』最直接的一個專案。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Sheilem/maplewright">Sheilem/maplewright</a></td>
+<td>2</td>
+<td>v83</td>
+<td>Rust</td>
+<td>活躍</td>
+<td>★ 渲染層與解析度 (Gr2D / DX / HD)</td>
+<td>Rust + wgpu + WebAssembly 的開源 HD 引擎,相容 v83 內容。要徹底重寫渲染層的現代化路線。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Riremito/MapleStoryWindowMode">Riremito/MapleStoryWindowMode</a></td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>維護中</td>
+<td>★ 渲染層與解析度 (Gr2D / DX / HD)</td>
+<td>讓舊版客戶端在現代螢幕以視窗模式執行。跨多版本通用。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vdsk/gr2dpatcher64">vdsk/gr2dpatcher64</a></td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 渲染層與解析度 (Gr2D / DX / HD)</td>
+<td>gr2dpatcher 的 64 位元版本。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/444Ro666/MapleEzorsia-v2">444Ro666/MapleEzorsia-v2</a></td>
+<td>149</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>★ v83 高解析度客戶端 DLL。★ 做法是『換掉整個 DX8 渲染層』(Gr2D_DX8/DX9.dll)而非 hook,比改版本乾淨;附 localhost 導向。★ 做『v83 變高版本外觀』的第一個要看。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/D363N6UY/MapleStory-tool">D363N6UY/MapleStory-tool</a></td>
+<td>84</td>
+<td>—</td>
+<td>C</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>ijl15.dll for MapleStory。IJL proxy 注入工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleMyth/ClientImageLoader">MapleMyth/ClientImageLoader</a></td>
+<td>82</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>可注入客戶端的 DLL,從外部載入圖片資源。改素材不必重打包 WZ 的做法。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/izarooni/MapleEzorsia">izarooni/MapleEzorsia</a></td>
+<td>61</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>修改 v83 客戶端記憶體以支援自訂解析度。用了 Microsoft Detours + code cave (JMP/NOP 填充),是 hook 技術的教科書範例。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Hucaru/maplestory-client-hook">Hucaru/maplestory-client-hook</a></td>
+<td>43</td>
+<td>28</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>示範如何製作 hook 客戶端函式的 DLL,附說明。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/aaaddress1/CrackShield-MapleStory-Hack">aaaddress1/CrackShield-MapleStory-Hack</a></td>
+<td>25</td>
+<td>—</td>
+<td>Pascal</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>楓之谷 hack 外掛。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/maplestoryDwang/dwang-maplestory-053-client">maplestoryDwang/dwang-maplestory-053-client</a></td>
+<td>10</td>
+<td>v053</td>
+<td>C++</td>
+<td>活躍</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>★★ 整份清單中技術文件最完整的專案。GMS053 客戶端 DLL,逐條記錄:解析度改寫(用 Gr2D 的 Destroy/Create 插槽重建裝置)、UI 版面(CWndMan::m_pOrgWindow 單一原點)、相機範圍 clamp、狀態列寬度、滑鼠座標映射、工具提示邊界、選單定位。文中明確交叉引用 Kaentake 的 v83 做法,兩者互補。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TEAM-SPIRIT-Productions/AuthHook176_RPC">TEAM-SPIRIT-Productions/AuthHook176_RPC</a></td>
+<td>7</td>
+<td>v176</td>
+<td>C</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>v176 Authhook + Discord Rich Presence。★ 示範在客戶端掛 hook 並整合外部功能(Discord 狀態同步)的完整案例。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lastbattle/maplepacket-optimizations">lastbattle/maplepacket-optimizations</a></td>
+<td>5</td>
+<td>—</td>
+<td>Java</td>
+<td>活躍</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>以基準測試驅動的封包加解密與 I/O 最佳化。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/shuabritze/Agarcium">shuabritze/Agarcium</a></td>
+<td>4</td>
+<td>MS2</td>
+<td>C++</td>
+<td>維護中</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>楓之谷 2 的 Proxy DLL &amp; Patcher,代理 DLL 架構的完整範例。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/moody-nl/maplestoryv83hacks">moody-nl/maplestoryv83hacks</a></td>
+<td>2</td>
+<td>v83</td>
+<td>Python</td>
+<td>活躍</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>v83 私服相關的 hack / 修改。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Kustale/MapleStory2-Client">Kustale/MapleStory2-Client</a></td>
+<td>MS2</td>
+<td>C++</td>
+<td>維護中</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>以 Maple2.dll 為基礎的客戶端。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/welshe/MapleStory-V259-CRC-Bypass">welshe/MapleStory-V259-CRC-Bypass</a></td>
+<td>v259</td>
+<td>—</td>
+<td>維護中</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>CRC 檢查繞過。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/welshe/MapleStory-V259-P-Invoke-Bypass">welshe/MapleStory-V259-P-Invoke-Bypass</a></td>
+<td>v259</td>
+<td>C#</td>
+<td>維護中</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>P/Invoke 繞過。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStory-Archive/athene-noctua">MapleStory-Archive/athene-noctua</a></td>
+<td>全版本(舊客戶端)</td>
+<td>None</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>為舊版客戶端做的 mod,示範老客戶端 mod 的架構與做法。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStory-Archive/TerraStory">MapleStory-Archive/TerraStory</a></td>
+<td>—</td>
+<td>None</td>
+<td>靜止</td>
+<td>★ 客戶端修改 (Hook / DLL / Code Cave)</td>
+<td>楓之谷風格的 mod 專案。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/jnpl95/Timelapse">jnpl95/Timelapse</a></td>
+<td>152</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>★ v83 Trainer,★152。示範如何對 v83 客戶端做記憶體層的讀寫與注入,外掛開發的經典參考。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vinmorel/MapleWrapper">vinmorel/MapleWrapper</a></td>
+<td>44</td>
+<td>92</td>
+<td>Python</td>
+<td>靜止</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>GMS v92 以下 wrapper api。擷取遊戲即時狀態(HP/MP/座標等),讓外部程式讀取。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/67-6f-64/Firefly">67-6f-64/Firefly</a></td>
+<td>18</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>Trainer 框架。架構化的客戶端記憶體存取方案,比單一 Trainer 更容易擴充。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/MemorySDK">zhyonc/MemorySDK</a></td>
+<td>5</td>
+<td>83</td>
+<td>C++</td>
+<td>活躍</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>★★ 輕量記憶體存取函式庫,專為「簡化 hook 客戶端函式」而設計。★ 做 v83 外掛/插件最實用的基底 —— 不用自己處理行程代碼頁、位址解析、指標包裝。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unsafeblackcat/MapleStoryEx">unsafeblackcat/MapleStoryEx</a></td>
+<td>4</td>
+<td>v83</td>
+<td>C++</td>
+<td>活躍</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>Global MapleStory v083 外掛。★ 少見的『v83 專用外掛』原始碼,做客戶端擴充可直接參考。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/siriusdemon/WGCapturer">siriusdemon/WGCapturer</a></td>
+<td>4</td>
+<td>—</td>
+<td>C++</td>
+<td>維護中</td>
+<td>★ 外掛 / Trainer / 記憶體存取</td>
+<td>用 Windows Graphics Capture API 擷取畫面的輕量函式庫。做遊戲內疊加層時的擷取基礎。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Munbin-Lee/ModPacker">Munbin-Lee/ModPacker</a></td>
+<td>7</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 素材掛載 (IMG 模式 / .mod)</td>
+<td>MapleStory Worlds 的 .mod 打包/解包工具。新版客戶端改用 .mod 格式,做高版本移植時的格式基礎。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/seokgukim/MSWConvert">seokgukim/MSWConvert</a></td>
+<td>5</td>
+<td>MSW</td>
+<td>C#</td>
+<td>靜止</td>
+<td>★ 素材掛載 (IMG 模式 / .mod)</td>
+<td>.mod 轉 .txt 工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Maple-Story/xml-modifier">Maple-Story/xml-modifier</a></td>
+<td>—</td>
+<td>Visual Basic</td>
+<td>靜止</td>
+<td>★ 素材掛載 (IMG 模式 / .mod)</td>
+<td>楓之谷 XML 批次修改器(中文工具)。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/Elem8100/MapleStory-GM-Client">Elem8100/MapleStory-GM-Client</a></td>
+<td>369</td>
+<td>—</td>
+<td>Pascal</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>離線客戶端模擬器 (Pascal)。不上網直接跑,適合快速驗證物品 / 怪物 / 技能資料。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Elem8100/MapleNecrocer">Elem8100/MapleNecrocer</a></td>
+<td>335</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>客戶端模擬器,可離線執行新版客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ryantpayton/MapleStory-Client">ryantpayton/MapleStory-Client</a></td>
+<td>243</td>
+<td>v83</td>
+<td>C</td>
+<td>維護中</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>為 HeavenMS 客製的客戶端 (C 語言實作)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/YohananTzeviyah/LibreMaple-Client">YohananTzeviyah/LibreMaple-Client</a></td>
+<td>45</td>
+<td>—</td>
+<td>C++</td>
+<td>已封存</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>開源自由客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lain3d/HeavenClientNX">lain3d/HeavenClientNX</a></td>
+<td>40</td>
+<td>—</td>
+<td>C</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>從零實作的客戶端移植到 Nintendo Switch。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HypatiaOfAlexandria/MortalClient">HypatiaOfAlexandria/MortalClient</a></td>
+<td>39</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>開源 (FLOSS) v83 客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Libre-Maple/LibreMaple-Client">Libre-Maple/LibreMaple-Client</a></td>
+<td>35</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>從零實作的客戶端 (JourneyClient 分支)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Kaioru/Blackwings">Kaioru/Blackwings</a></td>
+<td>26</td>
+<td>v95.1</td>
+<td>C++</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>v95.1 客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rdiol12/OpenStory">rdiol12/OpenStory</a></td>
+<td>24</td>
+<td>v83</td>
+<td>C++</td>
+<td>活躍</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>Cosmic 伺服器用的 v83 客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HypatiaOfAlexandria/MortalMS">HypatiaOfAlexandria/MortalMS</a></td>
+<td>10</td>
+<td>v83</td>
+<td>Java</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>★ MortalClient 的伺服器端(HeavenMS 分支)。★ MortalClient 是少數開源且完整的 v83 客戶端,這是它的配對伺服器 —— 兩者一起看最有價值,能直接對照客戶端與伺服器的分工。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/ElectronClient">Bratah123/ElectronClient</a></td>
+<td>9</td>
+<td>v316(KMS)</td>
+<td>C#</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>★ ElectronMS 開源模擬器的客戶端。★ 完整客戶端 + 對應伺服器的一組,可直接研究兩端如何配合。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HypatiaOfAlexandria/MortalDocs">HypatiaOfAlexandria/MortalDocs</a></td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>★ 客戶端 (從零實作 / 開源)</td>
+<td>MortalMS 專案的文件。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lastbattle/Harepacker-resurrected">lastbattle/Harepacker-resurrected</a></td>
+<td>661</td>
+<td>全版本</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>HaRepacker 復刻版,目前最活躍的 WZ 編輯工具。支援匯出成 IMG 檔案系統,方便用 git diff 追蹤改動 —— 維護多份 WZ 差異時很實用。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Kagamia/WzComparerR2">Kagamia/WzComparerR2</a></td>
+<td>620</td>
+<td>全版本</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>進階 WZ 編輯器,可跨版本比對、抽檔、轉換。資源占用高但功能最全。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Elem8100/WzComparerR2-Plus">Elem8100/WzComparerR2-Plus</a></td>
+<td>147</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>WzComparerR2 繁體中文版,中文環境下比較順手。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/flwmxd/WzTools">flwmxd/WzTools</a></td>
+<td>70</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>C++ 的 WZ 讀取工具庫,各種語言實作WZ解析時的參考。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lastbattle/MapleLib">lastbattle/MapleLib</a></td>
+<td>67</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>C# 的 WZ 解析 + 改寫 + 創建函式庫,想做程式化生成 WZ 就用這個。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Xterminatorz/WZ-Dumper">Xterminatorz/WZ-Dumper</a></td>
+<td>62</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>WZ 批量轉 XML 工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/toyobayashi/wz">toyobayashi/wz</a></td>
+<td>46</td>
+<td>—</td>
+<td>TypeScript</td>
+<td>已封存</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Node.js 與瀏覽器用的 WZ 讀取器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/lastbattle/WzImg-MCP-Server">lastbattle/WzImg-MCP-Server</a></td>
+<td>35</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>讓 AI agent 操作 WZ / IMG / PACK 檔的 MCP 伺服器。用 AI 輔助批次改 WZ 的工具鏈入口。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStoryUnity/wzData">MapleStoryUnity/wzData</a></td>
+<td>33</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>楓之谷 WZ 檔案集合。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/PhilippSchwab/MapleStory-node-resources">PhilippSchwab/MapleStory-node-resources</a></td>
+<td>30</td>
+<td>—</td>
+<td>CoffeeScript</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Node.js 的 WZ 抽取與伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStoryUnity/UnityWzLib">MapleStoryUnity/UnityWzLib</a></td>
+<td>27</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Unity 版 WzLib。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/anydream/WzLib">anydream/WzLib</a></td>
+<td>23</td>
+<td>—</td>
+<td>C</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>另一套 C 語言的 WZ 解析器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/spd789562/wz-reader-rs">spd789562/wz-reader-rs</a></td>
+<td>22</td>
+<td>—</td>
+<td>Rust</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Rust 的 WZ 讀取器,執行緒安全。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/a894985459/CoffeeWzRepacker">a894985459/CoffeeWzRepacker</a></td>
+<td>16</td>
+<td>—</td>
+<td>—</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>功能完整的 WZ 編輯器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/angelsl/wz2nx">angelsl/wz2nx</a></td>
+<td>15</td>
+<td>—</td>
+<td>C#</td>
+<td>已封存</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>把 WZ 轉成新版 PKG4 格式的工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/icelemon1314/HaRepacker">icelemon1314/HaRepacker</a></td>
+<td>14</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>支援新版 WZ 格式的 HaRepacker。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TajuC/MapleDumper-rs">TajuC/MapleDumper-rs</a></td>
+<td>11</td>
+<td>—</td>
+<td>Rust</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>跨版本簽章與位移工具組,用來定位客戶端記憶體位置。AVX2 加速搜尋。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Maple-Story/wz2nx-convertor">Maple-Story/wz2nx-convertor</a></td>
+<td>8</td>
+<td>—</td>
+<td>Batch</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Windows 系統的 WZ → NX 轉換工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/PirateIzzy/WzComparerR2-Old">PirateIzzy/WzComparerR2-Old</a></td>
+<td>8</td>
+<td>—</td>
+<td>C#</td>
+<td>已封存</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>舊版 WzComparerR2。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Hucaru/gonx">Hucaru/gonx</a></td>
+<td>8</td>
+<td>—</td>
+<td>Go</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Go 語言的 NX 檔案格式套件,可解析與擷取遊戲資料。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sirLimbs/Limbs_XML_Parser">sirLimbs/Limbs_XML_Parser</a></td>
+<td>7</td>
+<td>—</td>
+<td>Python</td>
+<td>維護中</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>解析 Map.wz 抽取地圖元素資訊。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Inumedia/NXLDownloader">Inumedia/NXLDownloader</a></td>
+<td>6</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>透過 API 從 Nexon 啟動器下載完整遊戲 —— ★ 取得高版本客戶端素材做移植的合法路徑。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/tpdnd2651/WzComparerR2-KMS-">tpdnd2651/WzComparerR2-KMS-</a></td>
+<td>5</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>韓服版 WzComparerR2。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/wzlib">zhyonc/wzlib</a></td>
+<td>4</td>
+<td>—</td>
+<td>Go</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Go 語言的 WZ 解析套件。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HypatiaOfAlexandria/NoLifeNx">HypatiaOfAlexandria/NoLifeNx</a></td>
+<td>4</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>C++17 的 NX 檔案讀取函式庫。想處理新版客戶端的 .nx 格式的基礎。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/anonymous5l/wzexplorer">anonymous5l/wzexplorer</a></td>
+<td>3</td>
+<td>—</td>
+<td>Go</td>
+<td>維護中</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>解壓 WZ 檔案。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/qwas0514/WZKey">qwas0514/WZKey</a></td>
+<td>3</td>
+<td>—</td>
+<td>C++</td>
+<td>已封存</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>WZ 金鑰相關工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sqx6781268/MapleWzMeta">sqx6781268/MapleWzMeta</a></td>
+<td>—</td>
+<td>Go</td>
+<td>活躍</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>解析 WZ 匯出的 img XML,依 8 位物品 ID 關聯名稱與屬性後落入 SQLite,提供 CLI 與唯讀 HTTP 介面。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/yihleego/dotwz">yihleego/dotwz</a></td>
+<td>—</td>
+<td>Rust</td>
+<td>維護中</td>
+<td>WZ / 素材檔案工具 (編輯 / 讀取)</td>
+<td>Rust 的 WZ 載入函式庫。想用 Rust 處理素材時的基礎。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/spd789562/MapleSalon2">spd789562/MapleSalon2</a></td>
+<td>68</td>
+<td>—</td>
+<td>TypeScript</td>
+<td>活躍</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>造型間預覽工具,可預覽髮型 / 臉型 / 染色 / 服飾。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Elem8100/GM-HandTool">Elem8100/GM-HandTool</a></td>
+<td>44</td>
+<td>—</td>
+<td>Pascal</td>
+<td>靜止</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>WZ 資料庫瀏覽工具 (GM 手冊形式)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/izarooni/WzVisualizer">izarooni/WzVisualizer</a></td>
+<td>37</td>
+<td>—</td>
+<td>C#</td>
+<td>維護中</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>C# 寫的 WZ 視覺化工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/xkiro-dev/MapleBench">xkiro-dev/MapleBench</a></td>
+<td>24</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>視覺化 WZ 工作台,支援批次搜尋、稽核、修補、跨版本比對。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Elem8100/GM-HandToolV3">Elem8100/GM-HandToolV3</a></td>
+<td>20</td>
+<td>—</td>
+<td>C#</td>
+<td>維護中</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>WZ 資料庫與抽取工具第三版。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/koolkdev/wzmapeditor">koolkdev/wzmapeditor</a></td>
+<td>15</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>WZ 地圖編輯器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/spd789562/Maplesalon">spd789562/Maplesalon</a></td>
+<td>11</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>造型間預覽(網頁版)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStoryGameHack/MSEA-WZSearcher-HackTool">MapleStoryGameHack/MSEA-WZSearcher-HackTool</a></td>
+<td>5</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>WZ 搜尋器與封包工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/angelsl/MSIT">angelsl/MSIT</a></td>
+<td>4</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>楓之谷動畫製作工具。做新版風格的技能動畫時的輔助工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/SpiralMoon/maplestory-ring-assets-extractor">SpiralMoon/maplestory-ring-assets-extractor</a></td>
+<td>3</td>
+<td>83</td>
+<td>C#</td>
+<td>活躍</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>★★ 聊天氣泡與名牌的素材擷取器。★ 改 UI 外觀(名牌框、氣泡樣式)時的素材來源,直接對應『讓 v83 看起來像高版本』。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/YohananTzeviyah/nx_edit">YohananTzeviyah/nx_edit</a></td>
+<td>1</td>
+<td>—</td>
+<td>Rust</td>
+<td>已封存</td>
+<td>編輯器與素材製作 (Editor / Animator)</td>
+<td>NX 格式的 GUI 編輯器(Rust)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStory-Archive/MapleClientEditTemplate">MapleStory-Archive/MapleClientEditTemplate</a></td>
+<td>35</td>
+<td>全版本</td>
+<td>—</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>客戶端編輯框架,內含繞過反作弊與 CRC 檢查所需的 Windows API hooks。開啟 Custom.wz 外掛檔案模式的參考。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mechpaul/NXPatcher">mechpaul/NXPatcher</a></td>
+<td>20</td>
+<td>—</td>
+<td>C</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>低階楓之谷補丁框架,支援 Patcher.exe 與手動補丁。做自有版本時的基礎設施。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/v3921358/MapleStory072">v3921358/MapleStory072</a></td>
+<td>16</td>
+<td>v072(CN)</td>
+<td>Java</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>中國服 072 原始碼,內附已繞過 HS 的客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oung/MapleClientEditTemplate">oung/MapleClientEditTemplate</a></td>
+<td>14</td>
+<td>全版本</td>
+<td>—</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>客戶端編輯框架的另一個分支。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/diamondo25/WvsBeta.PatchCreator">diamondo25/WvsBeta.PatchCreator</a></td>
+<td>9</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>為 MapleStory 的 Patcher.exe 產生修補檔,或自製補丁器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/noobtra/MapleStory-Auto-Patcher">noobtra/MapleStory-Auto-Patcher</a></td>
+<td>2</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>客戶端自動下載 / 更新。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Sheilem/exodus-launcher">Sheilem/exodus-launcher</a></td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>補丁與客戶端分發 (Patcher)</td>
+<td>自動補丁登入器 (WPF / .NET 8),含 manifest 與 SHA-256 驗證。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/flwmxd/MapleStory-Porting">flwmxd/MapleStory-Porting</a></td>
+<td>150</td>
+<td>—</td>
+<td>Lua</td>
+<td>靜止</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>Pharaoh 專案 —— 用 C++ + Lua 從零重寫整個客戶端,自帶編輯器。證明「重寫客戶端」是可行的,代價是全案重做。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nmnsnv/maplestory-wasm">nmnsnv/maplestory-wasm</a></td>
+<td>136</td>
+<td>v83</td>
+<td>C</td>
+<td>活躍</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>把楓之谷客戶端編成 WebAssembly,可以在瀏覽器裡玩。技術 showcase 為主。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStoryUnity/MapleStoryUnity">MapleStoryUnity/MapleStoryUnity</a></td>
+<td>109</td>
+<td>—</td>
+<td>C#</td>
+<td>活躍</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>用 Unity 打造楓之谷 MMO 的框架,含 WZ 讀取與 UI 重建。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/wuzekang/maple-rs">wuzekang/maple-rs</a></td>
+<td>63</td>
+<td>v83(G083)</td>
+<td>Rust</td>
+<td>維護中</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>用 Rust 實作 v83 客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/aatxe/OpenMaple">aatxe/OpenMaple</a></td>
+<td>21</td>
+<td>—</td>
+<td>Java</td>
+<td>已封存</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>注重效能的伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/diamondo25/webstory">diamondo25/webstory</a></td>
+<td>21</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>重新實作 (Unity / Rust / Web / MS2)</td>
+<td>用 Phaser + NodeJS + WebSocket 做的網頁版客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/itsadriam/Maple-Pshark-Sniffer">itsadriam/Maple-Pshark-Sniffer</a></td>
+<td>56</td>
+<td>—</td>
+<td>HTML</td>
+<td>活躍</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>PacketShark 替代品,楓之谷封包攔截與記錄。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/SpiritIDAPlugin">Bratah123/SpiritIDAPlugin</a></td>
+<td>31</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>IDA Python 外掛,輔助分析楓之谷客戶端二進位。逆向分析技能 / UI 結構時會用到。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/MaplePE">zhyonc/MaplePE</a></td>
+<td>24</td>
+<td>—</td>
+<td>C++</td>
+<td>活躍</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>封包編輯器,可解析封包結構並發送自訂封包給客戶端。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/MaplePacketPuller">Bratah123/MaplePacketPuller</a></td>
+<td>20</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>Python 寫的封包結構分析器,從封包流量反推結構。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KOOKIIEStudios/Spirit-PacketPuller">KOOKIIEStudios/Spirit-PacketPuller</a></td>
+<td>15</td>
+<td>—</td>
+<td>Dart</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>分析 IDA 產生的偽代碼以推導封包結構的 GUI 工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Waty/PacketSenderPlz">Waty/PacketSenderPlz</a></td>
+<td>15</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>歐服封包發送工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/obstriker/Maple_Pshark">obstriker/Maple_Pshark</a></td>
+<td>11</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>MapleRoyals 封包記錄攔截器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/chenbaiyu0414/MapleStoryPacketAnalyzer">chenbaiyu0414/MapleStoryPacketAnalyzer</a></td>
+<td>6</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>國服 (CMS) 封包分析器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kOchirasu/MaplePacketLib">kOchirasu/MaplePacketLib</a></td>
+<td>5</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>含客戶端驗證的楓之谷封包函式庫。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/taida957789/MapleSniffer">taida957789/MapleSniffer</a></td>
+<td>4</td>
+<td>—</td>
+<td>Vue</td>
+<td>維護中</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>Vue 寫的封包擷取工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Hazzytje/maplestory_packet_logger">Hazzytje/maplestory_packet_logger</a></td>
+<td>3</td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>記錄楓之谷封包。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KOOKIIEStudios/Spirit-PacketPuller-OLD">KOOKIIEStudios/Spirit-PacketPuller-OLD</a></td>
+<td>3</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>MaplePacketPuller 的舊版 GUI 實作。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/LankMasterFlex/MaplePacketLib">LankMasterFlex/MaplePacketLib</a></td>
+<td>2</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>楓之谷網路函式庫。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jmartinimena/Caraota">jmartinimena/Caraota</a></td>
+<td>2</td>
+<td>v62</td>
+<td>C#</td>
+<td>維護中</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>v62 封包攔截與記錄器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kOchirasu/MaplePE">kOchirasu/MaplePE</a></td>
+<td>1</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>楓之谷封包編輯器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/JamesDonnelly/wxPloiter">JamesDonnelly/wxPloiter</a></td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>開源輕量多行封包編輯器,支援收發攔截與注入。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/existence3022/wxPloiterPublicKMS">existence3022/wxPloiterPublicKMS</a></td>
+<td>—</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>韓服版 wxPloiter,可自動更新。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/icelemon1314/mapleSniffer">icelemon1314/mapleSniffer</a></td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>封包擷取。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/CohortMinseok/Maplestory-Packet-Editor">CohortMinseok/Maplestory-Packet-Editor</a></td>
+<td>62</td>
+<td>—</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>楓之谷封包編輯器。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/pelegweiss/WhitePackets">pelegweiss/WhitePackets</a></td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>v83 封包編輯器。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/tracker93/Packet-Utility">tracker93/Packet-Utility</a></td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>封包分析 (Packet / Sniffer)</td>
+<td>封包讀寫工具。</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://github.com/ronancpl/HeavenMS">ronancpl/HeavenMS</a></td>
+<td>1216</td>
+<td>v83</td>
+<td>Java</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>最知名的 v83 Java 伺服器開源專案,後續多數私服 (Cosmic / SiriusMS 等) 都是它的分支。看多伺服器架構先從這裡下手最有效。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/AlanMorel/MapleServer2">AlanMorel/MapleServer2</a></td>
+<td>364</td>
+<td>MS2</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>楓之谷 2 的伺服器模擬器,結構現代化,適合研究新世代協定。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Kaioru/Edelstein">Kaioru/Edelstein</a></td>
+<td>114</td>
+<td>v95.1</td>
+<td>C#</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v95.1 C#/.NET 伺服器模擬器,系列作品另有客戶端 Blackwings。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/P0nk/Cosmic-client">P0nk/Cosmic-client</a></td>
+<td>108</td>
+<td>v83</td>
+<td>—</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Cosmic 伺服器的客戶端檔案。Cosmic 是目前維護最活躍的 v83 私服分支之一。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/aatxe/Orpheus">aatxe/Orpheus</a></td>
+<td>104</td>
+<td>v83</td>
+<td>Java</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v83 開源伺服器模擬器,設計較乾淨,適合研究如何重構。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Toxocious/Moonlight">Toxocious/Moonlight</a></td>
+<td>100</td>
+<td>v214</td>
+<td>Java</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v214 (KMS 雲端) 私服原始碼,年代較新。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/SoulGirlJP/AzureV316">SoulGirlJP/AzureV316</a></td>
+<td>99</td>
+<td>v316(KMS)</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>★ AzureMS v316 (KMS) 原始碼,★99。★ 較新世代伺服器的完整實作,架構比 v83 系列現代得多,適合對照學習『高版本的做法』。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/retep998/Vana">retep998/Vana</a></td>
+<td>81</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>經典 C++ 楓之谷私服原始碼 (SVN 鏡像)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Kevin-Jin/argonms-server">Kevin-Jin/argonms-server</a></td>
+<td>39</td>
+<td>v0.62</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v0.62 極早期版本的伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/ElectronMS">Bratah123/ElectronMS</a></td>
+<td>38</td>
+<td>v316(KMS)</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v316 KMS 伺服器,Azure316 的改進版。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/neeerp/RustMS">neeerp/RustMS</a></td>
+<td>36</td>
+<td>—</td>
+<td>C</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Attempt at implementing the Maplestory Server End from scratch.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/themrzmaster/augurms">themrzmaster/augurms</a></td>
+<td>27</td>
+<td>83</td>
+<td>Java</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v83 私服 + AI Game Master,架構在 Cosmic 上。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/y785/script-api">y785/script-api</a></td>
+<td>26</td>
+<td>—</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>★ Java 楓之谷腳本 API。★ 伺服器端腳本化的參考,做事件/副本邏輯時有用。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jonnylin13/omega">jonnylin13/omega</a></td>
+<td>24</td>
+<td>v83</td>
+<td>TypeScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>用 TypeScript 寫的 v83 伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sewil/OpenMG">sewil/OpenMG</a></td>
+<td>24</td>
+<td>v22</td>
+<td>C#</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>WvsGlobal 分支,目標版本 v22。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/67-6f-64/Rebirth95.Server">67-6f-64/Rebirth95.Server</a></td>
+<td>16</td>
+<td>v95</td>
+<td>—</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v95 伺服器模擬器 (C# + Python)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Descended/Henesys">Descended/Henesys</a></td>
+<td>16</td>
+<td>v95</td>
+<td>Java</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v95 模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/sgessa/ms2ex">sgessa/ms2ex</a></td>
+<td>15</td>
+<td>MS2</td>
+<td>Elixir</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>用 Elixir 寫的楓之谷 2 伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fanzai0311/MapleStoryServer">fanzai0311/MapleStoryServer</a></td>
+<td>15</td>
+<td>v079(CMS)</td>
+<td>Go</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Go 語言的 CMS v079 伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/chenbaiyu0414/NeoMapleStory">chenbaiyu0414/NeoMapleStory</a></td>
+<td>14</td>
+<td>79</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>C# 寫的楓之谷私服。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jonnylin13/perion">jonnylin13/perion</a></td>
+<td>14</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Node.js 建構伺服器模擬器的套件集合。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unsafeblackcat/MapleStoryServer">unsafeblackcat/MapleStoryServer</a></td>
+<td>14</td>
+<td>v83</td>
+<td>Python</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>國際服 v083 服務端(Python)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Khuwanko/MapleCore-v1">Khuwanko/MapleCore-v1</a></td>
+<td>13</td>
+<td>83</td>
+<td>TypeScript</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>完整的 v83 私服網站方案。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/Spirit">Bratah123/Spirit</a></td>
+<td>13</td>
+<td>v176</td>
+<td>Python</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v176 伺服器模擬器 (Python)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/fairms/MapleServer">fairms/MapleServer</a></td>
+<td>13</td>
+<td>—</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>開源楓之谷伺服器模擬軟體。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/jonnylin13/Maple83">jonnylin13/Maple83</a></td>
+<td>12</td>
+<td>v83</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v83 伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/KOOKIIEStudios/SpiritSuite">KOOKIIEStudios/SpiritSuite</a></td>
+<td>12</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>SpiritMS 與楓之谷開發工具組。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ahao0150/MapleStory-Server-079-vscode">ahao0150/MapleStory-Server-079-vscode</a></td>
+<td>11</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v079 私服。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/conchlin/boswell">conchlin/boswell</a></td>
+<td>11</td>
+<td>v83</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>JVM 實作的 v83 模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/andrewcell/Perry">andrewcell/Perry</a></td>
+<td>11</td>
+<td>v1.2.31(KMS)</td>
+<td>Kotlin</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>KMS v1.2.31 開源伺服器(Kotlin)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zlindner/slate">zlindner/slate</a></td>
+<td>10</td>
+<td>v83</td>
+<td>Rust</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Rust 實作的 v83 伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/izarooni/LucianMS">izarooni/LucianMS</a></td>
+<td>9</td>
+<td>v83</td>
+<td>Java</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v83 私服。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ezer1025/RustyMaple">ezer1025/RustyMaple</a></td>
+<td>9</td>
+<td>—</td>
+<td>Rust</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Rust 寫的楓之谷伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Zintixx/MapleStory2-English">Zintixx/MapleStory2-English</a></td>
+<td>9</td>
+<td>MS2</td>
+<td>—</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>楓之谷 2 韓文未翻譯字串的英文翻譯。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/msnet">zhyonc/msnet</a></td>
+<td>9</td>
+<td>—</td>
+<td>Go</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Go 語言的楓之谷網路套件。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/SwordieDB">Bratah123/SwordieDB</a></td>
+<td>9</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>SwordieMS 資料庫 API。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/NoetherEmmy/intransigentms">NoetherEmmy/intransigentms</a></td>
+<td>8</td>
+<td>—</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>IntransigentMS 私服。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/SpiritMS">Bratah123/SpiritMS</a></td>
+<td>8</td>
+<td>v146</td>
+<td>Java</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v146 原始碼。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/CCasusensa/ZZMS-for-Windows">CCasusensa/ZZMS-for-Windows</a></td>
+<td>6</td>
+<td>TW</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>台灣楓之谷伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bia10/DestinyFork">Bia10/DestinyFork</a></td>
+<td>6</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>以另一種設計思路實作的 C# 模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unsafeblackcat/kms391">unsafeblackcat/kms391</a></td>
+<td>6</td>
+<td>391</td>
+<td>JavaScript</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>韓服 v391 服務端代碼。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/hugogrochau/VoidMS">hugogrochau/VoidMS</a></td>
+<td>5</td>
+<td>v62</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v62 楓之谷私服。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/BiosSystem/OriginalMS">BiosSystem/OriginalMS</a></td>
+<td>5</td>
+<td>v62</td>
+<td>Java</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v62 原版重現,含所有 PQ、Boss、Cygus 騎士團。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ryantpayton/Vana">ryantpayton/Vana</a></td>
+<td>4</td>
+<td>v83</td>
+<td>C++</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Vana 基礎的改進版。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ErwinsExpertise/ValhallaV48">ErwinsExpertise/ValhallaV48</a></td>
+<td>4</td>
+<td>v48</td>
+<td>Go</td>
+<td>活躍</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v48 模擬器 (Go)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/takashato/MSAuthServer">takashato/MSAuthServer</a></td>
+<td>4</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>NodeJS 實作的私服驗證伺服器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/conan513/MoopleDEV">conan513/MoopleDEV</a></td>
+<td>4</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Java 楓之谷伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/aatxe/tomato">aatxe/tomato</a></td>
+<td>4</td>
+<td>v111</td>
+<td>Java</td>
+<td>已封存</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v111 Java 伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dngo13/SiriusMS">dngo13/SiriusMS</a></td>
+<td>3</td>
+<td>v83</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>HeavenMS 分支。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kelvinoue/KelMS83_Extension">kelvinoue/KelMS83_Extension</a></td>
+<td>3</td>
+<td>v83</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>HeavenMS 擴充套件包。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/marcosppastor/MSV83">marcosppastor/MSV83</a></td>
+<td>3</td>
+<td>v83</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v83 Java 伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/RamVakad/AsgardDEV">RamVakad/AsgardDEV</a></td>
+<td>3</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>C# 楓之谷伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/CohortMinseok/v83MaplestoryCPP">CohortMinseok/v83MaplestoryCPP</a></td>
+<td>2</td>
+<td>v83</td>
+<td>—</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>可運作的 v83 私服 (C++)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/koolkdev/TitanMS">koolkdev/TitanMS</a></td>
+<td>2</td>
+<td>v83+</td>
+<td>C++</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>TitanMS 存檔 (C++)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TicTacTris/swordie-v232-fork">TicTacTris/swordie-v232-fork</a></td>
+<td>2</td>
+<td>232,232.2</td>
+<td>Java</td>
+<td>維護中</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v232.2 私服,含自訂倍率與 GUI 登入器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/defaultmagi/kagami">defaultmagi/kagami</a></td>
+<td>2</td>
+<td>—</td>
+<td>Go</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Go 語言伺服器模擬器嘗試。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/knowlet/kagami">knowlet/kagami</a></td>
+<td>2</td>
+<td>—</td>
+<td>Go</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>Go 語言伺服器模擬器嘗試。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bia10/junoms">Bia10/junoms</a></td>
+<td>2</td>
+<td>v62</td>
+<td>C</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>不到 3 萬行的 C 語言 v62 模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/oxysoft/swiftbison">oxysoft/swiftbison</a></td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>楓之谷伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rage123450/Edelstein-archive">rage123450/Edelstein-archive</a></td>
+<td>2</td>
+<td>v95</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>v95 伺服器模擬器存檔。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mmdevelop/MapleGlobal">mmdevelop/MapleGlobal</a></td>
+<td>2</td>
+<td>v0.01-0.12</td>
+<td>Java</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>楓之谷 CBT 0.01v-v0.12。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/LankMasterFlex/chronicle-emulator">LankMasterFlex/chronicle-emulator</a></td>
+<td>1</td>
+<td>v75</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>gMS v75 伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Mellowz/TMSCore">Mellowz/TMSCore</a></td>
+<td>1</td>
+<td>TH</td>
+<td>C#</td>
+<td>靜止</td>
+<td>私服伺服器 (Server / Emulator)</td>
+<td>泰國楓之谷伺服器模擬器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/TMSLauncher">zhyonc/TMSLauncher</a></td>
+<td>38</td>
+<td>v113-v194(TW)</td>
+<td>C++</td>
+<td>活躍</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>台服 v113-v194 自訂登入器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/CMSLauncher">zhyonc/CMSLauncher</a></td>
+<td>24</td>
+<td>v79-v125(CN)</td>
+<td>C++</td>
+<td>活躍</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>國服 v79-v125 自訂登入器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/zhyonc/CMSLauncherLite">zhyonc/CMSLauncherLite</a></td>
+<td>9</td>
+<td>v14-v69(CN)</td>
+<td>C++</td>
+<td>活躍</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>國服 v14-v69 輕量登入器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/s884812/Advanced-MapleLauncher">s884812/Advanced-MapleLauncher</a></td>
+<td>6</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>進階自訂登入器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Tikas/TMS-little-helper">Tikas/TMS-little-helper</a></td>
+<td>6</td>
+<td>TW</td>
+<td>C#</td>
+<td>維護中</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>TMS 小幫手,多帳號管理。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/iMonkeyz/Advanced-MapleLauncher">iMonkeyz/Advanced-MapleLauncher</a></td>
+<td>3</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>進階自訂登入器 (另一分支)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Ezzpify/MapleLegend">Ezzpify/MapleLegend</a></td>
+<td>2</td>
+<td>全版本</td>
+<td>C#</td>
+<td>靜止</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>楓之谷客戶端內嵌工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/topK-li/MapleGate">topK-li/MapleGate</a></td>
+<td>1</td>
+<td>TW</td>
+<td>Python</td>
+<td>活躍</td>
+<td>登入器與驗證 (Launcher / Auth)</td>
+<td>楓之谷登入器(香港 Beanfun 台服,支援繁中)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MapleStoryUnity/awesome-maplestory">MapleStoryUnity/awesome-maplestory</a></td>
+<td>87</td>
+<td>—</td>
+<td>—</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>精選的楓之谷模擬器、函式庫與軟體清單。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/SpiralMoon/maplestory.openapi">SpiralMoon/maplestory.openapi</a></td>
+<td>40</td>
+<td>—</td>
+<td>Java</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>楓之谷 Nexon 官方 OpenAPI 客戶端函式庫。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/y785/moe-miho">y785/moe-miho</a></td>
+<td>21</td>
+<td>—</td>
+<td>Java</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>2D 空間資料結構,含 QuadTree 實作。做地圖範圍判定、碰撞相關功能時的參考。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/nemesisprime1/maplestorybot">nemesisprime1/maplestorybot</a></td>
+<td>14</td>
+<td>—</td>
+<td>—</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>功能完整的楓之谷機器人。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/defaultmagi/maplelib">defaultmagi/maplelib</a></td>
+<td>13</td>
+<td>—</td>
+<td>Go</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>Go 語言的楓之谷工具集 (加密、封包等)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/telunc/maplestory.io">telunc/maplestory.io</a></td>
+<td>12</td>
+<td>—</td>
+<td>CSS</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>楓之谷的非官方文件與開源 API。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Maple-Helper/maple-helper">Maple-Helper/maple-helper</a></td>
+<td>11</td>
+<td>—</td>
+<td>Python</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>桌面助理,含遊戲內 AI 聊天覆蓋層。示範『在既有遊戲上疊加自訂 UI 層』。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TEAM-SPIRIT-Productions/Lazuli">TEAM-SPIRIT-Productions/Lazuli</a></td>
+<td>10</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>與 AzureMSv316 資料庫互動的 Python 工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Descended/MaplestoryDiscBot">Descended/MaplestoryDiscBot</a></td>
+<td>9</td>
+<td>—</td>
+<td>Python</td>
+<td>已封存</td>
+<td>其他工具與周邊</td>
+<td>私服用的 Discord 機器人。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TEAM-SPIRIT-Productions/MapleStoryJobIDs">TEAM-SPIRIT-Productions/MapleStoryJobIDs</a></td>
+<td>8</td>
+<td>—</td>
+<td>—</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>楓之谷職業 ID 對照表。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Rudigus/HeavenBase">Rudigus/HeavenBase</a></td>
+<td>7</td>
+<td>—</td>
+<td>C#</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>顯示裝備與寶貝的相關資訊。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/maplestoryDwang/gms-232">maplestoryDwang/gms-232</a></td>
+<td>7</td>
+<td>v232</td>
+<td>Java</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>GMS v232 客戶端分析專案,DeepWiki 有極詳盡的架構文件。研究新版客戶端如何組織的最佳來源。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/NEXPACE-Limited/msu-skills">NEXPACE-Limited/msu-skills</a></td>
+<td>7</td>
+<td>MSU</td>
+<td>Shell</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>MapleStory Universe 的 AI agent 技能目錄(SKILL.md)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/aron-666/Aron.MaplestoryArtale">aron-666/Aron.MaplestoryArtale</a></td>
+<td>7</td>
+<td>—</td>
+<td>—</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>楓之谷 Artale 遊戲輔助系統。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/leeqiufeng/maple-web-gui">leeqiufeng/maple-web-gui</a></td>
+<td>5</td>
+<td>—</td>
+<td>TypeScript</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>私服管理 Web 介面。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Bratah123/AESKeyFormatter">Bratah123/AESKeyFormatter</a></td>
+<td>5</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>把 32 個整數格式化為 Nexon AES 金鑰的小工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/branw/gms-v40-beta-client-mods">branw/gms-v40-beta-client-mods</a></td>
+<td>5</td>
+<td>40</td>
+<td>C</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>v40 Beta 客戶端的品質-of-life 改進,示範老客戶端改進的典型做法。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/starpia-forge/maplestory-world-llms-txt">starpia-forge/maplestory-world-llms-txt</a></td>
+<td>5</td>
+<td>MSW</td>
+<td>Go</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>★ 楓之谷世界開發指南(LLM 優化版)。★ 想讓 AI 協助開發時的結構化參考資料。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ALiangLiang/artale-agent">ALiangLiang/artale-agent</a></td>
+<td>5</td>
+<td>—</td>
+<td>Python</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>MapleStory Worlds - Artale 的非侵入式遊戲輔助工具(Buff 計時提醒)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/ikasuu/grandislibrary">ikasuu/grandislibrary</a></td>
+<td>4</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>楓之谷新手指南與資訊整理。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mimidib/Top100VoteAutomation">mimidib/Top100VoteAutomation</a></td>
+<td>3</td>
+<td>—</td>
+<td>Python</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>自動投票腳本。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/NoetherEmmy/intransigentms-tools">NoetherEmmy/intransigentms-tools</a></td>
+<td>2</td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>IntransigentMS 輔助腳本。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Nite-Core/maplestorybot">Nite-Core/maplestorybot</a></td>
+<td>2</td>
+<td>—</td>
+<td>—</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>進階楓之谷機器人。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/erickqc2/VotingSystem">erickqc2/VotingSystem</a></td>
+<td>2</td>
+<td>—</td>
+<td>PHP</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>私服投票系統 (PHP)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/pid011/kms-guild-extractor">pid011/kms-guild-extractor</a></td>
+<td>2</td>
+<td>—</td>
+<td>C#</td>
+<td>已封存</td>
+<td>其他工具與周邊</td>
+<td>公會成員資訊擷取器。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/hiddenhosts/awesome-maplestory-servers">hiddenhosts/awesome-maplestory-servers</a></td>
+<td>1</td>
+<td>—</td>
+<td>JavaScript</td>
+<td>已封存</td>
+<td>其他工具與周邊</td>
+<td>楓之谷私服列表(已停止更新)。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Lyze96/MANIA-Maplestory-Bot">Lyze96/MANIA-Maplestory-Bot</a></td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>維護中</td>
+<td>其他工具與周邊</td>
+<td>自動化刷等系統。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/XingTongTools/XingTong-MStarBot">XingTongTools/XingTong-MStarBot</a></td>
+<td>1</td>
+<td>—</td>
+<td>—</td>
+<td>活躍</td>
+<td>其他工具與周邊</td>
+<td>楓星/新楓之谷經典版的 Windows 桌面視覺辨識與自動化工具。</td>
+</tr>
+<tr>
+<td><a href="https://github.com/TEAM-SPIRIT-Productions/SpiritMS-Script-Spider">TEAM-SPIRIT-Productions/SpiritMS-Script-Spider</a></td>
+<td>—</td>
+<td>Python</td>
+<td>靜止</td>
+<td>其他工具與周邊</td>
+<td>爬過 Swordie 風格腳本資料夾搜尋 Script。</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>共 <strong>215</strong> 個專案,分為 <strong>13</strong> 類。</p>
 <style>
 
 .md-typeset .bm-toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:14px 0 12px}
