@@ -1,0 +1,4725 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/">
+      
+      
+        <link rel="prev" href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/">
+      
+      
+        <link rel="next" href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W18 產品演進與完結展示 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w18" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W18 產品演進與完結展示
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w18-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-001 完結片沒有任何可學的程式碼或指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-002 重構前舊版控制台：按鈕式介面＋彈出視窗改設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-003-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-003 重構後的三大改動：內聯編輯、卡片化、Loading 流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-004-heavenms-top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-004 新版 HeavenMS Top 控制台：八個分頁與已實測功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-005-id-wz-eqpimgxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-005 查道具 ID 要看 WZ 的 Eqp.img.xml，控制台輸入要去前導零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-006" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-006 「角色離線或道具不存在」是同一個錯誤訊息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-007" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-007 新舊兩版介面功能對照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-008 實測時的三個硬性前提
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w18-001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-001 完結片沒有任何可學的程式碼或指令
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-002 重構前舊版控制台：按鈕式介面＋彈出視窗改設定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-003-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-003 重構後的三大改動：內聯編輯、卡片化、Loading 流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-004-heavenms-top" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-004 新版 HeavenMS Top 控制台：八個分頁與已實測功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-005-id-wz-eqpimgxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-005 查道具 ID 要看 WZ 的 Eqp.img.xml，控制台輸入要去前導零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-006" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-006 「角色離線或道具不存在」是同一個錯誤訊息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-007" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-007 新舊兩版介面功能對照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w18-008" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W18-008 實測時的三個硬性前提
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w18">W18　產品演進與完結展示<a class="headerlink" href="#w18" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+<p>⚠️ <strong>本頁來源的特殊限制</strong>：完結片（U36）<strong>全片無任何語音</strong>（兩段音軌 <code>transcription</code> 皆為
+<code>[No speech]</code>），所以這一頁所有敘述都只代表「畫面上看得見的東西」，
+無法核對講者說了什麼、也無法判斷畫面理解結果本身是否正確。</p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>課次</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完結片</td>
+<td><code>U36_完结片_教學筆記.md</code></td>
+<td>全片</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">速查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W18-001</td>
+<td>完結片無口述、無程式碼，只有成品操作展示</td>
+</tr>
+<tr>
+<td>W18-002</td>
+<td>重構前 <code>HeavenMS-Vop V001 (2021)</code>：按鈕式介面＋彈出視窗改設定</td>
+</tr>
+<tr>
+<td>W18-003</td>
+<td>重構後三大改動：內聯編輯、卡片式 GM 指令、Loading 啟動流程</td>
+</tr>
+<tr>
+<td>W18-004</td>
+<td>新版 <code>HeavenMS Top 控制台</code>：八個分頁，帳號／角色／家族已實測</td>
+</tr>
+<tr>
+<td>W18-005</td>
+<td>查道具 ID 要看 WZ 的 <code>Eqp.img.xml</code>，且控制台輸入要去前導零</td>
+</tr>
+<tr>
+<td>W18-006</td>
+<td>「角色離線或道具不存在」是同一個錯誤訊息，除錯易被誤導</td>
+</tr>
+<tr>
+<td>W18-007</td>
+<td>新舊兩版介面功能對照表</td>
+</tr>
+<tr>
+<td>W18-008</td>
+<td>三個實測陷阱：客戶端版本、必須先上線、改完要按保存</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">條目<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="w18-001">W18-001　完結片沒有任何可學的程式碼或指令<a class="headerlink" href="#w18-001" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>[No speech]</code> <code>Milestone</code> <code>無程式碼</code> <code>無終端機指令</code></li>
+<li><strong>來源</strong>：完結片 全片（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：這不是教學片，是完結成果展示（Showcase）。畫面理解結果明確記載
+  「本影片純粹是專案開發過程中的 Milestone 展示……過程中並無程式碼層面的教學」。
+  全片<strong>未出現任何 Java 原始碼撰寫、編譯或終端機指令</strong>；唯一的「程式碼」是查閱 WZ 資源檔
+  <code>Eqp.img.xml</code> 以取得道具 ID。若預期從完結片取得「從 0 開始」的實作步驟，會落空。
+  素材中也沒有找到可辨識的完結發言、訂閱宣傳或片尾話術，畫面結尾是佔位頁與 IDE 停止程式運行。</li>
+<li><strong>相關</strong>：見 W13（打包與部署）——真正的收尾工序在那一頁</li>
+<li><strong>坑</strong>：（本條未發現坑）</li>
+</ul>
+<h3 id="w18-002">W18-002　重構前舊版控制台：按鈕式介面＋彈出視窗改設定<a class="headerlink" href="#w18-002" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>HeavenMS-Vop V001 (2021)</code> <code>服务启动</code> <code>GM指令</code> <code>修改内容</code> <code>监听端口: 8484</code> <code>GMS.exe</code></li>
+<li><strong>來源</strong>：完結片 00:00–02:40（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：前半段展示 2021 年的舊版控制台。左側導覽列五個按鈕：
+  <code>服务启动</code>、<code>服务配置</code>、<code>角色管理</code>、<code>GM指令</code>、<code>停止服务</code>。
+  點「服务启动」→ 右側大量印出伺服器啟動日誌（加載掉落物、生成點、任務腳本等），
+  日誌最後出現 <code>监听端口: 8484</code>。
+  點「服务配置」→ 切換為 Table，欄位為 <code>分组</code>、<code>类型</code>、<code>变量名</code>、<code>当前值</code>、<code>描述</code>，
+  可見範例列 <code>分组 = ChannelServer</code>、<code>变量名 = net.sf.odinms.channel.net.port</code>；
+  <strong>雙擊某一行會跳出標題為「修改内容」的彈出對話框</strong>。
+  接著開啟資料夾 <code>gmd011-client-master</code> 執行 <code>GMS.exe</code>，登入角色進入地圖「射手村」。
+  回到控制台點「GM指令」→ 依提示輸入玩家名 → 出現欄位為 <code>指令ID</code>、<code>指令名</code>、<code>参数格式</code> 的指令列表 →
+  選「刷出怪物」並填怪物 ID 與數量送出 → <strong>遊戲畫面中怪物出現在角色旁邊</strong>，證明控制台與伺服器連動正常。</li>
+<li><strong>坑</strong>：舊版設定只能靠彈出視窗改，改完沒有統一的「保存」動作（對照 W18-003 的改進）。</li>
+</ul>
+<h3 id="w18-003-loading">W18-003　重構後的三大改動：內聯編輯、卡片化、Loading 流程<a class="headerlink" href="#w18-003-loading" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Inline Editing</code> <code>world.serverMessage</code> <code>保存修改</code> <code>恢复默认</code> <code>刷出物品</code> <code>Loading... 服务启动中</code> <code>Toggle</code></li>
+<li><strong>來源</strong>：完結片 02:41–04:00（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：新版沿用 <code>HeavenMS-Vop V001(2021)</code> 標題但改為現代扁平化外觀。三個明確改動：</li>
+<li><strong>服務配置改為表格儲存格內聯編輯（Inline Editing）</strong>——取消舊版彈出視窗，直接雙擊儲存格輸入，
+     畫面上被編輯的變數是 <code>world.serverMessage</code>；頂部新增快速操作按鈕
+     <code>新增配置</code>、<code>刷新表格</code>、<code>保存修改</code>、<code>恢复默认</code>。</li>
+<li><strong>GM 指令從文字表格改成大型圖文卡片按鈕</strong>——可見 <code>刷出物品</code>、<code>刷出怪物</code>、<code>发送全服公告</code>、
+     <code>给玩家发点券</code>、<code>发送全服邮件</code>、<code>给玩家发物品</code>。</li>
+<li><strong>啟動流程加入設定頁與讀取動畫</strong>——在含「数据库名称」設定的頁面點「确认启动服务」，
+     畫面中央出現 <code>Loading... 服务启动中</code>，之後在「运行日志」頁籤看到啟動日誌；
+     導覽列縮減為 <code>运行日志</code>、<code>服务配置</code>、<code>游戏管理</code>，伺服器開關改為右上角的 <strong>Toggle</strong> 元件。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># 服務配置表格中的變數（分组 / 类型 / 变量名 / 当前值 / 描述）
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ChannelServer
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>net.sf.odinms.channel.net.port
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>world.serverMessage
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># 讀取動畫
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Loading... 服务启动中
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>改完一定要按「保存修改」並確認</strong>（<code>确认保存修改吗？</code> → <code>确定</code>），只做內聯編輯不儲存等於沒改。
+  舊版 <code>停止服务</code> 按鈕在新版被 Toggle 取代，舊的教學步驟不能直接沿用。</li>
+</ul>
+<h3 id="w18-004-heavenms-top">W18-004　新版 <code>HeavenMS Top 控制台</code>：八個分頁與已實測功能<a class="headerlink" href="#w18-004-heavenms-top" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>HeavenMS Top 控制台</code> <code>账号管理</code> <code>角色管理</code> <code>家族管理</code> <code>商城管理</code> <code>修改密码</code> <code>踢下线</code> <code>封号管理</code></li>
+<li><strong>來源</strong>：完結片 04:00–06:00（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：尾段實測第三個介面 <code>HeavenMS Top 控制台</code>，八個分頁：
+  <code>基础设置</code>、<code>账号管理</code>、<code>角色管理</code>、<code>家族管理</code>、<code>背包管理</code>、<code>技能管理</code>、<code>邮件管理</code>、<code>商城管理</code>。
+  實測結果：</li>
+<li><strong>角色管理</strong>：讀取到在線角色（<code>账号: admin</code>、<code>角色: 小睡...</code>），右鍵選單為
+    <code>踢下线</code>、<code>发送道具</code>、<code>发送金币</code>、<code>发送点券</code>、<code>发送抵用券</code>、<code>封号管理</code>；實測 <code>发送道具</code> 成功（<code>发送成功</code>）。</li>
+<li><strong>账号管理</strong>：右鍵 <code>解封</code>、<code>封号</code>、<code>修改密码</code>、<code>删除账号</code>；實測重置密碼（<code>确认要重置该账号的密码吗？</code> → <code>重置成功</code>）。</li>
+<li><strong>家族管理</strong>：展示 <code>增加家族</code> 與右鍵 <code>解散家族</code> 的 UI 互動。</li>
+<li><strong>商城管理</strong>：顯示 <code>功能还在开发中，敬请期待！</code>，<strong>未完成</strong>。</li>
+<li><code>背包管理</code>／<code>技能管理</code>／<code>邮件管理</code>：僅出現分頁，未實測。
+  伺服器端日誌可見判定上線的關鍵字：<code>玩家 1 在线状态：1</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>2024-01-16 21:57:13.250 [INFO] ---&gt; 玩家 1 在线状态：1
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2024-01-16 21:57:13.266 [INFO] ---&gt; 玩家 1 发送物品成功: 1010000 数量: 1
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>...
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>2024-01-16 22:00:15.539 [INFO] ---&gt; 断开连接...
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Process finished with exit code 0
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>商城管理</code> 的佔位頁<strong>不是 bug</strong>，是尚未實作。不要把完結片當成「所有分頁都能用」的功能清單。</li>
+</ul>
+<h3 id="w18-005-id-wz-eqpimgxml">W18-005　查道具 ID 要看 WZ 的 <code>Eqp.img.xml</code>，控制台輸入要去前導零<a class="headerlink" href="#w18-005-id-wz-eqpimgxml" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Eqp.img.xml</code> <code>WZ</code> <code>01010000</code> <code>1010000</code> <code>wz/String.wz</code> <code>道具 ID</code></li>
+<li><strong>來源</strong>：完結片 04:00–06:00（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本片示範的唯一「查檔」動作是取得道具 ID。檔案路徑
+  <code>HeavenMS-App/wz/String.wz/Eqp.img.xml</code>（專案樹中位於 <code>wz</code> 資料夾下），
+  內容是 WZ 資源的 <strong>XML 中繼格式</strong>。反白節點取出道具 ID 為 <code>01010000</code>（8 碼），
+  <strong>但後續在控制台輸入時省略前導零，輸入 <code>1010000</code></strong>。
+  這是全片唯一能算「查資料」的技巧，之後要用控制台發物品、卷軸都要回來查這裡。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;imgdir</span><span class="w"> </span><span class="na">name=</span><span class="s">"01010000"</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">"name"</span><span class="w"> </span><span class="na">value=</span><span class="s">"力量印记"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&lt;string</span><span class="w"> </span><span class="na">name=</span><span class="s">"desc"</span><span class="w"> </span><span class="na">value=</span><span class="s">"象征力量的红色印记。可装备在平时不可见的肉眼周围。使它具有各种神奇的升级次数。"</span><span class="w"> </span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nt">&lt;/imgdir&gt;</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>道具 ID 前導零陷阱</strong>——WZ 裡是 8 碼 <code>01010000</code>，控制台要用 <code>1010000</code>。
+  位數填錯很可能直接落到 <code>请确认角色是否在线或者此道具在当前版本是否存在</code> 這個錯誤。</li>
+</ul>
+<h3 id="w18-006">W18-006　「角色離線或道具不存在」是同一個錯誤訊息<a class="headerlink" href="#w18-006" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>请确认角色是否在线或者此道具在当前版本不存在</code> <code>防呆</code> <code>在线状态</code></li>
+<li><strong>來源</strong>：完結片 04:00–06:00（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：在<strong>未開啟遊戲客戶端</strong>時點擊「发送道具」並輸入道具 ID <code>1010000</code>，
+  錯誤訊息對話框原文為 <code>请确认角色是否在线或者此道具在当前版本不存在</code>。
+  開啟客戶端登入後，同樣的操作就成功。這是伺服器端的保護機制（防呆）。</li>
+<li><strong>坑</strong>：<strong>該錯誤訊息把兩個原因混在一起</strong>（角色離線 <strong>或</strong> 道具在當前版本不存在），
+  除錯時容易被誤導——畫面中實際原因就只是角色未上線。
+  排查順序應該是：先看日誌有沒有 <code>玩家 1 在线状态：1</code>，再懷疑道具版本。</li>
+</ul>
+<h3 id="w18-007">W18-007　新舊兩版介面功能對照<a class="headerlink" href="#w18-007" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>服务配置</code> <code>运行日志</code> <code>游戏管理</code> <code>指令ID</code> <code>参数格式</code> <code>数据库名称</code></li>
+<li><strong>來源</strong>：完結片 00:00–04:15（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：三個介面版本的功能差異，可直接當作「產品演進路線圖」看：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>重構前</th>
+<th>重構後</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>導覽列</td>
+<td>服务启动／服务配置／角色管理／GM指令／停止服务</td>
+<td>运行日志／服务配置／游戏管理（＋顶部分頁「启动」）</td>
+</tr>
+<tr>
+<td>服務配置修改</td>
+<td>雙擊列 → 「修改内容」彈出視窗</td>
+<td>雙擊儲存格內聯編輯 ＋ 顶部「保存修改」</td>
+</tr>
+<tr>
+<td>配置輔助按鈕</td>
+<td>無</td>
+<td>新增配置／刷新表格／保存修改／恢复默认</td>
+</tr>
+<tr>
+<td>GM 指令呈現</td>
+<td>文字表格（指令ID／指令名／参数格式）</td>
+<td>大型圖文卡片按鈕</td>
+</tr>
+<tr>
+<td>啟動流程</td>
+<td>直接按「服务启动」</td>
+<td>設定頁（含数据库名称）→「确认启动服务」→ Loading</td>
+</tr>
+<tr>
+<td>伺服器開關</td>
+<td>「停止服务」按鈕</td>
+<td>右上角 Toggle 元件</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>相關</strong>：見 W08（配置管理）、W11（指令管理）</li>
+<li><strong>坑</strong>：<strong>新版與舊版介面並存且標題極相近</strong>——<code>HeavenMS-Vop V001 (2021)</code> 與 <code>HeavenMS-Vop V001(2021)</code>
+  僅差一個空格，示範或截圖時容易開錯版本。尾段的 <code>HeavenMS Top 控制台</code> 又是第三個視窗標題。</li>
+</ul>
+<h3 id="w18-008">W18-008　實測時的三個硬性前提<a class="headerlink" href="#w18-008" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>gmd011-client-master</code> <code>073.client.master</code> <code>v073</code> <code>射手村</code> <code>保存修改</code></li>
+<li><strong>來源</strong>：完結片 00:00–06:00（無口述，純畫面）｜<code>U36_完结片_教學筆記.md</code></li>
+<li><strong>要點</strong>：要重現完結片的聯動測試，三件事必須成立：</li>
+<li><strong>客戶端版本要對得上</strong>——前半段用 <code>gmd011-client-master</code>（內含 <code>GMS.exe</code>），
+     尾段改用 <code>&lt;DRIVE&gt;\pms\073.client.master</code>（v073 客戶端）。兩份不一致，WZ 資源與客戶端版本對不上就會觸發防呆錯誤。</li>
+<li><strong>角色必須在線</strong>——控制台讀取的是線上角色列表，離線狀態下無法對角色下指令；
+     且客戶端必須成功進入遊戲世界（射手村）才會處於「在线状态：1」。</li>
+<li><strong>GM 指令參數依指令而異</strong>——「刷出怪物」需怪物 ID 與數量，指令列表的「参数格式」欄是唯一依據。</li>
+<li><strong>坑</strong>：只做內聯編輯不按「保存修改」，設定不會生效（見 W18-003）。
+  這三條都是「看起來做了但沒生效」的無聲失敗，排查成本高，值得先記住。</li>
+</ul>
+<h2 id="_4">本頁的坑總表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W18-001</td>
+<td>完結片無口述、無程式碼，不能當教學複習</td>
+<td>完結片 全片</td>
+</tr>
+<tr>
+<td>W18-003</td>
+<td>內聯編輯後未按「保存修改」＝沒改</td>
+<td>完結片 03:27–03:52</td>
+</tr>
+<tr>
+<td>W18-004</td>
+<td><code>商城管理</code> 是佔位頁非 bug</td>
+<td>完結片 04:00–06:00</td>
+</tr>
+<tr>
+<td>W18-005</td>
+<td>道具 ID 前導零：WZ 8 碼 vs 控制台 7 碼</td>
+<td>完結片 04:00–06:00</td>
+</tr>
+<tr>
+<td>W18-006</td>
+<td>錯誤訊息混了兩個原因，易誤導</td>
+<td>完結片 04:00–06:00</td>
+</tr>
+<tr>
+<td>W18-007</td>
+<td>新舊版視窗標題僅差一格空格</td>
+<td>完結片 00:00–04:15</td>
+</tr>
+<tr>
+<td>W18-008</td>
+<td>客戶端版本不一致、角色未上線、參數格式不明</td>
+<td>完結片 全片</td>
+</tr>
+<tr>
+<td>—</td>
+<td>全片音軌為 <code>[No speech]</code>，本頁無法核對講者說法</td>
+<td>素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>片段 1 與片段 2 的畫面理解對「同一支程式」說法衝突，是否同一版無法從畫面判定</td>
+<td>素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>JavaFX／Swing／FlatLaf 技術棧為畫面理解<strong>推測</strong>，畫面無相關字樣</td>
+<td>素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>影片開頭的 IDE 畫面已模糊處理，該處檔名與指令無法確認</td>
+<td>素材稽核</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W16 協作流程與改版實作">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W16 協作流程與改版實作
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-footer__link md-footer__link--next" aria-label="Next: W15 伺服器遊戲機制">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                W15 伺服器遊戲機制
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

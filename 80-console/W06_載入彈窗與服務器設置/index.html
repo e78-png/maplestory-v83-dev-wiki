@@ -1,0 +1,5410 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/">
+      
+      
+        <link rel="prev" href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/">
+      
+      
+        <link rel="next" href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W06 載入彈窗與服務器設置 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w06" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W06 載入彈窗與服務器設置
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w06-001-sqlite-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-001 先讀 sqlite 期間用 Loading 彈窗擋住主視窗
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-002-progressindicator-1-indeterminate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-002 只用 ProgressIndicator 的 -1 Indeterminate 轉圈狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-003-initowner-modalitywindow_modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-003 用 initOwner + Modality.WINDOW_MODAL 把主視窗鎖住
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-004-vbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-004 透明化要清掉 VBox 的預設背景樣式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-005-centeronparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-005 centerOnParent 算座標把子視窗置中於主視窗
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-006-linkedblockingqueuepairstring-runnable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-006 任務用 LinkedBlockingQueue&lt;Pair&lt;String, Runnable&gt;&gt; 收以保證執行順序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-007-addstring-runnable-synchronized-offer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-007 add(String, Runnable) 用 synchronized + offer 收任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-008-execute-poll-runandwait-uicompletablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-008 execute() 開子執行緒、poll 迴圈、runAndWait 更新 UI、CompletableFuture 執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-009-label-final-lambda-effectively-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-009 label 提升為 final 類別欄位，Lambda 變數要 effectively final
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-010-runandwaitthisclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-010 佇列清空後用 runAndWait(this::close) 讓彈窗自動消失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-011" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-011 啟動流程時序：設定任務 → 彈窗鎖主視窗 → 依序等待 → 就緒自動關閉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-012-initialized-configserverdao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-012 用 initialized 旗標 + ConfigServerDao 靜態區塊保證資料庫連線就緒
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-013-config_server-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-013 config_server 既有七個欄位的意義與建表 SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-014" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-014 伺服器設置頁實際可見的設定欄位與設定值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-015-alter-table-config_server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-015 alter table 為 config_server 新增常用與簡稱欄位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-016-config_server-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-016 config_server 的查詢層 SQL 逐字
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-017-textinput-extends-hbox-tooltip-tilepane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-017 用 TextInput extends HBox + Tooltip + TilePane 渲染設定表單
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-018-ui-not-on-fx-application-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-018 背景執行緒操作 UI 會噴 Not on FX application thread
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w06-001-sqlite-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-001 先讀 sqlite 期間用 Loading 彈窗擋住主視窗
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-002-progressindicator-1-indeterminate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-002 只用 ProgressIndicator 的 -1 Indeterminate 轉圈狀態
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-003-initowner-modalitywindow_modal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-003 用 initOwner + Modality.WINDOW_MODAL 把主視窗鎖住
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-004-vbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-004 透明化要清掉 VBox 的預設背景樣式
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-005-centeronparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-005 centerOnParent 算座標把子視窗置中於主視窗
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-006-linkedblockingqueuepairstring-runnable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-006 任務用 LinkedBlockingQueue&lt;Pair&lt;String, Runnable&gt;&gt; 收以保證執行順序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-007-addstring-runnable-synchronized-offer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-007 add(String, Runnable) 用 synchronized + offer 收任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-008-execute-poll-runandwait-uicompletablefuture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-008 execute() 開子執行緒、poll 迴圈、runAndWait 更新 UI、CompletableFuture 執行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-009-label-final-lambda-effectively-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-009 label 提升為 final 類別欄位，Lambda 變數要 effectively final
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-010-runandwaitthisclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-010 佇列清空後用 runAndWait(this::close) 讓彈窗自動消失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-011" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-011 啟動流程時序：設定任務 → 彈窗鎖主視窗 → 依序等待 → 就緒自動關閉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-012-initialized-configserverdao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-012 用 initialized 旗標 + ConfigServerDao 靜態區塊保證資料庫連線就緒
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-013-config_server-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-013 config_server 既有七個欄位的意義與建表 SQL
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-014" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-014 伺服器設置頁實際可見的設定欄位與設定值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-015-alter-table-config_server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-015 alter table 為 config_server 新增常用與簡稱欄位
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-016-config_server-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-016 config_server 的查詢層 SQL 逐字
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-017-textinput-extends-hbox-tooltip-tilepane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-017 用 TextInput extends HBox + Tooltip + TilePane 渲染設定表單
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w06-018-ui-not-on-fx-application-thread" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W06-018 背景執行緒操作 UI 會噴 Not on FX application thread
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w06">W06　載入彈窗與服務器設置<a class="headerlink" href="#w06" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>課次</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第九課</td>
+<td><code>L09_第九课_教學筆記.md</code></td>
+<td>全課（Loading 彈窗、任務佇列、FX 執行緒、服務器啟動流程）</td>
+</tr>
+<tr>
+<td>第十課</td>
+<td><code>L10_第十课_教學筆記.md</code></td>
+<td>全課（<code>config_server</code> 資料層、連線初始化守衛、設定表單渲染、FX 執行緒除錯）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">速查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<!-- 給人與 agent 快速定位的小表，不是獨立條目 -->
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W06-001</td>
+<td>Loading 彈窗解決「讀 sqlite 期間主視窗被亂點而未響應」</td>
+</tr>
+<tr>
+<td>W06-002</td>
+<td><code>ProgressIndicator</code> 只用 <code>-1</code> 的 Indeterminate 轉圈狀態</td>
+</tr>
+<tr>
+<td>W06-003</td>
+<td><code>initOwner</code> + <code>Modality.WINDOW_MODAL</code> 鎖住主視窗</td>
+</tr>
+<tr>
+<td>W06-004</td>
+<td>透明化三層：Stage → Scene → <code>root.setStyle</code> 才是有效解</td>
+</tr>
+<tr>
+<td>W06-005</td>
+<td><code>centerOnParent</code> 置中公式，且必須排在設寬高之後</td>
+</tr>
+<tr>
+<td>W06-006</td>
+<td>任務用 <code>LinkedBlockingQueue&lt;Pair&lt;String, Runnable&gt;&gt;</code> 收，理由是必須按順序</td>
+</tr>
+<tr>
+<td>W06-007</td>
+<td><code>add(String, Runnable)</code> 以 <code>synchronized</code> + <code>offer</code> 收任務</td>
+</tr>
+<tr>
+<td>W06-008</td>
+<td><code>execute()</code> 開子執行緒、<code>poll</code> 迴圈、<code>runAndWait</code> 更新、<code>CompletableFuture</code> 執行</td>
+</tr>
+<tr>
+<td>W06-009</td>
+<td><code>label</code> 必須提升為 <code>final</code> 類別欄位，Lambda 變數要 effectively final</td>
+</tr>
+<tr>
+<td>W06-010</td>
+<td>佇列清空後 <code>runAndWait(this::close)</code> 自動關閉彈窗</td>
+</tr>
+<tr>
+<td>W06-011</td>
+<td>啟動時序：設定任務 → 開彈窗鎖主視窗 → 依序等待 → 就緒後自動關閉</td>
+</tr>
+<tr>
+<td>W06-012</td>
+<td><code>SQLiteConnection.initialized</code> 旗標 + <code>ConfigServerDao</code> 靜態區塊保證連線就緒</td>
+</tr>
+<tr>
+<td>W06-013</td>
+<td><code>config_server</code> 七個既有欄位逐項意義與建表 SQL</td>
+</tr>
+<tr>
+<td>W06-014</td>
+<td>伺服器設置頁實際可見的設定欄位與設定值</td>
+</tr>
+<tr>
+<td>W06-015</td>
+<td><code>alter table</code> 新增 <code>popular</code>（常用）／簡稱欄位／<code>overlay</code></td>
+</tr>
+<tr>
+<td>W06-016</td>
+<td>查詢層 SQL：<code>select</code> / <code>selectPopular</code> / <code>update</code> / <code>selectAll</code> / <code>selectByWorld</code></td>
+</tr>
+<tr>
+<td>W06-017</td>
+<td><code>TextInput extends HBox</code> + <code>Tooltip</code> + <code>TilePane</code> 3 欄 + <code>ScrollPane</code> 渲染設定表單</td>
+</tr>
+<tr>
+<td>W06-018</td>
+<td>背景執行緒操作 UI 會噴 <code>Not on FX application thread</code>，用 <code>Platform.runLater</code> 修</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">條目<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="w06-001-sqlite-loading">W06-001　先讀 sqlite 期間用 Loading 彈窗擋住主視窗<a class="headerlink" href="#w06-001-sqlite-loading" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Loading</code> <code>sqlite</code> <code>server.db</code> <code>未響應</code> <code>服務配置</code> <code>menu_config</code></li>
+<li><strong>來源</strong>：第九課 05:00–08:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：進入「服務配置」時會去讀 sqlite 資料庫（<code>server.db</code>），放在固態以外的機器上啟動會有點卡，介面會卡一會兒。若不加保護，使用者在讀庫時亂點會出現「程序未響應」，一直未響應 Windows 可能就會殺掉程序。所以要讓 Loading 以「彈窗」形式出現來保護主介面。路由端先建一個空類別 <code>MenuConfig extends MenuAbstract</code> 覆寫 <code>show()</code>，並把枚舉類裡面的服務配置改成 <code>menu_config</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MenuConfig</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">MenuAbstract</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>Loading 為什麼必須是「子彈窗」而不能直接動主 <code>Stage</code></strong>——口述說「我們就不能用我們的 <code>primary Stage</code> 了……要弄一個子窗口出來」，因此自訂元件繼承 <code>Stage</code>。另：先用空類別跑一次確認點擊後右側變空白（而非「功能还在开发中，敬请期待！」）才證明路由通，這是本課的自我驗證步驟。<code>FaterLive</code> / <code>ListCellBuilder</code> 與 <code>ListView</code> / <code>ComboBox</code> 註解是畫面層竄入，不採信。</li>
+<li><strong>相關</strong>：見 W14-016；見 W05</li>
+</ul>
+<h3 id="w06-002-progressindicator-1-indeterminate">W06-002　只用 <code>ProgressIndicator</code> 的 <code>-1</code> Indeterminate 轉圈狀態<a class="headerlink" href="#w06-002-progressindicator-1-indeterminate" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>ProgressIndicator</code> <code>setProgress</code> <code>Indeterminate</code> <code>-1</code> <code>轉圈</code></li>
+<li><strong>來源</strong>：第九課 00:00–05:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>ProgressIndicator</code> 是 JavaFX 自帶的進度指示器，預設進度就是 <code>-1</code>，代表一直轉圈。<code>0</code> 顯示 0%、<code>0</code>–<code>0.999</code> 是百分比進度條、<code>1</code> 顯示完成。本課只使用「一直轉圈」那個樣態，其餘一律不用。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">VBox</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VBox</span><span class="p">();</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">root</span><span class="p">.</span><span class="na">setAlignment</span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">ProgressIndicator</span><span class="w"> </span><span class="n">indicator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProgressIndicator</span><span class="p">();</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">Button</span><span class="w"> </span><span class="n">button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Button</span><span class="p">(</span><span class="s">"增加进度"</span><span class="p">);</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">root</span><span class="p">.</span><span class="na">getChildren</span><span class="p">().</span><span class="na">addAll</span><span class="p">(</span><span class="n">indicator</span><span class="p">,</span><span class="w"> </span><span class="n">button</span><span class="p">);</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">button</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">indicator</span><span class="p">.</span><span class="na">getProgress</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="n">indicator</span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">indicator</span><span class="p">.</span><span class="na">getProgress</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">indicator</span><span class="p">.</span><span class="na">setProgress</span><span class="p">(</span><span class="n">indicator</span><span class="p">.</span><span class="na">getProgress</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.2</span><span class="p">);</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">indicator</span><span class="p">.</span><span class="na">getProgress</span><span class="p">());</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：講者口述自嘲是「在 JavaFX 自帶的話，我們就把它給嫖了……去了它一半的功能」，因此不要以為本課的 Loading 有百分比進度。真要百分比進度條才需要 <code>setProgress(0.0f–1.0f)</code>。</li>
+<li><strong>相關</strong>：見 W02</li>
+</ul>
+<h3 id="w06-003-initowner-modalitywindow_modal">W06-003　用 <code>initOwner</code> + <code>Modality.WINDOW_MODAL</code> 把主視窗鎖住<a class="headerlink" href="#w06-003-initowner-modalitywindow_modal" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>initOwner</code> <code>Modality.WINDOW_MODAL</code> <code>IllegalStateException</code> <code>primaryStage</code> <code>show()</code></li>
+<li><strong>來源</strong>：第九課 16:00–20:00、20:00–24:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>MenuAbstract</code> 裡的 <code>primaryStage</code> 原本是 <code>private</code>，要改成 <code>protected</code> 才能讓同包的子類使用。Loading 建構子收 <code>primaryStage</code> 入參後，依序做 <code>initOwner(primaryStage)</code>（讓子視窗歸主視窗管，任務列不會出現兩個視窗 icon）與 <code>initModality(Modality.WINDOW_MODAL)</code>（子視窗開著時主視窗點不動）。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">initOwner</span><span class="p">(</span><span class="n">primaryStage</span><span class="p">);</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">initModality</span><span class="p">(</span><span class="n">Modality</span><span class="p">.</span><span class="na">WINDOW_MODAL</span><span class="p">);</span><span class="w"> </span><span class="c1">// 設定為視窗級別的模態</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// src/.../ui/menu/MenuAbstract.java</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MenuAbstract</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="n">Stage</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">;</span><span class="w">   </span><span class="c1">// 原本是 private，後來改成 protected</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kd">abstract</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">();</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Exception in thread "JavaFX Application Thread" java.lang.IllegalStateException: Cannot set owner once stage has been set visible
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>at javafx.graphics/javafx.stage.Stage.initOwner(Stage.java:298)
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>at ui.component.ProgressLoading.&lt;init&gt;(ProgressLoading.java:28)
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>...
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong><code>initOwner</code> / <code>initModality</code> / 置中 / <code>show()</code> 的順序不能換</strong>，換了就會噴 <code>Cannot set owner once stage has been set visible</code>。<code>Modality</code> 三個值中口述把 <code>APPLICATION_MODAL</code> 說成「不影響窗口點擊」，與 JavaFX 定義相反（講者自己也說「啊，沒，沒說反」），本課只用 <code>WINDOW_MODAL</code>。</li>
+<li><strong>相關</strong>：見 W03</li>
+</ul>
+<h3 id="w06-004-vbox">W06-004　透明化要清掉 <code>VBox</code> 的預設背景樣式<a class="headerlink" href="#w06-004-vbox" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>StageStyle.TRANSPARENT</code> <code>scene.setFill</code> <code>root.setStyle</code> <code>-fx-background-color: transparent</code> <code>Color.TRANSPARENT</code></li>
+<li><strong>來源</strong>：第九課 20:00–24:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：要做出無邊框的 Loading，透明化分三層且缺一不可：<code>initStyle(StageStyle.TRANSPARENT)</code> 去掉邊框；<code>scene.setFill(Color.TRANSPARENT)</code> 去掉場景背景；真正解決灰色矩形的是佈局容器 <code>VBox</code> 的預設樣式，要用 <code>root.setStyle("-fx-background-color: transparent;")</code>。本課為了長文字顯示把 Scene 由 <code>300</code> 收到 <code>150</code> 再放回 <code>200</code>、高度 <code>100</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>次序</th>
+<th>程式碼</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第一次</td>
+<td><code>scene.setFill(null);</code></td>
+<td>無效</td>
+</tr>
+<tr>
+<td>第二次</td>
+<td><code>scene.setFill(Color.TRANSPARENT);</code>（自動匯入 <code>import javafx.scene.paint.Color;</code>）</td>
+<td>仍無效</td>
+</tr>
+<tr>
+<td><strong>最終解法</strong></td>
+<td><code>root.setStyle("-fx-background-color: transparent;");</code></td>
+<td>灰色矩形消失</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">root</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">);</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">Scene</span><span class="w"> </span><span class="n">scene</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">scene</span><span class="p">.</span><span class="na">setFill</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">TRANSPARENT</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>scene.setFill(...)</code> 兩次都無效，因為灰色背景不是 <code>Scene</code> 造成的而是 <code>VBox</code> 的預設樣式——這一點口述只說「還要把 root 透明化」，根因是畫面層補上的。另：口述說「<code>root.transparent</code> 打錯了嗎？……確實是打錯了」。</li>
+<li><strong>相關</strong>：見 W02</li>
+</ul>
+<h3 id="w06-005-centeronparent">W06-005　<code>centerOnParent</code> 算座標把子視窗置中於主視窗<a class="headerlink" href="#w06-005-centeronparent" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>centerOnParent</code> <code>setX</code> <code>setY</code> <code>getWidth</code> <code>getHeight</code> <code>ViewUtil</code> <code>spacer</code></li>
+<li><strong>來源</strong>：第九課 24:00–28:00、28:00–32:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：所有視窗的 <code>x</code>／<code>y</code> 座標都指左上角。子視窗置中 = 父視窗座標 + 父視窗寬高的一半 − 子視窗寬高的一半。這個方法不只 Loading 會用到，所以放進工具類（口述定名 <code>ViewUtil</code>，在 <code>util</code> 包）。簡化寫法為「父寬減子寬再除以 2」，但畫面上未見。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ViewUtil</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="cm">/** 讓子視窗置中於父視窗（出處：v007 公式 / a005-a006 口述推導） */</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">centerOnParent</span><span class="p">(</span><span class="n">Stage</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">,</span><span class="w"> </span><span class="n">Stage</span><span class="w"> </span><span class="n">stage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getX</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="p">.</span><span class="na">getWidth</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">        </span><span class="n">stage</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getY</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">stage</span><span class="p">.</span><span class="na">getHeight</span><span class="p">()</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">));</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>前置條件是子視窗必須先有寬高</strong>（先 <code>setWidth</code>／<code>setHeight</code> 或建 <code>Scene(root, w, h)</code>），所以在 <code>ProgressLoading</code> 裡「設寬高」必須排在「置中」之前——這正是本課引入任務佇列保證順序的原始動機。工具類名在畫面層有 <code>FlowUtil.centerAndShowParent</code>（v006）→ <code>PlowUI.centerOnParent</code>（v007）→ <code>ViewUtil.centerOnParent</code>（v008）四種寫法，<strong>以口述為準 = <code>ViewUtil.centerOnParent</code></strong>。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-006-linkedblockingqueuepairstring-runnable">W06-006　任務用 <code>LinkedBlockingQueue&lt;Pair&lt;String, Runnable&gt;&gt;</code> 收以保證執行順序<a class="headerlink" href="#w06-006-linkedblockingqueuepairstring-runnable" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>LinkedBlockingQueue</code> <code>Pair</code> <code>Runnable</code> <code>先進先出</code> <code>offer</code> <code>poll</code> <code>Integer.MAX_VALUE</code></li>
+<li><strong>來源</strong>：第九課 32:00–36:00、00:00–05:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：某些程式碼必須按順序執行（例如「先設定子視窗寬高，再把子視窗置中」，反過來寫就算不出寬高），因此用佇列保證先進先出。<code>Pair</code> 是 HeavenMS 專案自寫的泛型鍵值對，<code>getLeft()</code> 放顯示文字 <code>String</code>、<code>getRight()</code> 放要執行的 <code>Runnable</code>——因為後台執行任務時要同步更新 <code>label</code>。選 <code>LinkedBlockingQueue</code> 而非 <code>ArrayList</code> 的另一個理由是它執行緒安全、預設容量 <code>Integer.MAX_VALUE</code>，不需要煩惱擴容。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cm">/** 任務佇列：先加進來的先執行（出處：v008 / v013） */</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">LinkedBlockingQueue</span><span class="o">&lt;</span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Runnable</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">queue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">LinkedBlockingQueue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Pair</span><span class="o">&lt;</span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="n">left</span><span class="p">;</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Pair</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">L</span><span class="w"> </span><span class="nf">getLeft</span><span class="p">()</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="nf">getRight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>ArrayList</code> 的預設容量是 <strong><code>10</code></strong>（口述講者說「應該是 8 吧」為猜測，正確值是 10）。<code>Pair</code> 的左右對應是依畫面用法推斷（<code>getLeft()</code> = text，<code>getRight()</code> = runnable），不是口述明講。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-007-addstring-runnable-synchronized-offer">W06-007　<code>add(String, Runnable)</code> 用 <code>synchronized</code> + <code>offer</code> 收任務<a class="headerlink" href="#w06-007-addstring-runnable-synchronized-offer" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>add</code> <code>synchronized</code> <code>offer</code> <code>LinkedBlockingQueue</code> <code>queue.offer</code></li>
+<li><strong>來源</strong>：第九課 32:00–36:00、52:00–53:08｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：加入任務的簽章是 <code>(String text, Runnable runnable)</code>；<code>offer</code> 就是往佇列添加。加鎖的理由口述是「它要是並發的往裡面加，加任務的話還不太行」，但也補了一句「加任務的話……這個就不用加鎖了，只會執行一次」。加完全部任務後才呼叫 <code>execute()</code> 開始消耗佇列。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">synchronized</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">Runnable</span><span class="w"> </span><span class="n">runnable</span><span class="p">){</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">queue</span><span class="p">.</span><span class="na">offer</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Pair</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">runnable</span><span class="p">));</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>add</code> 明明 <code>synchronized</code>，但 <code>LinkedBlockingQueue</code> 本身執行緒安全，等於雙重保護；口述對「要不要加鎖」自相矛盾。另外 <code>add</code> 只能加不能移除，<strong>一旦呼叫 <code>execute()</code> 佇列就被單向消耗</strong>，要重跑就必須重建 <code>ProgressLoading</code>。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-008-execute-poll-runandwait-uicompletablefuture">W06-008　<code>execute()</code> 開子執行緒、<code>poll</code> 迴圈、<code>runAndWait</code> 更新 UI、<code>CompletableFuture</code> 執行<a class="headerlink" href="#w06-008-execute-poll-runandwait-uicompletablefuture" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>execute</code> <code>queue.poll</code> <code>PlatformImpl.runAndWait</code> <code>CompletableFuture.runAsync</code> <code>future.get</code> <code>Log.error</code> <code>complete(null)</code> <code>future.complete</code></li>
+<li><strong>來源</strong>：第九課 36:00–40:00、40:00–44:00、44:00–48:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>execute()</code> 一定要自己 <code>new Thread(...)</code>，因為 <code>future.get()</code> 是阻塞式的，在 UI 執行緒呼叫會讓視窗「未響應」；在子執行緒阻塞沒關係，主線程呼叫完 <code>execute()</code> 就啥也不用幹。迴圈終止條件是 <code>while ((pAll = queue.poll()) != null)</code>，poll 到 <code>null</code> 代表清空。每輪先用 <code>runAndWait</code> 更新文字、再用 <code>CompletableFuture.runAsync(() -&gt; pAll.getRight().run())</code> 執行、<code>future.get()</code> 等它做完。任務失敗時記 <code>Log.error</code>，並用 <code>future.complete(null)</code> 強行標記完成好繼續跑下一個任務。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">execute</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Thread</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">        </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Runnable</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pAll</span><span class="p">;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="n">pAll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">queue</span><span class="p">.</span><span class="na">poll</span><span class="p">())</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">            </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Runnable</span><span class="o">&gt;</span><span class="w"> </span><span class="n">finalPAll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pAll</span><span class="p">;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">            </span><span class="n">PlatformApp</span><span class="p">.</span><span class="na">runAndWait</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">label</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">finalPAll</span><span class="p">.</span><span class="na">getLeft</span><span class="p">()));</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">            </span><span class="n">CompletableFuture</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">finalPAll</span><span class="p">.</span><span class="na">getRight</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">                </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">                    </span><span class="n">future</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CompletableFuture</span><span class="p">.</span><span class="na">runAsync</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">finalPAll</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">run</span><span class="p">());</span>
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">                    </span><span class="n">future</span><span class="p">.</span><span class="na">get</span><span class="p">();</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">                    </span><span class="n">Log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"加载出错了"</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">);</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">                    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">future</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">                        </span><span class="n">future</span><span class="p">.</span><span class="na">complete</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">                    </span><span class="p">}</span>
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">                </span><span class="p">}</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">            </span><span class="p">}</span>
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">    </span><span class="p">}).</span><span class="na">start</span><span class="p">();</span>
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="n">Object</span><span class="w"> </span><span class="n">msg</span><span class="p">,</span><span class="w"> </span><span class="n">Throwable</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w">   </span><span class="c1">// v010 查 Log.java 確認的簽章</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：本課踩到的第二個真錯誤：v009 版本在 Lambda 裡直接用迴圈變數，編譯報
+  <code>Variable used in lambda expression should be final or effectively final</code>。
+  v011 示範的超時寫法 <code>future.get(1, TimeUnit.SECONDS)</code> 配 <code>sleep(3000)</code>，訊息又寫「map 10秒內未載入完畢」，且 <code>Log.error</code> 只傳一個參數與簽章不符——<strong>該段最終正確形式無法從素材確定</strong>。執行緒輔助類名有 <code>SleepUtil</code>（v006）與 <code>ThreadUtil</code>（v011–v013）兩名，v013 日誌時間戳證明 <code>ThreadUtil</code> 可信度較高。FX 執行緒 API 也有 <code>PlatformImpl</code>（口述與 v012）與 <code>PlatformApp</code>（v010 畫面）兩種寫法，以口述的 <code>PlatformImpl</code> 為準。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-009-label-final-lambda-effectively-final">W06-009　<code>label</code> 提升為 <code>final</code> 類別欄位，Lambda 變數要 effectively final<a class="headerlink" href="#w06-009-label-final-lambda-effectively-final" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>label</code> <code>private final Label</code> <code>effectively final</code> <code>finalPAll</code> <code>setText</code> <code>getLeft</code></li>
+<li><strong>來源</strong>：第九課 36:00–40:00、40:00–44:00｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：子執行緒要更新 UI，<code>label</code> 必須從建構子的區域變數提升成類別欄位；因為是在建構方法裡賦值、類初始化時就會執行，所以可以直接宣告 <code>final</code>。同理，<code>while</code> 迴圈中被重新賦值的變數不能直接在 Lambda 內使用，要先 <code>Pair&lt;String, Runnable&gt; finalPAll = pAll;</code> 再拿 <code>finalPAll.getLeft()</code> 更新文字。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// 1. 新增類別欄位</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Label</span><span class="w"> </span><span class="n">label</span><span class="p">;</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">// 2. 建構子中修改 label 初始化方式</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="c1">// 原本: Label label = new Label("Loading...");</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Label</span><span class="p">(</span><span class="s">"Loading..."</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：本課的 <code>execute()</code> 有兩代版本並存：v009 用 <code>Platform.runLater</code>（非同步），v010 改為 <code>PlatformApp.runAndWait</code>（要等 UI 更新完才往下走）。口述理由是「我不想讓它異步執行了，我想讓它 UI 更新完了之後，然後再執行下面的代碼」——要照抄就必須用 <code>runAndWait</code> 而不是 <code>runLater</code>。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-010-runandwaitthisclose">W06-010　佇列清空後用 <code>runAndWait(this::close)</code> 讓彈窗自動消失<a class="headerlink" href="#w06-010-runandwaitthisclose" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>this::close</code> <code>PlatformImpl.runAndWait</code> <code>Stage.close</code> <code>execute</code> <code>queue.poll</code> <code>null</code></li>
+<li><strong>來源</strong>：第九課 48:00–52:00、52:00–53:08｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：佇列清空後，Loading 要自己把自己關掉，不要讓使用者操心。做法是在 <code>while</code> 迴圈結束之後、<code>new Thread(...)</code> 之內呼叫 <code>PlatformImpl.runAndWait(this::close)</code>。關閉後模態自動失效，主視窗又可以隨意操作。講者本課三點總結之一就是「執行完了之後就要把這個 loading 自己給我關掉」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">// ⑥ 佇列清空 → 在 FX 執行緒關掉自己（出處：v012，解決「Loading 卡住不消失」）</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">PlatformImpl</span><span class="p">.</span><span class="na">runAndWait</span><span class="p">(</span><span class="k">this</span><span class="p">::</span><span class="n">close</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>漏寫 <code>this::close</code> 就會出現「任務全跑完了、轉圈圈還卡在畫面上」</strong>——這是 v012 親手重現並修掉的 bug：第一次執行時指示器與文字都不消失；加上 <code>this::close</code> 後重跑，任務完畢才順利消失。另外 <code>close()</code> 必須在 FX 執行緒呼叫，背景執行緒直接關視窗不行。</li>
+<li><strong>相關</strong>：見 W14-014</li>
+</ul>
+<h3 id="w06-011">W06-011　啟動流程時序：設定任務 → 彈窗鎖主視窗 → 依序等待 → 就緒自動關閉<a class="headerlink" href="#w06-011" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>MenuStart</code> <code>MenuConfig</code> <code>loading.execute</code> <code>加載wz</code> <code>連接數據庫</code> <code>啟動伺服器</code> <code>正在加载配置</code> <code>建立网络连接</code> <code>Log.info</code></li>
+<li><strong>來源</strong>：第九課 44:00–48:00、48:00–52:00、52:00–53:08｜<code>L09_第九课_教學筆記.md</code></li>
+<li><strong>要點</strong>：完整時序為：① 在選單的 <code>show()</code> 裡 <code>new ProgressLoading(primaryStage)</code>（此時視窗彈出、主視窗被 <code>WINDOW_MODAL</code> 鎖住）；② 連續 <code>add()</code> 三個「顯示文字 + 要做的事」；③ 全部加完才呼叫 <code>loading.execute()</code> 開始依序執行；④ 每輪先更新 <code>label</code> 讓使用者看到當前步驟，跑完三步後彈窗自動 <code>close</code>、主視窗恢復可點。第九課示範的是三個業務步驟：加載 wz → 連接數據庫 → 啟動伺服器；有日誌佐證的版本則是：正在加载配置 → 加载一些图片资源 → 建立网络连接。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// src/.../MenuStart.java（v013 版本：唯一有日誌佐證的一版）</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kd">class</span> <span class="nc">MenuStart</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">MenuAbstract</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">        </span><span class="n">ProgressLoading</span><span class="w"> </span><span class="n">loading</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ProgressLoading</span><span class="p">(</span><span class="n">primaryStage</span><span class="p">);</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"正在加载配置..."</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">            </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">3000</span><span class="p">);</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"配置加载完毕"</span><span class="p">);</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"加载一些图片资源..."</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">            </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">2000</span><span class="p">);</span>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"图片资源加载完毕"</span><span class="p">);</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"建立网络连接..."</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="w">            </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="mi">5000</span><span class="p">);</span>
+<a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">info</span><span class="p">(</span><span class="s">"网络连接建立成功"</span><span class="p">);</span>
+<a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a>
+<a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a><span class="w">        </span><span class="n">loading</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>[2023-12-20 02:33:54.918] [INFO] moe.kawa.maplestory.MenuStart - 配置加载完毕
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>[2023-12-20 02:33:56.929] [INFO] moe.kawa.maplestory.MenuStart - 图片资源加载完毕
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>[2023-12-20 02:34:01.936] [INFO] moe.kawa.maplestory.MenuStart - 网络连接建立成功
+</code></pre></div>
+<p>時間戳可直接驗證 sleep：02:33:54.918 → 02:33:56.929 間隔 <strong>2.011 秒</strong>，02:33:56.929 → 02:34:01.936 間隔 <strong>5.007 秒</strong>，對應 <code>ThreadUtil.sleep(2000)</code> 與 <code>ThreadUtil.sleep(5000)</code> 準確無誤。</p>
+<ul>
+<li><strong>坑</strong>：v011 畫面是「加載wz / 連接數據庫 / 啟動伺服器」（sleep 1000/2000/3000），口述 a009 卻是「任務一 / 任務二 / 任務三」通用示範（先說 1/2/3 秒又自我更正為都是 3 秒）——<strong>兩者不一致，兩邊都保留</strong>。入口類三名並存：<code>MenuConfig</code>（v011，<code>ui.menu</code>）、<code>MenuExtract</code>（v012，<code>core</code> package）、<code>MenuStart</code>（v013，根套件 <code>moe.kawa.maplestory</code>，有日誌佐證），<strong>判定 <code>MenuStart</code> 為最終版本</strong>。口述另提醒「如果這個活在幹到一半的情況下……當然你寫了個死循環的話，那麼這裡就會一直等、一直死等。所以大家千萬不要寫死循環」。</li>
+<li><strong>相關</strong>：見 W05</li>
+</ul>
+<h3 id="w06-012-initialized-configserverdao">W06-012　用 <code>initialized</code> 旗標 + <code>ConfigServerDao</code> 靜態區塊保證資料庫連線就緒<a class="headerlink" href="#w06-012-initialized-configserverdao" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>SQLiteConnection</code> <code>initialized</code> <code>isInitialized</code> <code>ConfigServerDao</code> <code>static</code> <code>db.dao</code> <code>jdbc:mysql</code></li>
+<li><strong>來源</strong>：第十課 35:00–40:00、40:00–45:00｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：原本資料庫連線要等服務啟動後才取得，但「如果這個時候我服務沒啟動，我是不是也要能正常的去讀啊？」所以在 <code>SQLiteConnection</code> 加狀態旗標 <code>initialized</code>（預設 <code>false</code>），<code>init()</code> 開頭若已初始化就直接 <code>return</code>，跑完設 <code>true</code>，並提供 <code>isInitialized()</code> getter。<code>ConfigServerDao</code> 用<strong>靜態代碼塊</strong>保證連線就緒：類別一被載入就先檢查，未初始化就初始化，避免每個 DAO 重複初始化。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="n">initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">initialized</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="c1">// ... 原有的連線初始化程式碼 ...</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">    </span><span class="n">initialized</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">}</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">isInitialized</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">initialized</span><span class="p">;</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">db.dao</span><span class="p">;</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">tools.SQLiteConnection</span><span class="p">;</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ConfigServerDao</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">SQLiteConnection</span><span class="p">.</span><span class="na">isInitialized</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">            </span><span class="n">SQLiteConnection</span><span class="p">.</span><span class="na">init</span><span class="p">();</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="p">}</span>
+</code></pre></div>
+<p>畫面右下角可見的資料庫連線字串逐字：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>jdbc:mysql://127.0.0.1:3306/maple?useUnicode=true&amp;characterEncoding=utf8...
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>資料庫種類衝突</strong>——全課口述反覆說配置存在 <strong>SQLite</strong>（「是往我們的 sqlite 數據庫加啊，因為我們它的配置在 SQLite 數據庫，不在別的數據庫」），畫面 Database 面板卻是 MySQL 連線 <code>jdbc:mysql://127.0.0.1:3306/maple?...</code>；推測是「Java 端走 SQLite 連線類、維運工具看 MySQL」或錄製中切換過環境，<strong>未經確認</strong>。口述另稱旗標型別是 <code>AtomicBoolean</code>，畫面程式碼是 <code>boolean</code>，衝突。（連線字串後半段被截斷，完整參數不可得。）</li>
+<li><strong>相關</strong>：見 W14-016</li>
+</ul>
+<h3 id="w06-013-config_server-sql">W06-013　<code>config_server</code> 既有七個欄位的意義與建表 SQL<a class="headerlink" href="#w06-013-config_server-sql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>config_server</code> <code>config_world</code> <code>config_type</code> <code>config_name</code> <code>config_data</code> <code>config_data_type</code> <code>config_desc</code> <code>NewSql.sql</code></li>
+<li><strong>來源</strong>：第十課 30:00–35:00、35:00–40:00｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：伺服器設定存在 <code>config_server</code> 這張表，欄位意義逐項為：<code>id</code> 自增主鍵；<code>config_world</code> 大區 ID，<strong>非大區相關的配置就是一個「星」</strong>；<code>config_type</code> 分類（<code>world</code> / 數據庫 / 遊戲 / 服務 / debug，「我們對配置做了一個分類，我們原來就做了」）；<code>config_name</code> 配置名稱；<code>config_data</code> 配置的值；<code>config_data_type</code> 值的型別（<code>string</code> / <code>integer</code> / <code>long</code> / <code>double</code> / 其他）；<code>config_desc</code> 配置描述。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">`</span><span class="n">config_server</span><span class="o">`</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="o">`</span><span class="n">config_world</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="o">`</span><span class="n">config_type</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="o">`</span><span class="n">config_name</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="o">`</span><span class="n">config_data</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="o">`</span><span class="n">config_data_type</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="o">`</span><span class="n">config_desc</span><span class="o">`</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">);</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="s1">'0'</span><span class="p">,</span><span class="w"> </span><span class="s1">'world'</span><span class="p">,</span><span class="w"> </span><span class="s1">'popular'</span><span class="p">,</span><span class="w"> </span><span class="s1">'0'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Integer'</span><span class="p">,</span><span class="w"> </span><span class="s1">'服务器状态(0正常 1火爆)'</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：欄位名在 SQL 是 snake_case（<code>config_world</code>），在 Java 側走 getter（<code>getConfigName()</code> / <code>getConfigData()</code> / <code>getConfigDesc()</code>），兩套命名對照關係是依程式碼推斷。另一張名為 <code>@config_data</code> 的資料表（欄位 <code>id</code>、<code>name</code>、<code>data</code>、<code>type</code>，例如 <code>channels</code> / <code>1,2,3,4,5</code> / <code>String</code>）與 <code>config_server</code> 是不同表，勿混用。</li>
+<li><strong>相關</strong>：見 W14-016</li>
+</ul>
+<h3 id="w06-014">W06-014　伺服器設置頁實際可見的設定欄位與設定值<a class="headerlink" href="#w06-014" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>服务器配置</code> <code>服务端设置</code> <code>变量名</code> <code>启动配置</code> <code>server.port</code> <code>world.name</code> <code>channel.count</code> <code>expRate</code> <code>userlimit</code> <code>serverMessage</code> <code>serverMessage</code></li>
+<li><strong>來源</strong>：第十課 05:00–10:00、35:00–40:00、55:00–60:00、60:00–65:00、65:00–片尾｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：設定項在畫面上的呈現分幾種表：伺服器配置屬性表欄位為「变量名 / 类型 / 当前值 / 默认值 / 重置 / 常量映射」，可見變數 <code>debugMode</code>、<code>traceMessage</code>、<code>allowMessage</code>、<code>expRate</code>、<code>mesoRate</code>、<code>dropRate</code>、<code>bossExpRate</code>；另有「启动配置」表，欄位「名称 / 类名 / 加载顺序」，內容為 <code>WZ数据</code>、<code>加载道具</code>、<code>加载怪物</code>、<code>加载技能</code>。控制台 UI 側的 <code>TableView</code> 欄位為 <code>所属世界</code>、<code>类型</code>、<code>配置名</code>、<code>配置值</code>、<code>数据类型</code>、<code>说明</code>，資料可見 <code>world</code>、<code>channels</code>、<code>serverMessage</code>。最終「服务器设置」頁會一次載入數十項設定並自動填入資料庫預設值（<code>serverMessage</code>、<code>eventMessage</code>、<code>expRate</code>、<code>dropRate</code>、<code>mesoRate</code>、<code>bossDropRate</code>、<code>channelCount</code> 等），實際跑出的值例如 <code>channel.count</code> = <code>3</code>、<code>server.port</code> = <code>8484</code>、<code>world.name</code> = <code>蓝蜗牛</code>；另一段執行畫面可見 <code>channels: 1,2,3,4,5</code>、<code>userlimit: 1000</code>、<code>expRate: 1</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- sql/init.sql 內預先寫好的初始化腳本</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="p">...</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1">-- configName 如 eventMessage、serverMessage、expRate、dropRate</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：以上欄位名稱與設定值是<strong>畫面可見值</strong>，各片段的視窗標題與左側選單文字互相矛盾且多為字形誤讀，故只有設定欄位與值本身可用。左側選單在不同片段有「服务器配置 / 服务端设置 / 系统设置 / 控制台 / 中控配置 / 快捷菜单」等互斥寫法，不可作為設定項依據。Navicat 檢視 <code>config_server</code> 時另可見 <code>app_name</code>（HeavenMS）、<code>app_file</code>、<code>config_save</code>（<code>setting.ini</code>）三列；<code>setting.ini</code> 僅是該列的資料值，<strong>本課沒有任何以 <code>.ini</code> 檔作為設定來源的說法</strong>。</li>
+<li><strong>相關</strong>：見 W08</li>
+</ul>
+<h3 id="w06-015-alter-table-config_server">W06-015　<code>alter table</code> 為 <code>config_server</code> 新增常用與簡稱欄位<a class="headerlink" href="#w06-015-alter-table-config_server" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>alter table</code> <code>popular</code> <code>varchar(5)</code> <code>varchar(10)</code> <code>default null</code> <code>simple_name</code> <code>simudone</code> <code>overlay</code> <code>Optional.ofNullable</code></li>
+<li><strong>來源</strong>：第十課 35:00–40:00、60:00–65:00｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：要標記哪些配置是「常用」，得對既有表加欄位。欄位長度是口述推導的：「<code>true</code> 是 4 個，<code>false</code> 是 5，那我們設置一個 <code>varchar 5</code> 吧，然後 <code>default null</code>……因為我們是升級上來的嘛，默認就是 null」。因為配置描述太長會把介面擠得難受，再加一個「簡稱」欄位，長度上限明確指定跟 <code>config_name</code> 一樣、最多 10。實體類要同步加欄位並生成 getter／setter；因為舊資料是 <code>null</code>，要用 <code>Optional.ofNullable(...)</code> 向下相容，退回 <code>config_name</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">popular</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="k">overlay</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1">-- config_server.sql 底部（48:00–52:00）另一份寫法</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">popular</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">config_server</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="k">column</span><span class="w"> </span><span class="n">simudone</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">popular</span><span class="p">;</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">simudone</span><span class="p">;</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getPopular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">popular</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setPopular</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">popular</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">popular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">popular</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getSimudone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">simudone</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setSimudone</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">simudone</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">simudone</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">simudone</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">// 相容處理（口述）</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">simpleName</span><span class="p">).</span><span class="na">orElse</span><span class="p">(</span><span class="n">configName</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>[2023-11-03 19:19:12] Connected
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>&gt; alter table config_server add column popular varchar(5) default null
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>[2023-11-03 19:19:42] completed in 36 ms
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>同一個 <code>popular</code> 欄位在不同畫面是 <code>varchar(5)</code> 與 <code>varchar(10)</code> 兩種</strong>；<strong>簡稱欄位名口述說 <code>simple_name</code>、畫面實作是 <code>simudone</code></strong>，可能是改名或語音誤聽，無法判定（<code>Optional.ofNullable</code> 那段只有口述，畫面未見）。另外加完欄位後 <code>popular</code> 值皆為 <code>&lt;null&gt;</code>，所以「常用配置」一進去會<strong>查不到任何資料</strong>，這是本課實際遇到的狀況。</li>
+<li><strong>相關</strong>：見 W08</li>
+</ul>
+<h3 id="w06-016-config_server-sql">W06-016　<code>config_server</code> 的查詢層 SQL 逐字<a class="headerlink" href="#w06-016-config_server-sql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>selectPopular</code> <code>selectAll</code> <code>selectByWorld</code> <code>selectSql</code> <code>connection_select</code> <code>mapToEntity</code> <code>MapUtilsTo</code> <code>MapToEntity</code></li>
+<li><strong>來源</strong>：第十課 40:00–45:00、65:00–片尾｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>select</code> 查全部、<code>selectPopular</code> 查常用（口述：「我們不需要去動這個方法啊，直接複製一下，叫 selectPopular 就好了」）。結果以 <code>mapList.stream().map(...).collect(...)</code> 轉成 <code>ConfigServer</code> list；口述稱這層工具是 <code>map to entity</code>。<code>update</code> 先留空殼（<code>update config_server set popular = 'false'</code>），講者說「我們後面用到的時候再寫」。空結果的保護已經做過，所以 DAO 層不重複判斷。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ConfigServer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">select</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">selectSql</span><span class="p">(</span><span class="s">"select * from config_server"</span><span class="p">);</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mapList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MapUtilsTo</span><span class="p">.</span><span class="na">mapToEntity</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">class</span><span class="p">)).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">}</span>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ConfigServer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectPopular</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">selectSql</span><span class="p">(</span><span class="s">"select * from config_server where popular = 'true'"</span><span class="p">);</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mapList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MapUtilsTo</span><span class="p">.</span><span class="na">mapToEntity</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">class</span><span class="p">)).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="p">}</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">update</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">    </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">updateSql</span><span class="p">(</span><span class="s">"update config_server set popular = 'false'"</span><span class="p">);</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ConfigServer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqlUtil</span><span class="p">.</span><span class="na">connection_select</span><span class="p">(</span><span class="s">"select * from config_server"</span><span class="p">);</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mapList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MapToEntity</span><span class="p">.</span><span class="na">mapToEntity</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">class</span><span class="p">)).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="p">}</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">ConfigServer</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectByWorld</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">q</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="w">    </span><span class="c1">// 此處修改了 SQL 字串拼接</span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqlUtil</span><span class="p">.</span><span class="na">connection_select</span><span class="p">(</span><span class="s">"select * from config_server where configWorld = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">q</span><span class="p">);</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mapList</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">map</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">MapToEntity</span><span class="p">.</span><span class="na">mapToEntity</span><span class="p">(</span><span class="n">map</span><span class="p">,</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">class</span><span class="p">)).</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>查詢層有兩套並存的類別</strong>——<code>ConfigServerJson</code>（<code>moe.msq.tool.msq</code>，用 <code>SqliteConnection.selectSql</code> + <code>MapUtilsTo</code>）與 <code>ConfigServerDao</code>（<code>db.dao</code>），片尾段的 <code>selectAll</code>／<code>selectByWorld</code> 用的是 <code>SqlUtil.connection_select</code> + <code>MapToEntity</code>；推測是新舊兩版控制台程式碼並存，本課後半段主要在 <code>db.dao</code> 那一套。<code>selectByWorld</code> 用字串拼接組 SQL、沒有參數化，<strong>是明顯的 SQL Injection 寫法，不宜照抄</strong>（解析報告註記原本錯寫成 <code>where question = ?</code>，後改為 <code>configWorld</code>）。</li>
+<li><strong>相關</strong>：見 W14-016</li>
+</ul>
+<h3 id="w06-017-textinput-extends-hbox-tooltip-tilepane">W06-017　用 <code>TextInput extends HBox</code> + <code>Tooltip</code> + <code>TilePane</code> 渲染設定表單<a class="headerlink" href="#w06-017-textinput-extends-hbox-tooltip-tilepane" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>TextInput</code> <code>extends HBox</code> <code>getTextField</code> <code>getTextInput</code> <code>Tooltip</code> <code>configName</code> <code>configDesc</code> <code>setPrefColumns</code> <code>ScrollPane</code> <code>TilePane</code></li>
+<li><strong>來源</strong>：第十課 45:00–50:00、50:00–55:00、55:00–60:00｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：設定項數量不固定且描述很長，逐筆手動 <code>new Label</code> + <code>new TextField</code> 很繁瑣，所以封裝成自訂元件 <code>TextInput extends HBox</code>（左 Label + 右 TextField），呼叫端只要 <code>new TextInput(configServer.getConfigName())</code> 就能產生一列。顯示區用 <code>TilePane</code>（口述：本課開頭補講的瓦片佈局，會自動把所有子節點統一成同樣寬高）固定 3 欄，設定項過多時用 <code>ScrollPane</code> 包住。因為改用短的 <code>configName</code> 當 label 後看不出改的是哪個配置，再加 <code>Tooltip</code> 顯示 <code>configServer.getConfigDesc()</code>，輸入框預設值用 <code>configServer.getConfigData()</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TextInput</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">HBox</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Label</span><span class="w"> </span><span class="n">label</span><span class="p">;</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TextField</span><span class="w"> </span><span class="n">textField</span><span class="p">;</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">TextInput</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">        </span><span class="n">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Label</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">        </span><span class="n">textField</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TextField</span><span class="p">();</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">        </span><span class="n">label</span><span class="p">.</span><span class="na">setPrefWidth</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">        </span><span class="n">label</span><span class="p">.</span><span class="na">setAlignment</span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="na">CENTER_RIGHT</span><span class="p">);</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">setAlignment</span><span class="p">(</span><span class="n">Pos</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">        </span><span class="n">setSpacing</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">        </span><span class="n">getChildren</span><span class="p">().</span><span class="na">addAll</span><span class="p">(</span><span class="n">label</span><span class="p">,</span><span class="w"> </span><span class="n">textField</span><span class="p">);</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TextField</span><span class="w"> </span><span class="nf">getTextField</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">textField</span><span class="p">;</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a>
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">    </span><span class="c1">// 另一版本使用的 getter 名稱</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">TextField</span><span class="w"> </span><span class="nf">getTextInput</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">textField</span><span class="p">;</span>
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">configServers</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">configServer</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="n">Tooltip</span><span class="w"> </span><span class="n">tooltip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Tooltip</span><span class="p">(</span><span class="n">configServer</span><span class="p">.</span><span class="na">getConfigDesc</span><span class="p">());</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="n">TextInput</span><span class="w"> </span><span class="n">textInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TextInput</span><span class="p">(</span><span class="n">configServer</span><span class="p">.</span><span class="na">getConfigName</span><span class="p">());</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="n">textInput</span><span class="p">.</span><span class="na">getTextInput</span><span class="p">().</span><span class="na">setText</span><span class="p">(</span><span class="n">configServer</span><span class="p">.</span><span class="na">getConfigData</span><span class="p">());</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="n">textInput</span><span class="p">.</span><span class="na">getTextInput</span><span class="p">().</span><span class="na">setTooltip</span><span class="p">(</span><span class="n">tooltip</span><span class="p">);</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="n">bottom</span><span class="p">.</span><span class="na">getChildren</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">textInput</span><span class="p">);</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="p">});</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="n">TilePane</span><span class="w"> </span><span class="n">bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TilePane</span><span class="p">();</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="n">bottom</span><span class="p">.</span><span class="na">setPrefColumns</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="n">root</span><span class="p">.</span><span class="na">getChildren</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ScrollPane</span><span class="p">(</span><span class="n">bottom</span><span class="p">));</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>getTextField()</code> 與 <code>getTextInput()</code> 兩個 getter 名並存於同一類別（由 Generate 產生，兩種叫法都留在畫面上），照抄時要跟呼叫端一致。<code>label.setPrefWidth</code> 有 <code>120</code> 與 <code>200</code> 兩種版本，<code>setSpacing</code> 有 <code>5</code> 與 <code>10</code> 兩種。<code>ProgressLoading</code> 建構子在此課的呼叫寫成 <code>new ProgressLoading("resurces(0/6)")</code>（字串參數，拼寫照抄），與第九課的 <code>new ProgressLoading(primaryStage)</code> 簽章不一致；字串 <code>resurces</code> 應為 <code>resources</code>，屬講者打字手誤。</li>
+<li><strong>相關</strong>：見 W02</li>
+</ul>
+<h3 id="w06-018-ui-not-on-fx-application-thread">W06-018　背景執行緒操作 UI 會噴 <code>Not on FX application thread</code><a class="headerlink" href="#w06-018-ui-not-on-fx-application-thread" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Not on FX application thread</code> <code>Platform.runLater</code> <code>RunAndWait</code> <code>ForkJoinPool</code> <code>ThreadUtil.execute</code> <code>ServerManager</code> <code>setDisable</code></li>
+<li><strong>來源</strong>：第十課 45:00–50:00、50:00–55:00｜<code>L10_第十课_教學筆記.md</code></li>
+<li><strong>要點</strong>：用 <code>ProgressLoading</code> 在背景執行緒撈資料後，若直接在該執行緒操作 UI 會直接噴 <code>IllegalStateException</code>。老師的說法是「如果你操作 UI 不在那個 JavaFX 的線程去操作 UI，因為我們的 loading 是一個異步的……所以我們在改動 UI 的時候一定要切回到那個 JavaFX 線程去更改 UI」。修法是包一層切回 FX 執行緒。伺服器啟動鈕同理：<code>ThreadUtil.execute</code> 丟背景執行緒跑 <code>ServerManager.getInstance().startServer(server)</code>，再 <code>Platform.runLater</code> 回 FX 執行緒切換按鈕可用性。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>java.lang.IllegalStateException: Not on FX application thread; currentThread = ForkJoinPool.commonPool-worker-25
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1">// 修復前</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">configServers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">getPopularServers</span><span class="p">();</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="n">list</span><span class="p">.</span><span class="na">getItems</span><span class="p">().</span><span class="na">addAll</span><span class="p">(</span><span class="n">configServers</span><span class="p">);</span>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="n">loading</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="c1">// 修復後</span>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="n">configServers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConfigServer</span><span class="p">.</span><span class="na">getPopularServers</span><span class="p">();</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="n">Platform</span><span class="p">.</span><span class="na">runLater</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="na">getItems</span><span class="p">().</span><span class="na">addAll</span><span class="p">(</span><span class="n">configServers</span><span class="p">);</span>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">    </span><span class="n">loading</span><span class="p">.</span><span class="na">execute</span><span class="p">();</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="p">});</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">startButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="c1">//获取选择的服务器</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="n">ConfigServer</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listConfigServer</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedItem</span><span class="p">();</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">server</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w">    </span><span class="n">ThreadUtil</span><span class="p">.</span><span class="na">execute</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">        </span><span class="c1">//启动服务器</span>
+<a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">        </span><span class="n">ServerManager</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">startServer</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>
+<a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">        </span><span class="n">Platform</span><span class="p">.</span><span class="na">runLater</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a><span class="w">            </span><span class="n">startButton</span><span class="p">.</span><span class="na">setDisable</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="w">            </span><span class="n">stopButton</span><span class="p">.</span><span class="na">setDisable</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="w">            </span><span class="n">saveButton</span><span class="p">.</span><span class="na">setDisable</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="w">        </span><span class="p">});</span>
+<a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>口述說「我們就再給它包一層。RunAndWait」，但畫面修正後的程式碼是 <code>Platform.runLater</code></strong>——兩者語意不同（<code>runAndWait</code> 會阻塞呼叫端執行緒直到 UI 更新完成），實作請以畫面版本為準，但此點需向講者確認。這是本課唯一一個真正的「紅色錯誤」，其它 Bug 都是靜默的畫面不刷新，較難察覺。<code>ConfigServer.getPopularServers()</code> 這個方法名在筆記中只出現在修正前後對照片段，<strong>其實作未記錄</strong>。</li>
+<li><strong>相關</strong>：見 W14-014；見 W05</li>
+</ul>
+<h2 id="_4">本頁的坑總表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W06-001</td>
+<td>不加 Loading 會在讀 sqlite 時被亂點而「未響應」，Windows 可能殺程序</td>
+<td>第九課 05:00–08:00</td>
+</tr>
+<tr>
+<td>W06-002</td>
+<td><code>ProgressIndicator</code> 的百分比與完成態本課完全沒用到，只用 <code>-1</code> 轉圈</td>
+<td>第九課 00:00–05:00</td>
+</tr>
+<tr>
+<td>W06-003</td>
+<td><code>initOwner</code> / <code>initModality</code> 必須在 <code>show()</code> 前，否則 <code>IllegalStateException: Cannot set owner once stage has been set visible</code></td>
+<td>第九課 16:00–20:00</td>
+</tr>
+<tr>
+<td>W06-003</td>
+<td>口述把 <code>APPLICATION_MODAL</code> 語意講反（講者自己也察覺「沒，沒說反」）</td>
+<td>第九課 16:00–20:00</td>
+</tr>
+<tr>
+<td>W06-004</td>
+<td><code>scene.setFill(null)</code> 與 <code>scene.setFill(Color.TRANSPARENT)</code> 連續兩次無效，灰色矩形來自 <code>VBox</code> 預設樣式</td>
+<td>第九課 20:00–24:00</td>
+</tr>
+<tr>
+<td>W06-005</td>
+<td>置中必須排在設寬高之後，順序錯就算不出座標</td>
+<td>第九課 24:00–32:00</td>
+</tr>
+<tr>
+<td>W06-005</td>
+<td>工具類名四種寫法（<code>FlowUtil</code> / <code>PlowUI</code> / <code>ViewUtil</code>），以口述 <code>ViewUtil</code> 為準</td>
+<td>第九課 24:00–32:00</td>
+</tr>
+<tr>
+<td>W06-006</td>
+<td><code>ArrayList</code> 預設容量是 <code>10</code>（口述「應該是 8 吧」為猜測）</td>
+<td>第九課 00:00–05:00</td>
+</tr>
+<tr>
+<td>W06-007</td>
+<td>口述對 <code>add</code> 要不要加鎖自相矛盾</td>
+<td>第九課 32:00–36:00</td>
+</tr>
+<tr>
+<td>W06-008</td>
+<td><code>Variable used in lambda expression should be final or effectively final</code></td>
+<td>第九課 36:00–40:00</td>
+</tr>
+<tr>
+<td>W06-008</td>
+<td>v011 超時寫法三處自相矛盾（1 秒 vs 3000ms、訊息寫 10 秒、<code>Log.error</code> 單參數），最終形式無法確定</td>
+<td>第九課 44:00–48:00</td>
+</tr>
+<tr>
+<td>W06-008</td>
+<td>執行緒輔助類 <code>SleepUtil</code> / <code>ThreadUtil</code>、FX API <code>PlatformImpl</code> / <code>PlatformApp</code> 名稱跳動</td>
+<td>第九課 06:00–52:00</td>
+</tr>
+<tr>
+<td>W06-009</td>
+<td>背景執行緒更新 UI 要「等更新完」必須用 <code>runAndWait</code>，不是 <code>runLater</code></td>
+<td>第九課 40:00–44:00</td>
+</tr>
+<tr>
+<td>W06-010</td>
+<td>漏寫 <code>this::close</code> 會讓 Loading 卡在畫面上不消失（v012 實測重現）</td>
+<td>第九課 48:00–52:00</td>
+</tr>
+<tr>
+<td>W06-011</td>
+<td>畫面（三個業務任務）與口述（任務一/二/三）示範內容不一致</td>
+<td>第九課 44:00–48:00</td>
+</tr>
+<tr>
+<td>W06-011</td>
+<td>入口類 <code>MenuConfig</code> / <code>MenuExtract</code> / <code>MenuStart</code> 三名並存，僅 <code>MenuStart</code> 有日誌佐證</td>
+<td>第九課 44:00–53:08</td>
+</tr>
+<tr>
+<td>W06-011</td>
+<td>任務裡不要寫死循環，否則會一直等、一直死等</td>
+<td>第九課 44:00–48:00</td>
+</tr>
+<tr>
+<td>W06-012</td>
+<td>口述 SQLite vs 畫面 MySQL 連線字串衝突；<code>initialized</code> 口述 <code>AtomicBoolean</code> vs 畫面 <code>boolean</code></td>
+<td>第十課 35:00–40:00</td>
+</tr>
+<tr>
+<td>W06-013</td>
+<td><code>config_server</code>（snake_case）與 <code>@config_data</code>（<code>id</code>/<code>name</code>/<code>data</code>/<code>type</code>）是不同表</td>
+<td>第十課 30:00–65:00</td>
+</tr>
+<tr>
+<td>W06-014</td>
+<td>各片段視窗標題與左側選單文字互斥，只有設定欄位與值可用</td>
+<td>第十課 05:00–片尾</td>
+</tr>
+<tr>
+<td>W06-015</td>
+<td><code>popular</code> 長度 <code>varchar(5)</code> 與 <code>varchar(10)</code> 衝突；簡稱欄位名 <code>simple_name</code>（口述）vs <code>simudone</code>（畫面）</td>
+<td>第十課 35:00–65:00</td>
+</tr>
+<tr>
+<td>W06-015</td>
+<td>新欄位值皆 <code>&lt;null&gt;</code>，所以「常用配置」一進去查不到資料</td>
+<td>第十課 35:00–40:00</td>
+</tr>
+<tr>
+<td>W06-016</td>
+<td>查詢層兩套類別並存；<code>selectByWorld</code> 用字串拼接，SQL Injection 寫法不宜照抄</td>
+<td>第十課 40:00–片尾</td>
+</tr>
+<tr>
+<td>W06-017</td>
+<td><code>getTextField</code> / <code>getTextInput</code> 兩 getter、<code>setPrefWidth</code> 120/200、<code>setSpacing</code> 5/10 並存</td>
+<td>第十課 45:00–60:00</td>
+</tr>
+<tr>
+<td>W06-017</td>
+<td><code>new ProgressLoading("resurces(0/6)")</code> 簽章與第九課不同，<code>resurces</code> 為打字手誤</td>
+<td>第十課 40:00–45:00</td>
+</tr>
+<tr>
+<td>W06-018</td>
+<td>口述說 <code>RunAndWait</code>、畫面是 <code>Platform.runLater</code>，語意不同需向講者確認</td>
+<td>第十課 50:00–55:00</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>⚠️ 本頁整理者的補充提醒，不是片中老師的原話：
+本頁 <code>關鍵字</code>、<code>要點</code> 的分條與跨條目對照是依規格重組而成；<code>資料庫連線字串</code>、<code>setting.ini</code>、<code>config_save</code> 僅是畫面可見的資料值，不構成「本專案以 <code>.ini</code> 檔讀取設定」的事實。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W05 服務起停與日誌輸出">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W05 服務起停與日誌輸出
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-footer__link md-footer__link--next" aria-label="Next: W07 自訂元件庫">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                W07 自訂元件庫
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

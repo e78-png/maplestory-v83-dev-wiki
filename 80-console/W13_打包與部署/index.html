@@ -1,0 +1,5978 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/">
+      
+      
+        <link rel="prev" href="../W12_KOOK%E6%95%B4%E5%90%88/">
+      
+      
+        <link rel="next" href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W13 打包與部署 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w13" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W13 打包與部署
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w13-001-1x-2x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-001 版本線：1.x 收官、2.x 為主線
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-002-targzlinuxzipwindows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-002 發布包格式：tar.gz＝Linux、zip＝Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-003-ui-artifact-serverapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-003 建立帶 UI 的 Artifact ServerApp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-004-ui-artifact-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-004 建立不帶 UI 的 Artifact server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-005-linuxdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-005 兩種打包的差異核心與 Linux／Docker 適用性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-006-configyaml2x-yml-ui-serverdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-006 設定檔統一叫 config.yaml：2.x 把 yml 設定搬進 UI 並存進 server.db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-007-launchbat-idea-javafx-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-007 一律用 launch.bat 啟動，IDEA 的 JavaFX HTML 啟動器無效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-008-jdk-c-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-008 JDK 路徑預設在 C 盤不可隨手改；JDK 版本三方並存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-009-jar-rollback-ignore-changelist-git-checkout-serverdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-009 JAR 被佔用導致 rollback 失敗：改用 ignore changelist 或 git checkout server.db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-010-exe4j-pack-filesserver083exe4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-010 exe4j：匯入 pack files\server083.exe4j，但三處路徑必改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-011-exe4j-executable-infogui-application-console-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-011 exe4j Executable info：GUI application 會一閃而過，改 Console application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-012-exe4j-java-invocationdist-10-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-012 exe4j Java invocation：dist 內 10 個 jar 全部手動加入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-013-exe4j-jre-18-jre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-013 exe4j JRE：鎖 1.8，搜尋順序把「當前資料夾 jre」拉到最高優先
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-014-500m1000m1024m2048m3000m" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-014 記憶體參數五套並存：500m／1000m／1024m／2048m／3000m
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-015-windows-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-015 Windows 部署：先用 MySQL 起停工具開資料庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-016-windows-navicat-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-016 Windows 部署：Navicat 建連線並依序跑三個 SQL 初始化腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-017-windows-bat-distexe-jre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-017 Windows 部署：bat 包要有 dist、exe 包要有 jre，視窗都不能關
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-018-linux-tar-tar-xvf-c-usrlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-018 Linux 部署：上傳 tar 包後 tar -xvf … -C /usr/local/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-019-linux-configyaml-gbk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-019 Linux 部署：改 config.yaml 並把終端機編碼設成 GBK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-020-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-020 Linux 部署：背景執行與日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-021-linux-databaseconnectiongetconnection-nullpointerexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-021 Linux 部署崩潰診斷：DatabaseConnection.getConnection 的 NullPointerException
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-022-zip-systemdwindows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-022 發行一律改發 zip；本三片未涵蓋 systemd／Windows 服務註冊／容器化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w13-001-1x-2x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-001 版本線：1.x 收官、2.x 為主線
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-002-targzlinuxzipwindows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-002 發布包格式：tar.gz＝Linux、zip＝Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-003-ui-artifact-serverapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-003 建立帶 UI 的 Artifact ServerApp
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-004-ui-artifact-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-004 建立不帶 UI 的 Artifact server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-005-linuxdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-005 兩種打包的差異核心與 Linux／Docker 適用性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-006-configyaml2x-yml-ui-serverdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-006 設定檔統一叫 config.yaml：2.x 把 yml 設定搬進 UI 並存進 server.db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-007-launchbat-idea-javafx-html" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-007 一律用 launch.bat 啟動，IDEA 的 JavaFX HTML 啟動器無效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-008-jdk-c-jdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-008 JDK 路徑預設在 C 盤不可隨手改；JDK 版本三方並存
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-009-jar-rollback-ignore-changelist-git-checkout-serverdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-009 JAR 被佔用導致 rollback 失敗：改用 ignore changelist 或 git checkout server.db
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-010-exe4j-pack-filesserver083exe4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-010 exe4j：匯入 pack files\server083.exe4j，但三處路徑必改
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-011-exe4j-executable-infogui-application-console-application" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-011 exe4j Executable info：GUI application 會一閃而過，改 Console application
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-012-exe4j-java-invocationdist-10-jar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-012 exe4j Java invocation：dist 內 10 個 jar 全部手動加入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-013-exe4j-jre-18-jre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-013 exe4j JRE：鎖 1.8，搜尋順序把「當前資料夾 jre」拉到最高優先
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-014-500m1000m1024m2048m3000m" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-014 記憶體參數五套並存：500m／1000m／1024m／2048m／3000m
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-015-windows-mysql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-015 Windows 部署：先用 MySQL 起停工具開資料庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-016-windows-navicat-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-016 Windows 部署：Navicat 建連線並依序跑三個 SQL 初始化腳本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-017-windows-bat-distexe-jre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-017 Windows 部署：bat 包要有 dist、exe 包要有 jre，視窗都不能關
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-018-linux-tar-tar-xvf-c-usrlocal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-018 Linux 部署：上傳 tar 包後 tar -xvf … -C /usr/local/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-019-linux-configyaml-gbk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-019 Linux 部署：改 config.yaml 並把終端機編碼設成 GBK
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-020-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-020 Linux 部署：背景執行與日誌
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-021-linux-databaseconnectiongetconnection-nullpointerexception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-021 Linux 部署崩潰診斷：DatabaseConnection.getConnection 的 NullPointerException
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w13-022-zip-systemdwindows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W13-022 發行一律改發 zip；本三片未涵蓋 systemd／Windows 服務註冊／容器化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w13">W13　打包與部署<a class="headerlink" href="#w13" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+<p>來源三片（S1／S7／S8）都已過 token 級交叉驗證，但彼此之間仍有多處衝突
+（記憶體數值、執行權限、MySQL 密碼、目錄名、腳本名等）。
+依本 wiki 規則，衝突一律兩邊並列、不靜默擇一，詳見各條「坑」與頁末總表。</p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>課次</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1</td>
+<td><code>S1_2.x版本的打包方式_教學筆記.md</code></td>
+<td>全片（2.x 的兩種 Artifact 打包設定、build／啟動、server.db 還原）</td>
+</tr>
+<tr>
+<td>S7</td>
+<td><code>S7_jar包打成exe_教學筆記.md</code></td>
+<td>00:00–25:00（jar→exe 打包專題段）；28:00–38:00 分支段僅取版本號</td>
+</tr>
+<tr>
+<td>S8</td>
+<td><code>S8_windows和linux部署_教學筆記.md</code></td>
+<td>全片（發布包格式、Windows 與 Linux 部署）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">速查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W13-001</td>
+<td>版本線：1.x 收官、2.x 為主線，三片記載的版本號並不相同</td>
+</tr>
+<tr>
+<td>W13-002</td>
+<td>發布包格式：<code>tar.gz</code>＝Linux、<code>zip</code>＝Windows，另有兩個源碼包與網盤鏈接</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>帶 UI 的 Artifact <code>ServerApp</code>：主類 <code>ui.ServerAPP</code>、輸出 <code>dist</code>、須手動加 <code>core</code> 依賴</td>
+</tr>
+<tr>
+<td>W13-004</td>
+<td>不帶 UI 的 Artifact <code>server</code>：主類 <code>Server</code>、依賴自動 compile 進 jar</td>
+</tr>
+<tr>
+<td>W13-005</td>
+<td>兩種打包的差異核心與 Linux／Docker 適用性</td>
+</tr>
+<tr>
+<td>W13-006</td>
+<td>設定檔統一叫 <code>config.yaml</code>：2.x 把 yml 設定搬進 UI 並存進 <code>server.db</code></td>
+</tr>
+<tr>
+<td>W13-007</td>
+<td>一律用 <code>launch.bat</code> 啟動，IDEA 產生的 JavaFX HTML 啟動器無效</td>
+</tr>
+<tr>
+<td>W13-008</td>
+<td>JDK 路徑預設在 C 盤不可隨手改；JDK 版本三方並存</td>
+</tr>
+<tr>
+<td>W13-009</td>
+<td>JAR 被佔用導致 rollback 失敗：<code>ignore</code> changelist 或 <code>git checkout server.db</code></td>
+</tr>
+<tr>
+<td>W13-010</td>
+<td>exe4j 匯入 <code>pack files\server083.exe4j</code>，但三處路徑必改</td>
+</tr>
+<tr>
+<td>W13-011</td>
+<td>exe4j Executable info：<code>GUI application</code> 會一閃而過、改 <code>Console application</code></td>
+</tr>
+<tr>
+<td>W13-012</td>
+<td>exe4j Java invocation：<code>dist</code> 內 10 個 jar 全部手動加入與 VM Parameters</td>
+</tr>
+<tr>
+<td>W13-013</td>
+<td>exe4j JRE：鎖 1.8，搜尋順序把「當前資料夾 jre」拉到最高優先</td>
+</tr>
+<tr>
+<td>W13-014</td>
+<td>記憶體參數五套並存：500m／1000m／1024m／2048m／3000m</td>
+</tr>
+<tr>
+<td>W13-015</td>
+<td>Windows 部署：先用 MySQL 起停工具開資料庫</td>
+</tr>
+<tr>
+<td>W13-016</td>
+<td>Windows 部署：Navicat 建連線並依序跑三個 SQL 初始化腳本</td>
+</tr>
+<tr>
+<td>W13-017</td>
+<td>Windows 部署：bat 包要有 <code>dist</code>、exe 包要有 <code>jre</code>，視窗都不能關</td>
+</tr>
+<tr>
+<td>W13-018</td>
+<td>Linux 部署：上傳 tar 包後 <code>tar -xvf … -C /usr/local/</code></td>
+</tr>
+<tr>
+<td>W13-019</td>
+<td>Linux 部署：改 <code>config.yaml</code>（含資料庫位址）並把終端機編碼設成 GBK</td>
+</tr>
+<tr>
+<td>W13-020</td>
+<td>Linux 部署：背景執行與日誌 <code>sh linux-launch.sh &gt; out.log &amp;</code></td>
+</tr>
+<tr>
+<td>W13-021</td>
+<td>Linux 部署崩潰診斷：<code>DatabaseConnection.getConnection</code> 的 NullPointerException</td>
+</tr>
+<tr>
+<td>W13-022</td>
+<td>發行一律改發 zip、放棄安裝包；本三片未涵蓋 systemd／Windows 服務註冊／容器化</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">條目<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="w13-001-1x-2x">W13-001　版本線：1.x 收官、2.x 為主線<a class="headerlink" href="#w13-001-1x-2x" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>1.x</code> <code>2.x</code> <code>1.23.0617</code> <code>1.23.0915</code> <code>2.23.1106</code> <code>最後穩定版</code> <code>主分支</code></li>
+<li><strong>來源</strong>：S1 00:00–02:30、17:30–19:19｜<code>S1_2.x版本的打包方式_教學筆記.md</code>；S7 00:00–04:00、28:00–38:00｜<code>S7_jar包打成exe_教學筆記.md</code>；S8 00:00–03:00｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：1.x 停更、資源轉往 2.x 是三片一致的主線。S1 只說 1.x 發布「最後一個版本、也是穩定版」而<strong>未報版本號</strong>；S7 報 1.x 最後版本是 <code>1.23.0915</code>；S8 報本片發布的最新版本是 <code>1.23.0617</code>。2.x 方面，S7 口述宣布本版為 <code>2.23.1106</code>，但同一片畫面 Releases 頁可見的是 <code>2.23.1006</code>、<code>2.23.0920</code>。</li>
+<li><strong>版本號並列表（三片並列，不擇一）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>版本號</th>
+<th>出處</th>
+<th>原文語意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>（無版本號）</td>
+<td>S1 口述 00:00–02:30</td>
+<td>「1.x 已發布<strong>最後一個版本、也是穩定版</strong>；後續不再更新 1.x」</td>
+</tr>
+<tr>
+<td><code>1.23.0915</code></td>
+<td>S7 口述 28:00–32:00</td>
+<td>「最後一個版本是 <code>1.23.0915</code>，這是 1.x 最後一個分支」</td>
+</tr>
+<tr>
+<td><code>1.23.0617</code></td>
+<td>S8 口述 00:00–03:00</td>
+<td>「最新版本 <strong><code>1.23.0617</code></strong> 發布，NPC 腳本已全部漢化完畢」</td>
+</tr>
+<tr>
+<td><code>2.23.1106</code></td>
+<td>S7 口述 00:00–04:00</td>
+<td>宣布本版發佈版本號</td>
+</tr>
+<tr>
+<td><code>2.23.1006</code>／<code>2.23.0920</code>／<code>1.23.0915</code></td>
+<td>S7 畫面 Releases 頁</td>
+<td>發佈頁可見的三個版本號</td>
+</tr>
+<tr>
+<td><code>1.23.1006</code></td>
+<td>S7 畫面</td>
+<td>同上（另一段觀察重複記錄 <code>1.23.1006</code>）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：<strong>三片對 1.x 末版的記載並不一致，且 2.x 版本號在 S7 內部也不一致</strong>（口述 <code>2.23.1106</code> vs 畫面 <code>2.23.1006</code>／<code>2.23.0920</code>）。
+  S8 的 <code>1.23.0617</code> 是「本片發布的最新版本」，S7 的 <code>1.23.0915</code> 才是口述明講的「1.x 最後一個版本」，兩者不可互換引用。
+  另有 S7 畫面記錄的倉庫／分支說明原文：<code>v1.23.0915</code> 的 Releases 說明為「此版本ui1.0的最后一个版本，也是一个绝版服」。</li>
+</ul>
+<blockquote>
+<p>⚠️ 本頁整理者的補充提醒，不是片中老師的原話：三份筆記中<strong>沒有任何一處寫到 <code>2.23.0929</code></strong>，
+也沒有任何一處把 <code>1.23.0617</code> 稱為「1.x 最後穩定版」（S8 只說它是「本片發布的最新版本」）。
+因此本條只登錄三片實際記載的版本號，不補上這兩個說法。
+- <strong>相關</strong>：見 W13-002；頁級參照 見 W16（協作流程與改版實作）</p>
+</blockquote>
+<h3 id="w13-002-targzlinuxzipwindows">W13-002　發布包格式：<code>tar.gz</code>＝Linux、<code>zip</code>＝Windows<a class="headerlink" href="#w13-002-targzlinuxzipwindows" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>tar.gz</code> <code>zip</code> <code>源碼包</code> <code>網盤鏈接</code> <code>Releases</code> <code>100 兆</code></li>
+<li><strong>來源</strong>：S8 00:00–04:00｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：發行版頁面共四個包，講者逐字指定：<strong><code>tar.gz</code> 包就是 Linux 壓縮包、<code>zip</code> 包就是 Windows 壓縮包</strong>，下面兩個是源碼包「不用管」；另外附了一個<strong>網盤鏈接</strong>。網盤鏈接存在的理由是 MySQL 起停工具「<strong>大於 100 兆它上傳不了</strong>」。</li>
+<li><strong>坑</strong>：</li>
+<li>口述說「大家可以從 <strong>GitHub</strong> 上發行版這裡可以下到」，畫面顯示的卻是 <strong>Gitee</strong> 專案的 Releases 頁（畫面辨識的擁有者名「四百小睡」疑為「昨日小睡」的誤辨）。兩說並存。</li>
+<li>畫面實際下載的是 <code>1.23.0617.tar.gz</code>。</li>
+<li>⚠️ 本片畫面另出現 <code>1.2.0.0307</code>、<code>v1.2.0.0307服务端</code>、<code>server64\Server64.exe</code>、<code>1.220(67) &gt; jar &gt; Server(65)</code> 等<strong>與本片版本不符</strong>的路徑，疑為其他版本素材。</li>
+<li><strong>相關</strong>：見 W13-015、W13-018</li>
+</ul>
+<h3 id="w13-003-ui-artifact-serverapp">W13-003　建立帶 UI 的 Artifact <code>ServerApp</code><a class="headerlink" href="#w13-003-ui-artifact-serverapp" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Project Structure</code> <code>Artifacts</code> <code>JavaFX Application</code> <code>ui.ServerAPP</code> <code>ServerApp</code> <code>dist</code> <code>put into output directory</code></li>
+<li><strong>來源</strong>：S1 05:00–08:00、08:00–10:30｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述權威流程為：<code>File</code> -&gt; <code>Project Structure</code> -&gt; <code>Artifacts</code> -&gt; <code>+</code> 建立 <strong>JavaFX Application</strong> -&gt; <code>from module</code> 選工程（口述多處辨為 <code>HeavenMS</code>）-&gt; 輸出路徑改到 <strong><code>dist</code></strong> -&gt; 因為是 JavaFX UI，<strong>要把 <code>core</code> 裡面的依賴包手動加進來</strong>（<code>put into output directory</code>）-&gt; 取名 <strong><code>ServerAPP</code></strong>（後文亦稱 <code>ServerApp</code>）。JavaFX 分頁要指定 <strong>Application class</strong> ＝ <strong><code>ui.ServerAPP</code></strong>；<code>Title</code> 可設如 <strong><code>Server 083 控制台</code></strong>；長寬 <strong><code>1024</code> 乘以 <code>768</code></strong>；<code>Version</code> 可留空。最後點 <code>Apply</code> -&gt; <code>OK</code>，再 <code>Build</code> -&gt; <code>Build Artifacts...</code> -&gt; <code>ServerApp</code> -&gt; <code>Build</code>。</li>
+<li><strong>畫面層欄位（與口述衝突，參考）</strong>：<code>+</code> -&gt; <code>JAR</code> -&gt; <code>From modules with dependencies...</code>；<code>Module</code> = <code>Heaven-ms-nap</code>；<code>Main Class</code> 選 <code>ServerApp (Gui.GUI)</code>；<code>JAR files from libraries</code> = <code>extract to the target JAR</code>；Output directory 為專案根目錄；<code>Java FX</code> 分頁的 <code>Width</code>／<code>Height</code> = <strong><code>750</code></strong>。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>Artifact 類型衝突</strong>：口述 <code>JavaFX Application</code>，畫面四段全記為 <code>JAR</code> -&gt; <code>From modules with dependencies...</code>。</li>
+<li><strong>主類衝突</strong>：口述 <code>ui.ServerAPP</code>，畫面另有 <code>ServerApp (Gui.GUI)</code> 與 <code>gui.GUI</code> 兩種寫法。</li>
+<li><strong>依賴選項衝突</strong>：口述 <code>put into output directory</code>，畫面 v000 為 <code>extract to the target JAR</code>、v002 為 <code>copy to the output directory and link via manifest</code>。</li>
+<li><strong>視窗尺寸衝突</strong>：口述 <code>1024</code> × <code>768</code>，畫面 v001 為 <code>750</code>；口述另稱不設定時 ServerAPP 啟動會初始化寬高且「不可調」。</li>
+<li><strong>輸出目錄衝突</strong>：口述反覆說改到 <code>dist</code>，畫面 v000 記為專案根目錄。</li>
+<li><strong>口述的模組名不一致</strong>：同一支片先講「HavenMS-net」、再講「HeavenMS-client」、再講「HeavenMS 這個工程」，疑為語音辨識問題，請以本機實際 Module 名稱為準。</li>
+<li><strong>相關</strong>：見 W13-004、W13-007</li>
+</ul>
+<h3 id="w13-004-ui-artifact-server">W13-004　建立不帶 UI 的 Artifact <code>server</code><a class="headerlink" href="#w13-004-ui-artifact-server" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Artifacts</code> <code>jar</code> <code>from module with dependencies</code> <code>Server</code> <code>server</code> <code>dist</code> <code>build server</code> <code>build all</code></li>
+<li><strong>來源</strong>：S1 13:00–15:30、17:30–19:19｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：1.x 的打包方式在 2.x 仍然有效。再建一個 <strong>jar</strong> 型 Artifact，<code>for module with dependencies</code>，但 <strong><code>main class</code> 不要選 UI 方式的 <code>ServerApp</code>，要選 <code>Server</code></strong>，取名 <strong><code>server</code></strong> 以便區分。關鍵差異是<strong>依賴不用手動指定</strong>：「它默認 compile 進來的都是我們需要的。<strong>它會把我們的依賴全部 compile 到這個 jar 包裡面去。也就是說不需要我們手動指定依賴了。</strong>」build 時選 <code>build server</code>；只有一個 Artifact 時才適合 <code>build all</code>。</li>
+<li><strong>口述對 1.x 打包的回顧（逐字要點）</strong>：新建 artifacts -&gt; 打包成 jar 包 -&gt; <code>from module with dependencies</code> -&gt; 主類選 <code>server</code>（而不是 <code>serverApp</code>）-&gt; 只把 output 路徑改到 <code>dist</code>，<strong>其他什麼都不用動</strong> -&gt; <code>build</code> 一下 artifacts。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>輸出到 <code>dist</code> 會互相覆蓋</strong>。口述原話：「打包到 <code>dist</code> <strong>可能會覆蓋</strong>。因為它打包出來的名，就是你工程的名字。然後會把這個給覆蓋掉。」要同時保留就必須改 Artifact 的 Name 或輸出子目錄。</li>
+<li><strong><code>build all</code> 會把 <code>server</code> 與 <code>ServerApp</code> 兩個包都打出來</strong>，且兩個名字幾乎一樣容易混淆。</li>
+<li>講者特別交代：<strong>「大家打完之後不要把這個包上傳上來啊。我們我們這裡只是做一個測驗。」</strong></li>
+<li>畫面層另記錄 <code>Include in project build</code> 被勾選、輸出 <code>out\artifacts\Server_jar</code>，與口述的 <code>dist</code> 不一致。</li>
+<li><strong>相關</strong>：見 W13-003、W13-005</li>
+</ul>
+<h3 id="w13-005-linuxdocker">W13-005　兩種打包的差異核心與 Linux／Docker 適用性<a class="headerlink" href="#w13-005-linuxdocker" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Main Class</code> 選誰 <code>依賴處理</code> <code>core</code> <code>Linux</code> <code>Docker</code> <code>無 GUI 環境</code></li>
+<li><strong>來源</strong>：S1 一、17:30–19:19｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：差異只有兩根，講者原話可直接引用——<strong>Main Class 選誰</strong>（<code>ui.ServerAPP</code> vs <code>Server</code>）與<strong>依賴怎麼處置</strong>（UI 版要把 <code>core</code> 的依賴包手動加進去；無 UI 版依賴會自動編進 jar）。無 UI 版的意義原話：「並且不會影響我們在 <strong>Linux 的部署</strong>，比如說我就是不想要我們的 GUI，但是我又想用我們 2.x 版本……那麼我們可以通過這種打包方式，然後自己打包。」並補一句「我們同樣的，我們打的這個包的話，就<strong>不需要下面這些依賴</strong>了。這些依賴在 <strong>core 裡，已經被打進這個 jar 包裡面去了</strong>。」</li>
+<li><strong>對照表（以口述為準）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>帶 UI 版（2.x）</th>
+<th>不帶 UI 版（相容 1.x）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact 類型</td>
+<td><code>JavaFX Application</code></td>
+<td><code>jar</code>，<code>from module with dependencies</code></td>
+</tr>
+<tr>
+<td>Main Class</td>
+<td><strong><code>ui.ServerAPP</code></strong></td>
+<td><strong><code>Server</code></strong></td>
+</tr>
+<tr>
+<td>Artifact 名稱</td>
+<td><code>ServerApp</code>（口述亦稱 <code>ServerAPP</code>）</td>
+<td><code>server</code></td>
+</tr>
+<tr>
+<td>輸出目錄</td>
+<td><code>dist</code></td>
+<td><code>dist</code>（<strong>會覆蓋</strong>，因 jar 名＝工程名）</td>
+</tr>
+<tr>
+<td>依賴處理</td>
+<td><strong>需手動把 <code>core</code> 的依賴包加進來</strong>（<code>put into output directory</code>）</td>
+<td><strong>不用手動指定</strong>，依賴自動 compile 進 jar</td>
+</tr>
+<tr>
+<td>額外設定</td>
+<td><code>Title</code>（例：<code>Server 083 控制台</code>）、<code>Width</code>/<code>Height</code> = <code>1024</code> × <code>768</code>、<code>Version</code> 可留空</td>
+<td>無</td>
+</tr>
+<tr>
+<td>適用場景</td>
+<td>Windows／有桌面的環境</td>
+<td><strong>Linux／Docker</strong> 等無 GUI 環境</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：⚠️ S8 片尾講者對 Docker 的保留說明——「其實它原來是支持 <strong>Docker</strong> 的……但是我覺得 <strong>Docker 部署的場景比較少</strong>……<strong>Docker 它好像收費了吧</strong>……<strong>普通的 Docker 是沒有問題的</strong>」，<strong>未給出完整 Docker 部署步驟</strong>，講者明言細節留待後續影片。S1 記的 <code>Docker</code> 也只出現在「無 UI 版相容 Linux／Docker」這句脈絡中。</li>
+<li><strong>相關</strong>：見 W13-003、W13-004、W13-022</li>
+</ul>
+<h3 id="w13-006-configyaml2x-yml-ui-serverdb">W13-006　設定檔統一叫 <code>config.yaml</code>：2.x 把 yml 設定搬進 UI 並存進 <code>server.db</code><a class="headerlink" href="#w13-006-configyaml2x-yml-ui-serverdb" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>config.yaml</code> <code>config.yml</code> <code>server.db</code> <code>SQLite</code> <code>服務端配置</code> <code>敲回車</code> <code>保存</code></li>
+<li><strong>來源</strong>：S1 15:30–17:30｜<code>S1_2.x版本的打包方式_教學筆記.md</code>；S8 全片（<code>config.yaml</code> 12 次）｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>本 wiki 一律採用 <code>config.yaml</code>。</strong> S1 正文寫的是 <code>config.yml</code>，但那是「config 的 yml」的<strong>泛稱</strong>（素材只有口語，無法區分副檔名）；S8 素材中 <code>config.yaml</code> 出現 12 次、<code>.yml</code> 出現 0 次，故統一採 <code>config.yaml</code>。
+  2.x 的設定流程：把設定內容全部搬到 UI 的「服務配置」表單，<strong>存進 SQLite 資料庫 <code>server.db</code></strong>（路徑 <code>resources\db\server.db</code>），取代原本散落的 yml 檔。UI 操作關鍵：<strong>修改後必須敲 Enter 確認才生效</strong>，再點「保存」。</li>
+<li><strong>S8 側 <code>config.yaml</code> 的兩種改法</strong>：</li>
+<li>口述：進資料夾後 <code>vim config.yaml</code>，<strong>搜一下 <code>127.0.0.1</code></strong>，改成自己部署的 MySQL 位址與帳號密碼。</li>
+<li>
+<p>畫面逐字（<code>worlds</code> 陣列下各頻道）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Beta 頻道</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">server_message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Beta!</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">why_am_i_recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Beta!</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Scania 頻道</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">server_message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Scania!</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">why_am_i_recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Scania!</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Bera 頻道</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">server_message</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Bera!</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">why_am_i_recommended</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Welcome to Bera!</span>
+</code></pre></div>
+</li>
+<li>
+<p>其餘伺服器（Broa、Windia、Khaini、Bellocan、Mardia、Valefor、Demethos、Galicia 等）也一律改成 <code>Welcome to [伺服器名稱]!</code>。</p>
+</li>
+<li><strong>坑</strong>：</li>
+<li><strong>S1 的 <code>config.yml</code> 與 S8 的 <code>config.yaml</code> 副檔名不一致</strong>（S1 已加跨片提醒，應理解為泛稱）。本頁統一採 <code>config.yaml</code>。</li>
+<li><strong>S8 口述與畫面改的不是同一段</strong>：口述改的是 <code>127.0.0.1</code> 資料庫位址，畫面只見 <code>server_message</code>／<code>why_am_i_recommended</code>；<strong>資料庫位址那一段沒有對應畫面</strong>。</li>
+<li><strong>S1：設定改了要按 Enter 才生效</strong>。UI 裡改完資料庫位址沒反應，是因為沒敲回車確認。</li>
+<li><strong>S1：設定已改進資料庫的後果</strong>——本地改了 <code>server.db</code> 等於改了伺服器設定，別直接提交（還原法見 W13-009）。</li>
+<li><strong>S8：發布包漏檔</strong>——bat 包與 exe 包「<strong>都沒有放 <code>config.yaml</code></strong>」，講者原話「我忘了把 config.yaml 放進去了, sorry」「怎麼這裡也沒有 config.yaml」「失誤了」。下載前務必自行取得 <code>config.yaml</code>。</li>
+<li><strong>相關</strong>：見 W13-009、W13-019</li>
+</ul>
+<h3 id="w13-007-launchbat-idea-javafx-html">W13-007　一律用 <code>launch.bat</code> 啟動，IDEA 的 JavaFX HTML 啟動器無效<a class="headerlink" href="#w13-007-launchbat-idea-javafx-html" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>launch.bat</code> <code>run.bat</code> <code>JavaFX HTML 啟動器</code> <code>Server-no-map.html</code> <code>build or rebuild</code></li>
+<li><strong>來源</strong>：S1 10:30–13:00｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：build 完之後有<strong>兩個 HTML 啟動器</strong>（IDEA 為 JavaFX Artifact 產生的基於 HTML 啟動的方式），老師實測<strong>無效</strong>，原話：「<strong>其實我試了一下，是沒有用的。不知道為什麼。反正我們也用不到</strong>」，因為可以用 bat 啟動。實際啟動一律走 <strong><code>launch.bat</code></strong>。</li>
+<li><strong>畫面層逐字的三種啟動寫法（參考）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">@</span><span class="k">echo</span> off
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">@</span><span class="k">title</span> HeavenMS
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">set</span> <span class="nv">JAVA_HOME</span><span class="p">=&lt;</span>PROGRAMFILES<span class="p">&gt;</span>/Java\jdk1.8.0_202\bin\java.exe
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">set</span> <span class="nv">CLASSPATH</span><span class="p">=</span>.;dist\*
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>java -Xmx2048m -D[GMS]v83=v2 -cp dist\Heaven-ms-nap.jar net.server.Server
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">pause</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">@</span><span class="k">echo</span> off
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">title</span> mxdserver
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">cd</span> out\artifacts\Server_jar
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>java -Dfile.encoding=utf-8 -jar Server.jar
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">pause</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>java -Dfile.encoding=utf-8 -jar Server.jar
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>java -Dfile.encoding=GBK -jar &lt;DRIVE&gt;\code\Ms\Server-no-map\out\artifacts\Server_no_map\Server-no-map.jar
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>啟動腳本名稱衝突</strong>：口述是 <code>launch.bat</code>，畫面 v004 是 <code>run.bat</code>，且兩者內容不同（<code>run.bat</code> 走 <code>-cp</code> + <code>net.server.Server</code>，另一支走 <code>-jar</code>）。並列，未擇一。</li>
+<li><strong><code>run.bat</code> 的 <code>JAVA_HOME</code> 實際指向 <code>bin\java.exe</code></strong>（嚴格說應指 JDK 根目錄），是畫面上的原樣，本 wiki 不修正。</li>
+<li>畫面曾出現 <code>Error: Invalid or corrupt jarfile &lt;DRIVE&gt;\code\Ms\Server-no-map\out\artifacts\Server_no_map\Server-no-map.jar</code>，其修正步驟（刪除 jar 內容、重加 compile output、<code>Create Manifest...</code>、指定 <code>server.Start</code>）<strong>未見於口述</strong>，疑為其他影片或解析誤判。</li>
+<li><strong>相關</strong>：見 W13-003、W13-008、W13-014</li>
+</ul>
+<h3 id="w13-008-jdk-c-jdk">W13-008　JDK 路徑預設在 C 盤不可隨手改；JDK 版本三方並存<a class="headerlink" href="#w13-008-jdk-c-jdk" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>JAVA_HOME</code> <code>jdk-14</code> <code>jdk1.8.0_202</code> <code>jdk1.8.0_281</code> <code>jdk1.8.0_121</code> <code>C 盤</code> <code>D 盤</code></li>
+<li><strong>來源</strong>：S1 10:30–13:00、五.2｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述原話：「因為我的 JDK 裝的是 <strong>D 盤</strong>啊，我這裡把我的路徑改一下。默認是裝在 <strong>C 盤</strong>的，所以我們默認上傳、發出去的或者上傳出去的都是 C 盤，<strong>大家不要輕易改這裡的路徑</strong>啊。……但我自己裝在 D 盤。」發布時應維持預設的 C 盤路徑，只有自己裝在別的磁碟才需要改。</li>
+<li><strong>JDK 版本並列表（不擇一）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>出處</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>Java 14</code></strong>（安裝檔 <code>jdk-14_windows-x64_bin.exe</code>）</td>
+<td>S1 畫面 v000 專案頁環境要求</td>
+</tr>
+<tr>
+<td><code>&lt;PROGRAMFILES&gt;/Java\jdk1.8.0_202\bin\java.exe</code></td>
+<td>S1 畫面 v004 <code>run.bat</code></td>
+</tr>
+<tr>
+<td><code>&lt;PROGRAMFILES&gt;/Java\jdk1.8.0_281\bin\java.exe</code></td>
+<td>S1 畫面 v001 IDEA 執行行</td>
+</tr>
+<tr>
+<td><code>&lt;PROGRAMFILES&gt;/Java\jdk1.8.0_121\bin</code></td>
+<td>S7 畫面 v001 <code>.bat</code> 的 <code>set PATH</code></td>
+</tr>
+<tr>
+<td><code>jdk-8u352-linux-x64.tar.gz</code></td>
+<td>S8 畫面 Linux <code>/home</code> 目錄</td>
+</tr>
+<tr>
+<td>推薦 <code>1.8.0.202</code>（口述強調可商用）；README 要求 <strong>jdk8 + Maven</strong>、整個專案編碼 <strong>GBK</strong></td>
+<td>S7 口述 a003 與 README 原文</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：<strong>JDK 版本三方不一致</strong>（頁面標示 <code>Java 14</code> vs 腳本 <code>jdk1.8.0_202</code>／<code>jdk1.8.0_281</code>），無法判定本片實際環境。實務上請以自己專案能編譯的版本為準，別照抄。</li>
+<li><strong>相關</strong>：見 W01-009（課堂環境）；見 W13-007、W13-019</li>
+</ul>
+<h3 id="w13-009-jar-rollback-ignore-changelist-git-checkout-serverdb">W13-009　JAR 被佔用導致 rollback 失敗：改用 <code>ignore</code> changelist 或 <code>git checkout server.db</code><a class="headerlink" href="#w13-009-jar-rollback-ignore-changelist-git-checkout-serverdb" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Cannot roll back Server.jar</code> <code>文件被佔用</code> <code>ignore changelist</code> <code>git checkout server.db</code> <code>resources\db</code></li>
+<li><strong>來源</strong>：S1 17:30–19:19｜<code>S1_2.x版本的打包方式_教學筆記.md</code></li>
+<li><strong>要點</strong>：打包後的 <code>Server.jar</code> 被執行中的伺服器佔用，導致 Git rollback 失敗。講者給兩種解法：</li>
+<li><strong>建 <code>ignore</code> changelist</strong>——「我們可以建一個 <strong>ignore</strong>，比如說我們 <strong>new 一個 changelist，比如叫 ignore</strong>，然後<strong>把它拖進去</strong>，然後傳代碼的時候<strong>就不要把這個 ignore 傳上去</strong>，然後只提交那個 <strong>changes</strong> 裡面的東西就好了。」</li>
+<li><strong><code>git checkout</code> 還原 <code>server.db</code></strong>——git bash 或 IDE 內建 terminal 皆可。</li>
+<li><strong>指令（逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>bash<span class="w"> </span>here
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>checkout<span class="w"> </span>server.db
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nb">cd</span><span class="w"> </span>resources
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">cd</span><span class="w"> </span>db
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>ls
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>server.db
+</code></pre></div>
+<ul>
+<li><strong>錯誤訊息原文（畫面）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Cannot roll back Server.jar
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>File &lt;DRIVE&gt;\MS\HeavenMS-NapMS\out\artifacts\Server_jar\Server.jar does not exist.
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<strong>這不是 Git 壞掉</strong>，是檔案正被執行中的伺服器鎖住（口述：「導致<strong>被佔用了</strong>，文件被佔用了」）。畫面還記到 <code>java -jar .\Server.jar</code> <strong>沒有任何輸出</strong>就返回提示字元。另外「打包產物不要連同設定檔一起 commit」，且 <code>server.db</code> 一旦提交就等於改了伺服器設定。</li>
+<li><strong>相關</strong>：見 W13-006</li>
+</ul>
+<h3 id="w13-010-exe4j-pack-filesserver083exe4j">W13-010　exe4j：匯入 <code>pack files\server083.exe4j</code>，但三處路徑必改<a class="headerlink" href="#w13-010-exe4j-pack-filesserver083exe4j" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>exe4j</code> <code>pack files</code> <code>server083.exe4j</code> <code>Output directory</code> <code>Icon file</code> <code>Regular mode</code> <code>JAR in EXE mode</code></li>
+<li><strong>來源</strong>：S7 00:00–04:00、04:00–08:00、20:00–24:00｜<code>S7_jar包打成exe_教學筆記.md</code></li>
+<li><strong>要點</strong>：jar 打 exe 用的是 <strong>exe4j</strong>（講者下的是<strong>免安裝版</strong>，執行檔 <code>&lt;DRIVE&gt;\edgeDownload\exe4j_windows-x64_7_0_1\bin\exe4j.exe</code>）。<strong>不逐步點選，而是匯入專案內既有的設定檔</strong> <code>pack files</code> 裡的 <strong><code>server083.exe4j</code></strong>，之後一路 <code>Next</code> 即可。精靈頁面順序：<code>Welcome</code> -&gt; <code>Project type</code> -&gt; <code>Application info</code> -&gt; <code>Executable info</code> -&gt; <code>Java invocation</code> / <code>JRE</code> -&gt; <code>Splash screen</code> -&gt; <code>Message</code> -&gt; <code>Compile executable</code>。</li>
+<li><strong>設定值（逐字）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>頁面</th>
+<th>欄位</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Welcome</td>
+<td>—</td>
+<td>匯入 <code>pack files\server083.exe4j</code></td>
+</tr>
+<tr>
+<td>Project type</td>
+<td>—</td>
+<td><code>Regular mode</code></td>
+</tr>
+<tr>
+<td>Application info</td>
+<td><code>Short name of your application</code></td>
+<td><code>server083</code></td>
+</tr>
+<tr>
+<td>Application info</td>
+<td><code>Output directory</code></td>
+<td>預設是講者自己的桌面（<code>&lt;USERPROFILE&gt;\Desktop</code>），<strong>必須改成自己的路徑</strong></td>
+</tr>
+<tr>
+<td>Application info</td>
+<td>打包模式</td>
+<td>預設已選 <strong><code>JAR in EXE mode</code></strong></td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td><code>Executable name</code></td>
+<td><code>server083</code>（產出 <code>server083.exe</code>）</td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td><code>Icon file</code></td>
+<td><code>&lt;專案&gt;\resources\img\icon1</code>（三個 icon：蘑菇頭／藍魔女／冒險島）</td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td>重定向 錯誤日誌／正常輸出日誌</td>
+<td><strong>不需設定</strong>（日誌已全部寫入 <code>all.log</code>）</td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td><code>service options</code></td>
+<td>未設定（講者：「因為太流氓了」）</td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td>架構</td>
+<td><strong><code>64-bit executable</code></strong></td>
+</tr>
+<tr>
+<td>Executable info</td>
+<td>DPI awareness</td>
+<td>預設 <strong><code>Java 9+</code></strong>，不需動</td>
+</tr>
+<tr>
+<td>Compile</td>
+<td>—</td>
+<td><code>Compiling executable</code> -&gt; 產出 EXE</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>icon 選用理由（本片唯一一段完整設計決策）</strong>：全部換成<strong>蘑菇頭 icon</strong>，因為「我們之前用的…也是大家投票投出來的」；不用冒險島 icon 的原因是控制台與客戶端的任務欄圖示「<strong>他們倆的圖標長得一模一樣</strong>…經常會點錯」。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>必須手動改路徑</strong>（講者反覆強調三次）：① <code>Output directory</code>；② <code>Icon file</code> 仍指向<strong>舊的 <code>icon3</code></strong>（新版本發佈時才改 <code>icon1</code>）；③ <code>dist</code> 下 10 個 jar 的絕對路徑。「大家項目的路徑和我項目的路徑肯定不一樣。」</li>
+<li><strong>改完要 <code>save as</code> 存回專案</strong>，下次才能直接用該設定檔。</li>
+<li><strong>匯入前要先 <code>Build</code> -&gt; <code>Build Artifacts...</code> 重產 jar</strong>（Build 或 Rebuild 皆可，畫面沒刷新要<strong>手動刷新</strong>），並且「<strong>把原來的 exe 給它刪掉</strong>」。</li>
+<li><code>pack files</code> 內另一個設定檔 <strong><code>server 183 AIP</code></strong>（口述如此）是<strong>安裝包</strong>設定，已棄用（理由見 W13-022）。</li>
+<li>口述的 <code>server083</code> 與畫面的 <code>HeavenMS</code>／<code>HeavenMS-Nap</code>／<code>&lt;DRIVE&gt;\IDEA\Heaven-ms_nap-v1</code>／<code>favicon.ico</code> <strong>不一致</strong>；本筆記結論是實操以口述的 <code>server083.exe4j</code> 路線為準。</li>
+<li><strong>相關</strong>：見 W13-011、W13-012、W13-013</li>
+</ul>
+<h3 id="w13-011-exe4j-executable-infogui-application-console-application">W13-011　exe4j Executable info：<code>GUI application</code> 會一閃而過，改 <code>Console application</code><a class="headerlink" href="#w13-011-exe4j-executable-infogui-application-console-application" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Executable type</code> <code>GUI application</code> <code>Console application</code> <code>allow console parameter</code> <code>as invoker</code> <code>requireAdministrator</code> <code>單一實例</code></li>
+<li><strong>來源</strong>：S7 04:00–08:00、12:00–16:00、20:00–24:00｜<code>S7_jar包打成exe_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述選 <code>Executable type</code> = <strong><code>GUI application</code></strong>，理由是「因為我們是帶控制台的……所以它是一個 GUI 的程序」；並說明 <code>allow console parameter</code> 是「允不允許有那個控制台輸出」，講者<strong>不勾</strong>（「默認就不帶啊，不帶這個 CMD 窗口，不，不好看」）。
+  但畫面實測的修正路徑不同：第一次打包出的 <code>.exe</code> 雙擊後「<strong>螢幕上短暫閃過一個黑色視窗即消失</strong>」→ 重開 exe4j 載入設定檔 → 精靈跳至 <strong><code>4. Executable info</code></strong> → <code>Executable type</code> 由 <strong><code>GUI application</code></strong> 改選為 <strong><code>Console application</code></strong> → 重新編譯 → <strong>成功保留 cmd 視窗</strong>。</li>
+<li><strong>權限與實例設定並列表（口述 vs 畫面相反，並列）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>設定項</th>
+<th>口述</th>
+<th>畫面</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Executable type</code></td>
+<td><code>GUI application</code></td>
+<td>v005 改為 <code>Console application</code></td>
+</tr>
+<tr>
+<td><code>allow console parameter</code></td>
+<td>未勾（決定要不要 CMD 視窗）</td>
+<td>（未見勾選）</td>
+</tr>
+<tr>
+<td>Execution level（執行權限）</td>
+<td><strong><code>as invoker</code></strong></td>
+<td>v003 manifest 設為 <strong><code>requireAdministrator</code></strong></td>
+</tr>
+<tr>
+<td><code>allow only a single running instance of the application</code></td>
+<td>「我這裡就沒有勾選」（不允許重複啓動）</td>
+<td>v002 Launch4j <code>Single instance</code> 分頁 <strong>已勾選</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>其他畫面設定值</strong>：<code>fail if an exception in the main suite is thrown</code> ＝讓它啟動失敗；<code>Choose the preferred VM</code> ＝ <strong><code>Client HotSpot VM</code></strong>；<code>version info</code> 未設定。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>GUI application 會導致視窗一閃而過</strong>；單靠 <code>allow console parameter</code> 並不可靠，畫面明確示範了改 <code>Console application</code> 這條路。<strong>實務上以畫面這條路徑為準。</strong></li>
+<li><strong>產出檔名並存</strong>：<code>server083.exe</code>（口述）／<code>Server83.exe</code>（畫面 v005）／<code>Server.exe</code>（Launch4j 畫面）。</li>
+<li><strong>單一實例設定口述與畫面相反</strong>，並列不擇一。</li>
+<li><strong>執行權限口述與畫面相反</strong>（<code>as invoker</code> vs <code>requireAdministrator</code>），並列不擇一。</li>
+<li>編譯完成訊息原文：<code>exe4j has finished. The EXE file for your Java application has been compiled and copied to the specified location. Click on 'Exit' to close the application.</code></li>
+<li><strong>相關</strong>：見 W13-010、W13-013</li>
+</ul>
+<h3 id="w13-012-exe4j-java-invocationdist-10-jar">W13-012　exe4j Java invocation：<code>dist</code> 內 10 個 jar 全部手動加入<a class="headerlink" href="#w13-012-exe4j-java-invocationdist-10-jar" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Java invocation</code> <code>Class path</code> <code>Archive</code> <code>10 個 jar</code> <code>Main class</code> <code>VM Parameters</code> <code>No JRE found.</code></li>
+<li><strong>來源</strong>：S7 12:00–16:00、16:00–20:00｜<code>S7_jar包打成exe_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>依賴 jar 數量是本片的核心參數</strong>。口述：「這裡面<strong>一共有十個 jar 包</strong>…<strong>這十個 jar 包我們全部要選中</strong>」，理由逐字保留：<blockquote>
+<p>「JavaFX 和那個，我們不帶，不帶 JavaFX 控制台的，它打包的方式有點不一樣。它會把所有的依賴包全部單獨的打出來。所以我們一定要把所有的依賴包全部加到 classPath 裡面去。否則的話，就會出現 <strong>class not found</strong>，或者是報其他的錯誤。」</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>exe4j 不支援多選</strong>：「它不支持多選啊…只能一個一個的添加。所以這裡要添加十次，我就不給大家演示了。」
+  jar 的位置就是<strong>打包出來的 <code>dist</code> 路徑</strong>。<code>Native libraries</code> 不用配。
+- <strong>操作順序（逐字）</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>1. Java invocation 頁 → Class path 區 → 綠色 + → Archive
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>2. 選 dist 資料夾
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>3. 逐一選入 10 個 jar（exe4j 不支援多選，須點 10 次）
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>4. Main class → server.Start
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>5. 設定檔 pack files\server083.exe4j 存回專案
+</code></pre></div>
+<ul>
+<li><strong>VM Parameters（畫面 v003 最終輸入，逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>-Xmx2048m -Dwzpath=wz
+</code></pre></div>
+<p>講者另從 IDEA 複製了 <strong><code>-Xss2m</code></strong>（thread stack size）；暫存片段原文（部分行殘缺／OCR 失真，不可直接複製使用）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>price Maplestory
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>cd /d &lt;PROGRAMFILES&gt;/Java\jdk1.8.0_202\bin.bM\VM
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>-D SERVER -Xss2m
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>java -Xbootclasspath/p: -jar lib\a\Heaven_ms.jar 2&gt;
+</code></pre></div>
+<ul>
+<li><strong>錯誤訊息原文（視窗標題 <code>exe4j</code>，14:50 與 15:47 兩次）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Error finding classes
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Fatal: Run tool with a JDK/JRE to use class path search.
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>Fatal
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>No JRE found.
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Add a JRE search path in 'JRE' or define the JAVA_HOME environment variable...
+</code></pre></div>
+<p>→ 原因：exe4j 定位不到 JDK/JRE 路徑，無法解析 jar 內的 Main class。<strong>解法就是切回 classpath 用 <code>+</code> -&gt; <code>Archive</code> 手動掛 jar。</strong>
+- <strong>坑</strong>：
+  - <strong>漏一個 jar 就會 <code>class not found</code></strong>，或報其他錯誤。
+  - <strong><code>No JRE found.</code> 時必須自行指定 <code>JAVA_HOME</code> 或在 <code>JRE</code> 頁加搜尋路徑</strong>。
+  - <strong>Main Class 口述與畫面不一致</strong>：口述辨識為「<strong>UI server APP</strong>」，畫面 v004 的 <code>Select Main Class</code> 選的是 <strong><code>server.Start</code></strong>。
+  - exe4j 檔案瀏覽器選取的 Archive 路徑是 <code>&lt;DRIVE&gt;\EricZone\服务端\启动端\...\lib\Heaven_ms.jar</code>（口述的 <code>dist</code> 路徑為 <code>&lt;DRIVE&gt;\loggit\github\heavenms\dist</code>，與畫面多組 <code>&lt;DRIVE&gt;\</code> 路徑皆不符，無法確認）。
+- <strong>相關</strong>：見 W13-010、W13-013、W13-014</p>
+<h3 id="w13-013-exe4j-jre-18-jre">W13-013　exe4j JRE：鎖 1.8，搜尋順序把「當前資料夾 jre」拉到最高優先<a class="headerlink" href="#w13-013-exe4j-jre-18-jre" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>JRE</code> <code>Minimum version</code> <code>Maximum version</code> <code>Search sequence</code> <code>JAVA_HOME</code> <code>JDK_HOME</code> <code>Registry</code> <code>Client HotSpot VM</code></li>
+<li><strong>來源</strong>：S7 16:00–20:00、20:00–24:00｜<code>S7_jar包打成exe_教學筆記.md</code>；S8 08:00–10:30｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述「我們需要的 JRE 版本<strong>最小的是 1.8，最大的也是 1.8</strong>。其他的就不需要做過多的配置。」
+  <code>Search sequence</code> 的三個層級：1. <strong><code>JAVA_HOME</code> 環境變數</strong>、2. <strong><code>JDK_HOME</code> 環境變數</strong>；「如果都沒找到…<strong>你沒有裝 JDK 的情況下，你可能就起不來</strong>。」
+  講者自己加的<strong>第 0 優先項</strong>是參考另一個 GitHub 專案 <strong><code>MySQL啟動工具</code></strong>（該專案內附了一個 JRE）：「如果我們當前文件夾下面有一個 JRE 的一個目錄的話，它會優先去 JRE 目錄下面去找 java.exe 來啟動。我這裡把它的優先級放到最高了。」
+  <code>Splash screen</code> 與 <code>Message</code> 都「不需要動」，<code>VM</code> 用預設。</li>
+<li><strong>畫面操作（v005）</strong>：刪除預設的搜尋項目（例如 <code>Registry</code>）-&gt; 點綠色 <code>+</code> 新增選 <strong><code>Environment variable</code></strong>，分別輸入 <strong><code>JAVA_HOME</code></strong> 與 <strong><code>JDK_HOME</code></strong> -&gt; 再次點 <code>+</code> 選 <strong><code>Directory</code></strong> 輸入 <strong><code>.\jre</code></strong>（可執行檔同目錄下的 jre 資料夾）。刪除時確認視窗原文：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Confirm delete
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Really delete the selected search sequence entry?
+</code></pre></div>
+<p>按鈕 <code>Yes</code> / <code>No</code>。
+- <strong>JRE 搜尋順序並列表</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>順序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S7 口述（含講者新增的第 0 項）</td>
+<td>1. <strong>當前資料夾 JRE（最高優先）</strong> 2. <code>JAVA_HOME</code> 3. <code>JDK_HOME</code></td>
+</tr>
+<tr>
+<td>S7 口述（另一段補述）</td>
+<td>1. <code>Registry</code>（裝了 JDK 後先查註冊表）2. <code>JAVA_HOME</code> 3. <code>JDK_HOME</code></td>
+</tr>
+<tr>
+<td>S7 畫面 v005</td>
+<td>刪掉 <code>Registry</code>／<code>Environment variable JAVA_HOME</code> 規則，改以 <strong><code>.\jre</code></strong> 目錄優先</td>
+</tr>
+<tr>
+<td>S8 口述（已發布的 exe 實測）</td>
+<td>1. <strong>當前資料夾下的 <code>jre</code> 文件夾</strong> 2. <strong>註冊表裡已安裝的 Java</strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>沒有 JRE 就起不來</strong>：使用者未裝 JDK、未設 <code>JAVA_HOME</code>／<code>JDK_HOME</code>、也沒有隨附 JRE 目錄時，EXE 無法啟動。</li>
+<li><strong>S8 補充的環境坑</strong>：若使用者<strong>裝了多版本 Java，或 JRE 路徑不在註冊表</strong>，exe 可能起不來；講者建議保留 <code>jre</code> 資料夾較保險。S8 也明說 <code>jre</code> 資料夾「當然你可以把它去掉。去掉以後還是能運行的」。</li>
+<li>S7 畫面另外出現 Launch4j 風格介面（<code>Configure executable</code>／<code>Configure java invocation</code>），其 <code>Search sequence</code> 是刪除 <code>Environment variable JAVA_HOME</code> 規則、改以 Registry 優先，<strong>與 exe4j 路線相反</strong>。</li>
+<li><strong>相關</strong>：見 W13-012、W13-017</li>
+</ul>
+<h3 id="w13-014-500m1000m1024m2048m3000m">W13-014　記憶體參數五套並存：500m／1000m／1024m／2048m／3000m<a class="headerlink" href="#w13-014-500m1000m1024m2048m3000m" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>-Xmx</code> <code>500m</code> <code>1000m</code> <code>1024m</code> <code>2048m</code> <code>3000m</code> <code>VM Parameters</code> <code>卡頓</code> <code>內存溢出</code></li>
+<li><strong>來源</strong>：S7 04:00–08:00、12:00–16:00、16:00–20:00、四.3｜<code>S7_jar包打成exe_教學筆記.md</code>；S1 畫面 v004｜<code>S1_2.x版本的打包方式_教學筆記.md</code>；S8 畫面 ps 輸出｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：JVM 最大堆記憶體在這批素材裡有<strong>五套並存數值</strong>，分屬不同專案版本與不同工具，<strong>無法判定哪一組是實際採用值</strong>。本 wiki 全部並列，不擇一。</li>
+<li><strong>記憶體數值並列表（含來源片段）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>數值</th>
+<th>完整指令／參數</th>
+<th>出處片段</th>
+<th>性質</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-Xmx500m</code></td>
+<td>（exe4j 預設）</td>
+<td>S7 口述 a003–a004</td>
+<td>「默認給的是 500 兆」</td>
+</tr>
+<tr>
+<td><code>-Xmx1000m</code></td>
+<td>（<code>.bat</code> 端）</td>
+<td>S7 口述</td>
+<td>「BAT 已改成 1000 兆」（曾因 JavaFX OOM 調高）</td>
+</tr>
+<tr>
+<td><code>-Xmx1024m</code></td>
+<td><code>java -Xmx1024m -Dfile.encoding=GBK -DappPath=/ net.server.Server</code></td>
+<td>S8 畫面 <code>ps -ef\|grep 8585</code> 輸出</td>
+<td><strong>Linux 實際啟動行</strong></td>
+</tr>
+<tr>
+<td><code>-Xmx1024m</code></td>
+<td>（建議值）</td>
+<td>S7 口述</td>
+<td>遇到「很卡／經常未響應／內存溢出」就往上调，建議直接給 <code>1024m</code> 以上</td>
+</tr>
+<tr>
+<td><code>-Xmx2048m</code></td>
+<td><code>-Xmx2048m -Dwzpath=wz</code></td>
+<td>S7 畫面 v003 exe4j <code>VM Parameters</code> 欄位</td>
+<td>畫面實填</td>
+</tr>
+<tr>
+<td><code>-Xmx2048m</code></td>
+<td><code>java -Xmx2048m -D[GMS]v83=v2 -cp dist\Heaven-ms_nap.jar net.server.Server</code></td>
+<td>S1 畫面 v004 <code>run.bat</code></td>
+<td>畫面實填</td>
+</tr>
+<tr>
+<td><code>-Xmx3000m</code></td>
+<td><code>java -Xmx3000m -cp gui\*;dist\Heaven_ms_nap.jar server.Start</code></td>
+<td>S7 畫面 v001 <code>.bat</code></td>
+<td>畫面實填</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>記憶體預設值偏小</strong>：exe4j 預設 500 M，講者曾因 JavaFX OOM 把 <code>.bat</code> 調到 1000 M；建議直接給 <code>1024m</code> 以上。</li>
+<li><strong>S7 口述 a002 有一句「默認 9530 就 9530 吧」語音明顯失真</strong>，語境是 JVM 記憶體（應是「默認 500 就 500 吧」之類），<strong>數字無法確定</strong>。</li>
+<li><strong>S1 與 S7 對「JVM 記憶體」的腳本寫法不同</strong>：S1 的 <code>run.bat</code> 用 <code>-cp</code> + <code>net.server.Server</code>（<strong>不是</strong> <code>-jar</code>），S7 的 <code>.bat</code> 用 <code>-cp gui\*;dist\Heaven_ms_nap.jar server.Start</code>，兩者主類與 classpath 都不同。</li>
+<li><strong>相關</strong>：見 W13-007、W13-012</li>
+</ul>
+<h3 id="w13-015-windows-mysql">W13-015　Windows 部署：先用 MySQL 起停工具開資料庫<a class="headerlink" href="#w13-015-windows-mysql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>MySQL控制工具.exe</code> <code>MySQL 控制台 v1.02 By Nep</code> <code>启动成功!</code> <code>MySQL 沒啟</code></li>
+<li><strong>來源</strong>：S8 00:00–04:00｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：部署前<strong>第一件事是確認 MySQL 有沒有啟</strong>。講者自製 <code>MySQL控制工具.exe</code>，點開後按左側「<strong>启动</strong>」，狀態文字依序為「<strong>正在启动...</strong>」-&gt;「<strong>启动成功!</strong>」（視窗標題 <code>MySQL 控制台 v1.02 By Nep</code>，初始文字「请点击按钮以操作数据库」）。
+  <strong>關鍵語意：關閉工具視窗不影響 MySQL 的起停狀態</strong>——「我這個起停工具，它是，它的<strong>關閉不影響 MySQL 的起停狀態</strong>的……你想把它關掉的時候再打開一遍，然後，把它<strong>停掉</strong>就好了。」
+  工具的由來：群裡有小伙伴問「為什麼我服務啟動就報錯呀？」，講者「最後一看，<strong>發現是 MySQL 沒啟</strong>」。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>起停工具的關閉不等於停止 MySQL</strong>：關掉視窗 MySQL 仍在跑；想重啟演示前要先「再起一下」。</li>
+<li><strong>工具包大小限制</strong>：MySQL 起停工具 &gt;100 MB，GitHub 上傳不了，只能走網盤／GitHub release 佔位。</li>
+<li><strong>Linux 端沒有這個工具</strong>（見 W13-018）。</li>
+<li><strong>相關</strong>：見 W13-016、W13-018</li>
+</ul>
+<h3 id="w13-016-windows-navicat-sql">W13-016　Windows 部署：Navicat 建連線並依序跑三個 SQL 初始化腳本<a class="headerlink" href="#w13-016-windows-navicat-sql" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Navicat Premium</code> <code>localhost</code> <code>3306</code> <code>root</code> <code>111</code> <code>CREATE TABLE</code> <code>INSERT INTO</code> <code>[ERR] 1064</code> <code>Duplicate entry</code></li>
+<li><strong>來源</strong>：S8 00:00–08:00、三.2、三.3｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：MySQL 起來後要用 Navicat 建連線並跑初始化腳本。口述參數：「<strong>直接默認 localhost，因為是在本地啟動嘛，3306 端口，用戶名是 root，密碼也是 root 啊，密碼默認就是 root</strong>。」
+  腳本<strong>必須按順序執行</strong>：「<strong>按順序執行啊。我上面也有註釋，第一個執行什麼，第二個執行什麼。</strong>」</li>
+<li><strong>MySQL 密碼並列表（口述 vs 畫面）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>主機</th>
+<th>端口</th>
+<th>用戶名</th>
+<th>密碼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S8 口述</td>
+<td><code>localhost</code></td>
+<td><code>3306</code></td>
+<td><code>root</code></td>
+<td><strong><code>root</code></strong></td>
+</tr>
+<tr>
+<td>S8 畫面 v001（Navicat Premium）</td>
+<td><code>localhost</code></td>
+<td><code>localhost</code> 連接名</td>
+<td><code>root</code></td>
+<td><strong><code>111</code></strong></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>三個腳本與兩個常見錯誤（逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>1) 建表腳本   CREATE TABLE IF NOT EXISTS ...
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>2) 資料插入   INSERT INTO ... VALUES (...)
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>3) 第三個腳本
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>→「按順序執行啊。我上面也有註釋，第一個執行什麼，第二個執行什麼。」
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Large script execution may be dramatically slow while display is inside of editor component... Do you want to disable text formatting for this execution?
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>→ 選 Yes
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Duplicate entry '...' for key 'PRIMARY'                      → 重複主鍵，資料已存在
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>[ERR] 1064 - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near... → 語法錯誤
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>                                                        → 在 Navicat 編輯區手動刪掉出錯片段再全選重跑
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>密碼 root vs 111 衝突</strong>（並列），實際以自己環境為準。</li>
+<li><strong>第二段腳本報 1064 語法錯誤</strong>時，解法是在 Navicat 編輯區<strong>手動選取並刪除引發錯誤的無效字元／語法片段</strong>，再全選重跑。</li>
+<li>大段 SQL 執行時會跳文字格式化詢問，<strong>要選 <code>Yes</code></strong> 才不會慢。</li>
+<li>畫面同一段出現的 Windows 路徑是 <code>&lt;DRIVE&gt;\1.2.0.0307\v1.2.0.0307服务端\server64\launch.bat</code> 與 <code>server64\Server64.exe</code>，<strong>與本片主講的 <code>1.23.0617</code> 版本與 bat／exe 兩種方式完全不同</strong>，疑為其他版本素材。</li>
+<li><strong>相關</strong>：見 W13-015、W13-017</li>
+</ul>
+<h3 id="w13-017-windows-bat-distexe-jre">W13-017　Windows 部署：bat 包要有 <code>dist</code>、exe 包要有 <code>jre</code>，視窗都不能關<a class="headerlink" href="#w13-017-windows-bat-distexe-jre" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>bat</code> <code>exe</code> <code>dist</code> <code>jre</code> <code>註冊表</code> <code>launch.bat</code> <code>Server64.exe</code> <code>視窗不能關</code></li>
+<li><strong>來源</strong>：S8 04:00–13:00、三.4｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：Windows 端共兩種啟動方式，<strong>差異在於依賴什麼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>方式 A：bat 腳本
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  結構：&lt;解壓後資料夾&gt;\dist\*.jar  +  &lt;啟動&gt;.bat
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>  必須有 dist 資料夾（jar 包），因為 bat 是執行 jar 來啟動
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>  雙擊 bat → 黑色命令提示字元視窗；★此視窗不能關閉，關掉服務就停
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>方式 B：exe 執行程序
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>  結構：&lt;exe&gt;  +  可選的 jre\ 資料夾
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>  沒有 dist 資料夾（jar 已打包進 exe）
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>  雙擊 exe → 黑色命令提示字元視窗；★同樣不能關閉
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>  JRE 搜尋順序：① 當前資料夾下的 jre  →  ② 註冊表中已安裝的 Java
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>                （jre 資料夾可整個刪掉，仍可執行）
+</code></pre></div>
+<ul>
+<li><strong>exe 的 JRE 搜尋（口述原話要點）</strong>：「因為<strong>編譯成 exe 以後，是依賴 jre 的</strong>……當然你可以把它去掉。去掉以後還是能運行的。」「這個 exe 程序會<strong>首先優先找本地的，就是，當前文件夾下面的 jre 文件夾</strong>……如果沒有的話…<strong>它會自動去註冊表裡面找你已經安裝好的 Java</strong>。」</li>
+<li><strong>畫面對照的目錄結構</strong>：路徑 <code>1.220(67) &gt; jar &gt; Server(65)</code>，內含 <code>db</code>、<code>scripts</code>、<code>wz</code>、<code>config.yaml</code>、<code>Server(65).exe</code>。</li>
+<li><strong>坑</strong>：</li>
+<li><strong>發布包漏檔</strong>——bat 包與 exe 包「<strong>都沒有放 <code>config.yaml</code></strong>」，講者當場承認「我忘了把 config.yaml 放進去了, sorry」「<strong>怎麼這裡也沒有 config.yaml</strong>？完了，我這個包好像有點小問題。那我等一下要把這個包<strong>重新上傳一下</strong>啊。<strong>失誤了</strong>。」</li>
+<li><strong>服務視窗不能關</strong>——bat 與 exe 啟動後的命令提示字元視窗一關，服務就停（原話「<strong>你關閉了，程，服務就停了</strong>」）。</li>
+<li><strong>exe 的 JRE 搜尋順序有環境前提</strong>——若使用者裝了多版本 Java 或 JRE 路徑不在註冊表，exe 可能起不來；講者建議保留 <code>jre</code> 資料夾較保險。</li>
+<li><strong>本片沒有 Windows 服務註冊</strong>（無 <code>sc create</code>、無服務管理員示範），只以 bat／exe 與 MySQL 起停工具的 GUI 管理。</li>
+<li><strong>相關</strong>：見 W13-006、W13-013、W13-015</li>
+</ul>
+<h3 id="w13-018-linux-tar-tar-xvf-c-usrlocal">W13-018　Linux 部署：上傳 tar 包後 <code>tar -xvf … -C /usr/local/</code><a class="headerlink" href="#w13-018-linux-tar-tar-xvf-c-usrlocal" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>tar.gz</code> <code>tar -xvf</code> <code>/usr/local/</code> <code>Debian</code> <code>CentOS</code> <code>Xshell</code> <code>FinalShell</code> <code>GBK</code></li>
+<li><strong>來源</strong>：S8 10:30–13:00、三.5｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：tar 包上傳到 Linux 伺服器後，講者習慣解壓到 <strong><code>/usr/local/</code></strong>（口述：「我個人喜歡啊，把它，<strong>解壓到 usr local</strong>」）。<code>/usr/local/</code> 下若沒有該資料夾「好像也不用創建」。</li>
+<li><strong>指令（畫面逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nb">cd</span><span class="w"> </span>/home
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>ls
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="c1">#   1.22.20(67).tar.gz</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1">#   Server(65)</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="c1">#   jdk-8u352-linux-x64.tar.gz</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="c1">#   mysql</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>clear
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="nb">cd</span><span class="w"> </span>/usr/local
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>ls
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>tar<span class="w"> </span>-xvf<span class="w"> </span><span class="m">1</span>.22.20<span class="o">(</span><span class="m">67</span><span class="o">)</span>.tar.gz<span class="w"> </span>-C<span class="w"> </span>/usr/local/
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="nb">cd</span><span class="w"> </span>/usr/local/
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>ls
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="c1">#   Server(65)</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="nb">cd</span><span class="w"> </span>Server<span class="se">\(</span><span class="m">65</span><span class="se">\)</span>/
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>ls
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="c1">#   config.yaml  db  mysql.sh  scripts  start.sh  wz</span>
+</code></pre></div>
+<ul>
+<li><strong>環境要點</strong>：</li>
+<li>講者環境是 <strong>Debian</strong>，並明說「如果大家用的是 <strong>CentOS</strong>，也是一樣的啊，一樣的操作」。</li>
+<li><strong>Linux 端必須自己手動部署 MySQL</strong>（Windows 才有起停工具）。原話：「如果你，你甚至都能想到把它部署到 Linux 裡面去了的話……<strong>部署一個 MySQL 的話對你來說應該是非常輕鬆的</strong>。」</li>
+<li><strong>連線工具推薦 Xshell，不推薦 FinalShell</strong>：「因為我們整個工程是基於 GBK 的……所以我們必須得用 GBK 來編碼來顯示，但是我們 FinalShell 用 GBK 好像有點問題<strong>啊。所以我這裡</strong>推薦大家使用 Xshell**。」（Xshell 7 為 Home/School 免費許可證，永久，另有 Xftp。）</li>
+<li><strong>解壓結果目錄並列表（口述 vs 畫面不一致）</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>來源</th>
+<th>解壓後的目錄名</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S8 口述</td>
+<td><strong><code>server083</code></strong></td>
+<td>（未列）</td>
+</tr>
+<tr>
+<td>S8 畫面 v002</td>
+<td><strong><code>Server(65)</code></strong></td>
+<td><code>config.yaml  db  mysql.sh  scripts  start.sh  wz</code></td>
+</tr>
+<tr>
+<td>S8 畫面 v003</td>
+<td><code>/usr/local/heroerV09</code></td>
+<td><code>config.yaml  dist  linux-launch.sh  scripts  sql  wz</code></td>
+</tr>
+<tr>
+<td>S8 畫面 v004</td>
+<td><code>/usr/local/server003</code></td>
+<td>（僅列提示字元路徑）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>解壓目標目錄名四說並存</strong>（<code>server083</code>／<code>Server(65)</code>／<code>heroerV09</code>／<code>server003</code>），推測為不同伺服器實例或不同版本，但<strong>無法從素材確認</strong>。</li>
+<li><strong>啟動腳本檔名不一致</strong>：v002 為 <code>start.sh</code>（另有 <code>mysql.sh</code>），v003／v004 為 <code>linux-launch.sh</code>（另有 <code>dist</code> 目錄）。</li>
+<li><strong>Xshell 免費版關閉會跳彈窗</strong>，講者建議用火絨的彈窗攔截功能處理（屬非官方 workaround）。</li>
+<li><strong>本片沒有 systemd</strong>——無 <code>.service</code> 檔、無 <code>systemctl start/stop</code>，一律以 <code>sh linux-launch.sh</code> 與背景執行管理行程。</li>
+<li><strong>相關</strong>：見 W13-019、W13-020</li>
+</ul>
+<h3 id="w13-019-linux-configyaml-gbk">W13-019　Linux 部署：改 <code>config.yaml</code> 並把終端機編碼設成 GBK<a class="headerlink" href="#w13-019-linux-configyaml-gbk" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>vim config.yaml</code> <code>127.0.0.1</code> <code>GBK</code> <code>亂碼</code> <code>:wq</code> <code>伺服器地址</code></li>
+<li><strong>來源</strong>：S8 13:00–16:00、三.6、三.7｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：進資料夾後先改設定再啟動。<strong>編碼是最容易踩的一步</strong>——口述原話：「<strong>記得把這裡的編碼改成 GBK 啊，改成 UTF-8 的話會亂碼</strong>。」
+  <code>config.yaml</code> 要改兩處之一（口述 vs 畫面不同，見坑）：</li>
+<li>口述：先<strong>搜一下 <code>127.0.0.1</code></strong>，「<strong>我們把這裡改成自己，自己部署的 MySQL 的地址和帳號密碼</strong>」。</li>
+<li>畫面：改的是 <code>worlds</code> 陣列下各頻道的 <code>server_message</code> 與 <code>why_am_i_recommended</code>（逐字片段見 W13-006）。</li>
+<li><strong>指令（畫面逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>vim<span class="w"> </span>config.yaml
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>:wq
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>終端機編碼必須 GBK</strong>；改成 UTF-8 會亂碼。且 <strong>FinalShell 的 GBK 解碼有問題</strong>，必須用 Xshell。</li>
+<li><strong>S8 口述與畫面改的不是同一段</strong>（口述改 <code>127.0.0.1</code> 資料庫位址，畫面只見歡迎訊息；<strong>資料庫位址那一段沒有對應畫面</strong>）。</li>
+<li>畫面路徑是 <code>heroerV09</code>、啟動腳本是 <code>linux-launch.sh</code>，與口述的 <code>server083</code>、<code>start.sh</code> 不一致。</li>
+<li><strong>相關</strong>：見 W13-006、W13-018、W13-020</li>
+</ul>
+<h3 id="w13-020-linux">W13-020　Linux 部署：背景執行與日誌<a class="headerlink" href="#w13-020-linux" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>sh linux-launch.sh</code> <code>out.log</code> <code>tail -f</code> <code>ps -ef | grep</code> <code>背景執行</code> <code>Ctrl+C</code></li>
+<li><strong>來源</strong>：S8 13:00–17:00、三.7、三.8｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：前台執行時「<strong>當這個界面不能關掉，關掉的話或者 Ctrl+C 的話，它就會 shutdown 這個服務</strong>」，所以長駐要用<strong>背景執行 + 日誌導向</strong>。</li>
+<li><strong>指令（畫面逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>sh<span class="w"> </span>linux-launch.sh
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>sh<span class="w"> </span>linux-launch.sh<span class="w"> </span>&gt;<span class="w"> </span>out.log<span class="w"> </span><span class="p">&amp;</span><span class="w">     </span><span class="c1"># 背景執行並輸出日誌，系統回傳 PID [1] 85032</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>tail<span class="w"> </span>-f<span class="w"> </span>out.log<span class="w">                    </span><span class="c1"># 監控日誌，Ctrl+C 結束監控（不中斷服務）</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>java<span class="w">                 </span><span class="c1"># 確認 Java 行程</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>ps<span class="w"> </span>-ef<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span><span class="m">8585</span><span class="w">                  </span><span class="c1"># 以端口 8585 驗證</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>docker<span class="w"> </span>ps<span class="w"> </span>-a<span class="w">                       </span><span class="c1"># 檢查 MySQL/Redis/Nginx 容器</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>clear
+</code></pre></div>
+<ul>
+<li><strong>服務實際啟動的 JVM 指令列（從 <code>ps</code> 輸出取得，逐字）</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>root      61593  61581  0 16:34 pts/1    00:00:00 /bin/sh linux-launch.sh
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>root      61594  61593 99 16:34 pts/1    00:00:15 java -Xmx1024m -Dfile.encoding=GBK -DappPath=/ net.server.Server
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>root      61680  61386  0 16:34 pts/0    00:00:00 grep --color=auto 8585
+</code></pre></div>
+<p>即：<code>java -Xmx1024m -Dfile.encoding=GBK -DappPath=/ net.server.Server</code>（主類 <code>net.server.Server</code>，服務端端口 <code>8585</code>）。
+- <strong>相依服務檢查（<code>docker ps -a</code>，STATUS 皆為 <code>Up</code>）</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>服務</th>
+<th>映像</th>
+<th>NAMES</th>
+<th>PORTS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MySQL</td>
+<td><code>mysql:5.7</code></td>
+<td><code>mysql</code></td>
+<td><code>0.0.0.0:3306-&gt;3306/tcp</code></td>
+</tr>
+<tr>
+<td>Redis</td>
+<td><code>redis:5.0.7</code></td>
+<td><code>redis</code></td>
+<td><code>0.0.0.0:6379-&gt;6379/tcp</code></td>
+</tr>
+<tr>
+<td>Nginx</td>
+<td><code>nginx:latest</code></td>
+<td><code>nginx</code></td>
+<td><code>0.0.0.0:80-&gt;80/tcp</code></td>
+</tr>
+<tr>
+<td>Go 開發環境</td>
+<td><code>janeys/dev-go...</code></td>
+<td><code>dev-go</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>坑</strong>：</li>
+<li><strong>口述的 grep 對象不明確</strong>——口述說「我要 grep 什麼？那 <strong>grep 這個 ID</strong> 吧」，畫面則是 <code>ps -ef | grep java</code> 與 <code>ps -ef |grep 8585</code>。兩者推測指同一件事但用詞不同。</li>
+<li>前景執行時關視窗或 <code>Ctrl+C</code> 都會 <code>shutdown</code> 服務，必須改用背景執行。</li>
+<li>本片沒有 systemd 與容器化部署步驟（見 W13-022）。</li>
+<li><strong>相關</strong>：見 W13-014、W13-018、W13-021</li>
+</ul>
+<h3 id="w13-021-linux-databaseconnectiongetconnection-nullpointerexception">W13-021　Linux 部署崩潰診斷：<code>DatabaseConnection.getConnection</code> 的 NullPointerException<a class="headerlink" href="#w13-021-linux-databaseconnectiongetconnection-nullpointerexception" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>NullPointerException</code> <code>DatabaseConnection.getConnection</code> <code>MapTimer</code> <code>server.Server.main</code> <code>Channel offline</code></li>
+<li><strong>來源</strong>：S8 13:00–16:00、三.9｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>sh linux-launch.sh</code> 中途崩潰，<strong>崩潰點在資料庫連線為 null</strong>。錯誤堆疊原文：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Exception in thread "Timer-1" java.lang.NullPointerException
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    at server.maps.MapTimer.run(MapTimer.java:122)
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    at java.util.TimerThread.mainLoop(Timer.java:555)
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>    at java.util.TimerThread.run(Timer.java:505)
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>java.lang.NullPointerException
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    at database.DatabaseConnection.getConnection(DatabaseConnection.java:70)
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>    at database.DatabaseConnection.getConnection(DatabaseConnection.java:56)
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>    at scripting.event.EventScriptManager.init(EventScriptManager.java:51)
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>    at server.Server.main(Server.java:119)
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>... (後續為 Executor 等執行緒的錯誤堆疊)
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>Successfully shut down Channel 2 on World 0
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>... (多個 Channel 關閉訊息)
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>Finished shutting down world 0
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>Bera's channels are offline.
+</code></pre></div>
+<p>判讀：<code>Server.main</code> 第 119 行呼叫 <code>EventScriptManager.init</code> 時連線未建立，連帶 <code>MapTimer</code> 的 Timer-1 執行緒拋 NPE，最後所有 channel 依序 offline。
+- <strong>坑</strong>：
+  - <strong><code>NullPointerException</code> 的一連串堆疊都是下游症狀</strong>，真正的起點是 <code>DatabaseConnection.getConnection</code> 拿不到連線——對照 W13-015（Windows 常見原因是 MySQL 沒啟）與 W13-019（<code>config.yaml</code> 的位址／帳密沒改）。
+  - 用 <code>tail -f out.log</code> 看日誌時會出現中文提示「<strong>正在載入技能...</strong>」，隨後同樣噴出上述 NPE。
+- <strong>相關</strong>：見 W13-015、W13-019、W13-020</p>
+<h3 id="w13-022-zip-systemdwindows">W13-022　發行一律改發 zip；本三片未涵蓋 systemd／Windows 服務註冊／容器化<a class="headerlink" href="#w13-022-zip-systemdwindows" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>server 183 AIP</code> <code>安裝包</code> <code>註冊表殘留</code> <code>zip</code> <code>免安裝</code> <code>systemd</code> <code>Docker Compose</code></li>
+<li><strong>來源</strong>：S7 00:00–04:00、36:00–38:00｜<code>S7_jar包打成exe_教學筆記.md</code>；S8 16:00–17:0X｜<code>S8_windows和linux部署_教學筆記.md</code></li>
+<li><strong>要點</strong>：講者放棄安裝包的三個理由（原話要點）：「打安裝包太毒瘤了，因為它會去你註冊表裡面去註冊一些信息，然後卸載以後註冊信息還在」；「安裝包相比我們的 zip 來說，體量更大了」；「安裝起來，還不如免安裝的方便，所以就…很雞肋」。因此後面發佈的發行版<strong>都只給 zip 壓縮包，直接解壓就能運行</strong>。
+  Linux 端另有自製工具 <strong><code>MySQL转化工具.exe</code></strong>（視窗標題 <code>1.220(67) - MySQL转化工具</code>，按鈕「选择数据库所在文件夹」「一键转化(速度很慢)」，用來把服務端 mysql 資料夾轉成 .sql），<strong>本片僅開啟檢視未點擊執行</strong>。</li>
+<li><strong>本三片未涵蓋的部署內容（S8 已明寫「本片無此內容」）</strong>：</li>
+<li><strong>無 systemd 服務單元檔（<code>.service</code>）、無 <code>systemctl start/stop</code></strong>。</li>
+<li><strong>無 Windows 服務註冊</strong>（<code>sc create</code>／服務管理員）。</li>
+<li><strong>無 Docker Compose／Dockerfile／容器化部署步驟</strong>——僅片尾以 <code>docker ps -a</code> 檢視既有容器，講者明言 Docker 細節另出影片。</li>
+<li><strong>無 Java 業務邏輯程式碼撰寫</strong>——S8 全片僅最後 1 分鐘靜態展示 <code>src/server/Feature.java</code>。</li>
+<li><strong>坑</strong>：</li>
+<li><strong><code>Server.exe</code> 與 <code>Server32.exe</code> 角色不同</strong>：前者是打包產物，後者是 <strong>7-Zip 自解壓檔</strong>（執行後跳「7-Zip自解压存档」，解壓到 <code>&lt;DRIVE&gt;\HeavenMS-Nap\</code>，覆蓋時點「<strong>全是(A)</strong>」），用途是讓玩家一鍵解壓覆蓋，不是程式本體。</li>
+<li><strong>Windows 圖示快取 bug</strong>：覆蓋舊 EXE 後檔案總管仍顯示舊 icon。講者判定為 Windows 的 bug，<strong>重啟電腦</strong>可解，但「不知道在<strong>不重啟電腦</strong>的情況下不知道在哪裡改啊」。</li>
+<li><strong>Docker 細節講者自承不熟</strong>：「<strong>Docker 它好像收費了吧</strong>，我也了解得不是很清楚」「對 Docker 了解得不是特別深」，只說「<strong>普通的 Docker 是沒有問題的</strong>」。</li>
+<li><strong>不要為了修亂碼而轉檔案編碼</strong>：S7 README 明令整個專案為 GBK，「請不要因為中文亂碼轉格式」。</li>
+<li><strong>相關</strong>：見 W13-002、W13-005</li>
+</ul>
+<h2 id="_4">本頁的坑總表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W13-001</td>
+<td>1.x 末版版本號三說（S1 未報號／S7 <code>1.23.0915</code>／S8 <code>1.23.0617</code>），2.x 也有 <code>2.23.1106</code> vs <code>2.23.1006</code>／<code>2.23.0920</code></td>
+<td>S1 00:00、S7 00:00/28:00、S8 00:00</td>
+</tr>
+<tr>
+<td>W13-001</td>
+<td>整理者另註：三份筆記皆未出現 <code>2.23.0929</code>，亦未把 <code>1.23.0617</code> 稱為「1.x 最後穩定版」</td>
+<td>三片全文檢索</td>
+</tr>
+<tr>
+<td>W13-002</td>
+<td>口述 GitHub 發行版 vs 畫面 Gitee Releases</td>
+<td>S8 00:00–04:00</td>
+</tr>
+<tr>
+<td>W13-002</td>
+<td>畫面另有 <code>1.2.0.0307</code>／<code>server64\Server64.exe</code> 等與本片版本不符的路徑</td>
+<td>S8 畫面 v001</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>Artifact 類型：口述 <code>JavaFX Application</code> vs 畫面 <code>JAR</code> -&gt; <code>From modules with dependencies...</code></td>
+<td>S1 05:00–08:00</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>主類：口述 <code>ui.ServerAPP</code> vs 畫面 <code>ServerApp (Gui.GUI)</code>／<code>gui.GUI</code></td>
+<td>S1 08:00–10:30、畫面 v003</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>依賴選項：<code>put into output directory</code> vs <code>extract to the target JAR</code>／<code>copy to the output directory and link via manifest</code></td>
+<td>S1 畫面 v000/v002</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>視窗尺寸：口述 <code>1024</code> × <code>768</code> vs 畫面 <code>750</code></td>
+<td>S1 畫面 v001</td>
+</tr>
+<tr>
+<td>W13-003</td>
+<td>輸出目錄：口述 <code>dist</code> vs 畫面專案根目錄／<code>out\artifacts\Server_jar</code></td>
+<td>S1 畫面 v000/v002</td>
+</tr>
+<tr>
+<td>W13-004</td>
+<td>兩種 Artifact 同打 <code>dist</code> 會互相覆蓋；<code>build all</code> 會產出兩個近名包</td>
+<td>S1 13:00–15:30</td>
+</tr>
+<tr>
+<td>W13-005</td>
+<td>S8 講者自承 Docker 不熟，未給完整容器化部署步驟</td>
+<td>S8 16:00–17:0X</td>
+</tr>
+<tr>
+<td>W13-006</td>
+<td><code>config.yml</code>（S1 泛稱）vs <code>config.yaml</code>（S8 12 次）副檔名不一致，本頁統一採 <code>config.yaml</code></td>
+<td>S1 五.1、S8 全片</td>
+</tr>
+<tr>
+<td>W13-006</td>
+<td>S8 口述改 <code>127.0.0.1</code> 資料庫位址，畫面只見 <code>server_message</code>／<code>why_am_i_recommended</code></td>
+<td>S8 13:00–16:00</td>
+</tr>
+<tr>
+<td>W13-006</td>
+<td>UI 改完設定不敲 Enter 不生效</td>
+<td>S1 13:00–15:30</td>
+</tr>
+<tr>
+<td>W13-006</td>
+<td>發布包漏 <code>config.yaml</code>（bat 與 exe 包都漏，講者當場承認）</td>
+<td>S8 04:00–13:00</td>
+</tr>
+<tr>
+<td>W13-007</td>
+<td>啟動腳本名衝突：口述 <code>launch.bat</code> vs 畫面 <code>run.bat</code>，且內容與主類不同</td>
+<td>S1 10:30–13:00、畫面 v004</td>
+</tr>
+<tr>
+<td>W13-007</td>
+<td><code>Invalid or corrupt jarfile</code> 及其修正步驟未見於口述，疑為其他影片或解析誤判</td>
+<td>S1 畫面 v001</td>
+</tr>
+<tr>
+<td>W13-008</td>
+<td>JDK 版本三方不一致：<code>Java 14</code> vs <code>jdk1.8.0_202</code> vs <code>jdk1.8.0_281</code></td>
+<td>S1 五.2</td>
+</tr>
+<tr>
+<td>W13-009</td>
+<td><code>Cannot roll back Server.jar</code> 是檔案被佔用，不是 Git 壞掉</td>
+<td>S1 17:30–19:19</td>
+</tr>
+<tr>
+<td>W13-010</td>
+<td>設定檔三處路徑必改（Output directory／Icon file／10 個 jar 絕對路徑）</td>
+<td>S7 04:00–08:00、20:00–24:00</td>
+</tr>
+<tr>
+<td>W13-010</td>
+<td>口述 <code>server083</code> vs 畫面 <code>HeavenMS</code>／<code>&lt;DRIVE&gt;\IDEA\Heaven-ms_nap-v1</code>／<code>favicon.ico</code></td>
+<td>S7 04:00–20:00</td>
+</tr>
+<tr>
+<td>W13-011</td>
+<td><code>Executable type</code>：口述維持 <code>GUI application</code> vs 畫面改 <code>Console application</code></td>
+<td>S7 20:00–24:00</td>
+</tr>
+<tr>
+<td>W13-011</td>
+<td>執行權限：口述 <code>as invoker</code> vs 畫面 <code>requireAdministrator</code></td>
+<td>S7 12:00–16:00 畫面 v003</td>
+</tr>
+<tr>
+<td>W13-011</td>
+<td>單一實例：口述未勾 vs 畫面 Launch4j 已勾選</td>
+<td>S7 畫面 v002</td>
+</tr>
+<tr>
+<td>W13-011</td>
+<td>產出名並存：<code>server083.exe</code>／<code>Server83.exe</code>／<code>Server.exe</code></td>
+<td>S7 全片</td>
+</tr>
+<tr>
+<td>W13-012</td>
+<td>漏一個 jar 就 <code>class not found</code>；exe4j 不支援多選，須點 10 次</td>
+<td>S7 16:00–20:00</td>
+</tr>
+<tr>
+<td>W13-012</td>
+<td><code>No JRE found.</code> 必須自行指定 <code>JAVA_HOME</code> 或加搜尋路徑</td>
+<td>S7 畫面 v003</td>
+</tr>
+<tr>
+<td>W13-012</td>
+<td>Main class：口述辨識為「UI server APP」vs 畫面 <code>server.Start</code></td>
+<td>S7 16:00–20:00</td>
+</tr>
+<tr>
+<td>W13-012</td>
+<td>口述 <code>dist</code> 路徑 <code>&lt;DRIVE&gt;\loggit\github\heavenms\dist</code> 與畫面多組 <code>&lt;DRIVE&gt;\</code> 路徑皆不符</td>
+<td>S7 口述 a003 vs 畫面</td>
+</tr>
+<tr>
+<td>W13-013</td>
+<td>JRE 搜尋順序四說（當前 jre／JAVA_HOME／JDK_HOME／Registry 先後相反）</td>
+<td>S7 20:00–24:00、S8 08:00–10:30</td>
+</tr>
+<tr>
+<td>W13-014</td>
+<td>記憶體五套並存：<code>500m</code>／<code>1000m</code>／<code>1024m</code>／<code>2048m</code>／<code>3000m</code></td>
+<td>S1 畫面 v004、S7 四.3、S8 畫面 ps</td>
+</tr>
+<tr>
+<td>W13-014</td>
+<td>口述「默認 9530 就 9530 吧」語音失真，數字無法確定</td>
+<td>S7 口述 a002</td>
+</tr>
+<tr>
+<td>W13-015</td>
+<td>關閉 MySQL 起停工具 ≠ 停止 MySQL</td>
+<td>S8 00:00–04:00</td>
+</tr>
+<tr>
+<td>W13-016</td>
+<td>MySQL 密碼：口述 <code>root</code> vs 畫面 <code>111</code></td>
+<td>S8 00:00–08:00</td>
+</tr>
+<tr>
+<td>W13-016</td>
+<td>畫面 <code>1.2.0.0307</code>／<code>server64\Server64.exe</code> 與本片版本 <code>1.23.0617</code> 不符</td>
+<td>S8 畫面 v001</td>
+</tr>
+<tr>
+<td>W13-017</td>
+<td>服務視窗一關服務就停；exe 若無 jre 且 Java 不在註冊表會起不來</td>
+<td>S8 08:00–10:30</td>
+</tr>
+<tr>
+<td>W13-018</td>
+<td>解壓目錄名四說：<code>server083</code>／<code>Server(65)</code>／<code>heroerV09</code>／<code>server003</code></td>
+<td>S8 10:30–13:00、13:00–16:00</td>
+</tr>
+<tr>
+<td>W13-018</td>
+<td>啟動腳本名不一致：<code>start.sh</code>（v002）vs <code>linux-launch.sh</code>（v003/v004）</td>
+<td>S8 畫面 v002–v004</td>
+</tr>
+<tr>
+<td>W13-019</td>
+<td>終端機編碼必須 GBK，設 UTF-8 會亂碼；FinalShell 的 GBK 解碼有問題</td>
+<td>S8 10:00–13:00、13:00–16:00</td>
+</tr>
+<tr>
+<td>W13-020</td>
+<td>口述「grep 這個 ID」vs 畫面 <code>grep java</code>／<code>grep 8585</code></td>
+<td>S8 13:00–16:00</td>
+</tr>
+<tr>
+<td>W13-021</td>
+<td>NPE 堆疊症狀多元，真因是資料庫連線為 null</td>
+<td>S8 畫面 v003</td>
+</tr>
+<tr>
+<td>W13-022</td>
+<td>覆蓋舊 EXE 後 Windows 圖示不更新，講者判定為 OS bug，未知不重啟的解法</td>
+<td>S7 20:00–24:00</td>
+</tr>
+<tr>
+<td>W13-022</td>
+<td>本三片無 systemd／Windows 服務註冊／Docker Compose／Dockerfile</td>
+<td>S8 六(b)13</td>
+</tr>
+<tr>
+<td>W13-022</td>
+<td>整個專案編碼 GBK，README 明令不要因亂碼轉格式</td>
+<td>S7 26:00–28:00 README 原文</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W12 KOOK 整合">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W12 KOOK 整合
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-footer__link md-footer__link--next" aria-label="Next: W14 控制台框架源碼架構">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                W14 控制台框架源碼架構
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

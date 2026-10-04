@@ -1,0 +1,5659 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/">
+      
+      
+        <link rel="prev" href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/">
+      
+      
+        <link rel="next" href="../../70-resources/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W17 客戶端封包分析 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w17" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W17 客戶端封包分析
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        這條技術線的流程總覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w17-001-idb-v83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-001 用既有 IDB 二次分析，降低 V83 客戶端逆向難度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-002 棄國服、改用開源私服端作練兵場
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-003" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-003 功能藍圖二分法：信息獲取＋功能控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-004-sendthepacksocket-sendcheckpasswordpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-004 除錯器斷 SendThePackSocket，反查 SendCheckPasswordPacket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-005-coutpacket-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-005 COutPacket 建構值＝包頭序號，非 buffer 大小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-006-0x2b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-006 逐欄位還原登入協議 0x2B
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-007-sendcheckpasswordpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-007 確認 SendCheckPasswordPacket 參數就是帳號密碼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-008-encodestr-4-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-008 EncodeStr 崩潰：前 4 bytes 為字串長度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-009-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-009 登入崩潰根因：全域鏈表＋作用域析構 free
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-010-recvonreadprocesspacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-010 收包路徑 recv→OnRead→ProcessPacket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-011-processpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-011 進入 ProcessPacket 即為明文封包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-012-detours-hook-processpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-012 用 Detours Hook ProcessPacket 攔截收包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-013-cinpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-013 CInPacket 拷貝建構子破壞原物件致崩潰
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-014-cinpacketex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-014 賦值運算子記憶體洩漏＋CInPacketEx 修正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-015-m_current_buffer_pos-decode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-015 m_current_buffer_pos 單調遞增與 Decode 邊界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-016-maplepacketcreator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-016 借服務端 MaplePacketCreator 當參考範本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-017-4-bytes-1-byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-017 服務端寫 4 bytes／客戶端讀 1 byte 的長度衝突
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-018-cserverloginstatushprotocolh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-018 用 CServerLoginStatus.h／Protocol.h 還原欄位結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-019-serverlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-019 SERVERLIST 封包逐欄位組包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-020-id-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-020 頻道 ID 為 0 基數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-021-p_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-021 頻道為連續陣列，非 p_next 鏈結串接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-022-ff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-022 登入收尾 FF 標記＋最後兩個訊息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-023-getrecommendedworldmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-023 getRecommendedWorldMessage 固定推薦世界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關頁面
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        這條技術線的流程總覽
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w17-001-idb-v83" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-001 用既有 IDB 二次分析，降低 V83 客戶端逆向難度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-002" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-002 棄國服、改用開源私服端作練兵場
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-003" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-003 功能藍圖二分法：信息獲取＋功能控制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-004-sendthepacksocket-sendcheckpasswordpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-004 除錯器斷 SendThePackSocket，反查 SendCheckPasswordPacket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-005-coutpacket-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-005 COutPacket 建構值＝包頭序號，非 buffer 大小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-006-0x2b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-006 逐欄位還原登入協議 0x2B
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-007-sendcheckpasswordpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-007 確認 SendCheckPasswordPacket 參數就是帳號密碼
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-008-encodestr-4-bytes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-008 EncodeStr 崩潰：前 4 bytes 為字串長度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-009-free" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-009 登入崩潰根因：全域鏈表＋作用域析構 free
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-010-recvonreadprocesspacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-010 收包路徑 recv→OnRead→ProcessPacket
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-011-processpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-011 進入 ProcessPacket 即為明文封包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-012-detours-hook-processpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-012 用 Detours Hook ProcessPacket 攔截收包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-013-cinpacket" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-013 CInPacket 拷貝建構子破壞原物件致崩潰
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-014-cinpacketex" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-014 賦值運算子記憶體洩漏＋CInPacketEx 修正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-015-m_current_buffer_pos-decode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-015 m_current_buffer_pos 單調遞增與 Decode 邊界
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-016-maplepacketcreator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-016 借服務端 MaplePacketCreator 當參考範本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-017-4-bytes-1-byte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-017 服務端寫 4 bytes／客戶端讀 1 byte 的長度衝突
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-018-cserverloginstatushprotocolh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-018 用 CServerLoginStatus.h／Protocol.h 還原欄位結構
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-019-serverlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-019 SERVERLIST 封包逐欄位組包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-020-id-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-020 頻道 ID 為 0 基數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-021-p_next" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-021 頻道為連續陣列，非 p_next 鏈結串接
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-022-ff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-022 登入收尾 FF 標記＋最後兩個訊息
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w17-023-getrecommendedworldmessage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W17-023 getRecommendedWorldMessage 固定推薦世界
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相關頁面
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w17">W17　客戶端封包分析<a class="headerlink" href="#w17" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>短片（B 站 ID）</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>短片 U37（1445558328）</td>
+<td><code>U37_短片_教學筆記.md</code></td>
+<td>全片（開坑動機、資源盤點、功能藍圖）</td>
+</tr>
+<tr>
+<td>短片 U38（1446790463）</td>
+<td><code>U38_短片_教學筆記.md</code></td>
+<td>全片（發包定位、登入協議、崩潰根因）</td>
+</tr>
+<tr>
+<td>短片 U39（1447771184）</td>
+<td><code>U39_短片_教學筆記.md</code></td>
+<td>全片（收包路徑、ProcessPacket Hook、CInPacket）</td>
+</tr>
+<tr>
+<td>短片 U40（1453012326）</td>
+<td><code>U40_短片_教學筆記.md</code></td>
+<td>全片（借服務端、LOGIN_STATUS 還原）</td>
+</tr>
+<tr>
+<td>短片 U41（1465627660）</td>
+<td><code>U41_短片_教學筆記.md</code></td>
+<td>全片（SERVERLIST 封包、頻道結構）</td>
+</tr>
+<tr>
+<td>短片 U42（1485212401）</td>
+<td><code>U42_短片_教學筆記.md</code></td>
+<td>全片（登入收尾、LAST_CONNECTED_WORLD／重連）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">這條技術線的流程總覽<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>⚠️ 本頁整理者的補充提醒，不是片中老師的原話。</p>
+</blockquote>
+<p>U37–U42 這批短片在舊的總索引裡被歸為「零散短片」，但依各片筆記的開頭「主題判斷／判斷依據」與跨片關聯標記，它們其實是一條<strong>有先後依賴的技術線</strong>：從「為什麼分析 V83 客戶端」一路走到「登入協議最後一個封包」。下表依序排開六片：</p>
+<table>
+<thead>
+<tr>
+<th>集數</th>
+<th>主題</th>
+<th>關鍵類別／函式</th>
+<th>在整條線上的位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>U37</td>
+<td>開坑：分析 V83 客戶端的動機與資源盤點</td>
+<td><code>CWvsContext::</code>（IDA IDB 函式前綴）、<code>IDB</code>、RageZone 論壇帖</td>
+<td><strong>起點</strong>——定義目標（國際服 V83 客戶端）與參考資源（<code>IDB</code>、開源 HeavenMS 私服端）；確立「信息獲取＋功能控制」的功能藍圖</td>
+</tr>
+<tr>
+<td>U38</td>
+<td>客戶端<strong>發包</strong>路徑：定位發包函式並還原登入協議</td>
+<td><code>COutPacket</code>、<code>SendThePackSocket</code>、<code>CLogin::SendCheckPasswordPacket</code>、<code>CSystemInfo</code></td>
+<td><strong>發包路徑</strong>（線的第 2 步）——用除錯器定位、逐欄位還原登入封包、實作自動登入，並釐清 <code>EncodeStr</code> 崩潰根因</td>
+</tr>
+<tr>
+<td>U39</td>
+<td>客戶端<strong>收包</strong>路徑：從 <code>recv</code> 到 <code>ProcessPacket</code></td>
+<td><code>CClientSocket::OnRead</code>、<code>CClientSocket::ProcessPacket</code>、<code>CInPacket</code>、<code>CInPacketEx</code></td>
+<td><strong>收包路徑</strong>（線的第 3 步）——沿 socket 追到 <code>ProcessPacket</code>，以 Detours Hook 取得明文封包；處理 <code>CInPacket</code> 拷貝／賦值的坑</td>
+</tr>
+<tr>
+<td>U40</td>
+<td>借服務端當範本還原 <code>LOGIN_STATUS</code></td>
+<td><code>MaplePacketCreator</code>（Java 服務端）、<code>CServerLoginStatus.h</code>、<code>Protocol.h</code>（客戶端 C++）</td>
+<td><strong>登入協議上半集</strong>（線的第 4 步）——用「可以用的服務端」組包對照客戶端解包，逐欄位還原 <code>LOGIN_STATUS</code></td>
+</tr>
+<tr>
+<td>U41</td>
+<td><code>SERVERLIST</code>（伺服器列表）封包</td>
+<td><code>CLogin::OnWorldInformation</code>、<code>MaplePacketCreator.getServerList</code>、<code>tagChannel</code></td>
+<td><strong>登入協議中段</strong>（線的第 5 步）——伺服器列表封包逐欄位逆向與實作</td>
+</tr>
+<tr>
+<td>U42</td>
+<td>登入協議收尾：最後兩個訊息</td>
+<td><code>CLogin::OnPacket</code>、<code>getRecommendedWorldMessage</code>（Java）</td>
+<td><strong>收尾</strong>（線的第 6 步）——<code>FF</code> 結束標記、<code>LAST_CONNECTED_WORLD</code>／<code>RECOMMENDED_WORLD_MESSAGE</code>；附 60Hz 外掛發布</td>
+</tr>
+</tbody>
+</table>
+<p>跨片依賴的原文線索（取自各片筆記的跨片關聯標記，非本頁臆測）：</p>
+<ul>
+<li>U40 筆記明寫本集是「<strong>登入協議（上半集）</strong>」，且「<strong>發包協議在上一節已經講了</strong>」（U38），收尾預告「<strong>這幾個……明天後天或者週五再錄個視頻</strong>」。</li>
+<li>U40 逆向起點回述「<strong>上一節我們講了嘛，就是說我們可以搜索這個 <code>OnPacket</code>……然後在最後進入這個 <code>ProcessPacket</code> 這個函數頭</strong>」——承接 U39。</li>
+<li>U42 開場「<strong>上次一直在分析這個登入包的過程應該就差最後一點了</strong>」，接續 U40／U41 的登入協議。</li>
+</ul>
+<blockquote>
+<p>⚠️ 本頁整理者的補充提醒，不是片中老師的原話：本頁兩端並存——<strong>客戶端為 C++</strong>（<code>COutPacket</code>、<code>CClientSocket</code>、<code>CInPacket</code>、<code>ClientSocket.cpp</code>、<code>COutPacket.h</code>），<strong>服務端為 Java</strong>（<code>MaplePacketCreator</code>、<code>SendPacket</code>、<code>LoginPacket</code>）。要特別留意 U40 筆記（v002）稱參考的 C++ 檔案 <code>ClientSocket.cpp</code>／<code>COutPacket.h</code> <strong>是客戶端檔案，不是服務端</strong>（見 W17-016 坑）。</p>
+</blockquote>
+<h2 id="_3">速查<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<!-- 給人與 agent 快速定位的小表，不是獨立條目 -->
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W17-001</td>
+<td>用既有 IDB 二次分析，降低 V83 客戶端逆向難度</td>
+</tr>
+<tr>
+<td>W17-002</td>
+<td>棄國服、改用開源私服端作練兵場</td>
+</tr>
+<tr>
+<td>W17-003</td>
+<td>功能藍圖二分法：信息獲取＋功能控制</td>
+</tr>
+<tr>
+<td>W17-004</td>
+<td>除錯器斷 <code>SendThePackSocket</code>，反查 <code>SendCheckPasswordPacket</code></td>
+</tr>
+<tr>
+<td>W17-005</td>
+<td><code>COutPacket</code> 建構值＝包頭序號，非 buffer 大小</td>
+</tr>
+<tr>
+<td>W17-006</td>
+<td>逐欄位還原登入協議 <code>0x2B</code></td>
+</tr>
+<tr>
+<td>W17-007</td>
+<td>確認 <code>SendCheckPasswordPacket</code> 參數就是帳號密碼</td>
+</tr>
+<tr>
+<td>W17-008</td>
+<td><code>EncodeStr</code> 崩潰：前 4 bytes 為字串長度</td>
+</tr>
+<tr>
+<td>W17-009</td>
+<td>登入崩潰根因：全域鏈表＋作用域析構 <code>free</code></td>
+</tr>
+<tr>
+<td>W17-010</td>
+<td>收包路徑 <code>recv</code>→<code>OnRead</code>→<code>ProcessPacket</code></td>
+</tr>
+<tr>
+<td>W17-011</td>
+<td>進入 <code>ProcessPacket</code> 即為明文封包</td>
+</tr>
+<tr>
+<td>W17-012</td>
+<td>用 Detours Hook <code>ProcessPacket</code> 攔截收包</td>
+</tr>
+<tr>
+<td>W17-013</td>
+<td><code>CInPacket</code> 拷貝建構子破壞原物件致崩潰</td>
+</tr>
+<tr>
+<td>W17-014</td>
+<td>賦值運算子記憶體洩漏＋<code>CInPacketEx</code> 修正</td>
+</tr>
+<tr>
+<td>W17-015</td>
+<td><code>m_current_buffer_pos</code> 單調遞增與 <code>Decode</code> 邊界</td>
+</tr>
+<tr>
+<td>W17-016</td>
+<td>借服務端 <code>MaplePacketCreator</code> 當參考範本</td>
+</tr>
+<tr>
+<td>W17-017</td>
+<td>服務端寫 4 bytes／客戶端讀 1 byte 的長度衝突</td>
+</tr>
+<tr>
+<td>W17-018</td>
+<td>用 <code>CServerLoginStatus.h</code>／<code>Protocol.h</code> 還原欄位結構</td>
+</tr>
+<tr>
+<td>W17-019</td>
+<td><code>SERVERLIST</code> 封包逐欄位組包</td>
+</tr>
+<tr>
+<td>W17-020</td>
+<td>頻道 ID 為 0 基數</td>
+</tr>
+<tr>
+<td>W17-021</td>
+<td>頻道為連續陣列，非 <code>p_next</code> 鏈結串接</td>
+</tr>
+<tr>
+<td>W17-022</td>
+<td>登入收尾 <code>FF</code> 標記＋最後兩個訊息</td>
+</tr>
+<tr>
+<td>W17-023</td>
+<td><code>getRecommendedWorldMessage</code> 固定推薦世界</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">條目<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="w17-001-idb-v83">W17-001　用既有 IDB 二次分析，降低 V83 客戶端逆向難度<a class="headerlink" href="#w17-001-idb-v83" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>IDB</code> <code>IDA Pro</code> <code>CWvsContext::</code> <code>RageZone</code> <code>v83客户端数据包 [IDB]</code></li>
+<li><strong>來源</strong>：短片 U37（1445558328）02:20–04:30｜<code>U37_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條技術線的起點。講者以國外論壇大佬已發布的 <code>IDB</code>（<code>v83 IDB + Client edit dump</code>）為基礎做「二次分析」，認為難度會降低很多。畫面出現 IDA Pro 視窗 <code>IDA - RageZone_v83.idb</code>，左側函式清單大量為 <code>CWvsContext::</code> 前綴。<strong>銜接</strong>：後續 U38／U39／U40／U41 都在同一個 V83 客戶端上做逆向，這個 IDB 選擇決定了後面幾集的基礎。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>v83客户端数据包 [IDB] https://forum.ragezone.com/threads/v83-idb-client-edit-dump.1195418/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>IDA https://hex-rays.com/ida-pro/
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：（本條未發現坑）</li>
+</ul>
+<h3 id="w17-002">W17-002　棄國服、改用開源私服端作練兵場<a class="headerlink" href="#w17-002" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>VMP</code> <code>反调试</code> <code>驱动保护</code> <code>HeavenMS</code> <code>MySQL</code> <code>私服端</code></li>
+<li><strong>來源</strong>：短片 U37（1445558328）02:20–03:30、00:30–02:20｜<code>U37_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：講者放棄國服客戶端（口述理由：<code>VMP</code>＋反調試＋驅動保護「搞不動」），改用昨日小睡的開源 HeavenMS 私服端作練兵場。私服端可 <code>download</code>、裝 <code>MySQL</code>、啟動服務即成。<strong>銜接</strong>：此處選定的「可以用的服務端」就是 U40「借服務端當範本」的前身。</li>
+<li><strong>坑</strong>：法遵風險——目標明寫「實現一個083的外掛」「因為正版搞不定，所以就拿這種私服端來做開刀」，屬以商業版客戶端為目標的逆向實作；本頁僅記錄原片內容，不提供繞過保護的細節（原片也未提供）。</li>
+<li><strong>相關</strong>：見 W17-016</li>
+</ul>
+<h3 id="w17-003">W17-003　功能藍圖二分法：信息獲取＋功能控制<a class="headerlink" href="#w17-003" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>信息获取</code> <code>功能控制</code> <code>发包，收包</code> <code>登录，选区，创建角色</code> <code>背包遍历</code> <code>自动吃药</code></li>
+<li><strong>來源</strong>：短片 U37（1445558328）04:30–06:00｜<code>U37_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：講者把外掛功能分「信息獲取」與「功能控制」兩類，發包／收包、登錄／選區、建角、人物屬性、背包遍歷、自動拾取、自動吃藥等。<strong>銜接</strong>：「發包、收包」正是本頁 U38（發）與 U39（收）兩集的實現。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>发包，收包
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>登录，选区，创建角色
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>人物状态，人物属性，人物无敌，背包装备，自动拾取，怪物物品信息，自动吃药
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>技能发包，技能无CD，物理范围遍历，攻击范围
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>背景控制，内置功能热键
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：WZ／UI 明確押後且講者自評「能力有限，不一定能搞好」；企劃檔名有三說（<code>94v83.md</code>／<code>mind.txt</code>／<code>main.txt</code>），無法確認哪個是權威檔名。</li>
+</ul>
+<h3 id="w17-004-sendthepacksocket-sendcheckpasswordpacket">W17-004　除錯器斷 <code>SendThePackSocket</code>，反查 <code>SendCheckPasswordPacket</code><a class="headerlink" href="#w17-004-sendthepacksocket-sendcheckpasswordpacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>SendThePackSocket</code> <code>CLogin::SendCheckPasswordPacket</code> <code>x64dbg</code> <code>F2</code> <code>附加</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）00:00–04:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條線的<strong>發包路徑</strong>起點。流程為：啟動 <code>MapleStory.exe</code>→附加除錯器→把上一集得到的發包函式 <code>SendThePackSocket</code> 函式頭位址貼進除錯器→下中斷點→在遊戲輸入帳密點登入→中斷後複製呼叫端位址→貼到 IDA，得到與國外大佬相同的函式範圍。<strong>銜接</strong>：由此定位到 <code>CLogin::SendCheckPasswordPacket</code>，開啟 U38 的登入協議還原。<strong>客戶端 C++ 端</strong>。<strong>銜接下一片</strong>：U39 從收包側做同樣的 Hook。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>004C068B  mov ecx,dword ptr ss:[ebp-10]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>004C068E  push ecx
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>004C068F  mov ecx,edi
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>004C0691  push edi
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>004C0692  push 4
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>004C0693  call maplestory.4D8590  ; &lt;-- 講者在此處下中斷點
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>004C0698  mov ecx,dword ptr ds:[esi+14]
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：素材原樣寫 <code>ClientPacket::SendPasswordPacket</code>（<strong>無 <code>C</code> 前綴</strong>）；若寫成 <code>CClientPacket::SendPasswordPacket</code> 屬筆記推補。另外，客戶端為 32 位行程，實際用的是 <code>x32dbg</code>，素材中 <code>x64dbg</code>／<code>x32dbg</code> 混稱；PID 每次執行都變（畫面例 <code>16160</code>／<code>26184</code>／<code>28988</code>）不可寫死。</li>
+<li><strong>相關</strong>：見 W17-005、W17-006</li>
+</ul>
+<h3 id="w17-005-coutpacket-buffer">W17-005　<code>COutPacket</code> 建構值＝包頭序號，非 buffer 大小<a class="headerlink" href="#w17-005-coutpacket-buffer" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>COutPacket</code> <code>0x100</code> <code>包头序号</code> <code>功能序号</code> <code>Encode1</code> <code>Encode2</code> <code>Encode4</code> <code>EncodeStr</code> <code>EncodeBuffer</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）00:00–04:00、16:00–20:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：U38 開場第一件事是<strong>糾正上一集</strong>——<code>COutPacket</code> 建構時收到的 int <strong>不是</strong>記憶體空間大小；內部永遠預設開 <code>0x100</code>（256）位元組，並把建構時傳入的那個值序列化進封包當作<strong>包頭序號（功能序號）</strong>。登入包用 <code>COutPacket(1)</code> → 功能序號 <code>1</code>。序列化 API 含 <code>Encode1</code>（1 byte）、<code>Encode2</code>（2 bytes）、<code>Encode4</code>（4 bytes）、<code>EncodeStr</code>（字串）、<code>EncodeBuffer</code>（原始位元組）。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">COutPacket</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="n">包头序号</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">char</span><span class="w"> </span><span class="n">user</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"admin"</span><span class="p">;</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kt">char</span><span class="w"> </span><span class="n">password</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"admin"</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">COutPacket</span><span class="w"> </span><span class="nf">loading</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">loading</span><span class="p">.</span><span class="n">Encode2</span><span class="p">(</span><span class="mh">0x2B</span><span class="p">);</span><span class="w">       </span><span class="c1">// 寫入登入 Opcode 0x2B</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">loading</span><span class="p">.</span><span class="n">EncodeStr</span><span class="p">(</span><span class="n">user</span><span class="p">);</span><span class="w">     </span><span class="c1">// 寫入帳號字串</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="n">loading</span><span class="p">.</span><span class="n">EncodeStr</span><span class="p">(</span><span class="n">password</span><span class="p">);</span><span class="w"> </span><span class="c1">// 寫入密碼字串</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：這是本片第一個糾錯點，也最易記錯。<code>EncodeString&lt;char&gt;(ZString&lt;char&gt;)</code> 是反組譯中所見的底層名稱，與 <code>EncodeStr</code> 對應。</li>
+<li><strong>相關</strong>：見 W17-006</li>
+</ul>
+<h3 id="w17-006-0x2b">W17-006　逐欄位還原登入協議 <code>0x2B</code><a class="headerlink" href="#w17-006-0x2b" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>0x2b</code> <code>登录协议号</code> <code>CSystemInfo</code> <code>GetMachineId</code> <code>GetGameRoomClient</code> <code>CWVSApp</code> <code>0x24</code> <code>GetPartnerCode</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）00:00–04:00、12:00–20:00、24:00–28:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：依 <code>CLogin::SendCheckPasswordPacket</code> 的笔记行號逐欄位還原登入協議：功能序號 <code>1</code>、帳號字串、密碼字串、<strong>16 位元組裝置 ID</strong>、<code>GetGameRoomClient()</code>（直接填 0）、<code>CWVSApp + 0x24</code>（講者機器上固定為 <code>2</code>）、兩個 0、<code>CConfig::GetPartnerCode()</code>（填 0）。<strong>銜接</strong>：這是「發包」側的登入請求；回應 <code>LOGIN_STATUS</code> 要到 U40（借服務端）、U41（<code>SERVERLIST</code>）才還原。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>14 登录协议号
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   0x2b
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>16 lnt: 0x2B
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>17 [01 00] [05 00] [61 64 6D 69 6E] [05 00] [61 64 6D 69 6E] ....admin..admin
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>18 [00 00 00 00 00 00 00 00 00 00 00 00 00 20] ........?@t...&lt;~
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>22 [01 00] : 账号字符长度
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>23 [61 64 6D 69 6E] : 登录用户字符串
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>24 [03 6A 64 C6 69] : 密码随机密钥
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>25 [01 00 00 00] [2D 3D 13 6B 68 40 00 00 00 00 00 2D]: 机器码, hwid信息。这个可以随便乱写, 但是不透传server是起不到作用。
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>28 [00 00 00 00] CSystemInfo::GetGameRoomClient() 没卵用, 可以直接写死。
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>29 [00 00 00 00] 也没卵用 直接可以写死.
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>30 [00 00 00 00] 共8个0. CConfig::GetPartnerCode() 合作商代码? 对应控制台的 1 ?，可以直接写死
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>（衝突保留，兩邊並列）：</li>
+<li>裝置 ID 長度衝突：口述全程說 <strong>16 位元組</strong>；畫面筆記與程式碼是 <strong>24 位元組</strong>（<code>EncodeBuffer(pMachineId, 0x18)</code>）。兩層從未在片中對齊，無從判定何者為準。</li>
+<li>opcode 數值三重不一致：筆記出現 <code>0x2B</code>（v000）、<code>0x28</code>（v007，<code>CLogin.cpp</code> 以 <code>if (id == 0x28)</code> 判斷）、<code>int16: 0x01</code>（v008）；口述則說「功能序號為一」。推測是不同封包層，片中未釐清。</li>
+<li><code>[01 00]</code> 在筆記第 17 行標「協議頭，標記登入」、第 22 行卻標「账号字符长度」，原筆記本身即有歧義。</li>
+<li><code>CWVSApp + 0x24</code> 的值 <code>2</code> 是單機觀察值，講者明說不知他人機器是否相同。</li>
+<li><strong>相關</strong>：見 W17-004、W17-005、W17-009</li>
+<li><strong>坑</strong>：⚠ 裝置 ID 長度衝突：口述 16 bytes vs 畫面／程式碼 24 bytes（<code>0x18</code>）。⚠ opcode 三重不一致：<code>0x2B</code>／<code>0x28</code>／<code>int16: 0x01</code>，且封包開頭的 <code>[01 00]</code> 筆記自身已標註歧義——<strong>這是登入協議的關鍵位元組，錯一位整包就解析不出來</strong>。</li>
+</ul>
+<h3 id="w17-007-sendcheckpasswordpacket">W17-007　確認 <code>SendCheckPasswordPacket</code> 參數就是帳號密碼<a class="headerlink" href="#w17-007-sendcheckpasswordpacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>__thiscall</code> <code>SendCheckPasswordPacket</code> <code>admin</code> <code>EAX</code> <code>0019E878</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）04:00–08:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：在除錯器中確認 <code>CLogin::SendCheckPasswordPacket</code> 的第二、第三個參數就是帳號與密碼（<code>admin</code>／<code>admin</code>）。IDA 的函式簽章為 <code>public: void __thiscall CLogin::SendCheckPasswordPacket(char const *, char const *)</code>；中斷後暫存器 <code>EAX = 0019E878</code>，記憶體傾印顯示 <code>0019E878 "admin"</code>（帳號）、<code>0019E880 "admin"</code>（密碼）。<strong>銜接</strong>：確認參數語意後，才逐欄位還原登入協議（W17-006）。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">v25</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sub_400000</span><span class="p">(</span><span class="n">v23</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v44</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">v45</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">memcpy</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">mac</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>sub_400000</code> 內部呼叫 Windows API <code>GetAdaptersInfo</code> 取網路卡 MAC；<code>MapleHook.cpp</code> 的 <code>memcpy(a1, mac, 6)</code> 是偽造 MAC 以繞過硬體驗證，屬本片示範但倫理風險高。兩則錯誤訊息原文不一致（v003「连接失败...」／v005「无法连接到服务器。请稍后再试...」），無法確認是否同一個錯誤。</li>
+</ul>
+<h3 id="w17-008-encodestr-4-bytes">W17-008　<code>EncodeStr</code> 崩潰：前 4 bytes 為字串長度<a class="headerlink" href="#w17-008-encodestr-4-bytes" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>EncodeStr</code> <code>_tagString</code> <code>m_max_buffer</code> <code>ZString</code> <code>ZXString</code> <code>崩潰</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）20:00–24:00、36:00–40:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>COutPacket::EncodeStr</code> 直接傳 <code>const char*</code> 或 <code>ZString&lt;char&gt;</code> 都會崩潰。講者除錯後發現它實際要求「<strong>前 4 個位元組是字串長度、接著是字串本體</strong>」的記憶體佈局，且傳入指標必須指向字串起始位址。<code>OutPacket.h</code> 確認多載簽名。可解法是手動結構體控制記憶體佈局。<strong>客戶端 C++ 端</strong>。<strong>銜接</strong>：這是 U38 內部由「能跑」走向「穩」的關鍵一步，後續 SERVERLIST 組包沿用同一套 <code>MaplePacketLittleEndianWriter</code> 觀念。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">EncodeStr</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">EncodeStr</span><span class="p">(</span><span class="n">ZString</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>版本 B-1（<code>start_work.cpp</code> / <code>dllmain.cpp</code> 畫面版本）</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">_tagString</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_max_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_str</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">      </span><span class="c1">// 類似 Flexible Array Member</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">};</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="kt">char</span><span class="w"> </span><span class="n">name_buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">_tagString</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_tagString</span><span class="o">*</span><span class="p">)</span><span class="n">name_buffer</span><span class="p">;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">strcpy</span><span class="p">(</span><span class="n">name</span><span class="o">-&gt;</span><span class="n">m_str</span><span class="p">,</span><span class="w"> </span><span class="s">"admin"</span><span class="p">);</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="n">name</span><span class="o">-&gt;</span><span class="n">m_max_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="s">"admin"</span><span class="p">);</span><span class="w">   </span><span class="c1">// 前 4 位元組 = 字串長度</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="n">loading</span><span class="p">.</span><span class="n">EncodeStr</span><span class="p">(</span><span class="n">name</span><span class="o">-&gt;</span><span class="n">m_str</span><span class="p">);</span><span class="w">          </span><span class="c1">// 傳入的是「字串起始地址」</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="kt">char</span><span class="w"> </span><span class="n">password_buffer</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="n">_tagString</span><span class="o">*</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">_tagString</span><span class="o">*</span><span class="p">)</span><span class="n">password_buffer</span><span class="p">;</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="n">strcpy</span><span class="p">(</span><span class="n">password</span><span class="o">-&gt;</span><span class="n">m_str</span><span class="p">,</span><span class="w"> </span><span class="s">"admin"</span><span class="p">);</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="n">password</span><span class="o">-&gt;</span><span class="n">m_max_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="s">"admin"</span><span class="p">);</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="n">loading</span><span class="p">.</span><span class="n">EncodeStr</span><span class="p">(</span><span class="n">password</span><span class="o">-&gt;</span><span class="n">m_str</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code>_tagString</code> 定義在畫面中不一致——v004／v005／v010 為 <code>struct _tagString { int m_max_buffer; char m_str[0]; }</code>；v009 為多一個指標欄位 <code>char* m_pStr</code>，且賦值順序相反。口述只提「前 4 個位元組是字串長度」，未提 <code>m_pStr</code>。兩種定義不可同時正確。另 <code>CStringin</code> 寫法在 C++ 中不合法，疑為辨識／轉錄落差，<strong>不應照抄</strong>。</li>
+</ul>
+<h3 id="w17-009-free">W17-009　登入崩潰根因：全域鏈表＋作用域析構 <code>free</code><a class="headerlink" href="#w17-009-free" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>CXString</code> <code>析构函数</code> <code>free</code> <code>作用域</code> <code>栈</code> <code>A90</code> <code>C6FC</code> <code>B9135</code> <code>全域变量</code></li>
+<li><strong>來源</strong>：短片 U38（1446790463）28:00–40:00、40:00–43:00｜<code>U38_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：把帳密字串物件從全域／函數作用域<strong>移進小作用域</strong>後，客戶端必定崩潰。原因是 <code>EncodeStr</code> 會把字串物件的記憶體地址<strong>鏈進一個全域變數</strong>（<code>A90</code>，<code>A90 + 0xC</code> 存物件地址）形成類鏈表；離開作用域時 <code>CXString</code> 析構函式把記憶體 <code>free</code> 掉（<code>C6FC → C6FB</code> 被覆寫成錯誤值，讀出 <code>B9135</code> 不可訪問地址），<strong>伺服器回包時</strong>客戶端再去讀已釋放地址就爆。修法：字串物件放<strong>全域變數</strong>或<strong>堆（heap）</strong>，不可用<strong>棧（stack）</strong>變數。<strong>檢查點在「伺服器回包」而非「發包當下」</strong>，初測正常、移進作用域才炸。<strong>客戶端 C++ 端</strong>。<strong>收束</strong>：U38 至此完成「發包路徑」，下一片 U39 轉入收包路徑。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>A90            : 全域變數；其「所有引用」都在「模板字串」序列化處
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>A90 + 0xC      : 存放「模板字串物件」的記憶體地址（被 EncodeStr 鏈進來）
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>C6F6 / C6F8 / C6FC : 記錄到的字串物件地址（講者當場有自我修正）
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>C6FC → C6FB   : 回包處理時該欄位已被覆寫成錯誤值（少 1）
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>B9135          : 從 C6FB 取出內容後得到的「不可訪問地址」
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>                 → 被寫回 A90 + 0xC → 下次解參考即崩潰
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：修法有條件——講者特別提醒「<strong>如果你出了這個函數再用，它這個一樣的析構，可能還是會有問題</strong>」，全域變數同樣有生命週期問題，並非一勞永逸。口述位址有當場自我修正且講者自承混淆（<code>C6F6</code>／<code>C6F8</code>／<code>C6FC</code>／<code>C6FB</code>、<code>1E55FC</code>），本頁保留原始混亂未強行統一。</li>
+</ul>
+<h3 id="w17-010-recvonreadprocesspacket">W17-010　收包路徑 <code>recv</code>→<code>OnRead</code>→<code>ProcessPacket</code><a class="headerlink" href="#w17-010-recvonreadprocesspacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>recv</code> <code>CClientSocket::OnRead</code> <code>CClientSocket::ProcessPacket</code> <code>CInPacket</code> <code>0x05 接收包处理</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）00:00–04:30｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條線的<strong>收包路徑</strong>起點。沿 socket <code>recv</code> 往下追，確認伺服器回傳的封包最終都經過 <code>CClientSocket::OnRead</code>，在建構出 <code>CInPacket</code> 物件、交給 <code>CClientSocket::ProcessPacket</code> 處理。<code>ProcessPacket</code> 只接受一個參數 <code>CInPacket</code>。<strong>銜接</strong>：U38 走完發包，U39 從收包側接上；後續 U40／U41 的「在 <code>ProcessPacket</code> 下斷點」正是沿用本條定位。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a># 0x05 接收包处理
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>CClientSocket::OnRead
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>CClientSocket::ProcessPacket
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a># CInPacket 结构
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">v9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CInPacket</span><span class="o">::</span><span class="n">CInPacket</span><span class="p">((</span><span class="n">CInPacket</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">v42</span><span class="p">,</span><span class="w"> </span><span class="n">v8</span><span class="p">);</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">// ...</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="n">CClientSocket</span><span class="o">::</span><span class="n">ProcessPacket</span><span class="p">((</span><span class="n">CClientSocket</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">v9</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：<code># 0x05 接收包处理</code> 中的 <code>0x05</code> 是<strong>章節編號</strong>，不是封包 opcode；素材另有日誌出現 <code>0x00A</code>／<code>0x05 00</code> 為實際封包首碼，兩者不可混淆。另素材中目標程式只寫「冒險島(MapleStory)遊戲主程式視窗」，<strong>未出現副檔名</strong>，<code>.exe</code> 為筆記推補。時間軸 5 段為均分推估，各段邊界可能有數十秒誤差。</li>
+</ul>
+<h3 id="w17-011-processpacket">W17-011　進入 <code>ProcessPacket</code> 即為明文封包<a class="headerlink" href="#w17-011-processpacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>加密</code> <code>解密</code> <code>明文</code> <code>Decode1</code> <code>Decode2</code> <code>Decode4</code> <code>CBuffer</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）01:00–04:30、15:00–18:00｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：發送前加密、接收前解密，因此一旦進入 <code>ProcessPacket</code>，拿到的 <code>CInPacket</code> 就已經是<strong>明文</strong>，可直接 <code>Decode</code> 分析——這是整節課的立論基礎。驗收方式：登入有封包往返，截圖對比 <code>CBuffer</code> 的 <code>buf</code> 轉到記憶體的內容。<code>Decode2</code> 讀 <code>05 00</code> 得 <code>5</code>、<code>Decode4</code> 讀 <code>01 00 00 00</code> 得 <code>1</code>，確認 Little Endian。<strong>銜接</strong>：這個「明文前提」是 U39 之後所有 Hook 與 U40／U41 逆向的基礎。</li>
+<li><strong>坑</strong>：Little Endian 解讀前提；<code>Decode</code> 前應檢查剩餘長度——實測長度 6、偏移 4，<code>Decode1</code> 後偏移 5 尚可，再 <code>Decode2</code>「<strong>它肯定會崩</strong>」。</li>
+</ul>
+<h3 id="w17-012-detours-hook-processpacket">W17-012　用 Detours Hook <code>ProcessPacket</code> 攔截收包<a class="headerlink" href="#w17-012-detours-hook-processpacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>DetourAttach</code> <code>o_CClientSocket_ProcessPacket</code> <code>CClientSocket_ProcessPacket_Hook</code> <code>g_CClientSocket_ProcessPacket</code> <code>MapleStoryConsole</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）04:30–08:00、15:00–18:00｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：以 <code>ProcessPacket</code> 為 Hook 點（<code>0x004D65F1</code>），在自己的回呼中先處理封包，再呼叫原始函式指標 <code>g_CClientSocket_ProcessPacket(this, 0, in_pack)</code> 讓遊戲繼續正常執行。<code>dllmain.cpp</code> 掛鉤語句用 Microsoft Detours。<strong>銜接</strong>：取得明文後，U40 才敢拿服務端回包去對照客戶端解包。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">DetourAttach</span><span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">PVOID</span><span class="o">&amp;</span><span class="p">)</span><span class="n">o_CClientSocket_ProcessPacket</span><span class="p">,</span><span class="w"> </span><span class="n">CClientSocket_ProcessPacket_Hook</span><span class="p">);</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="kr">__fastcall</span><span class="w"> </span><span class="n">CClientSocket</span><span class="o">::</span><span class="n">ProcessPacket</span><span class="p">(</span><span class="n">CClientSocket</span><span class="o">*</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">CInPacket</span><span class="o">*</span><span class="w"> </span><span class="n">in_pack</span><span class="p">)</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="c1">// 宣告一個 CInPacket 物件，並將傳入的指標提領後賦值，進行物件複製</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">CInPacket</span><span class="w"> </span><span class="n">in1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">in_pack</span><span class="p">;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">iret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">g_CClientSocket_ProcessPacket</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">in_pack</span><span class="p">);</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">iret</span><span class="p">;</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：類別名 <code>CClientSocket</code> 與 <code>CCilentSocket</code> 拼寫不一致（v004 typedef 寫 <code>CCilentSocket</code>，<code>l</code> 取代 <code>i</code>），因屬函式指標 typedef 實際型別，<strong>使用前務必自行核對</strong>。Hook 後必須呼叫原始函式；若像實驗版把原呼叫註解掉並 <code>return 0</code>，會完全吞掉封包、遊戲無法運作。</li>
+</ul>
+<h3 id="w17-013-cinpacket">W17-013　<code>CInPacket</code> 拷貝建構子破壞原物件致崩潰<a class="headerlink" href="#w17-013-cinpacket" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>CInPacket</code> <code>拷贝构造函数</code> <code>Decode4</code> <code>CInPacketEx</code> <code>崩潰</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）08:00–11:30｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：實測發現 <code>CInPacket</code> 的<strong>拷貝建構子</strong>會把傳入物件的欄位清成 0，導致遊戲直接崩潰。<strong>絕對不可用</strong> <code>CInPacket in(*in_pack);</code>。講者依逆向結果把 <code>CInPacket</code> 重構為內部類別 <code>CInPacketEx</code> 以精確對應記憶體偏移。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">CInPacket</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="c1">// ...</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">private</span><span class="o">:</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">CInPacketEx</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">        </span><span class="k">friend</span><span class="w"> </span><span class="n">CInPacket</span><span class="p">;</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">m_unknown0</span><span class="p">;</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">m_membuffer</span><span class="p">;</span><span class="w">  </span><span class="c1">// 指向實際封包資料的記憶體緩衝區</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">m_buffer_len</span><span class="p">;</span><span class="w">   </span><span class="c1">// 緩衝區長度</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">m_unknown2</span><span class="p">;</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">short</span><span class="w"> </span><span class="n">m_unknown3</span><span class="p">;</span>
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">m_unknown4</span><span class="p">;</span>
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">        </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">m_unknown5</span><span class="p">;</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">m_current_buffer_pos</span><span class="p">;</span><span class="w">    </span><span class="c1">// 目前讀取到的位置</span>
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">    </span><span class="p">};</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">    </span><span class="n">CInPacketEx</span><span class="w"> </span><span class="n">m_obj</span><span class="p">;</span><span class="w"> </span><span class="c1">// 在 CInPacket 中宣告一個實體</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="c1">// ...</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="p">};</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：兩組 <code>CInPacket</code> 欄位定義互相矛盾——v001（<code>m_pBuffBuffer</code>／<code>int</code> 長度）vs v003（<code>m_pBuffer</code>／<code>unsigned char</code> 長度），無法確認是教學演進還是辨識錯誤，兩者皆照錄。<code>CInPacketEx</code> 定義位置也不一致（外部封裝／內部類別／帶建構子版本），<strong>不可直接拼接使用</strong>。</li>
+</ul>
+<h3 id="w17-014-cinpacketex">W17-014　賦值運算子記憶體洩漏＋<code>CInPacketEx</code> 修正<a class="headerlink" href="#w17-014-cinpacketex" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>operator=</code> <code>ZAllocEx2::Free</code> <code>CInPacketEx</code> <code>内存泄漏</code> <code>析构</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）11:30–15:00｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：改走賦值運算子可行，但會另外配置記憶體且<strong>沒有析構函式</strong>，造成<strong>記憶體洩漏</strong>。改以自訂的 <code>CInPacketEx</code> 封裝類別持有封包物件，離開作用域時自動走析構、手動呼叫 <code>ZAllocEx2::Free</code> 釋放記憶體，兼顧不崩潰與不洩漏，並實測取得明文。<strong>客戶端 C++ 端</strong>。<strong>銜接</strong>：至此「收包取明文」完成，U40 進入借服務端比對。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// 同時修改了解構子（Destructor）以正確釋放記憶體：</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">~</span><span class="n">CInPacket</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">m_obj</span><span class="p">.</span><span class="n">m_membuffer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="n">ZAllocEx2</span><span class="o">::</span><span class="n">Free</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m_obj</span><span class="p">.</span><span class="n">m_membuffer</span><span class="p">);</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：不可用 <code>delete</code> 釋放封包記憶體——講者明言「<strong>不可能直接調用 <code>delete</code> 之類的肯定會崩潰的</strong>」，必須呼叫 <code>ZAllocEx2::Free</code>。檔名 <code>InPacket.h</code> 與 <code>CInPacket.h</code> 混用（v002 記 <code>InPacket.h</code>、v001／v003 記 <code>CInPacket.h</code>），未能確認。</li>
+</ul>
+<h3 id="w17-015-m_current_buffer_pos-decode">W17-015　<code>m_current_buffer_pos</code> 單調遞增與 <code>Decode</code> 邊界<a class="headerlink" href="#w17-015-m_current_buffer_pos-decode" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>m_current_buffer_pos</code> <code>Decode1</code> <code>Decode2</code> <code>Decode4</code> <code>Little Endian</code> <code>边界</code></li>
+<li><strong>來源</strong>：短片 U39（1447771184）08:00–11:30、15:00–18:00｜<code>U39_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：每次 <code>Decode</code> 都依型別長度往後偏移（<code>buff pos</code> 從 <code>4</code> 遞增到 <code>0x33</code>／長度 33），<strong>原版不會還原</strong>；當 pos 等於 buffer 長度後再讀「<strong>他就會崩潰</strong>」。實測末段：長度 6、偏移 4，<code>Decode1</code> 後偏移 5 尚可，再 <code>Decode2</code> 因長度不夠必崩。若需重複解析同一封包，必須自行記錄並還原起始 pos（講者未示範還原寫法）。<strong>客戶端 C++ 端</strong>。<strong>延續</strong>：U40 筆記明寫繼承本條結論。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">In</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">CInPacket</span><span class="o">*</span><span class="p">)</span><span class="n">in_pack</span><span class="p">;</span><span class="w">   </span><span class="c1">// 提領整個物件並拷貝給區域變數 In</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="kt">short</span><span class="w"> </span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">In</span><span class="p">.</span><span class="n">Decode2</span><span class="p">();</span><span class="w">     </span><span class="c1">// 讀 2 bytes (short)</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="kt">long</span><span class="w"> </span><span class="n">l3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">In</span><span class="p">.</span><span class="n">Decode4</span><span class="p">();</span><span class="w">      </span><span class="c1">// 讀 4 bytes (long)</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：任何 <code>Decode</code> 前都應先檢查剩餘長度；<code>CInPacket</code> 物件賦值語意未釐清（拷貝建構子崩潰、賦值運算子洩漏、<code>CInPacket&amp;</code> 引用綁定未驗證），且 v003 某版 <code>if (0)</code> 區塊混用 <code>in3</code>／<code>in2</code>，該段本身不自洽、無法編譯。</li>
+<li><strong>相關</strong>：見 W17-013、W17-014</li>
+</ul>
+<h3 id="w17-016-maplepacketcreator">W17-016　借服務端 <code>MaplePacketCreator</code> 當參考範本<a class="headerlink" href="#w17-016-maplepacketcreator" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>MaplePacketCreator</code> <code>HeavenMS</code> <code>gitee.com/ronancpl/HeavenMS-Nap</code> <code>getAuthSuccessRequest</code> <code>服務端</code> <code>参考</code></li>
+<li><strong>來源</strong>：短片 U40（1453012326）00:00–02:00、05:00–08:00｜<code>U40_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條線的<strong>登入協議上半集</strong>起點。講者先讓觀眾下載一個「可以用的」服務端（海外開源 HeavenMS 漢化修改版），因其回包欄位「很有參考意義」；服務端組包都集中在 <code>MaplePacketCreator</code> 這個 Java 檔案。再用該服務端自帶控制台程式在開啟日誌狀態下點「連接」，把登入流程封包印出來。<strong>銜接</strong>：U37 選的私服端在此變成「範本」；U39 找到的 <code>ProcessPacket</code> 在此成為逆向起點。<strong>服務端 Java 端</strong>。<strong>注意</strong>：U40 筆記（v002）稱參考的 C++ 檔 <code>ClientSocket.cpp</code>／<code>COutPacket.h</code> <strong>是客戶端檔案，不是服務端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">SendPacketOpcode</span><span class="p">.</span><span class="na">LOGIN_STATUS</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">getAccID</span><span class="p">());</span><span class="w"> </span><span class="c1">// account id</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// gender</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// gm</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeMapleAsciiString</span><span class="p">(</span><span class="n">c</span><span class="p">.</span><span class="na">getAccountName</span><span class="p">());</span><span class="w"> </span><span class="c1">// account name</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：轉錄原文是「<strong>maple 的 pack_creator Java</strong>」，檔名 <code>MaplePacketCreator.java</code> 為<strong>筆記還原</strong>，素材未逐字出現。服務端結構體只能當參考，講者反覆強調「<strong>它和客戶端這邊的並不是完全對應的</strong>」；「小水」身分無法確認，講者自稱「Boyzou」亦為 ASR 結果，與系列背景「昨日小睡」無法對應。</li>
+<li><strong>相關</strong>：見 W17-002、W17-017</li>
+</ul>
+<h3 id="w17-017-4-bytes-1-byte">W17-017　服務端寫 4 bytes／客戶端讀 1 byte 的長度衝突<a class="headerlink" href="#w17-017-4-bytes-1-byte" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Decode1</code> <code>Decode4</code> <code>writeInt</code> <code>长度不一致</code> <code>错位</code></li>
+<li><strong>來源</strong>：短片 U40（1453012326）10:30–13:00、16:00–19:30｜<code>U40_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本片最關鍵的發現：服務端該處用 <code>writeInt</code> 寫 4 bytes，但客戶端該處卻調用 <code>Decode1</code> 讀 1 byte——<strong>服務端寫 4 bytes、客戶端讀 1 byte，兩者結構不一致</strong>。講者因此重新整理，以<strong>客戶端的解包順序</strong>為權威，重組結構體。<code>Decode1</code> 回傳 <code>char</code>（= <code>byte</code>），重組時必須逐一依實際 <code>Decode</code> 呼叫的長度累加。<strong>唯一權威是客戶端的解包順序</strong>。<strong>客戶端 C++ ＋服務端 Java 兩端對照</strong>。<strong>銜接</strong>：U41 的 <code>SERVERLIST</code> 逐欄位逆向沿用同一原則。</li>
+<li><strong>坑</strong>：照抄 HeavenMS 的組包長度<strong>必然導致後續欄位全部錯位</strong>；服務端「能用」不等於結構正確，僅保證關鍵欄位正確。實測把 <code>0x4801</code> 改成 <code>0</code> 不致崩潰，但也「沒啥用」。</li>
+</ul>
+<h3 id="w17-018-cserverloginstatushprotocolh">W17-018　用 <code>CServerLoginStatus.h</code>／<code>Protocol.h</code> 還原欄位結構<a class="headerlink" href="#w17-018-cserverloginstatushprotocolh" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>CServerLoginStatus.h</code> <code>Protocol.h</code> <code>ClientLoginStatus1</code> <code>m_account[13]</code> <code>isQuietBan</code> <code>writeLong</code> <code>DecodeStr</code> <code>ZXString</code></li>
+<li><strong>來源</strong>：短片 U40（1453012326）13:00–16:00、05:00–10:30｜<code>U40_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：在 Visual Studio 建立 C++ 結構體對照客戶端解碼：服務端 Java 逐欄位組包（性別／是否 GM／GM 等級／國家代碼／帳號字串／兩個 8-byte 時間戳／選擇世界提示／PIN 狀態），再對照客戶端 <code>CServerLoginStatus.h</code> 與 <code>Protocol.h</code> 還原 <code>Decode</code> 順序。帳號欄位客戶端限制 <strong>13 bytes</strong>；字串格式為 2 bytes 長度前綴＋內容（<code>ZXString</code>）。教學重點：<code>MaplePacketCreator.getAuthSuccessRequest</code> 的寫入順序與型態必須與客戶端逆向的 <code>Decode</code> 順序完全一致。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ClientLoginStatus1</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_head</span><span class="p">;</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">m_login_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SERVER_LOGIN_STATUS</span><span class="p">;</span><span class="w"> </span><span class="c1">// 登录状态协议头</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_unknown</span><span class="p">;</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_account_id</span><span class="p">;</span><span class="w">           </span><span class="c1">// 用户ID</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_gender</span><span class="p">;</span><span class="w">              </span><span class="c1">// 性别</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_is_gm_account</span><span class="p">;</span><span class="w">       </span><span class="c1">// 0代表正常用户，1代表GM</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">m_unknown2</span><span class="p">;</span><span class="w">           </span><span class="c1">// 未知参数</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_account_id2</span><span class="p">;</span><span class="w">          </span><span class="c1">// 猜测为用户ID</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="kt">short</span><span class="w"> </span><span class="n">m_account_gm</span><span class="p">;</span><span class="w">         </span><span class="c1">// 账号权限</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_account</span><span class="p">[</span><span class="mi">13</span><span class="p">];</span><span class="w">         </span><span class="c1">// 账号名，最大不超过13字节</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_unknown3</span><span class="p">;</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_is_ban</span><span class="p">;</span><span class="w">              </span><span class="c1">// 账户是否被封</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_swi_time_stamp</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="w">   </span><span class="c1">// 客户端时间戳</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">m_unknown4</span><span class="p">;</span><span class="w">             </span><span class="c1">// 未知数据</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_pincode_select_world_hint</span><span class="p">;</span><span class="w"> </span><span class="c1">// 选择世界的字符提示</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_is_pic</span><span class="p">;</span><span class="w">              </span><span class="c1">// 是否存在pic</span>
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">m_mac_time</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span><span class="w">         </span><span class="c1">// mac 以及mac生成时间</span>
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="p">};</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>（衝突保留，兩邊並列）：<code>LOGIN_STATUS</code> 欄位順序在服務端參考版與客戶端逆向版間互相矛盾——v001 帳號 ID 在 sex 之前、v002 完全沒有 account_id、v003／v004 有 <code>m_account_id</code>；且 <code>Protocol.h</code> 出現<strong>兩個</strong>疑似帳號 ID（<code>m_account_id</code> 與 <code>m_account_id2</code>）。<code>isQuietBan</code> 型別 4 bytes vs 1 bytes、名稱與語意皆矛盾。PIN 值語意 Java 註解（<code>1</code>=Register PIN）與口述（<code>1</code>=沒有安全令牌）衝突。<code>m_head</code> 型別 <code>int</code> vs <code>char</code> 不一致。opcode 也有兩種標示：<code>LOGIN_STATUS</code> <code>0x00</code> vs <code>0x01</code>、<code>SERVERLIST_REQUEST</code> <code>0x02</code> vs <code>0x0B</code>。</li>
+<li><strong>相關</strong>：見 W17-016、W17-017</li>
+<li><strong>坑</strong>：⚠ <code>LOGIN_STATUS</code> 欄位順序有三個版本互相矛盾（含兩個疑似帳號 ID 的欄位）；<code>isQuietBan</code> 的型別與語意不一致；opcode 有兩種標示。⚠ PIN 值的語意在 Java 註解與口述之間衝突；<code>m_head</code> 型別 <code>int</code> vs <code>char</code> 不一致。</li>
+</ul>
+<h3 id="w17-019-serverlist">W17-019　<code>SERVERLIST</code> 封包逐欄位組包<a class="headerlink" href="#w17-019-serverlist" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>getServerList</code> <code>SERVERLIST</code> <code>serverId</code> <code>serverName</code> <code>SCANIA</code> <code>eventMessage</code> <code>rate modifier</code> <code>channelCount</code></li>
+<li><strong>來源</strong>：短片 U41（1465627660）00:00–07:01、07:01–10:31｜<code>U41_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條線的<strong>登入協議中段</strong>。先在 Java 服務端把 <code>getServerList(...)</code> 每一欄位從左到右講一遍：Opcode、serverId、serverName、flag、eventMessage、倍率欄位、頻道數量、每個頻道的四個欄位。<strong>serverName 是寫死的</strong>（改設定檔沒用，除非改程式再編譯；寫死為 <code>SCANIA</code>，Hex <code>06 00 53 43 41 4E 49 41</code>）；<strong>eventMessage 才會讀設定檔</strong>。再切 IDA＋x32dbg，<code>CClientSocket::ProcessPacket</code> 的 <code>case 10</code>（即 <code>0x0A</code>）就是世界資訊處理函式 <code>CLogin::OnWorldInformation</code>。<strong>服務端 Java ＋客戶端 C++ 對照</strong>。<strong>銜接</strong>：登入協議往 U42 的收尾推進。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="nf">getServerList</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">serverId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">serverName</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flag</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">eventmsg</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Channel</span><span class="o">&gt;</span><span class="w"> </span><span class="n">channelsLoad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">MaplePacketLittleEndianWriter</span><span class="w"> </span><span class="n">mplew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MaplePacketLittleEndianWriter</span><span class="p">();</span>
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">SendPacketOpcode</span><span class="p">.</span><span class="na">SERVERLIST</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">serverId</span><span class="p">);</span><span class="w">                    </span><span class="c1">// 伺服器 ID</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeMapleAsciiString</span><span class="p">(</span><span class="n">serverName</span><span class="p">);</span><span class="w">   </span><span class="c1">// 伺服器名稱，例如 "SCANIA"</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span><span class="w">                        </span><span class="c1">// 0=normal 1=event 2=new 3=hot</span>
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeMapleAsciiString</span><span class="p">(</span><span class="n">eventmsg</span><span class="p">);</span><span class="w">    </span><span class="c1">// 登入畫面跑馬燈／公告訊息</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                         </span><span class="c1">// rate modifier?</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">                           </span><span class="c1">// event xp?</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">                         </span><span class="c1">// rate modifier?</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">                           </span><span class="c1">// drop rate?</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">channelCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">channelsLoad</span><span class="p">.</span><span class="na">size</span><span class="p">();</span>
+<a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">channelCount</span><span class="p">);</span><span class="w">                </span><span class="c1">// 頻道數量</span>
+<a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Channel</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">channelsLoad</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="w">        </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeMapleAsciiString</span><span class="p">(</span><span class="n">serverName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"-"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ch</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+<a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">        </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">ch</span><span class="p">.</span><span class="na">getLoad</span><span class="p">());</span><span class="w">        </span><span class="c1">// Hex [64 00] = 100</span>
+<a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">        </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w">                       </span><span class="c1">// server format?</span>
+<a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">        </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">ch</span><span class="p">.</span><span class="na">getId</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">      </span><span class="c1">// 注意：0 基數</span>
+<a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">                      </span><span class="c1">// dialog</span>
+<a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mplew</span><span class="p">.</span><span class="na">getPacket</span><span class="p">();</span>
+<a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>（衝突保留，兩邊並列）：</li>
+<li>Opcode：口述為 <code>0x0A</code>（10＝<code>case 10</code>），但程式碼與 HeavensMS-Help 標 <code>0x0B</code>（Opcode <code>11</code>）；v002 又寫 <code>0x0A</code>（對應日誌 <code>[0A]</code>）。<strong>未經二次確認不可直接取用</strong>。</li>
+<li>倍率欄位標註與實際寬度不符：程式碼註解標 1 byte（<code>write(100)</code>），但講者實測客戶端是整塊用 <code>short</code> 讀取。</li>
+<li>伺服器名稱不一致：口述寫死 <code>SCANIA</code>，但 v004 Console hex 實測是 <code>Bazzar</code>（<code>42 61 7A 7A 61 72</code>）。</li>
+<li>頻道數量多說並存：口述 4 個、v000 畫面 10 個、v001 <code>channelCount = 2</code>、v004 hex 顯示 3 個。</li>
+<li>日誌格式在同一支影片出現多種（<code>==&gt; 收到协议包:</code>／<code>-&gt; [接收到数据]:</code>／<code>===&gt; 收到客戶端封包:</code>／<code>==&gt; 接收端封包:</code>），可能是不同版本 log。</li>
+<li><strong>相關</strong>：見 W17-020、W17-021</li>
+<li><strong>坑</strong>：⚠ <strong>Opcode 三方衝突：口述 <code>0x0A</code> vs 程式碼／工具 <code>0x0B</code> vs v002 <code>0x0A</code>，未經二次確認不可取用。</strong> ⚠ 伺服器名稱口述 <code>SCANIA</code> vs hex 實測 <code>Bazzar</code>；頻道數量有四種說法並存。</li>
+</ul>
+<h3 id="w17-020-id-0">W17-020　頻道 ID 為 0 基數<a class="headerlink" href="#w17-020-id-0" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>0 基數</code> <code>channelId</code> <code>writeShort(i - 1)</code> <code>C 语言数组</code> <code>頻道ID</code></li>
+<li><strong>來源</strong>：短片 U41（1465627660）03:30–07:01、14:02–17:32｜<code>U41_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：頻道 ID 採用 <strong>C 語言 0 基數</strong>：第 1 個頻道傳 0、第 2 個傳 1、第 3 個傳 2、第 4 個傳 3。Java 迴圈用 1 起算，但送進封包的 <code>channelId</code> 必須減 1。這是本集最實用的一個結論。<strong>服務端 Java 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeAsciiString</span><span class="p">(</span><span class="n">serverName</span><span class="p">);</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">flag</span><span class="p">);</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeAsciiString</span><span class="p">(</span><span class="n">serverMessage</span><span class="p">);</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">   </span><span class="c1">// rate modifier</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span><span class="w">   </span><span class="c1">// exp modifier</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="kt">int</span><span class="w"> </span><span class="n">lastChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">Set</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">channels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ServerProperties</span><span class="p">.</span><span class="na">getProperty</span><span class="p">(</span><span class="s">"channel.servers"</span><span class="p">,</span><span class="w"> </span><span class="s">"1,2,3"</span><span class="p">).</span><span class="na">split</span><span class="p">(</span><span class="s">","</span><span class="p">);</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">channels</span><span class="p">.</span><span class="na">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="w">    </span><span class="n">lastChannel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="p">}</span>
+<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>
+<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">lastChannel</span><span class="p">);</span>
+<a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">lastChannel</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeAsciiString</span><span class="p">(</span><span class="n">serverName</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"-"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+<a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">load</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1200</span><span class="p">);</span><span class="w">   </span><span class="c1">// 頻道容量</span>
+<a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="n">server</span><span class="p">);</span><span class="w">           </span><span class="c1">// world id</span>
+<a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">       </span><span class="c1">// channel id（0 基數）</span>
+<a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="p">}</span>
+<a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：v001 版本寫 <code>writeShort(i + 1)</code>，v004／v006 寫 <code>writeShort(i - 1)</code>——<strong>兩者只會有一個是對的</strong>，講者本人在音軌中確認的是減 1（0 基數）。頻道容量欄位未經驗證：程式碼寫 <code>1200</code>／<code>load * 1200</code>，但口述觀察到的值是 <code>11</code>，且講者自稱「不太確定它是不是顯示的是當前頻道的容量」。「成人頻道／AdultChannel」語意不明，講者明言「我不理解是什麼意思」。</li>
+</ul>
+<h3 id="w17-021-p_next">W17-021　頻道為連續陣列，非 <code>p_next</code> 鏈結串接<a class="headerlink" href="#w17-021-p_next" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>tagChannel</code> <code>tagWorldInformation</code> <code>连续数组</code> <code>1C</code> <code>18C</code> <code>CLogin::OnWorldInformation</code> <code>p_next</code></li>
+<li><strong>來源</strong>：短片 U41（1465627660）10:31–17:32、21:03–24:34｜<code>U41_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：在 x32dbg 單步確認世界資訊結構體：<code>CLogin</code> + 偏移 <code>18C</code> 存世界資訊結構體指標，頻道結構存到 <code>18C + 14</code>，迴圈<strong>每輪 +<code>1C</code></strong>，是<strong>連續陣列</strong>。講者主動承認自己 v004 寫的 <code>tagChannel* p_next</code> 還原錯誤。音軌確認應為 <strong>18C 偏移 + 連續陣列</strong>，故 v006 版最接近正確。<strong>客戶端 C++ 端</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="cp">#pragma once</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">struct</span><span class="w"> </span><span class="nc">tagChannel</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">{</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="n">IXString</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">n_name</span><span class="p">;</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_ChannelCapacity</span><span class="p">;</span>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_WorldId</span><span class="p">;</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_ChannelId</span><span class="p">;</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_bAdultChannel</span><span class="p">;</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="p">};</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="k">struct</span><span class="w"> </span><span class="nc">tagOworldInformation</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="p">{</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_serverID</span><span class="p">;</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">    </span><span class="n">IXString</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">n_server_name</span><span class="p">;</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_flag</span><span class="p">;</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">    </span><span class="n">IXString</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;*</span><span class="w"> </span><span class="n">n_event_msg</span><span class="p">;</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_rate_modifier</span><span class="p">;</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_exp_modifier</span><span class="p">;</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n_unknow1</span><span class="p">;</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">    </span><span class="n">tagChannel</span><span class="o">*</span><span class="w"> </span><span class="n">m_channel</span><span class="p">;</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="p">};</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="cm">/*</span>
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="cm">  来源: CClientSocket::ProcessPacket</span>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="cm">  (DWORD_EBDEM) + 8 == CLogin</span>
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="cm">*/</span>
+<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="k">class</span><span class="w"> </span><span class="nc">CLogin</span>
+<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="p">{</span>
+<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a><span class="k">public</span><span class="o">:</span>
+<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a><span class="w">    </span><span class="n">CLogin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a><span class="w">    </span><span class="o">~</span><span class="n">CLogin</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a>
+<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="w">    </span><span class="n">tagOworldInformation</span><span class="o">*</span><span class="w"> </span><span class="n">M_offset_18C</span><span class="p">;</span><span class="w"> </span><span class="c1">// 1. CLogin::OworldInformation</span>
+<a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="p">};</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>（衝突保留，兩邊並列）：C++ 結構三版本互相矛盾——v004 有 <code>p_next</code>、字串型別 <code>ZString&lt;char&gt;</code>、偏移 <code>m_offset_10C</code>；v005 無 <code>p_next</code>、型別 <code>CXString&lt;char&gt;*</code>、欄位名誤植 <code>m_event_msg_modifier</code>；v006 型別 <code>IXString&lt;char&gt;*</code>、結構名誤寫 <code>tagOworldInformation</code>、偏移 <code>M_offset_18C</code>。偏移 <code>18C</code>／<code>18C+14</code>／<code>0x18</code> 都是針對特定版本量出，不能直接套用其他版本（U41 目標客戶端為 v100／v101，依 <code>CLoginPacket_100.h</code>、<code>CLoginOffset_101</code>）。實機驗證未通過：結尾出現「与服务器连接断开」，「選頻道 → 進遊戲」本集沒有打通。</li>
+<li><strong>坑</strong>：⚠ 頻道是<strong>連續陣列</strong>（每輪 +<code>1C</code>），不是 <code>p_next</code> 鏈結串接——講者已主動承認 v004 的還原是錯的。⚠ 偏移 <code>18C</code>／<code>18C+14</code>／<code>0x18</code> 是針對特定 v100／v101 版本量出來的，<strong>不能套用到其他版本</strong>。⚠ 實機驗證未通過：結尾出現「与服务器连接断开」，選頻道進遊戲沒打通。</li>
+</ul>
+<h3 id="w17-022-ff">W17-022　登入收尾 <code>FF</code> 標記＋最後兩個訊息<a class="headerlink" href="#w17-022-ff" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>FF</code> <code>LAST_CONNECTED_WORLD</code> <code>RECOMMENDED_WORLD_MESSAGE</code> <code>CLogin::OnPacket</code> <code>x64dbg</code> <code>重連世界</code></li>
+<li><strong>來源</strong>：短片 U42（1485212401）00:00–05:00｜<code>U42_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：本條是這條線的<strong>登入協議收尾</strong>。講者糾正先前的錯誤——登入協議最後以一個 <strong><code>FF</code></strong> 表示「世界信息獲取結束」；伺服器接著發送「上一個世界的選擇」與「重連世界」兩個訊息。用 x64dbg 附加 <code>MapleStory</code> 動態追蹤客戶端處理 <code>LAST_CONNECTED_WORLD</code> 與 <code>RECOMMENDED_WORLD_MESSAGE</code> 的路徑（<code>CLogin::OnPacket</code>／<code>CLogin::OnWorldInformation</code>），確認「登錄過程」可就此收尾。<strong>銜接</strong>：U42 開場明說「上次一直在分析這個登入包的過程應該就差最後一點了」，接續 U40／U41。<strong>客戶端 C++ 追蹤 + 服務端 Java 對照</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>6. 接收协议包: LAST_CONNECTED_WORLD
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>7. 接收协议包: RECOMMENDED_WORLD_MESSAGE
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>[1B 00] [00 00 00 00] [00 00 00 00]
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>（衝突保留，兩邊並列）：</li>
+<li><code>LAST_CONNECTED_WORLD</code> opcode 說法不一：v001 記 <code>0x1A</code>、v003 記 <code>0x1C</code>／<code>(1C)</code>、v005 記 <code>(16)</code>；同一封包三個值，<strong>至少兩者是誤讀</strong>。</li>
+<li>封包日誌方向標記衝突：<code>SERVERLIST</code>／<code>LAST_CONNECTED_WORLD</code>／<code>RECOMMENDED_WORLD_MESSAGE</code> 在 v000 寫「服务端接收」、v001 寫「服务端发送」。筆記判讀 <code>&lt;==</code> = 服務端送出，v000 應為誤讀。</li>
+<li><code>RECOMMENDED_WORLD_MESSAGE</code> 的 <code>00</code> 欄位（flag）畫面未完全釐清。</li>
+<li>第 3 段音軌（<code>audio_a002.json</code>）內容與本片無關（是 Python <code>datetime</code> 教學），已排除於時間軸。</li>
+<li><strong>相關</strong>：見 W17-023</li>
+<li><strong>坑</strong>：⚠ <code>LAST_CONNECTED_WORLD</code> 的 opcode 有三說（<code>0x1A</code>／<code>0x1C</code>／<code>(16)</code>）；日誌方向標記（送出／接收）也衝突。</li>
+</ul>
+<h3 id="w17-023-getrecommendedworldmessage">W17-023　<code>getRecommendedWorldMessage</code> 固定推薦世界<a class="headerlink" href="#w17-023-getrecommendedworldmessage" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>getRecommendedWorldMessage</code> <code>RECOMMENDED_WORLD_MESSAGE</code> <code>LoginPacket.java</code> <code>GMS</code> <code>MaplePacketLittleEndianWriter</code></li>
+<li><strong>來源</strong>：短片 U42（1485212401）03:48–05:00｜<code>U42_短片_教學筆記.md</code></li>
+<li><strong>要點</strong>：<code>RECOMMENDED_WORLD_MESSAGE</code> 的用途是分流到人數最多（最活躍）的世界；<code>LoginPacket.java</code> 註解並指出因為我們沒有伺服器列表，所以<strong>固定回同一個世界</strong>——這是刻意的簡化，非 bug。講者用 Google 翻譯確認英文註解，並實作驗證。<strong>服務端 Java 端</strong>。<strong>這條線就此收束</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1">// According to GMS, it should be the world that contains the most characters (most active)</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="c1">// however, since we do not have a server list, we should fix the world that contains the most characters (most active)</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="c1">// 推荐世界信息</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">byte</span><span class="o">[]</span><span class="w"> </span><span class="nf">getRecommendedWorldMessage</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">worldId</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="n">MaplePacketLittleEndianWriter</span><span class="w"> </span><span class="n">mplew</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MaplePacketLittleEndianWriter</span><span class="p">();</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeShort</span><span class="p">(</span><span class="n">SendPacketOpcode</span><span class="p">.</span><span class="na">RECOMMENDED_WORLD_MESSAGE</span><span class="p">.</span><span class="na">getValue</span><span class="p">());</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">write</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeInt</span><span class="p">(</span><span class="n">worldId</span><span class="p">);</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">    </span><span class="n">mplew</span><span class="p">.</span><span class="na">writeMapleAsciiString</span><span class="p">(</span><span class="n">message</span><span class="p">);</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mplew</span><span class="p">.</span><span class="na">getPacket</span><span class="p">();</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：Java 檔案歸屬衝突——v000 確認 <code>getRecommendedWorldMessage</code> 位於作用中的 <code>LoginPacket.java</code>；v001 卻在被開啟的 <code>ScreenInfoRequestHandler.java</code> 脈絡下描述同一方法。<strong>兩者不能同時成立</strong>，本頁保留兩說。U42 另附 60Hz 刷新率崩潰外掛的發布與使用（非本線封包分析主軸，屬宣傳／分享性質，記錄於筆記）。</li>
+</ul>
+<h2 id="_5">本頁的坑總表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W17-001</td>
+<td>IDB 版本若與目標客戶端不符，二次分析可信度受損（U37 未說明對應關係）</td>
+<td>短片 U37</td>
+</tr>
+<tr>
+<td>W17-004</td>
+<td><code>ClientPacket::SendPasswordPacket</code> 素材原樣<strong>無 <code>C</code> 前綴</strong>——<code>C</code> 前綴屬筆記推補，不可當素材逐字事實</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-004</td>
+<td>客戶端為 32 位行程實用 <code>x32dbg</code>；<code>x64dbg</code>／<code>x32dbg</code> 混稱；PID 每次執行都變</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-006</td>
+<td>裝置 ID 長度衝突：口述 16 bytes vs 畫面／程式碼 24 bytes（<code>0x18</code>）</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-006</td>
+<td>opcode 三重不一致：<code>0x2B</code>／<code>0x28</code>／<code>int16: 0x01</code>；<code>[01 00]</code> 筆記自身標註歧義</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-008</td>
+<td><code>_tagString</code> 定義兩版（有無 <code>m_pStr</code>）矛盾；<code>CStringin</code> 寫法不合法</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-009</td>
+<td>修法有條件：全域變數同樣有生命週期問題，出了函數仍可能崩</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-009</td>
+<td>口述位址當場自我修正且講者自承混淆（<code>C6F6</code>／<code>C6F8</code>／<code>C6FC</code>／<code>C6FB</code>）</td>
+<td>短片 U38</td>
+</tr>
+<tr>
+<td>W17-010</td>
+<td><code># 0x05 接收包处理</code> 的 <code>0x05</code> 是章節編號非 opcode；目標 <code>.exe</code> 屬筆記推補</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-011</td>
+<td><code>Decode</code> 前須檢查剩餘長度（長度 6、偏移 4，再 <code>Decode2</code> 必崩）</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-012</td>
+<td><code>CClientSocket</code>／<code>CCilentSocket</code> 拼寫不一致，屬 typedef 實際型別須核對</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-013</td>
+<td><code>CInPacket</code> 欄位定義兩組矛盾（<code>m_pBuffBuffer</code> vs <code>m_pBuffer</code>；<code>int</code> vs <code>unsigned char</code>）</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-014</td>
+<td>不可用 <code>delete</code> 釋放封包記憶體，須 <code>ZAllocEx2::Free</code>；<code>InPacket.h</code>／<code>CInPacket.h</code> 混用</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-015</td>
+<td><code>m_current_buffer_pos</code> 單調遞增原版不還原；v003 某版程式碼不自洽無法編譯</td>
+<td>短片 U39</td>
+</tr>
+<tr>
+<td>W17-016</td>
+<td><code>MaplePacketCreator.java</code> 檔名為<strong>筆記還原</strong>（轉錄原文「maple 的 pack_creator Java」）；服務端結構僅供參考</td>
+<td>短片 U40</td>
+</tr>
+<tr>
+<td>W17-017</td>
+<td>服務端寫 4 bytes／客戶端讀 1 byte，照抄服務端組包必然欄位錯位</td>
+<td>短片 U40</td>
+</tr>
+<tr>
+<td>W17-018</td>
+<td><code>LOGIN_STATUS</code> 欄位順序三版矛盾（含兩個疑似帳號 ID）；<code>isQuietBan</code> 型別／語意矛盾；opcode 兩種標示</td>
+<td>短片 U40</td>
+</tr>
+<tr>
+<td>W17-018</td>
+<td>PIN 值語意（Java 註解 vs 口述）衝突；<code>m_head</code> 型別 <code>int</code> vs <code>char</code></td>
+<td>短片 U40</td>
+</tr>
+<tr>
+<td>W17-019</td>
+<td>Opcode 衝突：口述 <code>0x0A</code> vs 程式碼／工具 <code>0x0B</code> vs v002 <code>0x0A</code>；未經二次確認不可取用</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-019</td>
+<td>伺服器名稱口述 <code>SCANIA</code> vs hex 實測 <code>Bazzar</code>；頻道數量四種說法並存</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-020</td>
+<td>頻道 ID <code>i - 1</code>（0 基數）vs <code>i + 1</code> 兩版矛盾，只有減 1 經講者確認</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-020</td>
+<td>頻道容量值矛盾（程式碼 <code>1200</code>／<code>load * 1200</code> vs 口述 <code>11</code>）；<code>AdultChannel</code> 語意不明</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-021</td>
+<td>頻道為<strong>連續陣列</strong>（每輪 +<code>1C</code>），非 <code>p_next</code> 鏈結串接——講者主動承認還原錯誤</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-021</td>
+<td>偏移 <code>18C</code>／<code>18C+14</code>／<code>0x18</code> 為特定 v100／v101 版本量出，不能套用他版</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-021</td>
+<td>實機驗證未通過：結尾「与服务器连接断开」，選頻道進遊戲未打通</td>
+<td>短片 U41</td>
+</tr>
+<tr>
+<td>W17-022</td>
+<td><code>LAST_CONNECTED_WORLD</code> opcode 三說（<code>0x1A</code>／<code>0x1C</code>／<code>(16)</code>）；日誌方向標記衝突</td>
+<td>短片 U42</td>
+</tr>
+<tr>
+<td>W17-023</td>
+<td><code>getRecommendedWorldMessage</code> 檔案歸屬衝突（<code>LoginPacket.java</code> vs <code>ScreenInfoRequestHandler.java</code>）</td>
+<td>短片 U42</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">相關頁面<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>見 W18（U36 完結片，產品演進與完結展示；不屬本頁這條封包分析線）</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W15 伺服器遊戲機制">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W15 伺服器遊戲機制
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../70-resources/" class="md-footer__link md-footer__link--next" aria-label="Next: 70-resources — 原始資料">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                70-resources — 原始資料
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

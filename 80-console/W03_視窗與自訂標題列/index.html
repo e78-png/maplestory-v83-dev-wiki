@@ -1,0 +1,5424 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/">
+      
+      
+        <link rel="prev" href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/">
+      
+      
+        <link rel="next" href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W03 視窗與自訂標題列 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w03" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W03 視窗與自訂標題列
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w03-001-1280720" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-001 把視窗設成與客戶端一致的 1280×720，並設定標題與圖示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-002-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-002 視窗圖示的路徑要加 file: 前綴，而且是一根斜槓
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-003-javafx-image-ico-png" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-003 JavaFX Image 解析不了 .ico，必須換成 PNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-004-filetouritostring-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-004 相對路徑要經 File.toURI().toString() 才能餵給 Image，並把前綴封裝進工具類
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-005-image-node-imageview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-005 Image 不是 Node，加進容器前必須用 ImageView 包一層
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-006-stagehead-hbox-icontitle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-006 自訂標題列是一個 stageHead HBox，裝 icon、title 與三顆按鈕
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-007-title-sethgrow-label-pane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-007 讓 title 撐滿剩餘空間：setHgrow 對 Label 無效，要用 Pane 的子類
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-008-button-setgraphicimageview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-008 視窗按鈕必須做成 Button + setGraphic，ImageView 的點擊範圍太小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-009" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-009 最小化、最大化、關閉三顆按鈕各自的行為
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-010-setmaximizedismaximized-setfullscreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-010 最大化用 setMaximized／isMaximized，不要用 setFullScreen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-011-primarystageclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-011 關閉視窗呼叫 primaryStage.close()，不是直接殺程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-012-hover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-012 按鈕去背與 hover 變色：關閉鈕變紅，其餘取實測同色
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-013-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-013 圖示在下載時就指定尺寸，並把尺寸做成方法參數（預設 18）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-014-getimagebutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-014 三顆按鈕的重複程式碼抽成 getImageButton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-015-insets-31px" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-015 窗頭排版的數值鏈：間距三輪下修、Insets 修正、實測高度 31px
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-016-initstyle-stagestyle-transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-016 拔掉系統窗頭：initStyle 五種 StageStyle 逐一實測，定案 TRANSPARENT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-017-offsetxoffsety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-017 無邊框後視窗拖不動：只留 offsetX／offsetY 兩個變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-018 圓角要四層同時到位，缺一層就看不出來
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w03-001-1280720" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-001 把視窗設成與客戶端一致的 1280×720，並設定標題與圖示
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-002-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-002 視窗圖示的路徑要加 file: 前綴，而且是一根斜槓
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-003-javafx-image-ico-png" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-003 JavaFX Image 解析不了 .ico，必須換成 PNG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-004-filetouritostring-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-004 相對路徑要經 File.toURI().toString() 才能餵給 Image，並把前綴封裝進工具類
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-005-image-node-imageview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-005 Image 不是 Node，加進容器前必須用 ImageView 包一層
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-006-stagehead-hbox-icontitle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-006 自訂標題列是一個 stageHead HBox，裝 icon、title 與三顆按鈕
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-007-title-sethgrow-label-pane" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-007 讓 title 撐滿剩餘空間：setHgrow 對 Label 無效，要用 Pane 的子類
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-008-button-setgraphicimageview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-008 視窗按鈕必須做成 Button + setGraphic，ImageView 的點擊範圍太小
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-009" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-009 最小化、最大化、關閉三顆按鈕各自的行為
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-010-setmaximizedismaximized-setfullscreen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-010 最大化用 setMaximized／isMaximized，不要用 setFullScreen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-011-primarystageclose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-011 關閉視窗呼叫 primaryStage.close()，不是直接殺程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-012-hover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-012 按鈕去背與 hover 變色：關閉鈕變紅，其餘取實測同色
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-013-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-013 圖示在下載時就指定尺寸，並把尺寸做成方法參數（預設 18）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-014-getimagebutton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-014 三顆按鈕的重複程式碼抽成 getImageButton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-015-insets-31px" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-015 窗頭排版的數值鏈：間距三輪下修、Insets 修正、實測高度 31px
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-016-initstyle-stagestyle-transparent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-016 拔掉系統窗頭：initStyle 五種 StageStyle 逐一實測，定案 TRANSPARENT
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-017-offsetxoffsety" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-017 無邊框後視窗拖不動：只留 offsetX／offsetY 兩個變數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w03-018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W03-018 圓角要四層同時到位，缺一層就看不出來
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w03">W03　視窗與自訂標題列<a class="headerlink" href="#w03" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+<p>本頁的「標題列」指<strong>自訂窗頭（stage head）</strong>：JavaFX 預設的系統窗頭被
+<code>initStyle(StageStyle.TRANSPARENT)</code> 拔掉後，由自己用 <code>HBox</code> 排出來的那一列。
+第二課做初版（元件、icon、按鈕），第三課做收尾（外觀、拖曳、圓角、重構）。</p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>課次</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第二課</td>
+<td><code>L02_第二课_教學筆記.md</code></td>
+<td>全課（視窗基本設定、icon 路徑除錯、<code>ImageViewUtil</code>、<code>stageHead</code> 組裝、三顆按鈕）</td>
+</tr>
+<tr>
+<td>第三課</td>
+<td><code>L03_第三课_教學筆記.md</code></td>
+<td>全課（窗頭外觀微調、<code>StageStyle</code> 選型、拖曳、圓角、<code>getImageButton</code> 重構）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">速查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W03-001</td>
+<td>視窗基本設定：1280×720 對齊客戶端、標題、圖示</td>
+</tr>
+<tr>
+<td>W03-002</td>
+<td>icon 路徑要加 <code>file:</code> 前綴且是<strong>單斜線</strong></td>
+</tr>
+<tr>
+<td>W03-003</td>
+<td>JavaFX <code>Image</code> 解析不了 <code>.ico</code>，必須換 PNG</td>
+</tr>
+<tr>
+<td>W03-004</td>
+<td>相對路徑轉 URL 用 <code>File.toURI().toString()</code>，前綴封裝進工具類</td>
+</tr>
+<tr>
+<td>W03-005</td>
+<td><code>Image</code> 不是 <code>Node</code>，加進容器前必須用 <code>ImageView</code> 包一層</td>
+</tr>
+<tr>
+<td>W03-006</td>
+<td>自訂標題列 = <code>stageHead</code> HBox：icon／title／最小化／最大化／關閉</td>
+</tr>
+<tr>
+<td>W03-007</td>
+<td>讓 title 撐滿剩餘空間：<code>setHgrow</code> 對 <code>Label</code> 無效，要用 <code>Pane</code> 子類</td>
+</tr>
+<tr>
+<td>W03-008</td>
+<td>視窗按鈕必須是 <code>Button</code> + <code>setGraphic</code>，<code>ImageView</code> 的點擊範圍太小</td>
+</tr>
+<tr>
+<td>W03-009</td>
+<td>三顆按鈕的行為：最小化／最大化／關閉分別呼叫哪個 <code>Stage</code> 方法</td>
+</tr>
+<tr>
+<td>W03-010</td>
+<td>最大化要用 <code>setMaximized</code>／<code>isMaximized</code>，不是 <code>setFullScreen</code></td>
+</tr>
+<tr>
+<td>W03-011</td>
+<td>關閉視窗呼叫 <code>primaryStage.close()</code>，不要 <code>System.exit(0)</code></td>
+</tr>
+<tr>
+<td>W03-012</td>
+<td>按鈕去背與 hover 變色：關閉鈕紅、其餘取實測同色</td>
+</tr>
+<tr>
+<td>W03-013</td>
+<td>圖示在下載時就指定尺寸，並把尺寸做成方法參數（預設 18）</td>
+</tr>
+<tr>
+<td>W03-014</td>
+<td>三顆按鈕的重複程式碼抽成 <code>getImageButton</code></td>
+</tr>
+<tr>
+<td>W03-015</td>
+<td>窗頭排版數值鏈：間距、<code>Insets</code>、實測高度 31px</td>
+</tr>
+<tr>
+<td>W03-016</td>
+<td>拔掉系統窗頭：<code>initStyle</code> 五種 <code>StageStyle</code> 逐一實測，定案 <code>TRANSPARENT</code></td>
+</tr>
+<tr>
+<td>W03-017</td>
+<td>無邊框後視窗拖不動：只留 <code>offsetX</code>／<code>offsetY</code> 兩個變數</td>
+</tr>
+<tr>
+<td>W03-018</td>
+<td>圓角要四層同時到位，缺一層就看不出來</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">條目<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="w03-001-1280720">W03-001　把視窗設成與客戶端一致的 1280×720，並設定標題與圖示<a class="headerlink" href="#w03-001-1280720" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setWidth</code> <code>setHeight</code> <code>setTitle</code> <code>getIcons</code> <code>primaryStage</code> <code>1280</code> <code>720</code></li>
+<li><strong>來源</strong>：第二課 00:00–05:00｜<code>L02_第二课_教學筆記.md</code>；第三課 36:00–41:04（確認保留 icon 與 title）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：尺寸直接對齊客戶端——「我們客戶端的寬是 1280，720」，所以
+  <code>setWidth(1280)</code>、<code>setHeight(720)</code>。標題 <code>setTitle</code>、圖示 <code>primaryStage.getIcons().add(...)</code>。
+  第三課收尾時特別強調：<strong>自訂窗頭不等於取代 <code>Stage</code> 的 icon 與 title</strong>，
+  把它們幹掉，任務列會退化回 Java 預設圖標、預顯示的標題也會消失。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">);</span><span class="w">      </span><span class="c1">// 1280</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setHeight</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">);</span><span class="w">    </span><span class="c1">// 720</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setTitle</span><span class="p">(</span><span class="s">"HeavenMS 控制台"</span><span class="p">);</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">getIcons</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="s">"file:src/main/resources/img/mapleicon.png"</span><span class="p">));</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>畫面層的三個值全部與口述衝突</strong>：尺寸 <strong>1280×720（口述）vs 1024×768（畫面 v000）vs 800×500（畫面 v002）</strong>；
+  標題 <strong>「HeavenMS 控制台」（口述）vs 畫面出現 10 個互不相同的字串</strong>（<code>Console Map 冒险岛</code>、
+  <code>HeavenMS-Nop v002 控制台</code>、<code>HuaweiMS-hqs 登录器</code>、<code>HeavenMS-Map (雪融)</code> 等）；
+  icon 檔名 <strong>mapleicon.ico（口述）vs <code>Mushroom.icon.png</code>（畫面 v000）</strong>。筆記已標明以口述為準。
+  <code>setResizable(false)</code> 只出現在畫面層（v000、L03 v007），口述全篇未提，<strong>待確認</strong>。</li>
+<li><strong>相關</strong>：見 W03-002、W03-003、W03-016</li>
+</ul>
+<h3 id="w03-002-file">W03-002　視窗圖示的路徑要加 <code>file:</code> 前綴，而且是一根斜槓<a class="headerlink" href="#w03-002-file" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>file:</code> <code>單斜槓</code> <code>IllegalArgumentException</code> <code>Invalid URL or resource not found</code> <code>getIcons</code> <code>Image</code></li>
+<li><strong>來源</strong>：第二課 00:00–05:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：這是第二課踩到的<strong>第一個坑</strong>。踩坑順序照錄：① 直接用相對路徑 → 報錯；
+  ② 換絕對路徑、把反斜槓換成斜槓 → <strong>還是報錯</strong>；③ 講者自己講出原因：
+  「因為我們的 image，它是要傳一個 <strong>URL</strong>」，最終在路徑前加 <strong><code>file:</code></strong> 才通過，
+  並特別提醒「<strong>這裡注意啊，是一根斜槓，不兩根斜槓</strong>」。講者反對把 icon 傳到圖床，
+  理由是圖床掛了本地就斷網，icon 會一直不顯示。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 修改前（畫面 v001 記錄的相對路徑寫法）</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">getIcons</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="s">"file:src/main/resources/img/mapleicon.ico"</span><span class="p">));</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// 口述定案的路徑寫法：file: 前綴 + 單斜線</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">getIcons</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="s">"file:src/main/resources/img/mapleicon.png"</span><span class="p">));</span>
+</code></pre></div>
+<p>錯誤原文（素材畫面 Console 報錯）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Exception in Application start method
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>java.lang.reflect.InvocationTargetException
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>...
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Caused by: java.lang.IllegalArgumentException: Invalid URL or resource not found
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    at javafx.scene.image.Image.validateUrl(Image.java:1110)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    at javafx.scene.image.Image.&lt;init&gt;(Image.java:618)
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    at App.start(App.java:15)
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>...
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Exception running application App
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>例外型別是 <code>java.lang.IllegalArgumentException</code></strong>——
+  素材錯誤原文為 <code>java.lang.IllegalArgumentException: Invalid URL or resource not found</code>。
+  ⚠️ 即使路徑寫對、<strong>不報錯了，icon 仍可能不顯示</strong>（本段收尾講者實測結果是「還是沒顯示」）。
+  ⚠️ 畫面層另記過絕對路徑 <code>&lt;DRIVE_E&gt;</code>，與口述「換台電腦就會報錯」的立場矛盾。
+  ⚠️ L02 筆記附錄的程式碼骨架註明「前綴封裝；<strong>開頭斜線數量待確認</strong>」。</li>
+<li><strong>相關</strong>：見 W03-003、W03-004</li>
+</ul>
+<h3 id="w03-003-javafx-image-ico-png">W03-003　JavaFX <code>Image</code> 解析不了 <code>.ico</code>，必須換成 PNG<a class="headerlink" href="#w03-003-javafx-image-ico-png" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>.ico</code> <code>PNG</code> <code>mapleicon.ico</code> <code>mapleicon.png</code> <code>資源路徑</code></li>
+<li><strong>來源</strong>：第二課 05:00–10:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：路徑改對之後 icon 還是不顯示，講者這才講出真正原因：
+  「<strong>因為這是一個 image，它解析不了 icon</strong>……<strong>icon 格式的它解析不了</strong>，
+  所以我們換成 PNG 試試。哎，它就出來了。」<strong>資源檔一律用 PNG。</strong>
+  這段是先花好幾輪路徑除錯、再換格式才成功的，順序反過來可省下繞路。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">getIcons</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="s">"file:src/main/resources/img/mapleicon.png"</span><span class="p">));</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ 資源目錄在素材中互相衝突：口述為 <code>resources</code> 下的 <code>image</code>（或 <code>img</code>）資料夾；
+  畫面 v006 記為 <code>View/close.png</code>、v013 記為 <code>btn/close.png</code>／<code>btn/exit-up.png</code>、v009 記為 <code>ui/login.png</code>。
+  ⚠️ 第三課的素材裡<strong>完全沒有出現</strong>任何圖示或按鈕檔名，該課的資源清單是<strong>沿用第二課</strong>，
+  出處不可標成本課口述。</li>
+<li><strong>相關</strong>：見 W03-002、W03-004、W03-013</li>
+</ul>
+<h3 id="w03-004-filetouritostring-image">W03-004　相對路徑要經 <code>File.toURI().toString()</code> 才能餵給 <code>Image</code>，並把前綴封裝進工具類<a class="headerlink" href="#w03-004-filetouritostring-image" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>toURI</code> <code>toString</code> <code>toURL</code> <code>deprecated</code> <code>ImageViewUtil</code> <code>resources/img</code> <code>封裝</code></li>
+<li><strong>來源</strong>：第二課 15:00–25:00｜<code>L02_第二课_教學筆記.md</code>；第三課 36:00–41:04（延續參數化）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：講者發現每次都用 image 都要寫一大串路徑，決定抽工具類。
+  轉換鏈是 <strong><code>File</code> → <code>toURI()</code> → <code>toString()</code></strong>：<code>File.toURL()</code> 在 JDK 原始碼裡已被標記
+  「<strong>過期了，已經失效</strong>」，講者逐字稿中明說「叫我們別用這個方法」。
+  再往前收一層：「我們是不是知道 image 就一定會放在 resource image 下面」——
+  把 <code>resources</code> + <code>img</code> 前綴也一併塞進方法本體，<strong>呼叫端只傳檔名</strong>。
+  講者把這段稱為封裝思想：「碰到這種常用的東西，一定要利用 Java 的封裝的那個思想」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="nf">getImageURL</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"resources/img/"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">path</span><span class="p">);</span><span class="w">   </span><span class="c1">// 前綴封裝；開頭斜線數量待確認</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">toURI</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span><span class="w">           </span><span class="c1">// File -&gt; URI -&gt; String</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>課堂上的除錯印碼（確認後刪除）：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">url</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>命名與語意不符</strong>：方法名帶 <code>URL</code>（<code>getImageURL</code>），實際回傳的是 <code>Image</code>；
+  講者先說「返回的是一個 URL」，結尾又說「我們返回的就是一個 image」。筆記建議自己改叫 <code>getImage</code>。
+  ⚠️ 工具類名四方對撞：口述 <code>ImageViewUtil</code>（第二課）／<code>ImageViewUtils</code>（第三課 a007，複數）／
+  畫面 <code>util.ImageUtil</code>（v004）／<code>utils.ImageUtil</code>（v005）／<code>ui.util.ImageTool</code>（v009）。<strong>兩者擇一即可，不影響功能。</strong>
+  ⚠️ 第三課 a007 抱怨 IDE 的 AI 補全外掛 <strong>CodeGeex</strong>「老給我提示一些亂乎乎的代碼」，輸入法被打斷。</li>
+<li><strong>相關</strong>：見 W03-002、W03-013、W03-014</li>
+</ul>
+<h3 id="w03-005-image-node-imageview">W03-005　<code>Image</code> 不是 <code>Node</code>，加進容器前必須用 <code>ImageView</code> 包一層<a class="headerlink" href="#w03-005-image-node-imageview" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Image</code> <code>Node</code> <code>ImageView</code> <code>getChildren().add</code> <code>iconView</code> <code>組件只能放組件</code></li>
+<li><strong>來源</strong>：第二課 10:00–15:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：本課最關鍵的 JavaFX 觀念。直接 <code>root.getChildren().add(image)</code> 會失敗，
+  因為容器要的是 <strong><code>Node</code></strong>。講者的原話：「<strong>我們只能往組件裡面添加組件，不能添加圖片。</strong>」
+  解法是用 <strong><code>ImageView</code></strong> 包一層——「<strong>它是一個組件，它是繼承了 Node</strong>」——
+  命名 <code>iconView</code>，再 <code>add</code> 進 <code>stageHead</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Image</span><span class="w">  </span><span class="n">iconImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="n">ImageViewUtil</span><span class="p">.</span><span class="na">getImageURL</span><span class="p">(</span><span class="s">"mapleicon.png"</span><span class="p">));</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">ImageView</span><span class="w"> </span><span class="n">iconView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ImageView</span><span class="p">(</span><span class="n">iconImage</span><span class="p">);</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">stageHead</span><span class="p">.</span><span class="na">getChildren</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">iconView</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ 標題文字若寫 <code>Label</code>，要避開 <strong>awt 的 <code>Label</code></strong>，用 <strong><code>javafx.scene.control.Label</code></strong>。
+  ⚠️ 畫面 v003 此段被解析成 Swing（<code>JFrame</code> / <code>JLabel</code> / <code>ImageIcon</code>），與口述的 JavaFX
+  技術棧完全不同，<strong>不採信</strong>。</li>
+<li><strong>相關</strong>：見 W03-006</li>
+</ul>
+<h3 id="w03-006-stagehead-hbox-icontitle">W03-006　自訂標題列是一個 <code>stageHead</code> HBox，裝 icon、title 與三顆按鈕<a class="headerlink" href="#w03-006-stagehead-hbox-icontitle" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>stageHead</code> <code>HBox</code> <code>titleHBox</code> <code>stageHead</code> 命名 <code>Label</code> <code>titleLabel</code> <code>addAll</code></li>
+<li><strong>來源</strong>：第二課 10:00–15:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：窗頭要放的東西講者一開始就列全了：「放的是我們的<strong>圖標、標題、最小化、最大化、關閉</strong>」，
+  且它們是「放了一列」→ <strong>符合 <code>HBox</code> 的橫向排列</strong>，所以窗頭用 <code>HBox stageHead</code>。
+  根節點則是 <code>VBox</code>，窗頭佔第一行、內容區佔第二行（講者命名慣例：「我們一般<strong>根節點就用 root 表示</strong>」）。
+  命名有個自我修正值得記：一開始想叫 <code>titleHBox</code>，馬上改口——
+  「就叫 <strong>stageHead</strong> 吧，不叫 title……我們其實是一個窗口的頭部」。
+  元件以 <code>addAll</code> 一次加入 <code>stageHead</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">HBox</span><span class="w"> </span><span class="n">stageHead</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HBox</span><span class="p">();</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">Label</span><span class="w">  </span><span class="n">titleLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Label</span><span class="p">(</span><span class="s">"HeavenMS 控制台"</span><span class="p">);</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">stageHead</span><span class="p">.</span><span class="na">getChildren</span><span class="p">().</span><span class="na">addAll</span><span class="p">(</span><span class="n">iconView</span><span class="p">,</span><span class="w"> </span><span class="n">titlePane</span><span class="p">,</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">                               </span><span class="n">minimizeButton</span><span class="p">,</span><span class="w"> </span><span class="n">maximizeButton</span><span class="p">,</span><span class="w"> </span><span class="n">closeButton</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ 忘了把元件加進容器就完全不生效——第三課「為什麼沒生效？因為<strong>沒有添加到這個 hbox 裡面去</strong>」。
+  ⚠️ 命名注意：第二課口述是 <code>stageHead</code>，第三課 a005 又稱 <code>stageHeader</code>，兩者指同一個 <code>HBox</code>。
+  ⚠️ 佈局選型（<code>BorderPane</code>／<code>FlowPane</code>／<code>GridPane</code>／<code>HBox</code>／<code>VBox</code>／<code>AnchorPane</code>／<code>StackPane</code>
+  七項逐一比對後選 <code>VBox</code>）的完整推理屬第一／二課，已收在別頁，不在此複製。</li>
+<li><strong>相關</strong>：見 W03-007、W03-008、W03-009</li>
+</ul>
+<h3 id="w03-007-title-sethgrow-label-pane">W03-007　讓 title 撐滿剩餘空間：<code>setHgrow</code> 對 <code>Label</code> 無效，要用 <code>Pane</code> 的子類<a class="headerlink" href="#w03-007-title-sethgrow-label-pane" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setHgrow</code> <code>Priority.ALWAYS</code> <code>Label</code> 沒有填充能力 <code>Pane</code> <code>setAlignment</code> <code>CENTER</code> <code>Font.font</code></li>
+<li><strong>來源</strong>：第二課 25:00–30:00、第二課 30:00–35:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：想把標題推到窗頭中間，講者先用 <code>HBox.setHGrow</code> 讓子元件填補空白，
+  參數查了之後是 <strong><code>Priority.ALWAYS</code></strong>。<strong>結果無效</strong>——原因是
+  「我們的 <strong>Label，它雖然是一個組件，但是它沒有填充的能力</strong>」。
+  有填充能力的是<strong>佈局（<code>Pane</code> 系列）</strong>。但換成 <code>Pane</code> 又有第二個問題：
+  「<strong>我們的 Pane……它沒有（對齊能力），因為它是一個最基礎的佈局</strong>」。
+  結論是<strong>用 <code>Pane</code> 的子類 <code>HBox</code></strong>：既撐滿剩餘空間（<code>Priority.ALWAYS</code>），
+  又可 <code>setAlignment(Pos.CENTER)</code> 置中。字體則用 <code>Font.font(family, weight, size)</code>
+  同時改字體、粗細、字號（<code>new Font(...)</code> 無法同時改大小與粗細）。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Label</span><span class="w"> </span><span class="n">titleLabel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Label</span><span class="p">(</span><span class="s">"HeavenMS 控制台"</span><span class="p">);</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">titleLabel</span><span class="p">.</span><span class="na">setFont</span><span class="p">(</span><span class="n">Font</span><span class="p">.</span><span class="na">font</span><span class="p">(</span><span class="n">System</span><span class="p">,</span><span class="w"> </span><span class="n">FontWeight</span><span class="p">.</span><span class="na">BOLD</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="p">));</span><span class="w">  </span><span class="c1">// 1=family, 2=粗細, 3=字號</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">HBox</span><span class="w">  </span><span class="n">titlePane</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HBox</span><span class="p">(</span><span class="n">titleLabel</span><span class="p">);</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">titlePane</span><span class="p">.</span><span class="na">setAlignment</span><span class="p">(</span><span class="n">javafx</span><span class="p">.</span><span class="na">geometry</span><span class="p">.</span><span class="na">Pos</span><span class="p">.</span><span class="na">CENTER</span><span class="p">);</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="n">HBox</span><span class="p">.</span><span class="na">setHgrow</span><span class="p">(</span><span class="n">titlePane</span><span class="p">,</span><span class="w"> </span><span class="n">javafx</span><span class="p">.</span><span class="na">scene</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">Priority</span><span class="p">.</span><span class="na">ALWAYS</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>重點是「撐滿剩餘空間」不是「均分」</strong>：<code>Priority.ALWAYS</code> 讓 title 吃掉 <code>stageHead</code>
+  剩下的<strong>全部</strong>寬度，把 icon 擠到最左、三顆按鈕擠到最右，標題才會置中。
+  ⚠️ <code>Label</code>、<code>ImageView</code>、<code>Button</code> 本身都沒有填充能力，直接對它們設 <code>setHgrow</code> 無效。
+  ⚠️ 僅靠 <code>Pane</code> 撐滿會讓 title 顯示在最左邊，「是不是不太行？」——<strong>對齊要另外用子類設</strong>。
+  ⚠️ 口述把對齊值列了一長串（<code>Center</code>、<code>BottomCenter</code>、<code>BottomLeft</code>、左上、右上…），<strong>結論是 <code>CENTER</code></strong>。</li>
+<li><strong>相關</strong>：見 W03-006、W03-015</li>
+</ul>
+<h3 id="w03-008-button-setgraphicimageview">W03-008　視窗按鈕必須做成 <code>Button</code> + <code>setGraphic</code>，<code>ImageView</code> 的點擊範圍太小<a class="headerlink" href="#w03-008-button-setgraphicimageview" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Button</code> <code>setGraphic</code> <code>ImageView</code> 點擊範圍 <code>minimizeButton</code> <code>setStyle</code> 透明</li>
+<li><strong>來源</strong>：第二課 45:00–50:00｜<code>L02_第二课_教學筆記.md</code></li>
+<li><strong>要點</strong>：一開始三顆按鈕是 <code>ImageView</code>，結果「<strong>這張圖其實有效的位置就是這根槓這裡</strong>」，
+  點到空白處不會最小化。需求是「<strong>我點到這一塊範圍以內的時候，是不是我都能夠最小化</strong>」。
+  解法是換成 <strong><code>Button</code></strong>，用 <strong><code>setGraphic</code></strong> 把圖片放進去，按鈕的整個矩形都是點擊區。
+  換完按鈕自帶外觀很難看，再用 <code>setStyle</code> 把背景設成 <code>transparent</code>。
+  ⚠️ 筆記註明：講者把成因歸於 <code>ImageView</code>，嚴格說是 PNG 的 <strong>alpha 透明區不產生滑鼠事件</strong>，
+  教學口徑可接受但成因描述略簡化。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Button</span><span class="w"> </span><span class="n">minimizeButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Button</span><span class="p">();</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">minimizeButton</span><span class="p">.</span><span class="na">setGraphic</span><span class="p">(</span><span class="n">minimize</span><span class="p">);</span><span class="w">                       </span><span class="c1">// 把 ImageView 設成圖形</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">minimizeButton</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>樣式要設定在 <code>Button</code> 上，不是 <code>ImageView</code> 上</strong>——講者把 hover 樣式寫到
+  <code>minimize</code>（<code>ImageView</code>）而沒反應，改寫到 <code>minimizeButton</code> 才生效。
+  ⚠️ 換成 <code>Button</code> 之後元件自帶 padding，<strong>窗頭間距因此可以歸零</strong>（第三課的 <code>setSpacing(0)</code>）。
+  ⚠️ 畫面 v003/v008/v014 此段被解析成 Swing（<code>JLabel</code> / <code>JFrame</code> / <code>addActionListener</code>），與口述不符，<strong>不採信</strong>。</li>
+<li><strong>相關</strong>：見 W03-006、W03-009、W03-012</li>
+</ul>
+<h3 id="w03-009">W03-009　最小化、最大化、關閉三顆按鈕各自的行為<a class="headerlink" href="#w03-009" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setIconified</code> <code>setFullScreen</code> <code>isFullScreen</code> <code>setMaximized</code> <code>isMaximized</code> <code>close</code> <code>setOnAction</code></li>
+<li><strong>來源</strong>：第二課 40:00–45:00（最小化）、第二課 50:00–55:00（最大化）、
+  第二課 55:00–56:35（關閉）｜<code>L02_第二课_教學筆記.md</code>；第三課 05:00–08:00（最大化改寫）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：三顆按鈕都在 <code>Button</code> 的 <code>setOnAction</code> 裡呼叫 <code>primaryStage</code> 的方法：
+  <strong>最小化</strong> <code>setIconified(true)</code>；<strong>最大化</strong> 第二課寫成 <code>setFullScreen(!primaryStage.isFullScreen())</code>，
+  第三課改成 <code>setMaximized(!primaryStage.isMaximized())</code>（理由見 W03-010）；
+  <strong>關閉</strong> <code>closeButton</code> 直接 <code>primaryStage.close()</code>。
+  講者驗收的標準是「點擊最小化就是最小化，點擊最大化就是最大化，點擊關閉就是關閉……
+  跟我們正常的一樣的」。三顆按鈕的寫法在第三課被抽成同一個方法（見 W03-014）。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// 最小化</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">minimizeButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setIconified</span><span class="p">(</span><span class="kc">true</span><span class="p">));</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="c1">// 最大化（第二課版：會變成全屏；第三課已改掉）</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1">// primaryStage.setFullScreen(!primaryStage.isFullScreen());</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="c1">// 最大化（第三課定案）</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">maximizeButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setMaximized</span><span class="p">(</span><span class="o">!</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">isMaximized</span><span class="p">()));</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1">// 關閉</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="n">closeButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">close</span><span class="p">());</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>口述驗收時疑似口誤</strong>：第二課 a010 結尾說「然後我們點擊一下<strong>最小化</strong>，它是不是<strong>退出全屏</strong>了？」——
+  <code>minimizeButton</code> 走的是 <code>setIconified(true)</code>，不可能退出全屏，<strong>應為「點擊最大化」</strong>。
+  ⚠️ 最小化第一版寫成 <code>minimize.setOnMouseClicked</code>（掛在 <code>ImageView</code> 上）點不到，必須配合 W03-008 換 <code>Button</code>。
+  ⚠️ <strong>第三課 a000 沒有重述最小化與關閉的行為</strong>，該課程式碼骨架是把第二課寫法沿用下來。</li>
+<li><strong>相關</strong>：見 W03-008、W03-010、W03-011</li>
+</ul>
+<h3 id="w03-010-setmaximizedismaximized-setfullscreen">W03-010　最大化用 <code>setMaximized</code>／<code>isMaximized</code>，不要用 <code>setFullScreen</code><a class="headerlink" href="#w03-010-setmaximizedismaximized-setfullscreen" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setFullScreen</code> <code>setMaximized</code> <code>isMaximized</code> <code>全屏</code> <code>最大化</code> <code>toggle</code></li>
+<li><strong>來源</strong>：第三課 00:00–05:00、第三課 05:00–08:00｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：第三課開場第一個發現的問題：「你看它的最大化<strong>只是填充到任務欄這裡就沒了</strong>，
+  它不會像我們這樣的<strong>直接就全屏了</strong>」。<strong>全屏與最大化是兩件事</strong>：全屏會蓋住工作列。
+  改成 <code>setMaximized</code>／<code>isMaximized</code> 的 toggle 寫法後驗收通過——
+  「<strong>完全替代上面的功能了，並且比上面的更好看</strong>」。講者並<strong>主動放棄</strong>系統的圖標變化動畫：
+  「它這裡有個圖標的變化，我們就不要這個變化了，<strong>沒什麼用。要那麼好看幹啥，夠我們使用就行了</strong>」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">maximizeButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">        </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setMaximized</span><span class="p">(</span><span class="o">!</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">isMaximized</span><span class="p">()));</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ 放棄動畫的代價：<strong>使用者看不到最大化／還原的狀態差異</strong>。
+  若產品要求狀態可辨識就不能省（筆記第 12 點補註）。
+  ⚠️ 口述 ASR 記成 <code>primary stage .setMaximize</code>，正確為 <code>primaryStage.setMaximized(...)</code>。
+  ⚠️ 逐字稿「我們最大化是不是和<strong>別的</strong>最大化不一樣」應為「和<strong>系統的</strong>最大化不一樣」。</li>
+<li><strong>相關</strong>：見 W03-009</li>
+</ul>
+<h3 id="w03-011-primarystageclose">W03-011　關閉視窗呼叫 <code>primaryStage.close()</code>，不是直接殺程序<a class="headerlink" href="#w03-011-primarystageclose" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>close()</code> <code>System.exit(0)</code> <code>JVM</code> 關視窗與結束程序 不可互換 <code>setOnAction</code></li>
+<li><strong>來源</strong>：第二課 55:00–56:35｜<code>L02_第二课_教學筆記.md</code>；第三課 36:00–41:04（未重述）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述的關閉按鈕事件是「點擊之後是不是 <strong><code>primaryStage</code> 就直接 close 了</strong>」，
+  即<strong>只關視窗</strong>，讓 JVM 走正常退出流程。畫面層則記成
+  <code>closeButton.addActionListener(e -&gt; { System.exit(0); });</code>——<strong>強制結束整個程序</strong>。
+  <strong>兩者行為不同，不可互換。</strong> 架構層為什麼不能直接殺程序（會掉檔）見 W14-004。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">closeButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">close</span><span class="p">());</span><span class="w">   </span><span class="c1">// ✅ 口述：只關視窗</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="c1">// ❌ 畫面 v014 記錄寫法（強制結束 JVM，與口述衝突）</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="c1">// closeButton.addActionListener(e -&gt; { System.exit(0); });</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>口述與畫面層的關閉寫法直接衝突</strong>（<code>close()</code> vs <code>System.exit(0)</code>），
+  且畫面那行連事件機制都是 Swing 的 <code>addActionListener</code> 而非 JavaFX 的 <code>setOnAction</code>。<strong>以口述為準。</strong>
+  ⚠️ <strong>第三課 a000 沒有重述關閉行為</strong>；該課程式碼骨架是沿用第二課的 <code>close()</code>。
+  ⚠️ 「會掉檔」這個具體後果<strong>在本兩課的素材中沒有出現</strong>（第二課只說兩者行為不同），
+  該理由屬架構層版本，見 W14-004。</li>
+<li><strong>相關</strong>：見 W03-009、<strong>見 W14-004</strong></li>
+</ul>
+<h3 id="w03-012-hover">W03-012　按鈕去背與 hover 變色：關閉鈕變紅，其餘取實測同色<a class="headerlink" href="#w03-012-hover" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setStyle</code> <code>setOnMouseEntered</code> <code>setOnMouseExited</code> <code>rgb(231, 234, 238)</code> <code>red</code> 危險操作 <code>setStyle</code> 整串覆寫</li>
+<li><strong>來源</strong>：第二課 45:00–50:00、第二課 50:00–55:00｜<code>L02_第二课_教學筆記.md</code>；第三課 00:00–05:00（關閉鈕紅）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：去背用 <code>setStyle("-fx-background-color: transparent;")</code>。
+  補上 <code>setOnMouseEntered</code> 讓滑鼠移入時變 <code>gray</code>——目的是「<strong>我怎麼知道它的範圍空間</strong>」，
+  用 hover 讓點擊範圍可見。第三課再把配色調成與標題列背景一致：
+  取色器實測為 <strong><code>231、234、238</code></strong>。<strong>關閉鈕的語意是危險操作</strong>：
+  「只有點擊最小化和最大化的時候才是這個顏色。我們點叉的時候它是不是就是紅色呀？
+  就是表示……<strong>這是一個危險的操作，我們不要亂點</strong>」→ 直接設 <code>red</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">b</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">);</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">b</span><span class="p">.</span><span class="na">setOnMouseEntered</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: gray;"</span><span class="p">));</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">b</span><span class="p">.</span><span class="na">setOnMouseExited</span><span class="p">(</span><span class="n">e</span><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: rgb(231, 234, 238);"</span><span class="p">));</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1">// 第三課：關閉鈕 hover 變紅，移出回透明</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="n">closeButton</span><span class="p">.</span><span class="na">setOnMouseEntered</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">closeButton</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: red;"</span><span class="p">));</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="n">closeButton</span><span class="p">.</span><span class="na">setOnMouseExited</span><span class="p">(</span><span class="n">e</span><span class="w">  </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">closeButton</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">));</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>setStyle</code> 是整串覆寫，不是增量</strong>——每次進／出都重寫完整 CSS 字串，
+  <strong>漏掉任何一個屬性都會把上一次的設定清掉</strong>。
+  ⚠️ 第二課把 hover 樣式寫到 <code>minimize</code>（<code>ImageView</code>）而非 <code>minimizeButton</code>，不生效；
+  診斷原話是「<strong>我們是不是給錯了？</strong>」
+  ⚠️ 配色數值不可混用：口述取到的是 <strong><code>231, 234, 238</code></strong>，畫面 v012 用取色器量到的是
+  <strong><code>#EEEEEE</code>（RGB 238,238,238）</strong>——<strong>末位不同（238 vs 234）</strong>，是兩段素材的獨立量測結果。</li>
+<li><strong>相關</strong>：見 W03-008、W03-014</li>
+</ul>
+<h3 id="w03-013-18">W03-013　圖示在下載時就指定尺寸，並把尺寸做成方法參數（預設 18）<a class="headerlink" href="#w03-013-18" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>new Image(url, requestedWidth, requestedHeight, preserveRatio, smooth)</code> <code>馬賽克</code> <code>128×128</code> <code>size</code> 預設 18 叉號 18</li>
+<li><strong>來源</strong>：第二課 35:00–40:00、第二課 40:00–45:00｜<code>L02_第二课_教學筆記.md</code>；第三課 00:00–05:00｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：圖片糊掉的成因講得很清楚：原圖 <strong>128 乘 128</strong> 載入，再被 <code>ImageView</code>
+  強行設成 20 乘 20，就會被壓縮成馬賽克。對策是<strong>在建構 <code>Image</code> 時就指定寬高</strong>，
+  「這樣他去下載這個資源的時候，也不需要下載成 128 乘 128」。確認生效後就把
+  <code>ImageView</code> 上的尺寸設定刪掉。第三課再加一個重構：既然有的要 20、有的要 18，
+  就把尺寸從類別常數改成<strong>方法參數</strong>——「<strong>沒傳的話默認就是 18</strong>」。
+  尺寸的取捨理由是對照字體：「<strong>18，因為我們的字體也就 16</strong>」；其餘則「18 小了，那它還得 20」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// 下載時就指定尺寸：口述為 20, 20, 保持比例, 保證品質</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="nf">getImage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="n">File</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">File</span><span class="p">(</span><span class="s">"resources/img/"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="na">toURI</span><span class="p">().</span><span class="na">toString</span><span class="p">();</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Image</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="p">}</span>
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="cm">/** 口述：沒傳 size 時默認就是 18 */</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="nf">getImage</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">getImage</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+<a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="p">}</span>
+<a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>
+<a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="c1">// 第三課的取用：叉號 18，其餘 20</span>
+<a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="n">Button</span><span class="w"> </span><span class="n">minimizeButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageButton</span><span class="p">(</span><span class="s">"minimize.png"</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a><span class="n">Button</span><span class="w"> </span><span class="n">maximizeButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getImageButton</span><span class="p">(</span><span class="s">"maximize.png"</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">);</span>
+<a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="n">Button</span><span class="w"> </span><span class="n">closeButton</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="n">getImageButton</span><span class="p">(</span><span class="s">"close.png"</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>Image</code> 建構子參數值有衝突且未解決</strong>：口述明確是 <strong><code>20, 20, 保持比例, 保證品質</code></strong>，
+  但畫面 v009 記為 <code>new Image(url, 0, 0, false, false)</code>——而且那還是<strong>為了閃過
+  <code>IllegalArgumentException</code> 而暫時改的除錯碼</strong>。<strong>筆記已標明「以口述為準」，此衝突未解。</strong>
+  註：v009 記的 <code>IllegalArgumentException: Invalid URL or resource not found</code>，
+  型別以素材錯誤原文為準是 <code>java.lang.IllegalArgumentException</code>。
+  ⚠️ 建構子簽名本身兩邊一致（<code>requestedWidth</code> / <code>requestedHeight</code> / <code>preserveRatio</code> / <code>smooth</code>），
+  衝突只在數值。
+  ⚠️ 畫面 v000 曾嘗試 <code>ImageUtils.getImage("mansion.png", 200, 200)</code>，且框架誤植為
+  <code>java.awt.Image</code> + <code>javax.swing.ImageIcon</code>——<strong>參數值 200 與口述的 18／20 不符，不採信</strong>。
+  ⚠️ 18 / 20 這些數字是當下螢幕與美感的結果，<strong>換解析度需重測</strong>。</li>
+<li><strong>相關</strong>：見 W03-004、W03-014</li>
+</ul>
+<h3 id="w03-014-getimagebutton">W03-014　三顆按鈕的重複程式碼抽成 <code>getImageButton</code><a class="headerlink" href="#w03-014-getimagebutton" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>getImageButton</code> <code>setGraphic</code> <code>透明背景內建</code> <code>重構</code> <code>ImageViewUtils</code></li>
+<li><strong>來源</strong>：第三課 36:00–41:04｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：三顆按鈕都是同一段程式碼——<code>new ImageView</code> → <code>setGraphic</code> → <code>setStyle</code> 透明。
+  講者回頭辨識出「<strong>它是不是一些重複性的代碼呀？</strong>」→ 「<strong>提煉出一個方法，叫 get 一個 imageButton</strong>」。
+  實作拆成四步：建立 <code>button</code>、建立 <code>ImageView</code>（塞入用上面方法生成的 <code>image</code>）、
+  <code>button.setGraphic(imageView)</code>、<code>return button</code>。<strong>背景透明內建在方法裡</strong>：
+  「<code>imageButton</code> 它的背景<strong>總是透明的</strong>……我們可以<strong>提前設置好</strong> <code>-fx-background-color</code>，
+  設置成 <code>transparent</code>。或者設置成一個 <code>none</code> 都行」。精簡後三顆按鈕各剩一行。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Button</span><span class="w"> </span><span class="nf">getImageButton</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w">    </span><span class="n">Button</span><span class="w">    </span><span class="n">button</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Button</span><span class="p">();</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="n">ImageView</span><span class="w"> </span><span class="n">imageView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ImageView</span><span class="p">(</span><span class="n">getImage</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">));</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="n">button</span><span class="p">.</span><span class="na">setGraphic</span><span class="p">(</span><span class="n">imageView</span><span class="p">);</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="c1">// 口述：背景總是透明的，可以提前設置好 transparent（或 none）</span>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="n">button</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">);</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">button</span><span class="p">;</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>方法名與工具類名在素材中三方對撞</strong>：口述是 <code>getImageButton</code> ＋ <code>ImageViewUtils</code>（a007）；
+  畫面 v008 給出 <code>getButton(String path) { return null; }</code>、v009 給出 <code>getTransparentButton(String text)</code>、
+  工具類 <code>uiUtils</code>——<strong>三者皆非同一物，已採口述。</strong>
+  ⚠️ <code>ImageViewUtils</code>（複數，第三課口述）與 <code>ImageViewUtil</code>（單數，第二課筆記）不一致，<strong>擇一即可</strong>。
+  ⚠️ 背景透明內建之後，<strong>hover 變色仍要另外設</strong>（見 W03-012），兩者不重複也不衝突。</li>
+<li><strong>相關</strong>：見 W03-008、W03-012、W03-013</li>
+</ul>
+<h3 id="w03-015-insets-31px">W03-015　窗頭排版的數值鏈：間距三輪下修、<code>Insets</code> 修正、實測高度 31px<a class="headerlink" href="#w03-015-insets-31px" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setSpacing</code> <code>setPadding</code> <code>Insets(5, 10, 5, 10)</code> <code>-fx-border-width</code> 量測 31 <code>setFitWidth</code> 28</li>
+<li><strong>來源</strong>：第二課 25:00–30:00、第二課 35:00–40:00、第二課 40:00–45:00｜<code>L02_第二课_教學筆記.md</code>；
+  第三課 00:00–05:00（間距）、第三課 30:00–33:00（圓角與 border 量測）｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：這些數字<strong>都是一輪輪試出來的</strong>。① 按鈕圖 <code>setFitWidth</code>／<code>setFitHeight</code>
+  先設 <strong>30</strong>，覺得太高，借鑑「<strong>我們正常的 IDE，它都用多大的大小。它是 28</strong>；然後我們看一下
+  <strong>VS code，它是多少？它也是 28</strong>」→ 全部改 <strong>28</strong>（試過用 <code>max height</code> 限制無效）。
+  ② 標題字號 <strong>20 → 16</strong> 並加粗。③ 間距 <code>setSpacing</code> <strong>20 → 15 → 0</strong>；
+  歸零的理由是「<strong>因為我們現在已經把它放到一個 button 裡面去了</strong>」，間距改由 Button 自身 padding 控制。
+  ④ <strong>用邊框量測實際高度</strong>：加 <code>-fx-border-width: 1</code> 後量到 <strong>44</strong>（被元件撐大），
+  推算 <code>28 + 10 + 10</code> 應為 48，於是改用非對稱邊距 → 複驗得到 <strong>31</strong>，
+  講者接受：「<strong>31 我覺得 31 也行，看起來也還可以</strong>」，然後刪掉除錯邊框。
+  <code>Insets</code> 的四值順序屬版面配置知識，<strong>見 W02-010</strong>，此處不複製。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">stageHead</span><span class="p">.</span><span class="na">setSpacing</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w">          </span><span class="c1">// 第二課 20 → 第三課 15 → 0</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="n">stageHead</span><span class="p">.</span><span class="na">setPadding</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Insets</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">));</span><span class="w">   </span><span class="c1">// 四值順序：上、右、下、左</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="n">stageHead</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-border-color: red; -fx-border-width: 1;"</span><span class="p">);</span><span class="w">  </span><span class="c1">// 量測用，除錯後刪</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>數值都是試值不是最佳解</strong>——講者自己說：
+  「<strong>這個字體和那個圖片的大小並不是說都設置成一樣就是對的……這裡只是給大家試。</strong>」
+  換解析度或 DPI 需要重測。
+  ⚠️ <strong>看不到邊框 ≠ 邊框沒有圓角</strong>：<code>border-width</code> 預設是 0，驗證手法是先把 <code>-fx-border-color</code>
+  設成「<strong>非常顯豔的紅色</strong>」把邊框畫出來，確認曲率對了再把顏色收掉。
+  ⚠️ <strong>口述自相矛盾一處</strong>：a006「我們的邊框的寬度是 1，我們，默認的邊框，邊框的寬度是 0」，
+  應理解為「<strong>默認 0，設成 1</strong>」。
+  ⚠️ 口述 ASR 記成「它是以<strong>右上角</strong>為它的基準的」，應為<strong>左上角</strong>（a005 自證）。
+  ⚠️ 畫面 v006 另記過 <code>setTranslateX(180)</code> → 改 <code>HBox.setMargin(close, new Insets(0, 0, 0, 180))</code>
+  這條定位線，<strong>口述全程未出現</strong>，屬未經講解的額外寫法。</li>
+<li><strong>相關</strong>：<strong>見 W02-010</strong>、見 W03-007、W03-016</li>
+</ul>
+<h3 id="w03-016-initstyle-stagestyle-transparent">W03-016　拔掉系統窗頭：<code>initStyle</code> 五種 <code>StageStyle</code> 逐一實測，定案 <code>TRANSPARENT</code><a class="headerlink" href="#w03-016-initstyle-stagestyle-transparent" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>initStyle</code> <code>StageStyle</code> <code>DECORATED</code> <code>UNDECORATED</code> <code>TRANSPARENT</code> <code>UTILITY</code> <code>UNIFIED</code> <code>show()</code> 之前</li>
+<li><strong>來源</strong>：第三課 08:00–12:00｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：自訂窗頭做完後要「把它原來的窗體的頭給它幹掉」，API 是
+  <code>primaryStage.initStyle(...)</code>，<strong>必須在 <code>show()</code> 之前呼叫</strong>。講者把五個列舉值
+  <strong>逐一跑出來看</strong>，這是第三課知識密度最高的一段：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>講者判斷（節錄）</th>
+<th>本課採用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DECORATED</code></td>
+<td>「它就是默認的」</td>
+<td>❌ 要幹掉的對象</td>
+</tr>
+<tr>
+<td><code>UNDECORATED</code></td>
+<td>「<strong>把窗頭給去掉的</strong>……它會給你生成一個<strong>白色的背景</strong>」</td>
+<td>⚠️ 試過，背景是白色</td>
+</tr>
+<tr>
+<td><code>TRANSPARENT</code></td>
+<td>「把窗頭去掉了……<strong>會把這個 stage 的背景給它變成透明</strong>」</td>
+<td>✅ <strong>定案</strong></td>
+</tr>
+<tr>
+<td><code>UTILITY</code></td>
+<td>「生成<strong>一個只有叉的一個窗口</strong>。圖標也沒了……<strong>在任務欄上也不顯示了</strong>……很怪異的樣式」</td>
+<td>❌ 排除</td>
+</tr>
+<tr>
+<td><code>UNIFIED</code></td>
+<td>「<strong>這不就是我們的 DECORATED 嗎</strong>」；不支援時<strong>降級成 <code>DECORATED</code></strong></td>
+<td>❌ 沒什麼用</td>
+</tr>
+</tbody>
+</table>
+<p><code>UNIFIED</code> 的直覺解釋：「Windows 的叉、最小化、最大化在<strong>右邊</strong>，Mac OS 在<strong>左邊</strong>……
+  所以它會變成各個系統對應的那個風格。」
+- <strong>程式碼</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">initStyle</span><span class="p">(</span><span class="n">StageStyle</span><span class="p">.</span><span class="na">TRANSPARENT</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>UTILITY</code> 會讓視窗在工作列上消失</strong>，講者描述為「很怪異的一個樣式」，
+  不小心設成這個會讓程式看起來像沒開起來。
+  ⚠️ <strong>拔掉系統窗頭後，系統的拖曳、最小化、最大化、關閉全部消失</strong>，全部要自己實作。
+  ⚠️ <code>UNIFIED</code> 的差異在第二課（33:00–36:00）做圓角時才真正發揮作用，
+  講者當時在 <code>UNDECORATED</code> 與 <code>TRANSPARENT</code> 之間來回切才想通。
+  ⚠️ 畫面 v002 的 <code>UNIFIED</code> Javadoc 描述<strong>在 1135 字處被截斷</strong>，末句停在
+  <code>The client area background is unified with the decorations. This is a</code>。
+  ⚠️ ASR 把 <code>DECORATED</code> 轉成 <code>decoratit</code>／<code>decorat</code>。</li>
+<li><strong>相關</strong>：見 W03-017、<strong>見 W14-002</strong></li>
+</ul>
+<h3 id="w03-017-offsetxoffsety">W03-017　無邊框後視窗拖不動：只留 <code>offsetX</code>／<code>offsetY</code> 兩個變數<a class="headerlink" href="#w03-017-offsetxoffsety" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setOnMouseDragged</code> <code>setOnMousePressed</code> <code>getScreenX</code> <code>getSceneX</code> <code>offsetX</code> <code>offsetY</code> <code>getClickCount</code> 雙擊最大化</li>
+<li><strong>來源</strong>：第三課 12:00–16:00、第三課 16:00–20:00、第三課 20:00–25:00、
+  第三課 25:00–30:00、第三課 30:00–33:00｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：切成 <code>TRANSPARENT</code> 之後「<strong>我們鼠標拖進來，誒，它沒動，它動不了</strong>」。
+  事件掛在 <strong><code>stageHead</code></strong> 上（因為所有子元件都在它裡面）。講者親手示範了<strong>四個版本</strong>：</li>
+<li>v1 直接 <code>setX(event.getScreenX())</code> → <strong>視窗會跳</strong>，指針跑到窗頭的 X、Y 上。</li>
+<li>v2 只記 <code>oldX</code>／<code>oldY</code> → <strong>視窗會漂移</strong>，因為 <code>Stage</code> 的 X/Y 每拖一次就變了，初始值卻不變。</li>
+<li>v3 補記 <code>oldStageX</code>／<code>oldStageY</code> → 正確，但<strong>要記四個變數</strong>。</li>
+<li><strong>v4（定案）只記 <code>offsetX</code>／<code>offsetY</code></strong>，依據是這個不變量：
+    「<strong>我們不管怎麼拖，鼠標相對於窗口的位置是不變的</strong>」——
+    所以<strong>新滑鼠位置減去偏移量就是視窗新位置</strong>。雙擊則用
+    <code>event.getClickCount() &lt; 2</code> 判斷、<strong>再雙擊要能還原</strong>，同樣走 <code>isMaximized</code> toggle。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="cm">/** 事件監聽集中放在方法最下面（本課的 codebase 慣例） */</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">attachStageHeadHandlers</span><span class="p">(</span><span class="n">HBox</span><span class="w"> </span><span class="n">stageHead</span><span class="p">,</span><span class="w"> </span><span class="n">Stage</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="c1">// 拖曳：按下時記「鼠標相對視窗左上角的偏移量」</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="n">stageHead</span><span class="p">.</span><span class="na">setOnMousePressed</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="n">offsetX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getScreenX</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getX</span><span class="p">();</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">        </span><span class="n">offsetY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="na">getScreenY</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">getY</span><span class="p">();</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="c1">// 拖曳：新滑鼠位置減掉偏移量 = 視窗新位置</span>
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">    </span><span class="n">stageHead</span><span class="p">.</span><span class="na">setOnMouseDragged</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">        </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setX</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getScreenX</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">offsetX</span><span class="p">);</span>
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">        </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setY</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getScreenY</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">offsetY</span><span class="p">);</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="c1">// 雙擊：最大化 / 還原切換</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="n">stageHead</span><span class="p">.</span><span class="na">setOnMouseClicked</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="na">getClickCount</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">            </span><span class="k">return</span><span class="p">;</span><span class="w">                                   </span><span class="c1">// 單擊不處理</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">        </span><span class="n">primaryStage</span><span class="p">.</span><span class="na">setMaximized</span><span class="p">(</span><span class="o">!</span><span class="n">primaryStage</span><span class="p">.</span><span class="na">isMaximized</span><span class="p">());</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>getScreenX/Y</code>（螢幕座標）與 <code>getSceneX/Y</code>（Scene 相對座標）不能混用</strong>——
+  兩者原點不同，相減會得到完全錯誤的偏移量。<strong>畫面 v003 記的正是 <code>getSceneX/getSceneY</code>，
+  與口述衝突，以口述為準。</strong>
+  ⚠️ 拖曳第一版失敗現象的診斷原話：「<strong>我們要拖拽的時候是以我們鼠標為基準的位置來進行拖拽，
+  而不是以窗口為基準的位置去拖拽</strong>。」<strong><code>Stage.setX/setY</code> 設的是視窗左上角。</strong>
+  ⚠️ <strong>v2 漂移的根因要記清楚</strong>：只記滑鼠初始位置沒用，視窗自己的座標每拖一次都在變。
+  ⚠️ 雙擊第一版只會放大不會還原，補上 <code>isMaximized</code> toggle 才對。
+  ⚠️ 口述提到 ASR 誤轉兩處：變數名 <code>old x stage y</code> 應為 <code>oldStageY</code>；
+  「<code>primary get Y</code>。歷史的」應為 <code>primaryStage.getX()</code>（舊的）。
+  ⚠️ 畫面 v005 出現兩種口述沒有的寫法：<code>if (yOffset &gt; 0 &amp;&amp; yOffset &lt; 30)</code> 的拖曳範圍限制、
+  <code>final double[]</code> 陣列繞過 Lambda 的 <code>final</code> 限制。<strong>兩者口述皆未出現，以口述為準。</strong>
+  ⚠️ 講者自訂了一條 codebase 慣例「<strong>事件監聽都放在最下面</strong>」，被追問理由時回答
+  「<strong>後面再說</strong>」——<strong>本課沒有回收這個伏筆</strong>。照做即可，理由待補。</li>
+<li><strong>相關</strong>：見 W03-016、<strong>見 W14-002</strong></li>
+</ul>
+<h3 id="w03-018">W03-018　圓角要四層同時到位，缺一層就看不出來<a class="headerlink" href="#w03-018" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>-fx-background-radius</code> <code>-fx-border-radius</code> <code>-fx-border-width</code> <code>-fx-border-color</code> 畫布透明 Stage 底板透明 圓角 10</li>
+<li><strong>來源</strong>：第三課 30:00–33:00、第三課 33:00–36:00｜<code>L03_第三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：動機來自 Win11 的審美：「<strong>我們是不是可以讓它變成圓角邊框</strong>？
+  不管是……<strong>當然我們變成圓角邊框的話，Win10 也會生效啊</strong>」——
+  <strong>刻意統一外觀，不是副作用</strong>。但 <code>root.setStyle("-fx-background-radius: 10")</code>
+  一開始<strong>沒生效</strong>，講者一路剝了四層才找到原因：
+  ① <code>root</code> 設 <code>-fx-background-radius: 10</code>（沒反應）→
+  ② 診斷出<strong>畫布（Scene）還是直角</strong>，「我們把畫布直接設置成透明」→
+  ③ 發現<strong>窗口自己的底板</strong>也要透明，在 <code>UNDECORATED</code>（白底）與 <code>TRANSPARENT</code>（透明）之間來回切才想通 →
+  ④ 補上 <strong><code>-fx-border-radius</code> 也要 10</strong>，而且「<strong>如果我們不把邊框的顏色給整出來的話，
+  發現它還是直角</strong>」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// 三、直接設在 root 上，單獨這樣設不會生效</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="n">root</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-radius: 10;"</span><span class="p">);</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1">// 二、畫布透明（口述：把畫布直接設置成透明；本行為筆記骨架的 # 補）</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="n">scene</span><span class="p">.</span><span class="na">setFill</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="c1">// 三、窗口底板也透明</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">initStyle</span><span class="p">(</span><span class="n">StageStyle</span><span class="p">.</span><span class="na">TRANSPARENT</span><span class="p">);</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span><span class="s">"-fx-background-color: transparent;"</span><span class="p">);</span><span class="w">   </span><span class="c1">// # 補（口述：把窗口的基地也給設置成透明）</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="c1">// 四、border 三件套：寬度 1、驗證用紅色、收尾改成 transparent</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="n">root</span><span class="p">.</span><span class="na">setStyle</span><span class="p">(</span>
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">        </span><span class="s">"-fx-background-radius: 10;"</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">        </span><span class="s">"-fx-border-width: 1;"</span><span class="w"> </span><span class="o">+</span>
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">        </span><span class="s">"-fx-border-color: transparent;"</span><span class="w"> </span><span class="o">+</span><span class="w">   </span><span class="c1">// 口述：把驗證用的紅色隱藏掉</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">        </span><span class="s">"-fx-border-radius: 10;"</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>-fx-border-width</code> 預設是 0，所以「邊框是直角的」這個現象會讓人誤判</strong>。
+  驗證手法值得學：<strong>先把 <code>-fx-border-color</code> 設成「非常顯豔的紅色」把邊框畫出來</strong>，
+  確認曲率對了，再把顏色收掉。<strong>看不到邊框 ≠ 邊框沒有圓角。</strong>
+  ⚠️ 圓角半徑與邊框半徑<strong>必須一致</strong>（皆 10），「那我們的邊框始終都是 10 弧度的曲面」。
+  ⚠️ <code>root.setStyle</code> 是<strong>整串覆寫</strong>：後一次設定會把前一次（<code>-fx-background-radius</code>）蓋掉，
+  所以三層效果要寫在同一個 <code>setStyle</code> 字串裡（見上方程式碼）。
+  ⚠️ 畫面 v008 把 <code>-fx-border-radius: 10</code> 放在登入項 <code>HBox</code> 上，與口述的「<code>root</code> 圓角 ＋
+  Stage 底板透明」<strong>是不同的事</strong>，且該處方法名為 <code>getButton</code>、與口述的 <code>getImageButton</code> 不符。</li>
+<li><strong>相關</strong>：見 W03-015、<strong>見 W14-002</strong></li>
+</ul>
+<h2 id="_4">本頁的坑總表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W03-001</td>
+<td>視窗尺寸／標題／icon 檔名在畫面層有三套互斥值，以口述為準；<code>setResizable(false)</code> 口述未提</td>
+<td>第二課 00:00–05:00、v000／v002</td>
+</tr>
+<tr>
+<td>W03-002</td>
+<td>例外型別是 <code>java.lang.IllegalArgumentException</code>；路徑寫對了 icon 仍可能不顯示；前綴開頭斜線數量待確認</td>
+<td>第二課 00:00–05:00、v000</td>
+</tr>
+<tr>
+<td>W03-003</td>
+<td>資源目錄衝突：<code>resources/img</code> vs <code>View/</code>、<code>btn/</code>、<code>ui/</code>；第三課素材完全沒有這些檔名（沿用第二課）</td>
+<td>第二課 05:00–10:00、v006／v009／v013</td>
+</tr>
+<tr>
+<td>W03-004</td>
+<td>方法名帶 <code>URL</code> 卻回傳 <code>Image</code>；工具類名四方對撞（<code>ImageViewUtil</code>／<code>ImageViewUtils</code>／<code>ImageUtil</code>／<code>ImageTool</code>）</td>
+<td>第二課 15:00–25:00、v004／v005／v009</td>
+</tr>
+<tr>
+<td>W03-005</td>
+<td><code>Label</code> 要避開 awt 版本；畫面 v003 被誤植為 Swing</td>
+<td>第二課 10:00–15:00、v003</td>
+</tr>
+<tr>
+<td>W03-006</td>
+<td>忘了 <code>add</code> 進容器就不生效；<code>stageHead</code> 與 <code>stageHeader</code> 兩種叫法指同一個 HBox</td>
+<td>第二課 10:00–15:00、第三課 00:00–05:00</td>
+</tr>
+<tr>
+<td>W03-007</td>
+<td><code>setHgrow</code> 對 <code>Label</code> 無效；<code>Pane</code> 本身無 <code>setAlignment</code>，要用子類</td>
+<td>第二課 25:00–35:00</td>
+</tr>
+<tr>
+<td>W03-008</td>
+<td>樣式要設在 <code>Button</code> 而非 <code>ImageView</code>；成因實為 alpha 透明區不收事件</td>
+<td>第二課 45:00–50:00</td>
+</tr>
+<tr>
+<td>W03-009</td>
+<td>口述驗收疑似口誤（說「點擊最小化退出全屏」）；最小化第一版掛在 <code>ImageView</code> 上點不到</td>
+<td>第二課 50:00–56:35</td>
+</tr>
+<tr>
+<td>W03-010</td>
+<td>放棄系統動畫的代價是使用者看不到最大化／還原狀態</td>
+<td>第三課 00:00–08:00</td>
+</tr>
+<tr>
+<td>W03-011</td>
+<td>口述 <code>close()</code> vs 畫面 <code>System.exit(0)</code> 語意不同，不可互換；第三課未重述</td>
+<td>第二課 55:00–56:35、v014</td>
+</tr>
+<tr>
+<td>W03-012</td>
+<td><code>setStyle</code> 整串覆寫；配色 <code>231,234,238</code> 與畫面量到的 <code>238,238,238</code> 不可混用</td>
+<td>第二課 45:00–55:00、v012</td>
+</tr>
+<tr>
+<td>W03-013</td>
+<td><strong><code>Image</code> 建構子參數值衝突未解</strong>：口述 20,20,true,true vs 畫面 0,0,false,false（且是閃例外用的除錯碼）</td>
+<td>第二課 35:00–45:00、v009</td>
+</tr>
+<tr>
+<td>W03-014</td>
+<td>方法名／工具類名三方對撞（<code>getImageButton</code> vs <code>getButton</code> vs <code>getTransparentButton</code>）</td>
+<td>第三課 36:00–41:04、v008／v009</td>
+</tr>
+<tr>
+<td>W03-015</td>
+<td>數值皆試值非最佳解；<code>border-width</code> 預設 0 造成誤判；口述「寬度 1／預設 0」自相矛盾</td>
+<td>第二課 25:00–45:00、第三課 30:00–36:00</td>
+</tr>
+<tr>
+<td>W03-016</td>
+<td><code>UTILITY</code> 會讓視窗在工作列消失；拔掉系統窗頭後所有視窗功能都要自己實作；v002 Javadoc 被截斷</td>
+<td>第三課 08:00–12:00、v002</td>
+</tr>
+<tr>
+<td>W03-017</td>
+<td><strong><code>getScreenX</code> 與 <code>getSceneX</code> 混用會算錯偏移</strong>（v003 誤用）；v2 漂移根因是視窗座標會變；「事件放最下面」的理由本課未回收</td>
+<td>第三課 12:00–33:00、v003／v005</td>
+</tr>
+<tr>
+<td>W03-018</td>
+<td>圓角四層缺一不可；<code>setStyle</code> 整串覆寫；看不到邊框不代表沒圓角</td>
+<td>第三課 30:00–36:00</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<blockquote>
+<p>⚠️ 本頁整理者的補充提醒，不是片中老師的原話。
+本頁的程式碼骨架取自兩份筆記第三節「可直接複製的程式碼骨架」，
+該節本身已標明「逐字稿未逐字唸出的行以 JavaFX 常規寫法補齊，已在行尾標註 <code># 補</code>」。
+引用時請注意 <code>scene.setFill(null)</code> 與 <code>primaryStage.setStyle("-fx-background-color: transparent;")</code>
+兩行屬筆記標記的 <code># 補</code> 行，其<strong>對應的口述原話只是「把畫布／窗口的基地設置成透明」</strong>，
+API 寫法是筆記整理時補上的。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W02 JavaFX 版面配置與元件樹">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W02 JavaFX 版面配置與元件樹
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-footer__link md-footer__link--next" aria-label="Next: W04 選單系統與視圖切換">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                W04 選單系統與視圖切換
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,5639 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
+      
+      
+        <meta name="author" content="Generated">
+      
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/80-console/W11_%E6%8C%87%E4%BB%A4%E7%AE%A1%E7%90%86/">
+      
+      
+        <link rel="prev" href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/">
+      
+      
+        <link rel="next" href="../W12_KOOK%E6%95%B4%E5%90%88/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>W11 指令管理 - MapleStory v83 二次開發 WIKI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#w11" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MapleStory v83 二次開發 WIKI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              W11 指令管理
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首頁
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../00-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  總覽
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../10-client-analysis/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  客戶端分析
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../20-server-emulators/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  服務端模擬器
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../30-ui-classes/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  UI Classes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../40-protocol/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Protocol
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../50-tools/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  工具
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../60-secondary-dev/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  二次開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  伺服器主控台開發
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../70-resources/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  原始資料
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CREDITS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  作者與致謝
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../REFERENCES/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引用來源
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../LICENSE/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  授權
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
+
+    </a>
+    MapleStory v83 二次開發 WIKI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../00-overview/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    總覽
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    總覽
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/project-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    專案地圖
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/integration-routes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    整合路線
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    客戶端分析
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    客戶端分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/v83-idb/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    v83.idb IDA 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    v83.idb IDA 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/technical-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    技術報告
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/decompiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Decompiled 函數
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/v83-idb/strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/ida-pro-mcp/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IDA Pro MCP
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/ida-pro-mcp/scripts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    自動分析腳本
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../10-client-analysis/wz-structures/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ 結構
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    WZ 結構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/wz-structures/ui-wz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI.wz 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../10-client-analysis/exe-reverse-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exe 逆向評估
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務端模擬器
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務端模擬器
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/cosmic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cosmic (GMS v083)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/heavenms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HeavenMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/solomapling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SoloMapling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/beidou/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BeiDou
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../30-ui-classes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UI Classes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    UI Classes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuiwnd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIWnd
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/cuitooltip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CUIToolTip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../30-ui-classes/item-equip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    裝備/道具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../40-protocol/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Protocol
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Protocol
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/opcodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Opcodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../40-protocol/packet-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet 分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../50-tools/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    工具
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    工具
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/kaentake/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    kaentake
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/maplestory-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MapleStory 專屬工具
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/wz-mod-tool/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WZ Mod Tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../50-tools/ida-pro-mcp-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IDA Pro MCP 設定
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../60-secondary-dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二次開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    二次開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/patches/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patches
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../60-secondary-dev/new-features/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    新功能
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    伺服器主控台開發
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    伺服器主控台開發
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基礎與版面
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    基礎與版面
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W01_%E7%92%B0%E5%A2%83%E3%80%81%E9%81%B8%E5%9E%8B%E8%88%87%E5%B0%88%E6%A1%88%E5%9F%BA%E7%A4%8E/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W01 環境、選型與專案基礎
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W02_JavaFX%E7%89%88%E9%9D%A2%E9%85%8D%E7%BD%AE%E8%88%87%E5%85%83%E4%BB%B6%E6%A8%B9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W02 JavaFX 版面配置與元件樹
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W03_%E8%A6%96%E7%AA%97%E8%88%87%E8%87%AA%E8%A8%82%E6%A8%99%E9%A1%8C%E5%88%97/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W03 視窗與自訂標題列
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W04_%E9%81%B8%E5%96%AE%E7%B3%BB%E7%B5%B1%E8%88%87%E8%A6%96%E5%9C%96%E5%88%87%E6%8F%9B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W04 選單系統與視圖切換
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_3" id="__nav_9_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    服務與設定
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    服務與設定
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W05_%E6%9C%8D%E5%8B%99%E8%B5%B7%E5%81%9C%E8%88%87%E6%97%A5%E8%AA%8C%E8%BC%B8%E5%87%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W05 服務起停與日誌輸出
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W06_%E8%BC%89%E5%85%A5%E5%BD%88%E7%AA%97%E8%88%87%E6%9C%8D%E5%8B%99%E5%99%A8%E8%A8%AD%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W06 載入彈窗與服務器設置
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W07_%E8%87%AA%E8%A8%82%E5%85%83%E4%BB%B6%E5%BA%AB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W07 自訂元件庫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W08_%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E8%88%87%E7%86%B1%E9%87%8D%E8%BC%89/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W08 配置管理與熱重載
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    功能頁
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    功能頁
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W09_%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD%E9%A0%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W09 常用功能頁
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W10 玩家管理與遊戲內發放
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W11 指令管理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w11-001-menucommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-001 註冊指令管理模組：加一個 MenuCommand 類別
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-002-cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-002 切換介面時務必把定時任務 cancel 掉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-003-center-pagination-createtableview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-003 center 改用 Pagination 並抽出 createTableView()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-004-onsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-004 把查詢抽成可複用的 onSearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-005-0-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-005 等級下拉的位偏移：要 &gt; 0 且減 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-006-conditions-whereor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-006 用 conditions 動態組 WHERE，or 片段必須加括號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-007-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-007 算頁數與填資料是兩條路，漏回填就「9 頁但沒資料」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-008-sqlite-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-008 服務沒起時 SQLite 數據源還沒 init()，查詢前要防呆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-009-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-009 指令有兩份：記憶體註冊表 vs 儲存檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-010-config_gmcommandis_work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-010 落庫寫 config_gmcommand，is_work 必須轉字串
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-011-addall-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-011 addAll 是淺拷貝，要逐筆 clone() 才不會污染原始值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-012-setcellfactory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-012 等級欄位不設 setCellFactory 就完全不可編輯
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-013-notchange-changecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-013 notChange 要整列一起判斷，否則會誤清 changeCommands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-014-return-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-014 保存流程：沒異動就 return → 落庫 → 回填 → 重載 → clear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-015-gm-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-015 為什麼 GM 指令一定要重載、不能走常規 reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-016-getinstance-npe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-016 getInstance() 不是取值是初始化，服務沒啟動就會 NPE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-017-registeredcommands-namedescribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-017 重載第一步：先刪舊（registeredCommands ＋ nameDescribe）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-018 重載第二步：再插新（依新等級追加到該等級清單尾端）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-019 重置：清空查詢條件與暫存，不動資料庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-020-update-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-020 恢復默認：全表 update ＋ 記憶體重置，先刷 UI 再判斷在線
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W12 KOOK 整合
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    打包與架構
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    打包與架構
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W13_%E6%89%93%E5%8C%85%E8%88%87%E9%83%A8%E7%BD%B2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W13 打包與部署
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W14_%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%A1%86%E6%9E%B6%E6%BA%90%E7%A2%BC%E6%9E%B6%E6%A7%8B/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W14 控制台框架源碼架構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W16_%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B%E8%88%87%E6%94%B9%E7%89%88%E5%AF%A6%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W16 協作流程與改版實作
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W18_%E7%94%A2%E5%93%81%E6%BC%94%E9%80%B2%E8%88%87%E5%AE%8C%E7%B5%90%E5%B1%95%E7%A4%BA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W18 產品演進與完結展示
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_9_6" id="__nav_9_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    遊戲機制與逆向
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_9_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    遊戲機制與逆向
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W15_%E4%BC%BA%E6%9C%8D%E5%99%A8%E9%81%8A%E6%88%B2%E6%A9%9F%E5%88%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W15 伺服器遊戲機制
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../W17_%E5%AE%A2%E6%88%B6%E7%AB%AF%E5%B0%81%E5%8C%85%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W17 客戶端封包分析
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../70-resources/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    原始資料
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    原始資料
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/raw-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Raw Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史文檔
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/external-links/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/WAND-EXT-offsets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WAND_EXT Offsets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CREDITS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    作者與致謝
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REFERENCES/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引用來源
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LICENSE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    授權
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        覆蓋來源
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        速查
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        條目
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="條目">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#w11-001-menucommand" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-001 註冊指令管理模組：加一個 MenuCommand 類別
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-002-cancel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-002 切換介面時務必把定時任務 cancel 掉
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-003-center-pagination-createtableview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-003 center 改用 Pagination 並抽出 createTableView()
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-004-onsearch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-004 把查詢抽成可複用的 onSearch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-005-0-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-005 等級下拉的位偏移：要 &gt; 0 且減 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-006-conditions-whereor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-006 用 conditions 動態組 WHERE，or 片段必須加括號
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-007-9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-007 算頁數與填資料是兩條路，漏回填就「9 頁但沒資料」
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-008-sqlite-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-008 服務沒起時 SQLite 數據源還沒 init()，查詢前要防呆
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-009-vs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-009 指令有兩份：記憶體註冊表 vs 儲存檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-010-config_gmcommandis_work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-010 落庫寫 config_gmcommand，is_work 必須轉字串
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-011-addall-clone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-011 addAll 是淺拷貝，要逐筆 clone() 才不會污染原始值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-012-setcellfactory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-012 等級欄位不設 setCellFactory 就完全不可編輯
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-013-notchange-changecommands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-013 notChange 要整列一起判斷，否則會誤清 changeCommands
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-014-return-clear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-014 保存流程：沒異動就 return → 落庫 → 回填 → 重載 → clear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-015-gm-reload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-015 為什麼 GM 指令一定要重載、不能走常規 reload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-016-getinstance-npe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-016 getInstance() 不是取值是初始化，服務沒啟動就會 NPE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-017-registeredcommands-namedescribe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-017 重載第一步：先刪舊（registeredCommands ＋ nameDescribe）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-018" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-018 重載第二步：再插新（依新等級追加到該等級清單尾端）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-019" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-019 重置：清空查詢條件與暫存，不動資料庫
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#w11-020-update-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        W11-020 恢復默認：全表 update ＋ 記憶體重置，先刷 UI 再判斷在線
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本頁的坑總表
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="w11">W11　指令管理<a class="headerlink" href="#w11" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>本頁為主題式重組，內容全部來自原始的 42 份逐片教學筆記，未引入外部資訊。
+每條可獨立引用；條目 ID 穩定，請勿隨意改號。</p>
+<p>⚠️ <strong>本頁最重要的一項揭露</strong>：<code>reloadGMCommand(List&lt;GmCommand&gt;)</code> 這個方法名<strong>在素材中並未逐字出現</strong>。
+它是筆記依口述「我們的 <code>reload</code> 也不能以常規的方式去 <code>reload</code>」的語意所取的<strong>重建名稱</strong>，
+<strong>不是畫面逐字記錄的原始碼</strong>（出處標為「口述語意重建」）。
+另一半必須同時保留的事實是：<strong>畫面層確實記到另一組重載方法</strong>
+——<code>reloadCommands(List&lt;GoCommand&gt;)</code> 與 <code>reloadCommands(List&lt;GvCommand&gt;)</code>，
+這兩個<strong>型別與方法名是素材有的</strong>，走的是「全新註冊」路徑，與口述的「刪舊＋插新」正面衝突。
+換言之：<strong><code>reloadCommands</code> 這兩個型別是素材有的；<code>reloadGMCommand</code> 這個名字是筆記推補的。</strong></p>
+</blockquote>
+<h2 id="_1">覆蓋來源<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>課次</th>
+<th>筆記檔</th>
+<th>本頁取用範圍</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>第二十三課（L23）</td>
+<td><code>L23_第二十三课_教學筆記.md</code></td>
+<td>全課（模組註冊、Timer 銷毀、分頁查詢、DAO、混查除錯）</td>
+</tr>
+<tr>
+<td>第二十四課（L24）</td>
+<td><code>L24_第二十四课_教學筆記.md</code></td>
+<td>全課（編輯事件、差異追蹤、落庫、指令重載）</td>
+</tr>
+<tr>
+<td>第二十五課（L25）</td>
+<td><code>L25_第二十五课_教學筆記.md</code></td>
+<td>全課（重置查詢、恢復默認、<code>getInstance()</code> 副作用）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">速查<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>一句話</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W11-001</td>
+<td>新增 <code>MenuCommand extends MenuAbstract</code>，再在 <code>MenuEnum</code> 註冊就會長出選單按鈕</td>
+</tr>
+<tr>
+<td>W11-002</td>
+<td>切換介面／銷毀時務必 <code>timer.cancel()</code>，否則背景任務殘留</td>
+</tr>
+<tr>
+<td>W11-003</td>
+<td>資料來自資料庫就不能直接放 <code>TableView</code>，<code>center</code> 要改用 <code>Pagination</code></td>
+</tr>
+<tr>
+<td>W11-004</td>
+<td>查詢抽成可複用的 <code>onSearch</code>，回車與按鈕共用同一個方法</td>
+</tr>
+<tr>
+<td>W11-005</td>
+<td>等級下拉的 <code>selectedIndex</code> 要 <code>&gt; 0</code> 且減 1，否則「所有」被當成 <code>gm_level = 0</code></td>
+</tr>
+<tr>
+<td>W11-006</td>
+<td>用 <code>List&lt;String&gt; conditions</code> 動態組 <code>WHERE</code>，<code>or</code> 片段必須加括號</td>
+</tr>
+<tr>
+<td>W11-007</td>
+<td>算頁數與填資料是兩條路，漏掉回填就會「9 頁但沒資料」</td>
+</tr>
+<tr>
+<td>W11-008</td>
+<td>服務沒起時 SQLite 數據源還沒 <code>init()</code>，查詢前要先防呆</td>
+</tr>
+<tr>
+<td>W11-009</td>
+<td>指令同時活在記憶體註冊表與儲存檔，兩邊都要動才會生效</td>
+</tr>
+<tr>
+<td>W11-010</td>
+<td>落庫寫 <code>config_gmcommand</code>，<code>is_work</code> 必須 <code>String.valueOf</code> 轉字串</td>
+</tr>
+<tr>
+<td>W11-011</td>
+<td><code>addAll</code> 是淺拷貝會污染原始值，要逐筆 <code>clone()</code></td>
+</tr>
+<tr>
+<td>W11-012</td>
+<td>等級欄位不設 <code>setCellFactory</code> 就完全不可編輯</td>
+</tr>
+<tr>
+<td>W11-013</td>
+<td><code>notChange</code> 要整列一起判斷，只比對剛編輯那一欄會誤清 <code>changeCommands</code></td>
+</tr>
+<tr>
+<td>W11-014</td>
+<td>保存流程：沒異動就 return → 落庫 → 回填 <code>originalCommands</code> → 重載 → <code>clear</code></td>
+</tr>
+<tr>
+<td>W11-015</td>
+<td>GM 指令不能走常規 reload：<code>CommandExecutor</code> 是單例懶漢，且指令全來自資料表</td>
+</tr>
+<tr>
+<td>W11-016</td>
+<td><code>getInstance()</code> 不是取值是初始化，服務沒啟動就會 NPE</td>
+</tr>
+<tr>
+<td>W11-017</td>
+<td>重載第一步是<strong>先刪舊</strong>：<code>registeredCommands</code> 與 <code>nameDescribe</code> 都要刪</td>
+</tr>
+<tr>
+<td>W11-018</td>
+<td>重載第二步是<strong>再插新</strong>：依新等級追加到該等級清單尾端</td>
+</tr>
+<tr>
+<td>W11-019</td>
+<td>重置只清查詢條件與暫存，不動資料庫、不需要服務啟動</td>
+</tr>
+<tr>
+<td>W11-020</td>
+<td>恢復默認是全表 <code>update</code> ＋ 記憶體重置，兩者必須成對呼叫</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">條目<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="w11-001-menucommand">W11-001　註冊指令管理模組：加一個 <code>MenuCommand</code> 類別<a class="headerlink" href="#w11-001-menucommand" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>MenuCommand</code> <code>MenuAbstract</code> <code>MenuEnum</code> <code>show()</code> <code>COMMAND</code> <code>v2.menu</code></li>
+<li><strong>來源</strong>：L23 00:00–04:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：要新增一個選單模組，做法固定兩步：<strong>新增 <code>MenuCommand extends MenuAbstract</code></strong>（覆寫 <code>protected void show()</code> 決定右側內容），
+  然後<strong>在 <code>MenuEnum</code> 枚舉註冊</strong>一筆，左側導覽列就會自動長出「指令管理」按鈕。
+  講者明說「介面相關的東西都是一樣的，直接抄一下就行了」——上一課的玩家管理 <code>MenuPlayer</code> 就是同一副骨架。
+  註冊前點擊會顯示「功能在开发中，敬请期待！」，註冊後按鈕才真正可切換。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">v2.menu</span><span class="p">;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MenuCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">MenuAbstract</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">show</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="n">VBox</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VBox</span><span class="p">();</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">        </span><span class="c1">// 後續將貼上佈局代碼</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// MenuEnum.java</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">COMMAND</span><span class="p">(</span><span class="s">"指令管理"</span><span class="p">,</span><span class="w"> </span><span class="n">MenuCommand</span><span class="p">.</span><span class="na">class</span><span class="p">),</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ 筆記的畫面理解層對類別名辨識有明顯失真（同一個角色被記成 <code>MenuCommand</code>／<code>StoreCommand</code>／<code>ServerCommand</code>／<code>ServerGUI</code> 等），
+  <strong>以口述為準</strong>；畫面讀到的檔名照錄但不採信。</li>
+<li><strong>相關</strong>：見 W10（玩家管理）、見 W14-008（<code>menuList</code> 加字串就長出選單按鈕，機制同型）</li>
+</ul>
+<h3 id="w11-002-cancel">W11-002　切換介面時務必把定時任務 <code>cancel</code> 掉<a class="headerlink" href="#w11-002-cancel" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Timer</code> <code>destroy()</code> <code>timer.cancel()</code> <code>timer = null</code> <code>銷毀</code> <code>背景任務殘留</code></li>
+<li><strong>來源</strong>：L23 00:00–04:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：上一課留了一個定時刷新任務，<strong>銷毀的時候沒把它銷毀掉、切換介面時也沒銷毀</strong>，導致背景任務殘留。
+  本課第一件事就是<strong>重寫 <code>destroy()</code></strong>：<code>timer</code> 不為 null 時先 <code>cancel()</code>，再 <code>timer = null</code>。
+  口述理由是「切換介面以後不需要刷新了」——資源要跟著介面的生命週期走，不要跨頁殘留。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@Override</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">timer</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="n">timer</span><span class="p">.</span><span class="na">cancel</span><span class="p">();</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="n">timer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="kd">super</span><span class="p">.</span><span class="na">destroy</span><span class="p">();</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>漏掉 <code>cancel</code> 的症狀是「表面正常、背景一直在跑」</strong>——
+  介面切走了但定時任務仍持有資源，久了會以非預期的方式干擾新頁面。本課開頭就在修這個。
+  ⚠️ 筆記註明這段是<strong>上一課的遺留 bug</strong>，不是本課新功能。</li>
+</ul>
+<h3 id="w11-003-center-pagination-createtableview">W11-003　<code>center</code> 改用 <code>Pagination</code> 並抽出 <code>createTableView()</code><a class="headerlink" href="#w11-003-center-pagination-createtableview" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>Pagination</code> <code>setPageFactory</code> <code>createTableView</code> <code>setEditable</code> <code>PAGE_SIZE</code> <code>分頁</code></li>
+<li><strong>來源</strong>：L23 04:00–08:00、32:00–36:00、36:00–40:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>指令資料來自資料庫，不能像玩家管理那樣直接把 <code>TableView</code> 放進 <code>center</code>，要改用 <code>Pagination</code></strong>。
+  講者給的兩個理由是：「不會說我全查，查得慢」＋「既然原來就不在內存裡面去，我們就沒必要把內存弄得很大」，
+  沿用的是<strong>配置管理</strong>的分頁查詢模板。<code>setPageFactory</code> 傳進來的 <code>index</code> 就是頁碼，裡面 <code>create TableView</code> 放進 Pagination。
+  另外<strong>必須 <code>setEditable(true)</code></strong>——後續「改／保存」兩步都建立在儲存格可編輯之上。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Pagination</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Pagination</span><span class="p">();</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">center</span><span class="p">.</span><span class="na">setPageFactory</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// 先建立「空表格」，資料在背景 Task 完成後回填</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">TableView</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tableView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createTableView</span><span class="p">();</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="c1">// ... searchLoading.execute() ...</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tableView</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">});</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="kd">private</span><span class="w"> </span><span class="n">TableView</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createTableView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="n">TableView</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">tableView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TableView</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">tableView</span><span class="p">.</span><span class="na">setEditable</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span><span class="w">   </span><span class="c1">// 口述：後續「改／保存」需要</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tableView</span><span class="p">;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>忘記 <code>setEditable(true)</code>，後續「改／保存」功能會直接不能用</strong>（<code>setOnEditCommit</code> 不會觸發）。
+  ⚠️ <code>setPageFactory</code> 的 <code>index</code> 基準在筆記裡<strong>畫面與口述直接矛盾</strong>（見 W11-009 的 offset 坑），實作前必須自行驗證。</li>
+</ul>
+<h3 id="w11-004-onsearch">W11-004　把查詢抽成可複用的 <code>onSearch</code><a class="headerlink" href="#w11-004-onsearch" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>onSearch</code> <code>setOnAction</code> <code>searchInput</code> <code>searchButton</code> <code>levelComboBox</code> <code>回車查詢</code> <code>Platform.runLater</code></li>
+<li><strong>來源</strong>：L23 20:00–24:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：查詢要<strong>抽成一個方法</strong>，因為「這個查詢是可以<strong>複用</strong>的」。
+  綁定時 <code>searchInput.setOnAction</code> 與 <code>searchButton.setOnAction</code> <strong>都指向同一個 <code>onSearch</code></strong>，
+  也就是「在這裡輸入完以後敲一下回車會查詢」，同時點按鈕也可以。
+  方法簽章要把 <code>Pagination</code> 與<strong>所有查詢條件</strong>一起傳進去；本頁比別的介面多一個條件，就是等級的 <code>comboBox</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">searchInput</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">onSearch</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">searchInput</span><span class="p">,</span><span class="w"> </span><span class="n">levelComboBox</span><span class="p">));</span><span class="w">   </span><span class="c1">// 敲回車也能查</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">searchButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">onSearch</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">searchInput</span><span class="p">,</span><span class="w"> </span><span class="n">levelComboBox</span><span class="p">));</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">onSearch</span><span class="p">(</span><span class="n">Pagination</span><span class="w"> </span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">TextField</span><span class="w"> </span><span class="n">searchInput</span><span class="p">,</span><span class="w"> </span><span class="n">ComboBox</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">levelComboBox</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">searchText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">searchInput</span><span class="p">.</span><span class="na">getText</span><span class="p">();</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">selectedIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">levelComboBox</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">getSelectedIndex</span><span class="p">();</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="c1">// ... 非同步 Task ...</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ 查詢在 <code>Task</code> 背景執行緒跑完後，<strong>必須 <code>Platform.runLater(...)</code> 切回 JavaFX Application Thread 更新 UI</strong>，
+  漏了就會在非 FX 執行緒改動元件。筆記另記錄畫面與口述在 <code>StrUtil.isNotEmpty</code>／<code>CharSequenceUtil.isNotBlank</code>、
+  <code>ToolUtils.isArrEmpty</code>／<code>CollUtil.isNotEmpty</code> 上有差異，兩者都保留。</li>
+</ul>
+<h3 id="w11-005-0-1">W11-005　等級下拉的位偏移：要 <code>&gt; 0</code> 且減 1<a class="headerlink" href="#w11-005-0-1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>selectedIndex</code> <code>gm_level</code> <code>位偏移</code> <code>indexOf</code> <code>gmLevel</code> <code>0 開始</code></li>
+<li><strong>來源</strong>：L23 44:00–47:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：UI 下拉選單的第 0 項是「所有」，第 1 項才對應資料庫的 <code>gm_level = 0</code>；
+  但 <code>getSelectedIndex()</code> 本身是 <strong>0 開始</strong>，<code>ComboBox</code> 一開始沒選時回 <code>-1</code>。
+  因此條件必須寫成 <code>if (selectedIndex &gt; 0)</code> 並用 <strong><code>selectedIndex - 1</code></strong>，
+  否則會出現「想查等級 1，卻把等級 3 也查出來」的現象。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// 修改前</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedIndex</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">conditions</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"gm_level = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">selectedIndex</span><span class="p">);</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">// 修改後（下拉選單第一項 Index 0 是「所有」，第二項 Index 1 才是對應 gm_level = 0 的玩家指令）</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selectedIndex</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="n">conditions</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">"gm_level = "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">selectedIndex</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">}</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>用 <code>!= -1</code> 判斷會把「所有」誤當成 <code>gm_level = 0</code></strong>，這是本課實測才抓到的偏移。
+  ⚠️ 筆記記錄這是<strong>逐步修正的過程</strong>（<code>!= -1</code> → <code>&gt; 0</code> → <code>&gt; 0</code> ＋ <code>selectedIndex - 1</code>），不是三個並存版本。
+  ⚠️ 下拉選單的畫面讀值（<code>1000, 1, 2, 3, 4, 5, 12</code>）與口述（GM 0～6 級，最高 6 級）不符，<strong>以口述為準</strong>。</li>
+</ul>
+<h3 id="w11-006-conditions-whereor">W11-006　用 <code>conditions</code> 動態組 <code>WHERE</code>，<code>or</code> 片段必須加括號<a class="headerlink" href="#w11-006-conditions-whereor" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>List&lt;String&gt; conditions</code> <code>String.join</code> <code>like</code> <code>CollUtil.isNotEmpty</code> <code>or</code> <code>and</code> <code>括號</code></li>
+<li><strong>來源</strong>：L23 24:00–32:00、47:00–50:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：查詢條件用 <code>List&lt;String&gt; conditions</code> 逐條收集，最後以 <strong><code>String.join(" and ", conditions)</code></strong> 一次組裝。
+  講者選這個寫法是因為「我們的 <code>String</code> 它有一個 <code>join</code> 方法……所以我就懶得自己手動拼了」。
+  關鍵字條件是 <code>command like '%…%' or description like '%…%'</code>。
+  ⚠️ <strong>這裡的 <code>or</code> 片段一定要用括號包起來</strong>：<code>or</code> 的查詢優先級比 <code>and</code> 低，
+  不括起來會變成 <code>command like … OR (description like … AND gm_level = x)</code>，混查時結果全錯。
+  講者自評之前沒踩到是因為「之前所有的界面都是只有一個查詢條件」，<strong>條件從一個變成兩個就會出問題</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conditions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">StrUtil</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">(</span><span class="n">searchText</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// ⚠️ 括號不可省：or 的優先級比 and 低，否則混查會出錯（本課 47:00 段的關鍵修正）</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">conditions</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">" (command like '%"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">searchText</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"%' or description like '%"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">searchText</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">"%') "</span><span class="p">);</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">}</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CollUtil</span><span class="p">.</span><span class="na">isNotEmpty</span><span class="p">(</span><span class="n">conditions</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">sql</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">" where "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">join</span><span class="p">(</span><span class="s">" and "</span><span class="p">,</span><span class="w"> </span><span class="n">conditions</span><span class="p">);</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>SQL 注入風險</strong>：<code>conditions.add(" (command like '%" + searchText + "%' …)")</code> 是<strong>字串直接拼接</strong>，
+  使用者輸入的單引號會破壞 SQL 語法（筆記標明本片未提及，但程式碼本身是示範）。
+  ⚠️ SQL 欄位名以資料庫語法為準：口述明講「<strong>一定要看我們表裡面是怎麼寫的……千萬不要按照我們 Java 的語法來查</strong>」，
+  欄位是 <code>gm_level</code> 而非 <code>level</code>。
+  ⚠️ 括號修正的<strong>實際發生時點存疑</strong>：口述 47:00 才當新發現講解，但 36:00–40:00 的畫面截錄已帶括號。</li>
+</ul>
+<h3 id="w11-007-9">W11-007　算頁數與填資料是兩條路，漏回填就「9 頁但沒資料」<a class="headerlink" href="#w11-007-9" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>selectCountByCondition</code> <code>selectPageByCondition</code> <code>setPageCount</code> <code>Math.ceil</code> <code>setItems</code> <code>回填</code></li>
+<li><strong>來源</strong>：L23 32:00–36:00、36:00–40:00、40:00–44:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：分頁有兩個查詢：<strong>先 <code>selectCountByCondition</code> 查總筆數算總頁數</strong>（<code>setPageCount</code>），
+  <strong>再 <code>selectPageByCondition</code> 依頁碼查資料並回填表格</strong>。
+  頁數用一行搞定：<code>center.setPageCount((int) Math.ceil((double) count / PAGE_SIZE))</code>，
+  <code>PAGE_SIZE</code> 為 <strong>20</strong>；<code>MapUtil.getInt(selectOne, "count", 0)</code> 在取不到值時預設回 <strong>0</strong>。
+  查完資料<strong>一定要 <code>commands.addAll(...)</code> 再 <code>setItems(commands)</code> 回填</strong>——本課實測卡在這裡。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">originalCommands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">   </span><span class="c1">// 查詢時的原始資料</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="kd">private</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">changeCommands</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w">   </span><span class="c1">// 使用者改動後的資料</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="n">searchLoading</span><span class="p">.</span><span class="na">setOnSucceeded</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GmCommandDao</span><span class="p">.</span><span class="na">selectCountByCondition</span><span class="p">(</span><span class="n">searchText</span><span class="p">,</span><span class="w"> </span><span class="n">selectedIndex</span><span class="p">);</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="n">Platform</span><span class="p">.</span><span class="na">runLater</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">        </span><span class="n">center</span><span class="p">.</span><span class="na">setPageCount</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="na">ceil</span><span class="p">((</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">));</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="p">});</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">    </span><span class="c1">// 切頁時的取資料流程（在 setPageFactory 內）</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">    </span><span class="n">originalCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">                                   </span><span class="c1">// 每次查完先 clear 舊資料</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="n">originalCommands</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">        </span><span class="n">GmCommandDao</span><span class="p">.</span><span class="na">selectPageByCondition</span><span class="p">(</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">PAGE_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">searchText</span><span class="p">,</span><span class="w"> </span><span class="n">selectedIndex</span><span class="p">));</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">    </span><span class="n">commands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">    </span><span class="n">commands</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">originalCommands</span><span class="p">);</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="n">Platform</span><span class="p">.</span><span class="na">runLater</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">tableView</span><span class="p">.</span><span class="na">setItems</span><span class="p">(</span><span class="n">commands</span><span class="p">));</span><span class="w">      </span><span class="c1">// ← 這行「回填」不能漏</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="p">});</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>setPageCount</code> 算出 9 頁不代表有資料</strong>；<code>selectList</code> 查出 20 條也可能忘記 <code>addAll</code> 再 <code>setItems</code>。
+  分頁查詢必須「算頁數」與「填資料」兩條路都打通。
+  ⚠️ <strong>每次查完要先把 <code>originalCommands.clear()</code></strong>，否則舊查詢結果會累積。
+  ⚠️ offset 計算<strong>畫面與口述直接矛盾</strong>（見 W11-009）。</li>
+</ul>
+<h3 id="w11-008-sqlite-init">W11-008　服務沒起時 SQLite 數據源還沒 <code>init()</code>，查詢前要防呆<a class="headerlink" href="#w11-008-sqlite-init" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>SqliteConnection</code> <code>isInitialized</code> <code>init</code> <code>防呆</code> <code>MySQLConnection</code> <code>不需要初始化</code></li>
+<li><strong>來源</strong>：L23 28:00–32:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：口述點出一個環境陷阱：可能一進來沒起服務、沒初始化任何東西就<strong>直接查指令</strong>，
+  這時 <strong>SQLite 數據源是沒有被初始化的</strong>。解法是 <code>if</code> 判斷後補 <code>init()</code>。
+  效果是「<strong>即便不起服務的情況下，也能從我們的數據庫裡面去查到這些 GM 指令</strong>」。
+  對照組是 <strong>MySQL 不用初始化</strong>——講者說「像這種的話，就很依賴服務，一定要啟動」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">isInitialized</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">init</span><span class="p">();</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>SQLite 未初始化會直接炸</strong>；反過來，MySQL 連線<strong>不需要</strong>初始化（依賴服務已啟動）。
+  ⚠️ 這條與「重載指令必須服務啟動」是<strong>兩件不同的事</strong>（見 W11-016）：<strong>查詢</strong>可以在服務沒起時做，<strong>重載</strong>不行。</li>
+</ul>
+<h3 id="w11-009-vs">W11-009　指令有兩份：記憶體註冊表 vs 儲存檔<a class="headerlink" href="#w11-009-vs" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>registeredCommands</code> <code>nameDescribe</code> <code>config_gmcommand</code> <code>CommandExecutor</code> <code>持久化</code> <code>getGMCommands</code> <code>commands.js</code></li>
+<li><strong>來源</strong>：L24 24:00–28:00、36:00–40:00｜<code>L24_第二十四课_教學筆記.md</code>；L23 36:00–40:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>這是 L23→L24→L25 三課的貫通主軸：同一條 GM 指令同時活在兩個地方，改動必須兩邊都動。</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>位置</th>
+<th>內容</th>
+<th>誰在讀</th>
+<th>改了會怎樣</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>儲存檔</strong>（SQLite <code>config_gmcommand</code>）</td>
+<td>指令設定本體：<code>command</code>、<code>gm_level</code>、<code>is_work</code>、<code>gm_level_primitive</code> 等</td>
+<td>查詢（分頁）、保存、恢復默認</td>
+<td>重啟後才會反映</td>
+</tr>
+<tr>
+<td><strong>記憶體</strong> <code>registeredCommands</code></td>
+<td>指令碼（小寫）→ <code>Command</code> 實例</td>
+<td>指令派發（輸入這串字要執行哪個類別）</td>
+<td>改了不會自動生效</td>
+</tr>
+<tr>
+<td><strong>記憶體</strong> <code>nameDescribe</code></td>
+<td>依等級分桶的名稱／描述清單，bucket index = 等級</td>
+<td><code>getGMCommands()</code> → <code>commands.js</code> → 遊戲內 <code>@help</code></td>
+<td>改了不會自動生效</td>
+</tr>
+</tbody>
+</table>
+<p>指令管理頁的所有按鈕都是<strong>寫儲存檔 + 重載記憶體</strong>的組合：查詢／重置只碰儲存檔與畫面，
+  保存／恢復默認才動記憶體。
+- <strong>程式碼</strong>：</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">selectPageByCondition</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pageNo</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">pageSize</span><span class="p">,</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">                                                    </span><span class="n">String</span><span class="w"> </span><span class="n">searchText</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">selectedIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"select * from gm_command"</span><span class="p">;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="n">sql</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">" order by id asc limit ?, ?"</span><span class="p">;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pageNo</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pageSize</span><span class="p">;</span><span class="w">   </span><span class="c1">// ⚠️ 口述稱 index 從 0 開始「不需要減 1」，與此矛盾</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Object</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">selectList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">selectList</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">pageSize</span><span class="p">);</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="c1">// ...</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>offset</code> 計算畫面／口述直接矛盾</strong>：畫面是 <code>(pageNo - 1) * pageSize</code>（減 1），
+  口述說「我們的 <code>index</code> 是從 0 開始的，所以我們這裡就不需要減 1」。兩者不可能同時正確。
+  ⚠️ 口述明說「大家不用 <code>orderBy</code>……直接一個亂序的就好了」，但畫面截錄有 <code>order by id asc</code>；
+  若真的亂序，<strong>同一筆記錄可能出現在不同頁</strong>。
+  ⚠️ <code>nameDescribe</code> 與 <code>registeredCommands</code> 兩個名稱在口述層與畫面層拼法不一致（<code>nameDescribe</code>／<code>nameDescription</code>／<code>commandNameDescribe</code>），本頁照錄。</li>
+</ul>
+<h3 id="w11-010-config_gmcommandis_work">W11-010　落庫寫 <code>config_gmcommand</code>，<code>is_work</code> 必須轉字串<a class="headerlink" href="#w11-010-config_gmcommandis_work" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>config_gmcommand</code> <code>update config_gmcommand</code> <code>is_work</code> <code>String.valueOf</code> <code>gm_level</code> <code>gm_command</code></li>
+<li><strong>來源</strong>：L24 20:00–24:00｜<code>L24_第二十四课_教學筆記.md</code>；L23 40:00–44:00｜<code>L23_第二十三课_教學筆記.md</code></li>
+<li><strong>要點</strong>：保存只更新<strong>兩個欄位</strong>——<code>gm_level</code>（當前等級）與 <code>is_work</code>（是否啟用），
+  「因為只有兩個地方能改，所以我們也只需要更新兩個地方就好了」，<code>where</code> 鍵是 <code>id</code>。
+  <strong>表名必須是 <code>config_gmcommand</code></strong>（原程式誤寫成 <code>gm_command</code>，跑出 <code>no such table</code>）。
+  <code>isWork</code> 在 Java 端是 <strong>boolean</strong>，但<strong>資料庫沒有 boolean 類型</strong>，
+  口述明講「我們的數據庫是沒有 <code>true</code> 或者是 <code>false</code> <code>boolean</code> 這種類型的……所以我們要給它換成一個 <code>varchar</code> 類型的 <code>true</code> 和 <code>false</code>」，
+  因此落庫要 <strong><code>String.valueOf</code></strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// GmCommandDao.java</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">String</span><span class="w"> </span><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"update config_gmcommand set gm_level = ?, is_work = ? where id = ?"</span><span class="p">;</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getGmLevel</span><span class="p">(),</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">                       </span><span class="n">String</span><span class="p">.</span><span class="na">valueOf</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getIsWork</span><span class="p">()),</span><span class="w">  </span><span class="c1">// boolean → 'true'/'false'</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">                       </span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getId</span><span class="p">());</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>表名憑印象寫會出事</strong>：<code>gm_command</code> vs 正確的 <code>config_gmcommand</code>，
+  錯誤訊息原文為 <code>java.sql.SQLSyntaxErrorException: … (no such table: gm_command) - select * from gm_command limit 20 offset 0</code>。
+  講者自評「看來是我們大意了，沒仔細看」，<strong>建議以 <code>MenuConfig.sql</code> 為唯一權威</strong>。
+  ⚠️ <strong>比對時 <code>equals</code> 的是字串 <code>"true"</code>／<code>"false"</code>，不是 boolean</strong>。
+  ⚠️ DAO 簽名兩說：畫面記 <code>public static void update(List&lt;GmCommand&gt; gmCommands)</code>（批次），
+  口述先說「update list」又說單筆 <code>update(GMCommand, GMCommand)</code>，兩者都保留。
+  ⚠️ 畫面還記到「保存失敗了卻沒有 <code>return</code>」的從上一課抄來的 bug，講者當場自曝並修掉。</li>
+</ul>
+<h3 id="w11-011-addall-clone">W11-011　<code>addAll</code> 是淺拷貝，要逐筆 <code>clone()</code> 才不會污染原始值<a class="headerlink" href="#w11-011-addall-clone" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>addAll</code> <code>淺拷貝</code> <code>clone()</code> <code>Cloneable</code> <code>originalCommands</code> <code>AppExit</code> <code>RuntimeException</code></li>
+<li><strong>來源</strong>：L24 04:00–08:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：原本 <code>originalCommands.addAll(commands)</code> 再 <code>setItems</code>，
+  <strong>兩個 List 對象不同，但裡面的子元素是同一批參考</strong>——在 UI 上改一格會同時污染原始值。
+  口述的完整因果鏈：「我們改變其中一個元素的話，這兩個值都變了。所以我們還不能這麼弄。」
+  解法是<strong>逐筆 <code>clone()</code> 後再 <code>addAll</code></strong>；因此要讓實體 <code>implements Cloneable</code>、override <code>clone()</code>、
+  把回傳型別收窄，並<strong>改丟自己封裝的 <code>RuntimeException</code>（<code>AppExit</code>）</strong>以免每次都要 <code>try</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// OnCommand.java</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">OnCommand</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">Cloneable</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// 1) implements Cloneable</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">OnCommand</span><span class="w"> </span><span class="nf">clone</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">                        </span><span class="c1">// 2) 改成 public、收窄回傳型別</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">OnCommand</span><span class="p">)</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">clone</span><span class="p">();</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">CloneNotSupportedException</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">            </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">AppExit</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">());</span><span class="w">         </span><span class="c1">// 3) 丟自封裝的 RuntimeException，免 try</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">// MenuCommand.java：不要用 addAll（淺拷貝，會污染原始值），要逐筆 clone</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">// ❌ 錯誤：commands.addAll(originalCommands);  → 兩個 List 共用同一批元素參考</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="c1">// ✅ 正確：</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="n">originalCommands</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">command</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">commands</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">command</span><span class="p">.</span><span class="na">clone</span><span class="p">()));</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>clone()</code> 回傳型別不一致</strong>：<code>OnCommand.clone()</code> 收窄成 <code>OnCommand</code>（協變返回型別），
+  但畫面另記 <code>GmCommand.clone()</code> 回傳 <code>Object</code> 且<strong>未加 <code>@Override</code></strong>。建議統一。
+  ⚠️ 上一課的 <code>MenuConfig</code> 也踩過同一個坑，但<strong>因為它有 <code>clone</code> 所以沒事</strong>——口述確認
+  「它在 <code>onSearch</code> 裡面……是 <code>clone</code> 了以後加進去的，所以這個是沒有問題的」。</li>
+</ul>
+<h3 id="w11-012-setcellfactory">W11-012　等級欄位不設 <code>setCellFactory</code> 就完全不可編輯<a class="headerlink" href="#w11-012-setcellfactory" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>setOnEditCommit</code> <code>setCellFactory</code> <code>TextFieldTableCell</code> <code>IntegerStringConverter</code> <code>setEditable</code> <code>createTableView</code></li>
+<li><strong>來源</strong>：L24 00:00–04:00、40:00–44:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：指令管理表格<strong>只有兩欄可編輯</strong>——「是否啟用」與「當前的指令等級」。
+  等級欄用 <code>levelColumn.setOnEditCommit</code> 拿 <code>event.getNewValue()</code>（型別是 <strong><code>Number</code></strong>，不利操作，
+  口述改成 <strong><code>Integer</code></strong> 因為是映射出來的），並在 <code>newValue</code> 為 <code>null</code> 時直接 <code>return</code>。
+  開關欄沒有 edit 事件，只能靠 <code>switchButton</code> 的 <strong><code>onOffProperty</code> + <code>addListener</code></strong>。
+  兩種事件都拿不到 row 時，開關欄改用 <code>tableView.getSelectionModel().getSelectedIndex()</code> 取列。
+  取到 row 後<strong>要把 <code>originalCommands</code> 與 <code>changeCommands</code> 都傳進 <code>createTableView</code></strong>，否則「我們 <code>edit</code> 拿什麼去修改呢」。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">// 修改前</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kd">private</span><span class="w"> </span><span class="n">TableView</span><span class="o">&lt;</span><span class="n">OnCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createTableView</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="c1">// 修改後</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="kd">private</span><span class="w"> </span><span class="n">TableView</span><span class="o">&lt;</span><span class="n">OnCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">createTableView</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">OnCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">originalCommands</span><span class="p">,</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">                                             </span><span class="n">List</span><span class="o">&lt;</span><span class="n">OnCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">changeCommands</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// 等級欄位一定要設 CellFactory，否則儲存格不可編輯（本課實測卡住兩次的坑）</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">levelColumn</span><span class="p">.</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">TextFieldTableCell</span><span class="p">.</span><span class="na">forTableColumn</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">IntegerStringConverter</span><span class="p">()));</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>漏寫 <code>setCellFactory</code> 會讓等級欄位完全不可編輯</strong>——本課因此<strong>重啟服務兩次</strong>才驗完
+  （口述：「怎麼還是不可編輯？漏了什麼東西沒改？<code>set</code> 一個 <code>cellFactory</code>」）。
+  ⚠️ <strong><code>TableView</code> 預設不可編輯</strong>，<code>setOnEditCommit</code> 不會觸發，除非先 <code>tableView.setEditable(true)</code>。
+  ⚠️ 取 row 的方式有三種寫法並存（<code>event.getTablePosition().getRow()</code> 與
+  <code>tableView.getSelectionModel().getSelectedIndex()</code>），口述後來換用後者；兩者都保留。</li>
+</ul>
+<h3 id="w11-013-notchange-changecommands">W11-013　<code>notChange</code> 要整列一起判斷，否則會誤清 <code>changeCommands</code><a class="headerlink" href="#w11-013-notchange-changecommands" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>notChange</code> <code>changeCommands</code> <code>removeIf</code> <code>contains</code> <code>整列判斷</code> <code>先 set 再比對</code> <code>isEmpty</code></li>
+<li><strong>來源</strong>：L24 08:00–12:00、12:00–16:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：原始邏輯是「只比對剛被編輯的那一欄」，本課實測抓到致命 bug：
+  同一列改了兩欄，把其中一欄<strong>改回原值</strong>時，整列就會被 <code>remove</code> 掉，<strong>另一欄真正的變更憑空消失</strong>。
+  講者復現的流程是「先改成 4 → 再改成 1 → 再把 4 改成『否』……它會把 <code>change list</code> 給 <code>remove</code> 掉」。
+  結論是「我們監聽值發生變化的時候<strong>就不能只判斷這一行，而是要都判斷</strong>」，
+  寫成 <code>private boolean notChange(editCommand, originalCommand)</code>，<strong>全欄位 <code>equals</code> 串 <code>and</code></strong>；
+  下半段還要補 <strong><code>changeCommands.contains(editCommand)</code></strong> 防重複加入。
+  還有個時序細節：<strong>必須先 <code>set</code> 新值再比對</strong>，否則判斷會用到舊值。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1">// 語意：回傳 true 代表「這一列完全沒有被改動」</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kd">private</span><span class="w"> </span><span class="kt">boolean</span><span class="w"> </span><span class="nf">notChange</span><span class="p">(</span><span class="n">GmCommand</span><span class="w"> </span><span class="n">editCommand</span><span class="p">,</span><span class="w"> </span><span class="n">GmCommand</span><span class="w"> </span><span class="n">originalCommand</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">equals</span><span class="p">(</span><span class="n">editCommand</span><span class="p">.</span><span class="na">getGmLevel</span><span class="p">(),</span><span class="w"> </span><span class="n">originalCommand</span><span class="p">.</span><span class="na">getGmLevel</span><span class="p">())</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">equals</span><span class="p">(</span><span class="n">editCommand</span><span class="p">.</span><span class="na">getIsWork</span><span class="p">(),</span><span class="w">  </span><span class="n">originalCommand</span><span class="p">.</span><span class="na">getIsWork</span><span class="p">());</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>絕對不要比對單一欄位就決定 <code>removeIf</code></strong>——這是本課實測抓到的 bug（改一欄還原會誤清另一欄的變更）。
+  ⚠️ 為什麼一直用自製的 <code>equals</code>：口述明講「這個 <code>equals</code> 方法會<strong>對空值作判斷</strong>……如果一個 <code>null</code> 和一個不為 <code>null</code> 的做比較……會報<strong>空指標</strong>的」。
+  ⚠️ <code>simpleName</code> 的 <code>null</code> vs 空字串陷阱（上一課 <code>MenuConfig</code> 版）：資料庫預設 <code>null</code>，
+  但 UI 清空後是<strong>空字串</strong>，<code>Optional</code> 不適用，「那我們就還是 <strong><code>isEmpty</code></strong> 吧」——
+  理由是 <code>isEmpty</code> 對 <code>String</code>／<code>Collection</code>／<code>Array</code>／<code>Map</code> 做統一判空，「帶空格的也會認為是空」。
+  ⚠️ 上一課同型方法在畫面被記成 <code>eqExtCommand</code>／<code>isUpdateServer</code>（後者回傳 <code>true</code> 代表「未實質修改」，語意與命名相反），口述則是 <code>notChange</code>。</li>
+</ul>
+<h3 id="w11-014-return-clear">W11-014　保存流程：沒異動就 return → 落庫 → 回填 → 重載 → clear<a class="headerlink" href="#w11-014-return-clear" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>saveAction</code> <code>onSave</code> <code>changeCommands.isEmpty</code> <code>回填</code> <code>originalCommands</code> <code>Task</code> <code>try/catch</code></li>
+<li><strong>來源</strong>：L24 16:00–20:00、20:00–24:00、32:00–36:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：保存是四步：<strong>①</strong> 先確認提示框、<code>changeCommands.isEmpty()</code> 就直接 <code>return</code>；
+  <strong>②</strong> 寫 SQL 落庫（<code>GmCommandDao.update</code>）；<strong>③ 把新值回填 <code>originalCommands</code></strong>；<strong>④ 重載指令</strong> 然後 <code>changeCommands.clear()</code>。
+  <strong>回填這步是全課關鍵</strong>，理由講得很透：「我們<strong>注册成功</strong>以後，就把我們的<strong>原始的值，變成我們新的值</strong>啦……
+  這樣我們在後面再繼續做更改的話，這個更改<strong>才會被承認</strong>啊，才會繼續添加到那個 <code>change</code> 裡面去啊。」
+  回填刻意「<strong>全部取</strong>」：<code>gmLevel</code> 與 <code>isWork</code> 都從 <code>change</code> 覆蓋到 <code>ori</code>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">private</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">saveAction</span><span class="p">(</span><span class="n">ProgressLoading</span><span class="w"> </span><span class="n">loading</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="c1">// ① 沒有異動就直接結束</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">changeCommands</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">    </span><span class="c1">// ② 寫 SQL 落庫</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="n">GmCommandDao</span><span class="p">.</span><span class="na">update</span><span class="p">(</span><span class="n">changeCommands</span><span class="p">);</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="c1">// ③ 回填 originalCommands：承認這次變更，之後再改才能被重新偵測</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="n">originalCommands</span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">oriGmCommand</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">        </span><span class="n">changeCommands</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">            </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">change</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">equals</span><span class="p">(</span><span class="n">change</span><span class="p">.</span><span class="na">getId</span><span class="p">(),</span><span class="w"> </span><span class="n">oriGmCommand</span><span class="p">.</span><span class="na">getId</span><span class="p">()))</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">            </span><span class="p">.</span><span class="na">findFirst</span><span class="p">()</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">            </span><span class="p">.</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">change</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">                </span><span class="n">oriGmCommand</span><span class="p">.</span><span class="na">setGmLevel</span><span class="p">(</span><span class="n">change</span><span class="p">.</span><span class="na">getGmLevel</span><span class="p">());</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">                </span><span class="n">oriGmCommand</span><span class="p">.</span><span class="na">setIsWork</span><span class="p">(</span><span class="n">change</span><span class="p">.</span><span class="na">getIsWork</span><span class="p">());</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">            </span><span class="p">})</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="w">    </span><span class="p">);</span>
+<a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>
+<a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="w">    </span><span class="c1">// ④ 重載記憶體指令 + 清空異動清單</span>
+<a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="w">        </span><span class="n">CommandExecutor</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">reloadGMCommand</span><span class="p">(</span><span class="n">changeCommands</span><span class="p">);</span>
+<a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a><span class="w">        </span><span class="n">changeCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"重載指令失敗，請檢查指令是否正確"</span><span class="p">);</span>
+<a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ 上述 <code>reloadGMCommand(changeCommands)</code> 的<strong>方法名是筆記依口述語意所取的重建名稱</strong>，
+素材中並未逐字出現該名稱；畫面層實際記到的是 <code>reloadCommands(List&lt;GoCommand&gt;)</code> 與 <code>reloadCommands(List&lt;GvCommand&gt;)</code>。
+出處：L24 4.1 表格標為「口述語意重建（a005）＋ 畫面 v008–v009 對照」。</p>
+</blockquote>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>漏掉回填就會「改了兩次第二次偵測不到」</strong>——<code>originalCommands</code> 還是舊值時，整列會被判成未修改而 <code>remove</code> 掉。
+  ⚠️ 畫面 v010 的「重新加載」<strong>成功路徑卻用 <code>Log.error("重新加载指令...")</code></strong>，疑為沿用錯誤分支寫法。
+  ⚠️ 這段整體標為<strong>【口述重建】</strong>：畫面未完整拍到四步流程，<code>ProgressLoading</code> 參數亦為畫面原文、其餘為口述還原。
+  ⚠️ 講者自評這段寫得「<strong>不成熟</strong>」。</li>
+</ul>
+<h3 id="w11-015-gm-reload">W11-015　為什麼 GM 指令一定要重載、不能走常規 reload<a class="headerlink" href="#w11-015-gm-reload" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>CommandExecutor</code> <code>單例</code> <code>懶漢</code> <code>getInstance</code> <code>registerCommand</code> <code>reloadCommands</code> <code>registerGoCommand</code></li>
+<li><strong>來源</strong>：L24 24:00–28:00、32:00–36:00、36:00–40:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：兩個理由，缺一不可：</li>
+<li><strong><code>CommandExecutor</code> 是單例＋懶漢式</strong>，<code>instance</code> 是 <code>final</code>、初始化一次後就不再重來——
+     口述結論：「<strong>即便服務重啟了，它記憶體裡面的資料還是不會去重新讀</strong>。所以還是得重載。」</li>
+<li><strong>常規 reload 的路徑已不適用</strong>：口述明講「我們是重寫了這個 <code>registerCommand</code>……新的 GM 指令<strong>全部在表裡面</strong>。
+     那麼我們 **<code>reload</code> 也不能以常規的方式去 <code>reload</code>」——既有的 <code>registry 0</code>、<code>registry 1</code> 讀配置路徑對新版 GM 指令不適用。</li>
+</ul>
+<p>講者因此新寫一個只吃「<strong>改過的東西</strong>」的重載方法，把 <code>changeCommands</code> 整包丟進去。
+- <strong>程式碼</strong>：</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">// CommandExecutor.java（畫面 v008 記錄的另一組重載方法，走「全新註冊」路徑）</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reloadCommands</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">GoCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">goCommands</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="c1">// 呼叫註冊方法</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="n">registerGoCommand</span><span class="p">(</span><span class="n">goCommands</span><span class="p">);</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// 畫面 v009 另記 reloadCommands(List&lt;GvCommand&gt;)——同一支影片內型別自相矛盾</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reloadCommands</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">GvCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gvCommandList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">GvCommand</span><span class="w"> </span><span class="n">gvCommand</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">gvCommandList</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">        </span><span class="n">Class</span><span class="o">&lt;?&gt;</span><span class="w"> </span><span class="n">CommandClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gvCommand</span><span class="p">.</span><span class="na">getCommandClass</span><span class="p">();</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CommandClass</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">            </span><span class="n">Log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">"cmd指令加载错误，"</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">gvCommand</span><span class="p">.</span><span class="na">getCommand</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">" 指令类为空"</span><span class="p">);</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">        </span><span class="c1">// ...</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="p">}</span>
+</code></pre></div></p>
+<blockquote>
+<p>⚠️ <strong>「重載 GM 指令」這個方法在口述中被稱為 <code>reloadGMCommand(List&lt;GmCommand&gt;)</code>，
+但該名稱並未在素材中逐字出現，是筆記依口述語意所取的重建名稱，不是畫面逐字記錄的原始碼。</strong>
+畫面層確實記到的是上面這組 <code>reloadCommands(List&lt;GoCommand&gt;)</code> 與 <code>reloadCommands(List&lt;GvCommand&gt;)</code>。</p>
+</blockquote>
+<ul>
+<li><strong>坑</strong>：⚠️⚠️ <strong>本課最嚴重的設計取向正面衝突</strong>：口述主張「不能以常規的方式去 <code>reload</code>」「不管怎麼樣，我們要把這條指令對應的<strong>原來的位置給刪掉</strong>」，
+  畫面 v008／v009 卻記錄了<strong>全新註冊</strong>的迴圈（<code>registerGoCommand</code>／<code>newInstance()</code>／<code>registeredCommands.containsKey</code> 防重複）。
+  <strong>本頁採信口述層的「刪舊＋插新」方案（見 W11-017／W11-018），畫面版的迴圈只作為對照保留。</strong>
+  ⚠️ <code>registerGoCommand</code> 的防重複判斷 <code>if (registeredCommands.containsKey(commandName))</code> 正是「刪舊」必須先做的原因。
+  ⚠️ 講者自曝 UI 文案 bug：「這裡是<strong>指令碼</strong>……前面時候，又讓它<strong>輸入指令名稱</strong>。啊，<strong>不對應</strong>。」</li>
+</ul>
+<h3 id="w11-016-getinstance-npe">W11-016　<code>getInstance()</code> 不是取值是初始化，服務沒啟動就會 NPE<a class="headerlink" href="#w11-016-getinstance-npe" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>getInstance</code> <code>副作用</code> <code>NullPointerException</code> <code>registerCommands</code> <code>wz</code> <code>isOnline</code> <code>return</code></li>
+<li><strong>來源</strong>：L25 00:00–03:39｜<code>L25_第二十五课_教學筆記.md</code></li>
+<li><strong>要點</strong>：本課開頭就抓到上一課留下的 <code>NullPointerException</code>，因果鏈講得非常具體：
+  <code>getInstance()</code> <strong>會把 instance 初始化</strong> → 初始化會 <code>new</code> 一個 <code>CommandExecutor</code> →
+  構造方法裡會去 <code>registerCommands()</code> → 註冊時會去讀<strong>內存包括 <code>wz</code> 裡面的一些東西</strong> →
+  <strong>服務沒啟動就報錯</strong>。處方是「<strong>服務沒啟動的話，就不要去重載了</strong>……如果服務沒啟動，我們就直接 <code>return</code>」。
+  口述還特別強調「<strong>哪怕是你已經啟動了，你啟動了，然後再停掉，或者再重啟掉都行，但是你不能不啟啊。</strong>」</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">// 觸發點：UI 層直接呼叫，服務未啟動時 getInstance() 會初始化並 register → 讀 wz → NPE</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="n">CommandExecutor</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">reload</span><span class="p">(</span><span class="n">changeCommands</span><span class="p">);</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Caused by: java.lang.NullPointerException: Cannot invoke "java.util.List.forEach(java.util.function.Consumer)" because "command.getCommandList()" is null
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>at client.command.CommandExecutor.getInstances(CommandExecutor.java:51)
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>at client.command.CommandExecutor.reload(CommandExecutor.java:125)
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>at ui.component.menu.MenuCommand.lambda$initEvent$5(MenuCommand.java:82)
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>...
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>getInstance()</code> 有副作用，是本組三課最核心的坑</strong>——UI 層只要呼叫它就會被迫觸發整條初始化鏈。
+  ⚠️ <strong>「啟動過」不等於「正在運行」</strong>：口述 a000 要求「當下在線」，a002 又說「重不重載記憶體裡面的指令，就看服<strong>有沒有啟動過</strong>」，
+  <strong>兩處標準不一致</strong>；實作時請明確選定一種語意並寫成獨立的 <code>hasBeenStarted()</code>／<code>isOnline()</code>。
+  ⚠️ <strong>同名不同實作</strong>：<code>reload</code> 有兩種語意——畫面 v001 的 <code>reload()</code> 只做清空後重新註冊，
+  而觸發 NPE 的卻是 <code>reload(changeCommands)</code>（帶參數、要先讀 DB）。
+  ⚠️ 畫面與口述在此段正面衝突：口述處方是「判斷服務是否啟動」，畫面 v000 的最終 <code>saveButton</code> 卻是<strong>把伺服器檢查整段移除</strong>、只留 <code>try/catch</code>。
+  ⚠️ <code>getInstances</code>（堆疊，複數）vs <code>getInstance()</code>（呼叫點，單數）素材不足以判定是否兩個方法。</li>
+</ul>
+<h3 id="w11-017-registeredcommands-namedescribe">W11-017　重載第一步：先刪舊（<code>registeredCommands</code> ＋ <code>nameDescribe</code>）<a class="headerlink" href="#w11-017-registeredcommands-namedescribe" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>先刪舊</code> <code>registeredCommands</code> <code>nameDescribe</code> <code>getRank</code> <code>indexOf</code> <code>remove</code> <code>ORIIndex</code> <code>toLowerCase</code></li>
+<li><strong>來源</strong>：L24 28:00–32:00｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>改等級不能只改值，必須先刪掉它原來那一條再插新的</strong>——
+  口述：「如果等級被我們改了的話，它在這裡和在這裡的<strong>位置都會發生改變</strong>……如果它只是改了 <code>isWork</code> 的話，我們同樣的還是把原來的刪了。
+  也就是<strong>不管怎麼樣，我們要把這條指令對應的原來的位置給刪掉</strong>。」
+  刪舊四步：①<code>registeredCommands</code> 依<strong>小寫</strong> <code>commandName</code> <code>get</code> 出 <code>originalCommand</code>，用 <code>getRank</code> 拿到<strong>舊等級</strong>；
+  ②依舊等級從 <code>nameDescribe</code> 取出該桶；③用 <code>getLeft().indexOf(...)</code> 拿到 <code>ORIIndex</code>，
+  <code>remove(ORIIndex)</code> 刪掉描述（<code>getRight</code>）與名稱（<code>getLeft</code>）；④<code>registeredCommands.remove(commandName)</code>。
+  刪完之後<strong>新值無效就直接 <code>continue</code></strong>；類都載不出來也 <code>continue</code>（「如果這個類都加載不出來，那你也不用重載了」）。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reloadGMCommand</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">GmCommand</span><span class="o">&gt;</span><span class="w"> </span><span class="n">gmCommands</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">GmCommand</span><span class="w"> </span><span class="n">gmCommand</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">gmCommands</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="cm">/* 指令類加載不出來 */</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">            </span><span class="k">continue</span><span class="p">;</span><span class="w">                      </span><span class="c1">// 類都載不出來，就不用重載了</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">        </span><span class="c1">// ① 取出「改動前」它原本在記憶體的樣子</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">commandName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getCommand</span><span class="p">().</span><span class="na">toLowerCase</span><span class="p">();</span><span class="w">   </span><span class="c1">// 註冊時一律小寫</span>
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">        </span><span class="n">Command</span><span class="w"> </span><span class="n">originalCommand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">registeredCommands</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">commandName</span><span class="p">);</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">originalLevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">originalCommand</span><span class="p">.</span><span class="na">getRank</span><span class="p">();</span>
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">        </span><span class="c1">// ② 從 nameDescribe 裡，依「舊等級」定位並刪掉舊描述</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">        </span><span class="n">Pair</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">nameDesc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameDescribe</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">originalLevel</span><span class="p">);</span>
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">oriIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameDesc</span><span class="p">.</span><span class="na">getLeft</span><span class="p">().</span><span class="na">indexOf</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getCommand</span><span class="p">());</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">        </span><span class="n">nameDesc</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">oriIndex</span><span class="p">);</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">        </span><span class="n">nameDesc</span><span class="p">.</span><span class="na">getLeft</span><span class="p">().</span><span class="na">remove</span><span class="p">(</span><span class="n">oriIndex</span><span class="p">);</span>
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">        </span><span class="c1">// ③ 從 registeredCommands 刪掉舊對應</span>
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">        </span><span class="n">registeredCommands</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">commandName</span><span class="p">);</span>
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">        </span><span class="c1">// ④ 新值無效就到此為止</span>
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="cm">/* isWork 有效 */</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="w">            </span><span class="k">continue</span><span class="p">;</span>
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="w">        </span><span class="c1">// ... 接 W11-018 插新</span>
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ 上面的 <code>reloadGMCommand(List&lt;GmCommand&gt;)</code> <strong>方法名是筆記依口述語意所取的重建名稱</strong>，
+素材中並未逐字出現，不是畫面逐字記錄的原始碼；本方法體整段標為<strong>【口述重建】</strong>。
+畫面層記到的是 <code>reloadCommands(List&lt;GoCommand&gt;)</code>／<code>reloadCommands(List&lt;GvCommand&gt;)</code>（見 W11-015）。</p>
+</blockquote>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>必須用小寫的 <code>commandName</code> 查</strong>——口述：「它注册進來的 <code>commandName</code> 都是一個小寫的，我們也要弄一個小寫的過來。」
+  ⚠️ <strong>刪舊的定位依賴「舊等級」</strong>，若此時 <code>registeredCommands</code> 已被改動或已被清空（<code>getRank</code> 取不到）就會出錯。
+  ⚠️ 這段的「<code>nameDescribe</code>／<code>ORIIndex</code>／<code>ORIDescription</code>」<strong>在畫面層完全沒有出現</strong>，整段為口述重建。</li>
+</ul>
+<h3 id="w11-018">W11-018　重載第二步：再插新（依新等級追加到該等級清單尾端）<a class="headerlink" href="#w11-018" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>再插新</code> <code>getLeft().add</code> <code>getRight().add</code> <code>gmLevelPrimitive</code> <code>Optional.ofNullable</code> <code>等級夾限</code> <code>getGMCommands</code></li>
+<li><strong>來源</strong>：L24 32:00–36:00、44:00–47:43｜<code>L24_第二十四课_教學筆記.md</code></li>
+<li><strong>要點</strong>：刪舊完成後插新：<strong>先加到 <code>nameDescribe</code></strong>，等級的取法是「如果這個 <code>GM level</code> 設置為空的話，
+  那就取它默認的 <code>level</code>；如果設置不為空的話，就取它的 <code>level</code>」，並做上下限夾限。
+  接著 <code>getLeft().add</code> 指令名、<code>getRight().add</code> 描述，<strong>最後才刷新 <code>registeredCommands</code></strong>。
+  口述收尾：「這樣的話，我們就<strong>實現了內存裡面的，實時刷新這個 <code>GM</code> 指令</strong>。」
+  <strong>實測證明插新是追加到該等級的尾端，不是原地替換</strong>：<code>time</code> 從等級 0 改到等級 1 後，
+  <code>@help</code> 裡「<strong>第一條就變成了 <code>buyback</code></strong>」，而 <code>time</code>「<strong>就在最後一個</strong>」——
+  講者明說「因為新修改的我會添加到最後一個啊」。
+  這同時驗證了 <code>@help</code> 的分級清單確實來自 <code>nameDescribe</code>（<code>getGMCommands()</code> → <code>commands.js</code>）。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="c1">// 等級：為空取預設，不為空取自訂，並夾限</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Optional</span><span class="p">.</span><span class="na">ofNullable</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getGmLevel</span><span class="p">())</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">                    </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getGmLevelPrimitive</span><span class="p">());</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">level</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">          </span><span class="c1">// ⚠️ 口述說 6，畫面 v009 說 4，見坑</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="p">}</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="n">Pair</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">nameDesc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nameDescribe</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">level</span><span class="p">);</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="n">nameDesc</span><span class="p">.</span><span class="na">getLeft</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getCommand</span><span class="p">());</span><span class="w">     </span><span class="c1">// 指令名</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="n">nameDesc</span><span class="p">.</span><span class="na">getRight</span><span class="p">().</span><span class="na">add</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getDescription</span><span class="p">());</span><span class="w"> </span><span class="c1">// 描述</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="n">registeredCommands</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">gmCommand</span><span class="p">.</span><span class="na">getCommand</span><span class="p">().</span><span class="na">toLowerCase</span><span class="p">(),</span><span class="w"> </span><span class="n">command</span><span class="p">);</span>
+</code></pre></div>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>等級上限口述與畫面不一致</strong>：口述說「大於 6」要處理，畫面 v009 的程式碼是
+  <code>else if (level &gt; 4) { level = 4; }</code>。<strong>以哪個為準需回原始碼確認</strong>（本頁不臆測）。
+  ⚠️ <strong>插新是追加到該等級尾端</strong>——這是「先刪舊再插新」設計的直接後果，調整 UI 順序時別誤判為 bug。
+  ⚠️ 畫面 v009 的等級取法寫成 <code>Optional.ofNullable(gvCommand.getCommandLevel()).orElse(gvCommand.getCommandPriviliege())</code>，
+  疑似 <code>Priviliege</code> 拼字錯誤。</li>
+</ul>
+<h3 id="w11-019">W11-019　重置：清空查詢條件與暫存，不動資料庫<a class="headerlink" href="#w11-019" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>resetButton</code> <code>resetSearchButton</code> <code>setText("")</code> <code>select(-1)</code> <code>clear</code> <code>setPageFactory</code> <code>setPageCount(1)</code></li>
+<li><strong>來源</strong>：L25 03:39–07:18｜<code>L25_第二十五课_教學筆記.md</code></li>
+<li><strong>要點</strong>：<strong>重置的是「查詢條件」不是「指令資料」</strong>，口述逐項列舉：
+  清 <code>searchInput</code> → 等級下拉 <code>select(-1)</code>（=-1 代表「什麼都沒選」）→
+  <strong><code>original</code> 與 <code>change</code> 都 <code>clear()</code></strong> → <code>center.setPageFactory(null)</code> → <code>center.setPageCount(1)</code>。
+  口述實測：「我們選，選中條件 1 2 3 查一下，查不到，然後重置……我們的重置只需要重置這些東西就好了。」
+  這一組<strong>不需要服務啟動、也不動資料庫</strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">// 口述（a000）逐項要求：</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="c1">// searchInput.setText("") → levelComboBox.getSelectionModel().select(-1)</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="c1">// → original／change 都 clear() → center.setPageFactory(null) → center.setPageCount(1)</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="c1">// 畫面 v000 版：</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="n">resetButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">    </span><span class="n">searchTextField</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">""</span><span class="p">);</span><span class="w"> </span><span class="c1">// 清空搜尋輸入框</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="w">    </span><span class="n">levelComboBox</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">select</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 將下拉選單重置為未選擇狀態</span>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="w">    </span><span class="n">originalCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// 清空原始指令列表</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="n">originalCommands</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">createTableData</span><span class="p">(</span><span class="n">GuiCommands</span><span class="p">.</span><span class="na">getCommands</span><span class="p">()));</span><span class="w"> </span><span class="c1">// 重新載入所有指令資料</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="n">changeCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w"> </span><span class="c1">// 清空已變更的指令暫存</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="c1">// 重新設定分頁與表格，觸發畫面刷新</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="na">setPageFactory</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">createTableView</span><span class="p">(</span><span class="n">originalCommands</span><span class="p">,</span><span class="w"> </span><span class="n">changeCommands</span><span class="p">));</span>
+<a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="p">});</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1">// 畫面 v003 版（用 select(0) ＋ setPageCount(1)）：</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="n">resetButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="n">searchInput</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">""</span><span class="p">);</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="n">listComboBox</span><span class="p">.</span><span class="na">getSelectionModel</span><span class="p">().</span><span class="na">select</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">    </span><span class="n">changeCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="n">changeCommands</span><span class="p">.</span><span class="na">addAll</span><span class="p">(</span><span class="n">originalCommands</span><span class="p">);</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="na">setTop</span><span class="p">(</span><span class="n">factory1</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">originalCommands</span><span class="p">,</span><span class="w"> </span><span class="n">changeCommands</span><span class="p">));</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="n">center</span><span class="p">.</span><span class="na">setPageCount</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="p">});</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong>畫面兩版與口述都不同</strong>：口述 <code>select(-1)</code> vs v003 的 <code>select(0)</code>；
+  口述 <code>setPageFactory(null)</code> vs v003 的 <code>setTop(factory1(...))</code>；v003 的 <code>changeCommands.addAll(originalCommands)</code>
+  與口述的「都給 <code>clear</code> 掉」相反。<strong>兩版並存，照抄任一版都可能不對。</strong>
+  ⚠️ <strong>口述疑似說錯 <code>setText(null)</code></strong>：畫面兩處都是 <code>setText("")</code>。<code>setText(null)</code> 會讓後續 <code>getText()</code> 為 null、
+  <code>.equals()</code> 判斷 NPE，<strong>請一律用 <code>setText("")</code></strong>。
+  ⚠️ 畫面 v003 的 <code>resetButton</code> 竟然呼叫 <code>changeCommands.addAll(originalCommands)</code>（把未變更的資料灌進異動清單），
+  這與 L24 的差異追蹤設計直接抵觸。</li>
+</ul>
+<h3 id="w11-020-update-ui">W11-020　恢復默認：全表 <code>update</code> ＋ 記憶體重置，先刷 UI 再判斷在線<a class="headerlink" href="#w11-020-update-ui" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>關鍵字</strong>：<code>resetCommandButton</code> <code>resetAll</code> <code>config_gmcommand</code> <code>gm_level_primitive</code> <code>is_warn</code> <code>ConfirmBox</code> <code>isOnline</code> <code>onSearch</code></li>
+<li><strong>來源</strong>：L25 03:39–07:18、07:18–10:57｜<code>L25_第二十五课_教學筆記.md</code></li>
+<li><strong>要點</strong>：「恢復默認」是四個按鈕裡最重的：<strong>DAO 層</strong>一次全表 update 把全部指令還原，
+  <strong><code>CommandExecutor</code> 層</strong>再把記憶體清掉重新初始化與註冊，<strong>兩者必須成對呼叫</strong>。
+  為什麼是全表 update：「重置默認以後，肯定所有的指令都能變成啟用了，然後我們的 <code>gmlevel</code> 啊，就設置成我們默認的……
+  我們之前是不是把默認的給存下來了？我們把默認的給存到這個字段了，那我們就把它設成我們默認的 <code>gmlevel</code> 就好了。」
+  <strong>順序</strong>是講者自己修正出來的：「<strong>不管服務啟沒啟動，我們應該都把介面給刷新一下</strong>」——
+  <strong>先 <code>onSearch</code> 重畫 UI，再判斷服務是否在線，最後才 <code>resetAll</code></strong>。</li>
+<li><strong>程式碼</strong>：</li>
+</ul>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1">// OnCommandDao.java：資料庫層，全表 update（畫面 v001 原文）</span>
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">    </span><span class="n">SqliteConnection</span><span class="p">.</span><span class="na">updateSql</span><span class="p">(</span><span class="s">"update config_gmcommand set is_warn = 'true', gm_level = gm_level_primitive;"</span><span class="p">);</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1">// CommandExecutor.java：記憶體層，清空後重新註冊（畫面 v001 記錄為 reload）</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">reload</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w">    </span><span class="n">registeredCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">    </span><span class="n">registerCommands</span><span class="p">();</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">// ⚠ 以下為依口述 a001 整理的示意，非畫面原文</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">resetAll</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="n">commandNameDescribe</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">      </span><span class="c1">// 清掉腳本上暫存的指令描述</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="n">list</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">                     </span><span class="c1">// 清掉指令清單</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="n">registeredCommands</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span><span class="w">       </span><span class="c1">// 清掉已註冊的指令</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="n">init</span><span class="p">();</span><span class="w">                           </span><span class="c1">// 再執行一次初始化方法</span>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">    </span><span class="n">registerCommands</span><span class="p">();</span><span class="w">               </span><span class="c1">// 再重新註冊</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="p">}</span>
+</code></pre></div>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="c1">// 畫面 v003 版按鈕：先 onSearch 刷新介面，再判斷在線，最後 resetAll（與口述的順序修正一致）</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">resetCommandButton</span><span class="p">.</span><span class="na">setOnAction</span><span class="p">(</span><span class="n">event</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="s">""</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">searchInput</span><span class="p">.</span><span class="na">getText</span><span class="p">())</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s">"-请选择指令类型-"</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">listComboBox</span><span class="p">.</span><span class="na">getValue</span><span class="p">()))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="c1">// 执行逻辑</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="n">onSearch</span><span class="p">(</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">searchInput</span><span class="p">,</span><span class="w"> </span><span class="n">listComboBox</span><span class="p">,</span><span class="w"> </span><span class="n">originalCommands</span><span class="p">,</span><span class="w"> </span><span class="n">changeCommands</span><span class="p">);</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">Server</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">isOnline</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">    </span><span class="n">CommandExecutor</span><span class="p">.</span><span class="na">getInstance</span><span class="p">().</span><span class="na">resetAll</span><span class="p">();</span>
+<a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="p">});</span>
+</code></pre></div></p>
+<ul>
+<li><strong>坑</strong>：⚠️ <strong><code>resetAll</code> 名字被用在兩層</strong>（DAO 的 SQL 全表 update 與 Executor 的記憶體重置），
+  <strong>只做其一會造成 DB 與記憶體不一致</strong>。
+  ⚠️ <strong>UI 刷新與後端重置的順序</strong>：畫面 v002 記錄的完成版順序恰好相反（<code>resetAll()</code> 在前），<strong>勿照抄</strong>；口述 a001／a002 都支持 v003 版。
+  ⚠️ <strong>恢復默設是全表 update，不可逆且粒度太粗</strong>——無法只還原單筆；
+  若 <code>gm_level_primitive</code> 本身已被錯誤寫入，恢復默設會把錯誤值當成「預設」再寫一次。
+  ⚠️ <strong><code>gm_level_primitive</code> 必須在「保存修改」時同步維護</strong>，否則恢復默設還原不到真正的出廠值。
+  ⚠️ <strong>SQLite 沒有 boolean</strong>，<code>is_warn = 'true'</code> 依賴欄位型別容錯；口述特別提醒「<strong>這裡注意是單引號啊，注意我們 SQL 的語法</strong>」。
+  ⚠️ <strong>前置條件檢查語意很怪</strong>：v003 開頭要求「搜尋框為空或類型仍是 <code>-请选择指令类型-</code> 就 <code>return</code>」，
+  但這是「恢復默認（全部）」的按鈕，較像是從搜尋按鈕複製過來的殘留條件。
+  ⚠️ 口述的 <code>resetAll</code> 記憶體流程（清 <code>commandNameDescribe</code> → 清 <code>list</code> → 清已註冊 → <code>init()</code> → <code>registerCommands()</code>）
+  <strong>明顯多於畫面 v001 的 <code>reload()</code></strong>，素材無法判定是兩個方法還是同一個。</li>
+</ul>
+<h2 id="_4">本頁的坑總表<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>坑</th>
+<th>來源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W11-001</td>
+<td>畫面層類別名辨識嚴重失真（<code>MenuCommand</code>／<code>StoreCommand</code>／<code>ServerCommand</code>／<code>ServerGUI</code>…），一律以口述為準</td>
+<td>L23 素材稽核</td>
+</tr>
+<tr>
+<td>W11-002</td>
+<td><code>Timer</code> 未 <code>cancel</code> 的洩漏：介面切走了背景任務仍在跑</td>
+<td>L23 00:00–04:00</td>
+</tr>
+<tr>
+<td>W11-003</td>
+<td>忘記 <code>setEditable(true)</code>，後續「改／保存」直接不能用</td>
+<td>L23 32:00–36:00</td>
+</tr>
+<tr>
+<td>W11-004</td>
+<td>查詢結果必須 <code>Platform.runLater</code> 回 FX 執行緒；<code>StrUtil</code>／<code>CharSequenceUtil</code> 兩說</td>
+<td>L23 20:00–24:00</td>
+</tr>
+<tr>
+<td>W11-005</td>
+<td>下拉索引與 <code>gm_level</code> 位偏移：用 <code>!= -1</code> 會把「所有」當成 <code>gm_level = 0</code></td>
+<td>L23 44:00–47:00</td>
+</tr>
+<tr>
+<td>W11-006</td>
+<td><code>or</code> 優先級低於 <code>and</code>，混查不加括號結果全錯；條件字串直接拼接有 SQL 注入風險</td>
+<td>L23 47:00–50:00</td>
+</tr>
+<tr>
+<td>W11-007</td>
+<td>算出總頁數不代表有資料；漏回填就是「9 頁但沒資料」；查完要 <code>clear()</code> 舊清單</td>
+<td>L23 40:00–44:00</td>
+</tr>
+<tr>
+<td>W11-008</td>
+<td>SQLite 數據源未初始化會直接炸；MySQL 則不需要初始化</td>
+<td>L23 28:00–32:00</td>
+</tr>
+<tr>
+<td>W11-009</td>
+<td><code>offset</code> 計算畫面（<code>(pageNo-1)*pageSize</code>）與口述（「不需要減 1」）直接矛盾；口述不用 <code>orderBy</code> 但畫面有 <code>order by id asc</code></td>
+<td>L23 36:00–40:00</td>
+</tr>
+<tr>
+<td>W11-010</td>
+<td>表名憑印象寫（<code>gm_command</code> vs <code>config_gmcommand</code>）會炸出 <code>no such table</code>；<code>is_work</code> 落庫是字串不是 boolean</td>
+<td>L24 20:00–24:00</td>
+</tr>
+<tr>
+<td>W11-011</td>
+<td><code>addAll</code> 淺拷貝會污染原始值；<code>clone()</code> 回傳型別 <code>OnCommand</code> 與 <code>Object</code> 兩說</td>
+<td>L24 04:00–08:00</td>
+</tr>
+<tr>
+<td>W11-012</td>
+<td>漏寫 <code>setCellFactory</code> 等級欄位完全不可編輯，本課為此重啟服務兩次</td>
+<td>L24 40:00–44:00</td>
+</tr>
+<tr>
+<td>W11-013</td>
+<td>只比對剛編輯的那一欄會誤清 <code>changeCommands</code>；必須整列判斷＋<code>contains</code> 防重複＋先 <code>set</code> 再比對</td>
+<td>L24 08:00–12:00</td>
+</tr>
+<tr>
+<td>W11-014</td>
+<td>漏回填 <code>originalCommands</code> 會讓後續變更偵測不到；成功路徑誤用 <code>Log.error</code></td>
+<td>L24 32:00–36:00</td>
+</tr>
+<tr>
+<td>W11-015</td>
+<td>⚠️⚠️ <strong>口述「不能走常規 reload」與畫面「全新註冊迴圈」正面衝突</strong>，本頁採信口述；且 <code>reloadGMCommand</code> <strong>是重建名稱</strong></td>
+<td>L24 24:00–28:00</td>
+</tr>
+<tr>
+<td>W11-016</td>
+<td>⚠️ <code>getInstance()</code> 有副作用＝初始化；「啟動過」vs「正在運行」兩處標準不一致；<code>reload</code> 同名兩義</td>
+<td>L25 00:00–03:39</td>
+</tr>
+<tr>
+<td>W11-017</td>
+<td>刪舊必須用<strong>小寫</strong> <code>commandName</code> 查、依<strong>舊等級</strong>定位；整段為口述重建，畫面未出現</td>
+<td>L24 28:00–32:00</td>
+</tr>
+<tr>
+<td>W11-018</td>
+<td>等級上限口述 6、畫面 4 不一致；插新是追加到該等級<strong>尾端</strong>不是原地替換</td>
+<td>L24 44:00–47:43</td>
+</tr>
+<tr>
+<td>W11-019</td>
+<td>重置按鈕畫面兩版＋口述三說互斥（<code>select(-1)</code> vs <code>select(0)</code>、<code>setPageFactory(null)</code> vs <code>setTop</code>）；口述疑似說錯 <code>setText(null)</code></td>
+<td>L25 03:39–07:18</td>
+</tr>
+<tr>
+<td>W11-020</td>
+<td><code>resetAll</code> 兩層同名必須成對呼叫；UI 刷新應先於在線判斷；全表 update 不可逆；<code>is_warn = 'true'</code> 靠型別容錯</td>
+<td>L25 07:18–10:57</td>
+</tr>
+<tr>
+<td>—</td>
+<td>⚠️ <strong><code>reloadGMCommand(List&lt;GmCommand&gt;)</code> 在素材中並未逐字出現，是筆記依口述語意所取的重建名稱</strong>；素材確有的是 <code>reloadCommands(List&lt;GoCommand&gt;)</code> 與 <code>reloadCommands(List&lt;GvCommand&gt;)</code></td>
+<td>素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>⚠️ <strong>同一支影片的畫面層辨識出 4 套互斥的專案路徑</strong>：v000＝<code>ui.component.menu</code> ＋ <code>client.command.*</code>；v001＝<code>moe.maple.server.gui.view</code> ＋ <code>moe.maple.server.dao</code> ＋ <code>moe.maple.server.command</code>；v002＝<code>server.ui</code>；v003＝<code>gui.views</code>。⚠ <strong><code>moe.maple.server.dao</code> 與 <code>moe.maple.server.command</code> 是 v001 那一套底下的子路徑，不是第五、六套</strong>；原始素材用斜線形式（<code>moe/maple/server/dao/OnCommandDao.java</code>）。本頁照錄但不視為同一份原始碼</td>
+<td>L25 素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>⚠️ <strong>指令前綴三種寫法</strong>：口述作 <code>at help</code>／<code>at commands</code>（ASR 把 <code>@</code> 聽成「at」）、畫面記 <code>!help</code> 與 <code>@help</code>；素材不足以斷定是否兩套前綴</td>
+<td>L24／L25 素材稽核</td>
+</tr>
+<tr>
+<td>—</td>
+<td>⚠️ <strong>視窗標題不可信</strong>：同一支影片辨識出多種互斥標題，括號內字樣明顯為 OCR 亂讀</td>
+<td>L24／L25 素材稽核</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../W10_%E7%8E%A9%E5%AE%B6%E7%AE%A1%E7%90%86%E8%88%87%E9%81%8A%E6%88%B2%E5%85%A7%E7%99%BC%E6%94%BE/" class="md-footer__link md-footer__link--prev" aria-label="Previous: W10 玩家管理與遊戲內發放">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                W10 玩家管理與遊戲內發放
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../W12_KOOK%E6%95%B4%E5%90%88/" class="md-footer__link md-footer__link--next" aria-label="Next: W12 KOOK 整合">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                W12 KOOK 整合
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
