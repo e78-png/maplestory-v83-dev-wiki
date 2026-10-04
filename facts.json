@@ -1,0 +1,377 @@
+{
+ "schema": "maplestory-v83-wiki-facts/1",
+ "generated_by": "gen_facts_index.py",
+ "verify_with": "python verify_wiki_claims.py",
+ "image_base": 4194304,
+ "binaries": {
+  "packed": {
+   "path": "<ASSETS>\\MapleStory 0.83.exe",
+   "size": 4281928,
+   "md5": "09d00a6ebd70aaf0026d6feb764a1f21",
+   "machine": "i386 (PE32)",
+   "image_base": 4194304,
+   "entry_rva": 11059200,
+   "section_count": 7,
+   "size_of_code": 7270400,
+   "time_date_stamp": 1267176451,
+   "time_date_stamp_utc": "2010-02-26T09:27:31+00:00",
+   "protection": "Nexon CSecurity",
+   "protection_note": "first-party, not a commercial packer; Themida/VMProtect/ASProtect/Enigma/UPX all score 0 hits"
+  },
+  "unpacked": {
+   "path": "<RE>/bin\\msv83_trad.exe",
+   "size": 9920523,
+   "entry_rva": 6701043,
+   "toolchain": "SolidDaima_Rev8_200901029"
+  },
+  "idb": {
+   "path": "<RE>/ida\\v83.idb",
+   "size": 125092284,
+   "original_path": "<IDB_PATH>\\MapleStory IDBs\\GMS\\v83\\MapleAeon.exe",
+   "note": "IDA database for the 2014 MapleAeon.exe analysis, not the 2010 build on disk; addresses agree, but the two artefacts are different files"
+  }
+ },
+ "addresses": {
+  "CField::OnPacket": {
+   "va": 5444389,
+   "hex": "0x531325",
+   "rva": 1250085,
+   "in_code": true
+  },
+  "CInPacket::Decode1": {
+   "va": 4220403,
+   "hex": "0x4065F3",
+   "rva": 26099,
+   "in_code": true
+  },
+  "CInPacket::Decode2": {
+   "va": 4343564,
+   "hex": "0x42470C",
+   "rva": 149260,
+   "in_code": true
+  },
+  "CInPacket::Decode4": {
+   "va": 4220457,
+   "hex": "0x406629",
+   "rva": 26153,
+   "in_code": true
+  },
+  "CInPacket::DecodeBuffer": {
+   "va": 4399703,
+   "hex": "0x432257",
+   "rva": 205399,
+   "in_code": true
+  },
+  "CLogin::OnPacket": {
+   "va": 6258943,
+   "hex": "0x5F80FF",
+   "rva": 2064639,
+   "in_code": true
+  },
+  "CStage::OnPacket": {
+   "va": 6571078,
+   "hex": "0x644446",
+   "rva": 2376774,
+   "in_code": true
+  },
+  "CWvsContext::OnPacket": {
+   "va": 10517000,
+   "hex": "0xA07A08",
+   "rva": 6322696,
+   "in_code": true
+  },
+  "CinPacket::DecodeStr": {
+   "va": 4649740,
+   "hex": "0x46F30C",
+   "rva": 455436,
+   "in_code": true
+  },
+  "StringPool::GetInstance": {
+   "va": 7989253,
+   "hex": "0x79E805",
+   "rva": 3794949,
+   "in_code": true
+  },
+  "StringPool::GetString": {
+   "va": 4219989,
+   "hex": "0x406455",
+   "rva": 25685,
+   "in_code": true
+  },
+  "_WinMain@16": {
+   "va": 10426866,
+   "hex": "0x9F19F2",
+   "rva": 6232562,
+   "in_code": true
+  },
+  "sub_5F83EE": {
+   "va": 6259694,
+   "hex": "0x5F83EE",
+   "rva": 2065390,
+   "in_code": true
+  }
+ },
+ "dispatchers": {
+  "CLogin::OnPacket": {
+   "opcode_range": [
+    0,
+    28
+   ],
+   "bias": 0,
+   "compare": 28,
+   "note": "no bias; cmp eax, 0x1c",
+   "address": "0x5F80FF"
+  },
+  "CField::OnPacket": {
+   "opcode_range": [
+    125,
+    345
+   ],
+   "bias": null,
+   "note": "125 is an 8-bit compare; 345 is dispatched by a multi-way chain and is not an 8-bit compare",
+   "address": "0x531325"
+  },
+  "CWvsContext::OnPacket": {
+   "opcode_range": [
+    29,
+    124
+   ],
+   "bias": 29,
+   "compare": 95,
+   "note": "add eax,-29 then cmp eax,0x5f (95); jump table of 96 consecutive code pointers at 0x00A07E8E",
+   "address": "0xA07A08"
+  },
+  "CStage::OnPacket": {
+   "opcode_range": [
+    128,
+    130
+   ],
+   "bias": 128,
+   "compare": null,
+   "note": "sub eax, 0x80",
+   "address": "0x644446"
+  }
+ },
+ "cwvs_context_handlers": {
+  "29": {
+   "va": 10611417,
+   "hex": "0xA1EAD9",
+   "in_code": true
+  },
+  "30": {
+   "va": 10614913,
+   "hex": "0xA1F881",
+   "in_code": true
+  },
+  "31": {
+   "va": 10615634,
+   "hex": "0xA1FB52",
+   "in_code": true
+  },
+  "32": {
+   "va": 10617534,
+   "hex": "0xA202BE",
+   "in_code": true
+  },
+  "33": {
+   "va": 10618655,
+   "hex": "0xA2071F",
+   "in_code": true
+  },
+  "34": {
+   "va": 10619135,
+   "hex": "0xA208FF",
+   "in_code": true
+  },
+  "35": {
+   "va": 10619164,
+   "hex": "0xA2091C",
+   "in_code": true
+  },
+  "36": {
+   "va": 10609804,
+   "hex": "0xA1E48C",
+   "in_code": true
+  },
+  "37": {
+   "va": 10619314,
+   "hex": "0xA209B2",
+   "in_code": true
+  },
+  "38": {
+   "va": 10626012,
+   "hex": "0xA223DC",
+   "in_code": true
+  },
+  "39": {
+   "va": 10619348,
+   "hex": "0xA209D4",
+   "in_code": true
+  },
+  "40": {
+   "va": 10619584,
+   "hex": "0xA20AC0",
+   "in_code": true
+  },
+  "41": {
+   "va": 10637451,
+   "hex": "0xA2508B",
+   "in_code": true
+  },
+  "42": {
+   "va": 10637928,
+   "hex": "0xA25268",
+   "in_code": true
+  },
+  "43": {
+   "va": 10642882,
+   "hex": "0xA265C2",
+   "in_code": true
+  },
+  "45": {
+   "va": 10647697,
+   "hex": "0xA27891",
+   "in_code": true
+  },
+  "46": {
+   "va": 10648376,
+   "hex": "0xA27B38",
+   "in_code": true
+  },
+  "47": {
+   "va": 10648417,
+   "hex": "0xA27B61",
+   "in_code": true
+  },
+  "48": {
+   "va": 10653973,
+   "hex": "0xA29115",
+   "in_code": true
+  },
+  "49": {
+   "va": 10644804,
+   "hex": "0xA26D44",
+   "in_code": true
+  },
+  "50": {
+   "va": 10648949,
+   "hex": "0xA27D75",
+   "in_code": true
+  },
+  "51": {
+   "va": 10610095,
+   "hex": "0xA1E5AF",
+   "in_code": true
+  },
+  "52": {
+   "va": 10611011,
+   "hex": "0xA1E943",
+   "in_code": true
+  },
+  "53": {
+   "va": 10611053,
+   "hex": "0xA1E96D",
+   "in_code": true
+  },
+  "55": {
+   "va": 10655545,
+   "hex": "0xA29739",
+   "in_code": true
+  },
+  "57": {
+   "va": 10632594,
+   "hex": "0xA23D92",
+   "in_code": true
+  },
+  "58": {
+   "va": 10632569,
+   "hex": "0xA23D79",
+   "in_code": true
+  },
+  "59": {
+   "va": 10560319,
+   "hex": "0xA1233F",
+   "in_code": true
+  },
+  "61": {
+   "va": 10630923,
+   "hex": "0xA2370B",
+   "in_code": true
+  },
+  "62": {
+   "va": 10740508,
+   "hex": "0xA3E31C",
+   "in_code": true
+  }
+ },
+ "wz": {
+  "archives": [
+   "Character",
+   "Mob",
+   "Skill",
+   "Reactor",
+   "Npc",
+   "UI",
+   "Quest",
+   "Item",
+   "Effect",
+   "String",
+   "Etc",
+   "Morph",
+   "TamingMob",
+   "Sound",
+   "Map"
+  ],
+  "count": 15,
+  "binding": "Pixi (GetProcAddress 'PcCreateObject'), not COM",
+  "archive_header": "PKG1 + 'Package file v1.0 Copyright 2002 Wizet, ZMS'",
+  "loose_img_magic": "73f86c77",
+  "reader_location": "not in the client image"
+ },
+ "scripts": {
+  "total": 2294,
+  "per_directory": {
+   "NPC Base.js": 1,
+   "QUEST Base.js": 1,
+   "REACT Base.js": 1,
+   "event": 108,
+   "item": 2,
+   "map": 72,
+   "npc": 1101,
+   "portal": 409,
+   "quest": 330,
+   "reactor": 269
+  },
+  "encoding": "GB18030"
+ },
+ "corrections": [
+  {
+   "claim": "CWvsContext::OnPacket opcode range is 29~62",
+   "corrected": "29~124",
+   "why": "the dispatcher applies a -29 bias then compares against 0x5f (95) and jumps through a 96-entry table; 62 was merely the last handler the wiki had named",
+   "source": "docs/40-protocol/index.md"
+  },
+  {
+   "claim": "7,270,400 is the build timestamp (~2018)",
+   "corrected": "7,270,400 is SizeOfCode; the timestamp is 1,267,176,451 = 2010-02-26 09:27:31 UTC",
+   "why": "the two fields were conflated",
+   "source": "README.md"
+  },
+  {
+   "claim": "the binary is packed with Themida / WzPacker",
+   "corrected": "Nexon CSecurity (first-party)",
+   "why": "the RTTI in the unpacked build identifies CSecurity; every commercial packer signature scores 0 hits",
+   "source": "docs/10-client-analysis/exe-reverse-engineering.md"
+  }
+ ],
+ "entry_points": {
+  "want_to_change_ui": "docs/30-ui-classes/index.md",
+  "want_to_add_packet_behaviour": "docs/40-protocol/index.md",
+  "want_to_patch_client": "docs/60-secondary-dev/patches/index.md",
+  "want_to_run_server": "docs/20-server-emulators/index.md",
+  "want_to_reverse_client": "docs/10-client-analysis/v83-idb/index.md",
+  "want_to_hook_client": "docs/50-tools/kaentake/index.md",
+  "want_to_edit_wz": "docs/50-tools/wz-mod-tool/index.md",
+  "want_github_projects": "docs/70-resources/github-bookmarks/index.md"
+ }
+}

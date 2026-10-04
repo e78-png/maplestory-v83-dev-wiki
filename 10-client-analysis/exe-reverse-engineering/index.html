@@ -6,11 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="本地知識庫 — Cosmic + HeavenMS + kaentake + IDA Pro MCP 整合">
+        <meta name="description" content="GMS v83 客戶端逆向、協議與二次開發知識庫 — 所有技術主張皆有自動驗證支撐">
       
       
         <meta name="author" content="Generated">
       
+      
+        <link rel="canonical" href="https://e78-png.github.io/maplestory-v83-dev-wiki/10-client-analysis/exe-reverse-engineering/">
       
       
         <link rel="prev" href="../wz-structures/ui-wz/">
@@ -53,6 +55,8 @@
       
     
     
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -69,7 +73,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -78,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#maplestory-083exe-12" class="md-skip">
+        <a href="#maplestory-083exe" class="md-skip">
           Skip to content
         </a>
       
@@ -90,12 +94,14 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-header__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -125,20 +131,20 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="cyan"  aria-label="切換至亮色"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      <label class="md-header__button md-icon" title="切換至亮色" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
       </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="cyan"  aria-label="切換至深色"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      <label class="md-header__button md-icon" title="切換至深色" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
       </label>
     
   
@@ -193,16 +199,22 @@
       
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+      </div>
+    
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -464,7 +476,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -486,11 +504,23 @@
     <a href="../.." title="MapleStory v83 二次開發 WIKI" class="md-nav__button md-logo" aria-label="MapleStory v83 二次開發 WIKI" data-md-component="logo">
       
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.79 13 16 16l1 2-4-.75V21h-2v-3.75L7 18l1-2-5.79-3 1-1.73L1.61 8l3.6-.23 1-1.77 3.42 3.9L8 5h2l2-3 2 3h2l-1.63 4.9L17.79 6l1 1.73 3.6.23-1.6 3.23z"/></svg>
 
     </a>
     MapleStory v83 二次開發 WIKI
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/e78-png/maplestory-v83-dev-wiki" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    e78-png/maplestory-v83-dev-wiki
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -532,6 +562,8 @@
       
         
           
+        
+      
         
       
         
@@ -648,6 +680,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../00-overview/ENVIRONMENT-PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    環境建置計畫
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -668,6 +728,8 @@
       
         
           
+        
+      
         
       
         
@@ -746,6 +808,10 @@
       
         
           
+        
+      
+        
+      
         
       
         
@@ -874,6 +940,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../v83-idb/class-methods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    已知 Class Methods
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v83-idb/historical-renames/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    歷史 Renames
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../v83-idb/strings/" class="md-nav__link">
         
   
@@ -882,6 +1004,354 @@
     
   
     Strings 清單
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    深度分析 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    深度分析 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-1-v83-idb-structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-1 IDB 結構
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-2-opcode-collision/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-2 Opcode 衝突
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-3-exe-diff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-3 原版 vs 繁化版 diff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-4-framework-headers-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-4 kaentake headers 對照
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-5-wz-img-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-5 WZ/IMG 索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-6-js-script-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-6 JS 腳本索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W1-7-monsterbook-index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W1-7 怪物圖鑑索引
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W3-1-HeavenClient-4-platforms-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-1 HeavenClient 4 端
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wf-analysis/W3-2-MapleStory-Client-isolated-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W3-2 MapleStory-Client 拆解
   
 
     
@@ -936,7 +1406,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -958,14 +1428,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1072,7 +1542,7 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
         
           
           <div class="md-nav__link md-nav__container">
@@ -1094,14 +1564,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1216,199 +1686,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-7" class="md-nav__link">
+  <a href="#0-themida" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §1 已驗證可用的方法(7 種)
+        §0 重要更正:保護層不是 Themida
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="§1 已驗證可用的方法(7 種)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-ida-v83idb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.1 IDA 靜態分析(目前 v83.idb 路線)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-unpack-unlicenseexe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.2 動態 unpack - unlicense.exe
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-runtime-maplepe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.3 Runtime 讀記憶體 - MaplePE
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-runtime-wand_ext" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.4 Runtime 讀記憶體 - WAND_EXT
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-runtime-kaentake" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.5 Runtime 讀記憶體 - kaentake
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-ai-assisted" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.6 AI-assisted 脫殹
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#17-v83rar" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.7 v83.rar 解壓
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2 確認不可用的方法(3 種)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="§2 確認不可用的方法(3 種)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-ida-raw-maplestory-083exe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.1 IDA 直接分析 raw MapleStory 0.83.exe
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-unpack-maple-unpack-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.2 動態 unpack - maple-unpack-native
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-static-unpacker-generic-pe-unpacker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.3 Static unpacker - generic PE unpacker
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-oep-find" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.4 手動 OEP find
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25-runtime-mapleezorsia" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.5 Runtime 讀記憶體 - MapleEzorsia
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-maplestory-083exe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §3 結論:怎麼實際逆向 MapleStory 0.83.exe
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="§3 結論:怎麼實際逆向 MapleStory 0.83.exe">
+    <nav class="md-nav" aria-label="§0 重要更正:保護層不是 Themida">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推薦流程(強驗證後)
+        簽章掃描結果
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#rtti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        真正的識別依據:RTTI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1 保護層的實際行為(實測)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§1 保護層的實際行為(實測)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        真正的關鍵問題
+        上一版文件的欄位讀取錯誤
       
     </span>
   </a>
@@ -1416,10 +1748,121 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#soliddaima" class="md-nav__link">
     <span class="md-ellipsis">
       
-        最低成本最簡單路線
+        繁化版的來源:SolidDaima
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §2 已經產出的分析成果(已完成)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§2 已經產出的分析成果(已完成)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ghidra 全量分析(本專案已完成)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-v83idbida-6-2014-03-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 v83.idb(IDA 6 資料庫,2014-03-25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-i64-asm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 .i64 與 .asm 的歸屬
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-wz-client-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3 WZ 架構:為什麼 client 裡找不到 WZ 解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§3 WZ 架構:為什麼 client 裡找不到 WZ 解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-wz-pixi-windows-com" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 WZ 層由 Pixi 框架驅動,不是 Windows COM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-client-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 容器解析器不在 client image 內
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-client-15-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Client 載入的 15 個 WZ 檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-wz-img" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 WZ 與 IMG 是兩種不同容器
       
     </span>
   </a>
@@ -1435,7 +1878,7 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §4 參考連結
+        §4 腳本層:最高價值的修改面
       
     </span>
   </a>
@@ -1446,7 +1889,68 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §5 強驗證聲明
+        §5 解析度修改鏈
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§5 解析度修改鏈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        登入介面限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §6 若仍要做執行期脫殼
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §7 驗證
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8 參考連結
       
     </span>
   </a>
@@ -1480,6 +1984,8 @@
       
         
           
+        
+      
         
       
         
@@ -1651,6 +2157,201 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../20-server-emulators/wf-analysis/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    開源 client 拆解 (wf-analysis)
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-1-OpenMapleClient-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-1 OpenMapleClient
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-2-OpenMapleClient-NetPackets-Handlers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-2 Net/Packets 與 Handlers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-3-MapleServerAndroid-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-3 MapleServerAndroid
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20-server-emulators/wf-analysis/W2-4-Journey-vs-Mortal-vs-OpenMaple-compare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    W2-4 Journey/Mortal/OpenMaple 對比
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -2310,6 +3011,8 @@
       
         
       
+        
+      
     
     
     
@@ -2435,6 +3138,34 @@
     
   
     外部連結
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../70-resources/github-bookmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GitHub 專案書籤
   
 
     
@@ -2591,199 +3322,61 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-7" class="md-nav__link">
+  <a href="#0-themida" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §1 已驗證可用的方法(7 種)
+        §0 重要更正:保護層不是 Themida
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="§1 已驗證可用的方法(7 種)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-ida-v83idb" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.1 IDA 靜態分析(目前 v83.idb 路線)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-unpack-unlicenseexe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.2 動態 unpack - unlicense.exe
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-runtime-maplepe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.3 Runtime 讀記憶體 - MaplePE
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-runtime-wand_ext" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.4 Runtime 讀記憶體 - WAND_EXT
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-runtime-kaentake" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.5 Runtime 讀記憶體 - kaentake
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#16-ai-assisted" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.6 AI-assisted 脫殹
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#17-v83rar" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §1.7 v83.rar 解壓
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-3" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2 確認不可用的方法(3 種)
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="§2 確認不可用的方法(3 種)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-ida-raw-maplestory-083exe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.1 IDA 直接分析 raw MapleStory 0.83.exe
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-unpack-maple-unpack-native" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.2 動態 unpack - maple-unpack-native
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-static-unpacker-generic-pe-unpacker" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.3 Static unpacker - generic PE unpacker
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-oep-find" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.4 手動 OEP find
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25-runtime-mapleezorsia" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §2.5 Runtime 讀記憶體 - MapleEzorsia
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-maplestory-083exe" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        §3 結論:怎麼實際逆向 MapleStory 0.83.exe
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="§3 結論:怎麼實際逆向 MapleStory 0.83.exe">
+    <nav class="md-nav" aria-label="§0 重要更正:保護層不是 Themida">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        推薦流程(強驗證後)
+        簽章掃描結果
       
     </span>
   </a>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#rtti" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        真正的識別依據:RTTI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §1 保護層的實際行為(實測)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§1 保護層的實際行為(實測)">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        真正的關鍵問題
+        上一版文件的欄位讀取錯誤
       
     </span>
   </a>
@@ -2791,10 +3384,121 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#soliddaima" class="md-nav__link">
     <span class="md-ellipsis">
       
-        最低成本最簡單路線
+        繁化版的來源:SolidDaima
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §2 已經產出的分析成果(已完成)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§2 已經產出的分析成果(已完成)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-ghidra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Ghidra 全量分析(本專案已完成)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-v83idbida-6-2014-03-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 v83.idb(IDA 6 資料庫,2014-03-25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-i64-asm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 .i64 與 .asm 的歸屬
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-wz-client-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §3 WZ 架構:為什麼 client 裡找不到 WZ 解析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§3 WZ 架構:為什麼 client 裡找不到 WZ 解析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-wz-pixi-windows-com" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 WZ 層由 Pixi 框架驅動,不是 Windows COM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-client-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 容器解析器不在 client image 內
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-client-15-wz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 Client 載入的 15 個 WZ 檔案
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-wz-img" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 WZ 與 IMG 是兩種不同容器
       
     </span>
   </a>
@@ -2810,7 +3514,7 @@
   <a href="#4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §4 參考連結
+        §4 腳本層:最高價值的修改面
       
     </span>
   </a>
@@ -2821,7 +3525,68 @@
   <a href="#5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        §5 強驗證聲明
+        §5 解析度修改鏈
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="§5 解析度修改鏈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        設定檔
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        登入介面限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §6 若仍要做執行期脫殼
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §7 驗證
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        §8 參考連結
       
     </span>
   </a>
@@ -2844,449 +3609,603 @@
                   
 
 
+  
+  
 
-<h1 id="maplestory-083exe-12">MapleStory 0.83.exe 逆向方法完整評估(12 種)<a class="headerlink" href="#maplestory-083exe-12" title="Permanent link">&para;</a></h1>
+
+<h1 id="maplestory-083exe">MapleStory 0.83.exe 逆向方法評估<a class="headerlink" href="#maplestory-083exe" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>來源</strong>: 純技術事實評估,2026-09-28
-<strong>目標</strong>: 完整、沒有幻想、沒猜、實際</p>
+<p><strong>來源</strong>: 全部主張可用 <code>python verify_wiki_claims.py</code> 重跑驗證
+<strong>目標</strong>: 修正上一版把保護層誤判為 Themida 的結論</p>
 </blockquote>
-<h2 id="1-7">§1 已驗證可用的方法(7 種)<a class="headerlink" href="#1-7" title="Permanent link">&para;</a></h2>
-<h3 id="11-ida-v83idb">§1.1 IDA 靜態分析(目前 v83.idb 路線)<a class="headerlink" href="#11-ida-v83idb" title="Permanent link">&para;</a></h3>
+<hr />
+<h2 id="0-themida">§0 重要更正:保護層不是 Themida<a class="headerlink" href="#0-themida" title="Permanent link">&para;</a></h2>
+<p>上一版本文件宣稱本檔案由 <strong>Themida 3.x</strong> 保護。<strong>這個結論是錯的</strong>,而且證據就在本 wiki 自己的字串表裡。</p>
+<blockquote>
+<p>本文件在下方仍會引用 "Themida" 這個詞,但僅用於說明「上一版錯在哪」與「為何 MapleDumper 等工具不適用」,
+<strong>不是</strong>對本檔案保護層的認定。本檔案的保護層是 <strong>Nexon CSecurity</strong>。</p>
+</blockquote>
+<h3 id="_1">簽章掃描結果<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>對 <code>MapleStory 0.83.exe</code> 原始 bytes 做簽章掃描:</p>
 <table>
 <thead>
 <tr>
-<th>項目</th>
-<th>值</th>
+<th>簽章</th>
+<th>命中次數</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>What</strong></td>
-<td>angel 的 <code>v83.idb</code> 已有 54K functions + 6 pseudocode</td>
+<td><code>.themida</code> / <code>.winlice</code> / <code>Themida</code> / <code>WinLicense</code></td>
+<td><strong>0</strong></td>
 </tr>
 <tr>
-<td><strong>Works</strong></td>
-<td>partial</td>
+<td><code>.vmp0</code>–<code>.vmp3</code>(VMProtect)</td>
+<td><strong>0</strong></td>
 </tr>
 <tr>
-<td><strong>Why</strong></td>
-<td>v83.idb 是 angel 已手動分析的,IDA 看到完整 code</td>
+<td><code>.aspack</code> / <code>ASProtect</code></td>
+<td><strong>0</strong></td>
 </tr>
 <tr>
-<td><strong>Cost</strong></td>
-<td>0(已完成)</td>
+<td><code>.enigma</code>(Enigma)</td>
+<td><strong>0</strong></td>
 </tr>
 <tr>
-<td><strong>Evidence</strong></td>
-<td>已驗證,54K functions dump</td>
-</tr>
-</tbody>
-</table>
-<p><strong>這是當前唯一真正可用的靜態路線</strong>。</p>
-<h3 id="12-unpack-unlicenseexe">§1.2 動態 unpack - unlicense.exe<a class="headerlink" href="#12-unpack-unlicenseexe" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>從 ergrelet/unlicense 下載通用 unpacker</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>unknown</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>unlicense 是通用 unpacker, 支援 Themida 但要測試</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要下載 + 執行</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>README 說支援 x86/x64 PE unpacker</td>
+<td><code>UPX0</code> / <code>UPX1</code> / <code>UPX!</code></td>
+<td><strong>0</strong></td>
 </tr>
 </tbody>
 </table>
-<h3 id="13-runtime-maplepe">§1.3 Runtime 讀記憶體 - MaplePE<a class="headerlink" href="#13-runtime-maplepe" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>DLL 注入 running client, hook CInPacket</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>YES</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>runtime packer 已 unpack, 能看到完整 code</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要 client 跑起來 + .NET 編譯</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>MaplePE README 證實可行</td>
-</tr>
-</tbody>
-</table>
-<h3 id="14-runtime-wand_ext">§1.4 Runtime 讀記憶體 - WAND_EXT<a class="headerlink" href="#14-runtime-wand_ext" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>external RPM 讀 v83 client 記憶體</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>YES</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>MapleOffsets.h 已有完整 addresses</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要 client 跑起來 + Visual Studio 編譯</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>已 clone, 6.3 MB source</td>
-</tr>
-</tbody>
-</table>
-<h3 id="15-runtime-kaentake">§1.5 Runtime 讀記憶體 - kaentake<a class="headerlink" href="#15-runtime-kaentake" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>Detours hook running client</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>YES</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>已 clone, hook CInPacket/COutPacket</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要 client + Visual Studio</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>已 clone 02-Tools/</td>
-</tr>
-</tbody>
-</table>
-<h3 id="16-ai-assisted">§1.6 AI-assisted 脫殹<a class="headerlink" href="#16-ai-assisted" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>用 LLM 分析 VM bytecode 找 pattern</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>unknown</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>理論上可能, 但需要 LLM 對 Themida bytecode 經驗</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>理論上 0</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>no known precedent</td>
-</tr>
-</tbody>
-</table>
-<h3 id="17-v83rar">§1.7 v83.rar 解壓<a class="headerlink" href="#17-v83rar" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>解壓 20 MB rar 看有沒有 localhost client</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>unknown</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>未解壓</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要 unrar</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>已 clone rar 檔案</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-3">§2 確認不可用的方法(3 種)<a class="headerlink" href="#2-3" title="Permanent link">&para;</a></h2>
-<h3 id="21-ida-raw-maplestory-083exe">§2.1 IDA 直接分析 raw MapleStory 0.83.exe<a class="headerlink" href="#21-ida-raw-maplestory-083exe" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>直接用 IDA 載入加殹 binary</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td><strong>NO</strong></td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>Themida 3.x VM bytecode, IDA 看到 2-4 functions</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>0(已驗證失敗)</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>5 次嘗試一致: 2-4 functions</td>
-</tr>
-</tbody>
-</table>
-<h3 id="22-unpack-maple-unpack-native">§2.2 動態 unpack - maple-unpack-native<a class="headerlink" href="#22-unpack-maple-unpack-native" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>mapledumper unpack --native (已下載)</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td><strong>NO</strong></td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>只支援 Themida 2.x, 不支援 3.x</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>0(已驗證)</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>"Themida/WinLicense 3.x is not supported"</td>
-</tr>
-</tbody>
-</table>
-<h3 id="23-static-unpacker-generic-pe-unpacker">§2.3 Static unpacker - generic PE unpacker<a class="headerlink" href="#23-static-unpacker-generic-pe-unpacker" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>用 UPX/ASPack 等通用 unpacker</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td><strong>NO</strong></td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>不是 UPX/ASPack, 是 Themida</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>0</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>簽名 scan 確認</td>
-</tr>
-</tbody>
-</table>
-<h3 id="24-oep-find">§2.4 手動 OEP find<a class="headerlink" href="#24-oep-find" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>用 debugger (OllyDbg/x64dbg) 找 OEP</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>YES (但需要技術)</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>OllyDbg + Phantom 可以手動 unpack Themida</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>高(人工 + 經驗)</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>RaGEZONE 社群有教學</td>
-</tr>
-</tbody>
-</table>
-<h3 id="25-runtime-mapleezorsia">§2.5 Runtime 讀記憶體 - MapleEzorsia<a class="headerlink" href="#25-runtime-mapleezorsia" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>項目</th>
-<th>值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>What</strong></td>
-<td>DLL 注入 localhostv83_clean.exe</td>
-</tr>
-<tr>
-<td><strong>Works</strong></td>
-<td>YES (但需要 localhostv83_clean.exe 不是 0.83.exe)</td>
-</tr>
-<tr>
-<td><strong>Why</strong></td>
-<td>預設計對 localhostv83_clean</td>
-</tr>
-<tr>
-<td><strong>Cost</strong></td>
-<td>需要 localhostv83_clean.exe</td>
-</tr>
-<tr>
-<td><strong>Evidence</strong></td>
-<td>已 clone 04-Emulators/MapleEzorsia-v83/</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-maplestory-083exe">§3 結論:怎麼實際逆向 MapleStory 0.83.exe<a class="headerlink" href="#3-maplestory-083exe" title="Permanent link">&para;</a></h2>
-<h3 id="_1">推薦流程(強驗證後)<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Step 1: 解壓 v83.rar(看有沒有已脫殹的 client)
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   ↓ 如果有, 用 IDA 靜態分析 → 完成
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Step 2: 沒有的話, 架 local server (Cosmic)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>   ↓ 跑 MapleStory 0.83.exe 連 local server
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Step 3: 用 runtime 工具讀記憶體
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>   - WAND_EXT: 讀 CUserLocal/CWvsPhysicalSpace2D 結構
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>   - kaentake: hook CInPacket/COutPacket 攔截 packet
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>   - MaplePE: 同上 (C# 版本)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Step 4: 從 runtime dump 重建 IDA database
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>   - dump 記憶體中已 unpack 的 code
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>   - 把 dump 的 code 重新 import IDA
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>Step 5: 完整靜態分析 unpacked binary
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>   ↓ 跑 Spirit analyzer v2 + Spirit analyzer v3
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Step 6: 寫進 Wiki + push GitHub Pages
+<h3 id="rtti">真正的識別依據:RTTI<a class="headerlink" href="#rtti" title="Permanent link">&para;</a></h3>
+<p>解包後的 client(<code>msv83_trad.exe</code>)字串池中,每個 RTTI 類別名各出現 1 次:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.?AVZException@@               Nexon 內部基礎例外
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>.?AVCMSException@@             Client Message System(客戶端通訊層)
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>.?AVCTerminateException@@      伺服器指令斷線
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>.?AVCPatchException@@          補丁管線失敗
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>.?AVCSecurityException@@       ← 保護層基底
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>.?AVCSecurityInitFailed@@      ← 保護層初始化失敗
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>.?AVCSecurityUpdateFailed@@    ← 保護層更新失敗
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>.?AVCSecurityThreatDetected@@  ← 偵測到威脅
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>.?AVCSecurityClearFailed@@     ← 保護層清除失敗
 </code></pre></div>
-<h3 id="_2">真正的關鍵問題<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>這是 <strong>Nexon / Wizet 自家的 CSecurity 模組</strong>,不是任何商業加殼器。</p>
+<blockquote>
+<p>上一版文件在 §2.2 引用的 "Evidence: Themida/WinLicense 3.x is not supported" 是一個<strong>工具 README 的限制說明</strong>,被誤讀成對本檔案的識別結果。該句描述的是 MapleDumper 這支工具能處理什麼,與目標檔案是什麼無關。</p>
+</blockquote>
+<hr />
+<h2 id="1">§1 保護層的實際行為(實測)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>問題</th>
-<th>答案</th>
+<th>項目</th>
+<th>值</th>
+<th>驗證方式</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>MapleStory 0.83.exe 在磁碟上加殹?</td>
-<td>✓ 是 (Themida 3.x)</td>
+<td>格式</td>
+<td>PE32, i386, Windows GUI</td>
+<td>pefile</td>
 </tr>
 <tr>
-<td>Running client 在記憶體中已 unpack?</td>
-<td>✓ 是 (packer runtime 解碼)</td>
+<td>ImageBase</td>
+<td><code>0x400000</code></td>
+<td>PE header</td>
 </tr>
 <tr>
-<td>我們有 unpacked 版本?</td>
-<td>✗ 沒有,但有 v83.idb(angel 已 dump)</td>
+<td>EntryPoint RVA</td>
+<td><code>0x00A8C000</code></td>
+<td>PE header</td>
+</tr>
+<tr>
+<td>EntryPoint 所在 section</td>
+<td><code>tfqhbstk</code>(僅 4 KB)</td>
+<td>section table</td>
+</tr>
+<tr>
+<td>TimeDateStamp</td>
+<td><code>0x4B879403</code> = <strong>2010-02-26 09:27:31 UTC</strong></td>
+<td>PE header</td>
+</tr>
+<tr>
+<td>Section 數</td>
+<td>7</td>
+<td>PE header</td>
+</tr>
+<tr>
+<td>Section 名</td>
+<td><code>(空)</code> / <code>.rsrc</code> / <code>.idata</code> / <code>(空)</code> / <code>uilplxhk</code> / <code>tfqhbstk</code> / <code>gndhordv</code></td>
+<td>section table</td>
+</tr>
+<tr>
+<td>首要 section entropy</td>
+<td><strong>7.98</strong></td>
+<td>pefile</td>
+</tr>
+<tr>
+<td>Import</td>
+<td><strong>1 個</strong> — <code>kernel32.dll!FileTimeToLocalFileTime</code></td>
+<td>import table</td>
+</tr>
+<tr>
+<td>Export</td>
+<td>3 個 — <code>ZtlTaskMemAllocImp</code> / <code>ZtlTaskMemFreeImp</code> / <code>ZtlTaskMemReallocImp</code></td>
+<td>export table</td>
+</tr>
+<tr>
+<td>Version resource lang</td>
+<td><code>0x0412</code>(韓文 Johab)</td>
+<td>resource tree</td>
 </tr>
 </tbody>
 </table>
-<h3 id="_3">最低成本最簡單路線<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p><strong>用 v83.idb + v83.rar 解壓</strong>:
-1. 解壓 v83.rar 看有沒有已脫殹的 client
-2. 沒有就用 v83.idb(angel 已 dump, 6 個 pseudocode + 54K functions)</p>
-<p><strong>這是目前已驗證的最佳路線</strong>。</p>
-<h2 id="4">§4 參考連結<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<h3 id="_2">上一版文件的欄位讀取錯誤<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>上一版寫法</th>
+<th>實際值</th>
+<th>問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TimeDateStamp \| 7,270,400 (≈2018)</code></td>
+<td><code>1,267,176,451</code> = 2010-02-26</td>
+<td><code>7,270,400</code> 是 <strong>SizeOfCode</strong>,不是 timestamp</td>
+</tr>
+<tr>
+<td><code>1 個 import — 推測為 LoadLibraryA</code></td>
+<td><code>FileTimeToLocalFileTime</code></td>
+<td>函式名錯</td>
+</tr>
+<tr>
+<td><code>.mackt</code> 是 WzPack<strong>er</strong> 標誌段名</td>
+<td><code>b'.mackt\x00t'</code> = <code>.macktt</code></td>
+<td>段名解析錯 + 工具名不存在</td>
+</tr>
+</tbody>
+</table>
+<p><code>7,270,400</code> 同時是原版與繁化版的 <code>SizeOfCode</code>,<code>W1-3-exe-diff.md</code> 的表格中它出現在 <code>SizeOfCode</code> 行 — 這是欄位歸屬錯誤的直接證據。</p>
+<h3 id="soliddaima">繁化版的來源:SolidDaima<a class="headerlink" href="#soliddaima" title="Permanent link">&para;</a></h3>
+<p>繁化版(<code>msv83_trad.exe</code>)最後一個 section(4 KB,entropy 2.23)內含:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&lt;DRIVE_E&gt;:\ACGame_GL\BinTool\SolidDaima_Rev8_200901029\setting.ini
+</code></pre></div>
+<blockquote>
+<p>原始二進位中的字串以 <code>&lt;DRIVE_E&gt;:</code> 開頭,此處顯示為佔位符;
+字串內容本身可由 <code>verify_wiki_claims.py</code> 重跑驗證(搜尋
+<code>SolidDaima_Rev8_200901029</code>,預期出現 1 次)。</p>
+</blockquote>
+<p><strong>SolidDaima</strong> 是真實存在的 WZ 修改工具。<strong>沒有任何名為「WzPacker」的工具存在</strong> — 那個名稱是誤植,出現在本 wiki 的 7 個檔案共 11 處。</p>
+<hr />
+<h2 id="2">§2 已經產出的分析成果(已完成)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>與其規劃「怎麼脫殼」,更有效的是:目錄中已經有兩份可用的分析產物。</p>
+<h3 id="21-ghidra">2.1 Ghidra 全量分析(本專案已完成)<a class="headerlink" href="#21-ghidra" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函式</td>
+<td><strong>52,083</strong></td>
+</tr>
+<tr>
+<td>符號</td>
+<td><strong>254,338</strong></td>
+</tr>
+<tr>
+<td>字串</td>
+<td>1,663</td>
+</tr>
+<tr>
+<td>Import</td>
+<td><strong>238</strong>,分佈於 17 個 DLL</td>
+</tr>
+<tr>
+<td>已 decompile 的 C 函式</td>
+<td>69 份</td>
+</tr>
+</tbody>
+</table>
+<p>Import 分布:</p>
+<table>
+<thead>
+<tr>
+<th>DLL</th>
+<th>數量</th>
+<th>角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>KERNEL32.DLL</td>
+<td>131</td>
+<td>Win32 核心</td>
+</tr>
+<tr>
+<td>USER32.DLL</td>
+<td>27</td>
+<td>視窗 / 訊息迴圈</td>
+</tr>
+<tr>
+<td>WS2_32.DLL</td>
+<td>12</td>
+<td><strong>TCP/UDP socket — 遊戲連線</strong></td>
+</tr>
+<tr>
+<td>MSS32.DLL</td>
+<td>12</td>
+<td><strong>Miles Sound System(<code>_AIL_*</code>)</strong></td>
+</tr>
+<tr>
+<td>OLEAUT32.DLL</td>
+<td>11</td>
+<td>OLE automation</td>
+</tr>
+<tr>
+<td>WININET.DLL</td>
+<td>9</td>
+<td><strong>HTTP — 補丁下載、廣告</strong></td>
+</tr>
+<tr>
+<td>NMCOGAME.DLL</td>
+<td>8</td>
+<td><strong>Nexon 帳號 / 社交模組</strong></td>
+</tr>
+<tr>
+<td>ADVAPI32.DLL</td>
+<td>8</td>
+<td>Registry、token privileges</td>
+</tr>
+<tr>
+<td>GDI32.DLL</td>
+<td>7</td>
+<td>2D 繪圖、<code>CreateDIBSection</code></td>
+</tr>
+<tr>
+<td>IJL15.DLL</td>
+<td>4</td>
+<td><strong>Intel JPEG Library — WZ canvas 解碼</strong></td>
+</tr>
+<tr>
+<td>VERSION / WINMM / NETAPI32 / IPHLPAPI / DINPUT8 / OLE32 / SHELL32</td>
+<td>各 1–3</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>上一版文件未提及 IJL15 與 MSS32。</strong> IJL15 是 WZ 資源讀取鏈的關鍵:WZ canvas 以 JPEG 儲存,由 <code>ijlInit</code> / <code>ijlRead</code> / <code>ijlWrite</code> / <code>ijlFree</code> 在執行期解碼,這四個符號在解包版中以具名函式存在。</p>
+</blockquote>
+<h3 id="22-v83idbida-6-2014-03-25">2.2 <code>v83.idb</code>(IDA 6 資料庫,2014-03-25)<a class="headerlink" href="#22-v83idbida-6-2014-03-25" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>大小</td>
+<td>125,092,284 bytes</td>
+</tr>
+<tr>
+<td>原檔名</td>
+<td><strong><code>MapleAeon.exe</code></strong></td>
+</tr>
+<tr>
+<td>原路徑</td>
+<td><code>…\My Stuff\MapleStory IDBs\GMS\v83\MapleAeon.exe</code></td>
+</tr>
+<tr>
+<td>函式總數</td>
+<td>54,357</td>
+</tr>
+<tr>
+<td>Named 函式</td>
+<td>204</td>
+</tr>
+<tr>
+<td>Strings ≥4B</td>
+<td>1,262</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>MapleAeon.exe</code> 是原持有者的重新命名</strong> — 路徑中的 <code>GMS\v83\</code> 明確標示為 GMS v83。這不是韓版客戶端。</p>
+<p><code>v83.idb</code> 的價值不在命名量(它幾乎全是自動命名),而在它證明了映像 import <code>nmcogame.dll</code>,並保留了該模組完整的公開介面:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NMCO_SetLocale                  NMCO_SetLocaleAndRegion
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>NMCO_SetPatchOption             NMCO_SetUseFriendModuleOption
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>NMCO_SetUseNGMOption            NMCO_SetVersionFileUrlA
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>NMCO_CallNMFunc                 NMCO_MemoryFree
+</code></pre></div>
+<p>以及 4 個 OnPacket dispatcher:<code>CLogin::OnPacket</code> (<code>0x5F80FF</code>)、<code>CField::OnPacket</code> (<code>0x531325</code>)、<code>CWvsContext::OnPacket</code> (<code>0xA07A08</code>)、<code>CStage::OnPacket</code> (<code>0x644446</code>)。</p>
+<h3 id="23-i64-asm">2.3 <code>.i64</code> 與 <code>.asm</code> 的歸屬<a class="headerlink" href="#23-i64-asm" title="Permanent link">&para;</a></h3>
+<p><code>MapleStory 0.83.exe.i64</code>(16.9 MB)是 <strong>對打包原檔</strong> 的 IDA 資料庫 — 對被打包的檔案做分析,看到的自然是 loader stub,不是遊戲邏輯。</p>
+<p><code>MapleStory 0.83.exe.asm</code>(15.7 MB / 209,699 行)同樣是對打包原檔的反組譯,開頭是連續的 <code>dd</code> 密文。</p>
+<p><strong>這兩者都不含遊戲邏輯。</strong> 上一版 <code>project-map.md</code> 只寫「IDA 自動分析的 IDB (17 MB)」而未標明目標,容易誤導。</p>
+<hr />
+<h2 id="3-wz-client-wz">§3 WZ 架構:為什麼 client 裡找不到 WZ 解析<a class="headerlink" href="#3-wz-client-wz" title="Permanent link">&para;</a></h2>
+<h3 id="31-wz-pixi-windows-com">3.1 WZ 層由 Pixi 框架驅動,不是 Windows COM<a class="headerlink" href="#31-wz-pixi-windows-com" title="Permanent link">&para;</a></h3>
+<p><code>FUN_00796022</code>(解包版)是唯一的綁定寫入點:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">FUN_00796022</span><span class="p">(</span><span class="n">HMODULE</span><span class="w"> </span><span class="n">h</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="n">DAT_00bf0cc0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">"PcCreateObject"</span><span class="p">);</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">DAT_00bf0cc4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">"PcFreeUnusedLibraries"</span><span class="p">);</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">DAT_00bf0cc8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">"PcSerializeObject"</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">DAT_00bf0ccc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">"PcSerializeString"</span><span class="p">);</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">DAT_00bf0cd0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetProcAddress</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">"PcRootNameSpace"</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DAT_00bf0cc0</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DAT_00bf0cd4</span><span class="p">;</span><span class="w"> </span><span class="n">p</span><span class="o">++</span><span class="p">)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">}</span>
+</code></pre></div>
+<p><strong>Pixi</strong> 是 Wizet 自家的物件框架。<code>CoCreateInstance</code> 在解包版中出現 <strong>0 次</strong>;<code>ole32.dll</code> 的實際用途是 <code>CoCreateGuid</code>。上一版 <code>W1-3-exe-diff.md</code> 稱 <code>ole32/oleaut32</code> 用於「UI ActiveX/COM 元件互操作」,與實測不符。</p>
+<h3 id="32-client-image">3.2 容器解析器不在 client image 內<a class="headerlink" href="#32-client-image" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>探測</th>
+<th>結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PKG1</code> 作為 byte string</td>
+<td>0 次</td>
+</tr>
+<tr>
+<td>公開 v83 AES key(<code>13 00 00 00 08 00 …</code>)</td>
+<td>0 次</td>
+</tr>
+<tr>
+<td><code>Package file</code> 描述字串</td>
+<td>0 次</td>
+</tr>
+<tr>
+<td><code>Wizet</code> 字串</td>
+<td>0 次</td>
+</tr>
+</tbody>
+</table>
+<p>把公開 v83 key 套用在 <code>String.wz</code> 前 0x20 bytes 上,得到 <code>bf 00 14 04 fb 7b 70 f6 …</code> 無結構輸出;同一組 key 讓明文描述字串變成亂碼。<strong>負結果不是 offset 對齊造成的假象。</strong></p>
+<p>結論:WZ 容器讀取程式碼在執行期由 <code>PcCreateObject</code> 從外部模組綁定,<strong>沒有編譯進這個 exe</strong>。</p>
+<h3 id="33-client-15-wz">3.3 Client 載入的 15 個 WZ 檔案<a class="headerlink" href="#33-client-15-wz" title="Permanent link">&para;</a></h3>
+<p><code>FUN_009f7159</code> 迭代一個 <strong>15 槽位</strong>的表(loop bound <code>0xF</code>),並以 UTF-16LE 的 <code>"%s.wz"</code> 格式化檔名:</p>
+<table>
+<thead>
+<tr>
+<th>槽位</th>
+<th>名稱</th>
+<th>槽位</th>
+<th>名稱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x00B3F480</code></td>
+<td><code>Character</code></td>
+<td><code>0x00B3F454</code></td>
+<td><code>Effect</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F47C</code></td>
+<td><code>Mob</code></td>
+<td><code>0x00B3F44C</code></td>
+<td><code>String</code></td>
+</tr>
+<tr>
+<td><code>0x00AF64DC</code></td>
+<td><code>Skill</code></td>
+<td><code>0x00B3F448</code></td>
+<td><code>Etc</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F474</code></td>
+<td><code>Reactor</code></td>
+<td><code>0x00B3F440</code></td>
+<td><code>Morph</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F470</code></td>
+<td><code>Npc</code></td>
+<td><code>0x00B3F434</code></td>
+<td><code>TamingMob</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F46C</code></td>
+<td><code>UI</code></td>
+<td><code>0x00B3F42C</code></td>
+<td><code>Sound</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F464</code></td>
+<td><code>Quest</code></td>
+<td><code>0x00B3F428</code></td>
+<td><code>Map</code></td>
+</tr>
+<tr>
+<td><code>0x00B3F45C</code></td>
+<td><code>Item</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>完整清單(15 個):<strong>Character, Mob, Skill, Reactor, Npc, UI, Quest, Item, Effect, String, Etc, Morph, TamingMob, Sound, Map</strong></p>
+<blockquote>
+<p>上一版文件在三處給出不同數字(16 / 28 / 28),且無一處列出實際檔名。<code>28 個</code> 出自 <code>W3-2-...analysis.md</code>,那是 <strong>韓版 JourneyClient</strong> 的分檔結構,與 GMS v83 不同 — 該文件自己也註明「GMS v83 通常沒有 <code>Map001/002/2.wz</code>」。</p>
+</blockquote>
+<p>目錄中實際存在 4 個:<code>UI.wz</code>、<code>String.wz</code>、<code>Quest.wz</code>、<code>Etc.wz</code>。<strong>其餘 11 個缺失。</strong></p>
+<h3 id="34-wz-img">3.4 WZ 與 IMG 是兩種不同容器<a class="headerlink" href="#34-wz-img" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>WZ 封存檔</th>
+<th>散落的 <code>.img</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位元組 0</td>
+<td><code>PKG1</code>(<code>50 4B 47 31</code>)</td>
+<td><code>73 f8 6c 77</code>(無 header)</td>
+</tr>
+<tr>
+<td>描述字串</td>
+<td><code>Package file v1.0 Copyright 2002 Wizet, ZMS</code></td>
+<td>無</td>
+</tr>
+<tr>
+<td>offset <code>0x0C</code></td>
+<td>60(header size)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>前 4 KB entropy</td>
+<td>—</td>
+<td>7.84</td>
+</tr>
+<tr>
+<td>範例</td>
+<td><code>UI.wz</code> / <code>String.wz</code> / <code>Quest.wz</code> / <code>Etc.wz</code></td>
+<td><code>Data/UI/Login.img</code> / <code>Data/Map/Obj/login.img</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>W1-5-wz-img-index.md</code> 對 WZ 側的描述(header size 60、<code>Package file</code> 描述字串)是<strong>正確的</strong>,已保留。差異在 IMG 側:這些檔案沒有 <code>PKG1</code> header,開頭是固定的 <code>73 f8 6c 77</code>,是 WZ 節點 blob 被抽出的形式。目錄中的 <code>更正启动错误补丁 支持WZ，IMG端.rar</code> 存在的目的,就是讓 client 同時接受兩種佈局。</p>
+<hr />
+<h2 id="4">§4 腳本層:最高價值的修改面<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<p><code>scripts/</code> 內含 <strong>2,294 個 JavaScript 檔</strong>,編碼為 <strong>GB18030</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>目錄</th>
+<th>檔數</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>npc/</code></td>
+<td>1,101</td>
+</tr>
+<tr>
+<td><code>portal/</code></td>
+<td>409</td>
+</tr>
+<tr>
+<td><code>quest/</code></td>
+<td>330</td>
+</tr>
+<tr>
+<td><code>reactor/</code></td>
+<td>269</td>
+</tr>
+<tr>
+<td><code>event/</code></td>
+<td>108</td>
+</tr>
+<tr>
+<td><code>map/</code></td>
+<td>72</td>
+</tr>
+<tr>
+<td><code>item/</code></td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p><code>event/0_EXAMPLE.js</code> 定義了完整的 instance event 契約:<code>setup</code> / <code>playerEntry</code> / <code>playerExit</code> / <code>monsterKilled</code> / <code>respawnStages</code> / <code>scheduledTimeout</code> / <code>clearPQ</code> / <code>dispose</code> 等。</p>
+<p><strong>任務、NPC 對話、傳送門、反應堆、事件邏輯全部可以純文字修改,不必碰執行檔。</strong> 這是本專案性價比最高的介入點。</p>
+<blockquote>
+<p>數字修正:<code>W1-6-js-script-index.md</code> 已正確記錄 2,294(並說明口述的 2,297 包含 41 個非 <code>.js</code> 條目),但 <code>scan-original.md</code> 仍在使用 2,297 與 2,300。<strong>以 2,294 為準。</strong></p>
+</blockquote>
+<hr />
+<h2 id="5">§5 解析度修改鏈<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<p>三支 DLL 協同工作:</p>
+<table>
+<thead>
+<tr>
+<th>DLL</th>
+<th>大小</th>
+<th>建置日期</th>
+<th>機制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nmconew2.dll</code></td>
+<td>1,638,400</td>
+<td>2009-07-26</td>
+<td><code>NMCO_CallNMFunc</code> / <code>NMCO_MemoryFree</code>;攔截 <code>Direct3DCreate8</code>;ImageBase <code>0x10000000</code>;1.7 MB <code>.data</code></td>
+</tr>
+<tr>
+<td><code>nmconew.dll</code></td>
+<td>50,176</td>
+<td>2020-11-06</td>
+<td>Microsoft Detours(<code>.detourc</code> / <code>.detourd</code>);<code>NMCO_CallNMFunc2</code> trampoline;攔截 <code>GetModuleFileNameW</code> 隱藏自身</td>
+</tr>
+<tr>
+<td><code>dinputc.dll</code></td>
+<td>21,504</td>
+<td>2019-04-16</td>
+<td>匯出替代的 <code>DirectInput8Create</code>;為非原生解析度縮放滑鼠 / 鍵盤輸入</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>nmconew2.dll</code> 是第一方 Nexon 元件,不是第三方 hack。</strong> 其 PDB 路徑:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>&lt;DRIVE_E&gt;:\Work\PlatformDev\_tag\NorthAmerica\20090721_df\
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  Messenger\MessengerNew\ClientDLL\UnicodeRelease\nmconew.pdb
+</code></pre></div>
+<blockquote>
+<p><code>&lt;DRIVE_E&gt;</code> 為建置機的磁碟前綴(見 <code>docs/index.md</code> 佔位符對照)。
+路徑結構本身即為證據:<code>PlatformDev</code> / <code>Messenger</code> / <code>NorthAmerica</code> /
+build tag <code>20090721_df</code> 是 Nexon 第一方建置樹。<code>Messenger</code> 正是 MapleStory
+client 的內部代號(與 <code>CNM*</code> 事件族、<code>nmcogame.dll</code> 呼應)。
+打包的原 client 只是把它的存在藏起來。</p>
+</blockquote>
+<p><strong><code>nmconew.dll</code> 才是第三方補丁</strong>,PDB 路徑 <code>&lt;USERPROFILE&gt;\OneDrive\Desktop\resdll\Release\nmconew.pdb</code>。它讀 <code>Gms.083.ini</code>、驗證執行映像為 <code>MapleStory</code> / <code>client</code>、定位 <code>UI/Login.img/Common/frame</code>,然後載入 <code>nmconew2.dll</code> 並透過 <code>NMCO_CallNMFunc2</code> 驅動。</p>
+<h3 id="_3">設定檔<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">[client]</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="na">resolutiontype</span><span class="o">=</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="c1">; (0)800:600, (1)1024:768, (2)1280:720,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">                  </span><span class="c1">; (3)1440:900, (4)1680:1050, (5)1920x1080</span>
+</code></pre></div>
+<h3 id="_4">登入介面限制<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>隨附的 <code>说明.txt</code> 要求:任何自訂 UI 必須提供 <code>UI/Login.img/Common/frame</code> 與 <code>frame0</code> … <code>frame5</code> 全部節點 — 解析度補丁引入了多幀登入畫面,client 會讀取每一個,缺任一個即結束程式。</p>
+<hr />
+<h2 id="6">§6 若仍要做執行期脫殼<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<p>上一版文件規劃的「Themida 脫殼流程」不適用(見 §0)。若確實需要對<strong>打包原檔</strong>做執行期分析,實際步驟是:</p>
+<ol>
+<li>在隔離環境執行 <code>MapleStory 0.83.exe</code>,讓 CSecurity 完成解包</li>
+<li>從 process memory dump 已解密的映像</li>
+<li>將 dump 重新載入 Ghidra,重跑 auto-analysis</li>
+<li>以 dump 為基準比對靜態結果</li>
+</ol>
+<p><strong>前置條件</strong>:此步驟需要執行未知且刻意混淆、帶 anti-tamper 行為的程式碼,必須有獨立的隔離決策。</p>
+<p><strong>但對本專案目標而言這是過度設計</strong> — §2 已有 52,083 函式的完整分析,§4 的腳本層可直接文字修改,§5 的解析度鏈無需改 exe。</p>
+<hr />
+<h2 id="7">§7 驗證<a class="headerlink" href="#7" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>python verify_wiki_claims.py
+</code></pre></div>
+<p>每條主張都有對應的自動檢查,預期值為原始碼中的字面值。可修改任一預期值並觀察檢查轉紅,以確認該檢查確實有效。</p>
+<hr />
+<h2 id="8">§8 參考連結<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://forum.ragezone.com/threads/v83-idb-client-edit-dump.1193418/">angel v83.idb</a> - 完整 IDB dump</li>
-<li><a href="https://gist.github.com/diamondo25/be95345a2875ab4342cd">diamondo25 IDC script</a> - 24 個 string rename</li>
-<li><a href="https://forum.ragezone.com/threads/help-understanding-the-idaq-exe-file-and-how-to-find-methods-in-it.991744/">sunnyboy IDAQ.EXE 教學</a> - STREDIT + xref</li>
-<li><a href="https://github.com/ergrelet/unlicense">unlicense</a> - 通用 unpacker</li>
-<li><a href="https://github.com/TajuC/MapleDumper-rs">MapleDumper-rs</a> - 動態 unpacker + scanner</li>
-<li><a href="https://github.com/SpikeMogo/WAND_EXT">SpikeMogo/WAND_EXT</a> - 完整 v83 class offsets</li>
-<li><a href="https://github.com/Bratah123/SpiritIDAPlugin">Bratah123/SpiritIDAPlugin</a> - IDA plugin</li>
+<li><a href="https://forum.ragezone.com/threads/v83-idb-client-edit-dump.1193418/">angel v83.idb</a> — 完整 IDB dump</li>
+<li><a href="https://gist.github.com/diamondo25/be95345a2875ab4342cd">diamondo25 IDC script</a> — 24 個 string rename</li>
+<li><a href="https://forum.ragezone.com/threads/help-understanding-the-idaq-exe-file-and-how-to-find-methods-in-it.991744/">sunnyboy IDAQ.EXE 教學</a> — STREDIT + xref</li>
+<li><a href="https://github.com/SpikeMogo/WAND_EXT">SpikeMogo/WAND_EXT</a> — 完整 v83 class offsets</li>
+<li><a href="https://github.com/BeiDouMS/BeiDou-ijl15">BeiDou-ijl15</a> — ijl15 插件源碼</li>
 </ul>
-<h2 id="5">§5 強驗證聲明<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
-<p>每個結論都基於:
-1. 實際跑過的測試結果(IDA / mapledumper / Hex-Rays)
-2. 已 clone 工具的 README + source code
-3. v83.idb 的真實 dump 內容(54K functions + 6 pseudocode)
-4. MapleStory 0.83.exe 的真實 PE header 分析</p>
-<p><strong>沒有幻想,沒有猜,沒有預測</strong>。</p>
+<blockquote>
+<p>上一版引用的 unlicense / MapleDumper-rs 連結已移除:它們是 Themida 導向的工具,與本檔案的實際保護層無關。MapleDumper 的 README 限制說明曾被誤讀為對本檔案的識別結果。</p>
+</blockquote>
 
 
 
@@ -3304,6 +4223,8 @@
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -3316,6 +4237,46 @@
       </main>
       
         <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../wz-structures/ui-wz/" class="md-footer__link md-footer__link--prev" aria-label="Previous: UI.wz 結構">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                UI.wz 結構
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../20-server-emulators/" class="md-footer__link md-footer__link--next" aria-label="Next: 20-server-emulators — 服務端模擬器">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                20-server-emulators — 服務端模擬器
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -3342,7 +4303,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.highlight", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
